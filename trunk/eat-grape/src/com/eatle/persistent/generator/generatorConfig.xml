@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties resource="com/eatle/persistent/generator/generatorConfig.properties" />
+	
+	<context id="MBG" targetRuntime="MyBatis3" defaultModelType="conditional">	<!--targetRuntime 此属性用于指定生成的代码的运行目标。 -->
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">  
+		    <property name="searchString" value="Example$" />  
+		    <property name="replaceString" value="Criteria" />
+		</plugin>
+		
+		<plugin type="com.eatle.persistent.generator.RenameSlectByExamplePlugin">  
+		    <property name="searchString" value="Example$" />  
+		    <property name="replaceString" value="Criteria" />
+		</plugin>
+		
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />  
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />  
+		<plugin type="com.eatle.persistent.generator.GeneratorMysqlPagePlugin" />
+		<plugin type="com.eatle.persistent.generator.GenSelectByMapPlugin" />
+		<plugin type="com.eatle.persistent.generator.GeneratorServiceLayerPlugin" />
+		<plugin type="com.eatle.persistent.generator.GeneratorStrutsXmlPlugin" />
+		
+		
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userId}" password="${password}"/>
+		
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />								   <!-- 类型解析器 -->
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="${modelPackage}" targetProject="${targetProject}">	<!-- 实体类 -->
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${sqlMapperPackage}" targetProject="${targetProject}">	<!-- 实体类SQL映射文件 -->
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="${daoMapperPackage}" targetProject="${targetProject}">
+			<property name="enableSubPackages" value="true" />									<!-- 接口 -->
+		</javaClientGenerator>
+		
+		<table schema="test" tableName="${tableName}" domainObjectName="${domainObjectName}"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="true"
+			selectByExampleQueryId="false">
+		</table>
+
+	</context>
+</generatorConfiguration>
