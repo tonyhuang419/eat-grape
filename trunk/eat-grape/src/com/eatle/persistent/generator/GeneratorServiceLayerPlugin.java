@@ -66,7 +66,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
     		recordFullType = recordFullType.substring(idx+1);
     	}
     	String serviceInterfaceFullName  = serveicePackge+".I"+recordFullType +"Service";
-    	
+    	String recordLowCaseFullType = recordFullType.substring(0,1).toLowerCase()+recordFullType.substring(1);
     	FullyQualifiedJavaType type = new FullyQualifiedJavaType(
     			serviceInterfaceFullName);
     	Interface interfaze = new Interface(type);
@@ -82,13 +82,17 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         //生成service 实现类
         String serviceImplFullName  = serveiceImplPackge+"."+recordFullType +"ServiceImpl";
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
+        importedTypes.add(type);//导入接口
         type = new FullyQualifiedJavaType(
     			serviceImplFullName);
         TopLevelClass topLevelClass = new TopLevelClass(type);
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         type = new FullyQualifiedJavaType(serviceInterfaceFullName);
         topLevelClass.addSuperInterface(type);
+        topLevelClass.addAnnotation("@Service(\""+recordLowCaseFullType+"Service\")");
+        type = new FullyQualifiedJavaType("org.springframework.stereotype.Service");
         importedTypes.add(type);
+        
         // add field, getter, setter for orderby clause
         //@Resource  private UserMapper userMapper;
         type  = new FullyQualifiedJavaType("javax.annotation.Resource");
