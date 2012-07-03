@@ -1,8 +1,3 @@
-/**
- * @Copyright:Copyright (c) 2009 深讯信息发展股份有限公司（农网基地）
-	*
- * @Company:sxit_chongqing
- */
 package com.eatle.action.admin;
 
 import java.io.IOException;
@@ -18,7 +13,7 @@ import com.eatle.utils.Pagination;
 
 
 /**
- *@Title:
+ *@Title: User Action
  *@Description:
  *@Author:xt
  *@Since:2012-6-20
