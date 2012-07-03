@@ -18,6 +18,14 @@ import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
   
+/**
+ * 
+ *@Title: 分页支持
+ *@Description:
+ *@Author:xt
+ *@Since:2012-7-3
+ *@Version:1.1.0
+ */
 public class GeneratorMysqlPagePlugin extends PluginAdapter {  
   
     @Override  

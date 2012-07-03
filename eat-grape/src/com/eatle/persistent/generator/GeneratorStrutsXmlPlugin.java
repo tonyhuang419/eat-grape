@@ -38,6 +38,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
  *				<result name="showUpdate">/WEB-INF/jsp/account/update.jsp</result>
  *			</action>
  *		 </package>
+ *
  *@Author:xt
  *@Since:2012-6-28
  *@Version:1.1.0

@@ -20,6 +20,14 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
   
+/**
+ * 
+ *@Title:	selectByMap mapper 生成器
+ *@Description:
+ *@Author:xt
+ *@Since:2012-7-3
+ *@Version:1.1.0
+ */
 public class GenSelectByMapPlugin extends PluginAdapter {  
   
     @Override  

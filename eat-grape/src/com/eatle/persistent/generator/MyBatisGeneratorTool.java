@@ -13,6 +13,14 @@ import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
+/**
+ * 
+ *@Title: 生成器启动类
+ *@Description:
+ *@Author:xt
+ *@Since:2012-7-3
+ *@Version:1.1.0
+ */
 public class MyBatisGeneratorTool {
 	public static void main(String[] args) {
 		List<String> warnings = new ArrayList<String>();
