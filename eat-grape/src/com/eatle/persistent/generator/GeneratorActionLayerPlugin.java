@@ -66,16 +66,21 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
     	String serviceInterfaceFullName  = serveicePackge+".I"+recordFullType +"Service";
     	
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-        		actionFullName);
         //导入 com.eatle.utils.DwzAjaxJsonUtil;
-        type = new FullyQualifiedJavaType("com.eatle.utils.DwzAjaxJsonUtil");
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType("com.eatle.utils.DwzAjaxJsonUtil");
+        importedTypes.add(type);
+        type =  FullyQualifiedJavaType.getNewMapInstance();
+        importedTypes.add(type);
+        //import ...User
+        type = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         importedTypes.add(type);
         
+         type = new FullyQualifiedJavaType(
+        		actionFullName);
         TopLevelClass topLevelClass = new TopLevelClass(type);
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         type = new FullyQualifiedJavaType("com.eatle.action.BaseAction");
-        topLevelClass.addSuperInterface(type);
+        topLevelClass.setSuperClass(type);
         importedTypes.add(type);
         // add field, getter, setter for orderby clause
         //@Resource
@@ -104,7 +109,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         field = new Field();
         field.setVisibility(JavaVisibility.PRIVATE);
         type = new FullyQualifiedJavaType(recordFullType);
-        importedTypes.add(type);
         field.setType(type);
         field.setName(recordLowerFullType);
         topLevelClass.addField(field);
@@ -143,7 +147,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
 		Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(new FullyQualifiedJavaType(introspectedTable.getBaseRecordType()));
-        method.setName("set"+recordFullType); //$NON-NLS-1$
+        method.setName("get"+recordFullType); //$NON-NLS-1$
         method.addBodyLine("return this."+recordLowerFullType+";"); //$NON-NLS-1$
         topLevelClass.addMethod(method);
 		
@@ -162,7 +166,8 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
 		Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("set"+recordFullType); //$NON-NLS-1$
-        method.addBodyLine("return this."+recordLowerFullType+" = recordLowerFullType;"); //$NON-NLS-1$
+        method.addParameter(new Parameter(new FullyQualifiedJavaType(recordFullType), recordLowerFullType));
+        method.addBodyLine("this."+recordLowerFullType+" = "+recordLowerFullType+";"); //$NON-NLS-1$
         topLevelClass.addMethod(method);
 		
 	}
@@ -196,7 +201,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("setPage"); //$NON-NLS-1$
         method.addParameter(new Parameter(new FullyQualifiedJavaType("com.eatle.utils.Pagination"), "page"));
-        method.addBodyLine("return this.page = page;"); //$NON-NLS-1$
+        method.addBodyLine("this.page = page;"); //$NON-NLS-1$
         topLevelClass.addMethod(method);
 	}
 
@@ -304,6 +309,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("userService.update(user);");
         method.addBodyLine("}");
         method.addBodyLine("super.writeMap(json);");
+        method.addException(new FullyQualifiedJavaType("java.io.IOException"));
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
 		
@@ -350,9 +356,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");
-        method.addBodyLine("}");
         method.addBodyLine("userService.add(user);");
-        method.addBodyLine("pageSize = Integer.parseInt((String)params.get(\"numPerPage\"));");
         method.addBodyLine("}");
         method.addBodyLine("super.writeMap(json);");
         topLevelClass.addImportedTypes(importedTypes);  
