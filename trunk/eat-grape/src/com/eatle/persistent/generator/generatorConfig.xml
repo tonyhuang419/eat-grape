@@ -16,7 +16,7 @@
 		
 		<!-- 重命名 selectByExample 方法 -->
 		<plugin type="com.eatle.persistent.generator.RenameSlectByExamplePlugin">  
-		    <property name="searchString" value="Example$" />  
+		    <property name="searchString" value="Example$" />  <!-- value 为 Rexg 表达式 -->
 		    <property name="replaceString" value="Criteria" />
 		</plugin>
 		

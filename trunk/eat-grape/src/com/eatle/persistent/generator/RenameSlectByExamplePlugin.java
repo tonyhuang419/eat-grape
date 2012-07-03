@@ -10,8 +10,12 @@ import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.IntrospectedTable;
 
 /**
- * @author Xiang Tao
  * 
+ *@Title: 重命名 selectByExample
+ *@Description:
+ *@Author:xt
+ *@Since:2012-7-3
+ *@Version:1.1.0
  */
 public class RenameSlectByExamplePlugin extends PluginAdapter {
     private String searchString;
