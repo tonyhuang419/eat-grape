@@ -1,8 +1,3 @@
-/**
- * @Copyright:Copyright (c) 2009 深讯信息发展股份有限公司（农网基地）
-	*
- * @Company:sxit_chongqing
- */
 package com.eatle.persistent.pojo;
 
 import java.io.Serializable;

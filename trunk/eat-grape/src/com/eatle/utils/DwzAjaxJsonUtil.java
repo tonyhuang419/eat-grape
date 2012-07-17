@@ -17,7 +17,6 @@ import java.util.Map;
  *@Version:1.1.0
  */
 public class DwzAjaxJsonUtil {
-	private static Map<String,Object> json = new HashMap<String,Object>();
 	
 	public static String KEY_STATUSCODE = "statusCode";
 	public static String KEY_MESSAGE = "message";
@@ -25,15 +24,14 @@ public class DwzAjaxJsonUtil {
 	public static String KEY_REL = "rel";
 	public static String KEY_CALLBACKTYPE = "callbackType";
 	public static String KEY_FORWARDURL = "forwardUrl";
-	static{
+	public static Map<String,Object> getDefaultAjaxJson(){
+		Map<String,Object> json = new HashMap<String,Object>();
 		json.put("statusCode", 200);
 		json.put("message","操作成功");
 		json.put("navTabId","");
 		json.put("rel","");
 		json.put("callbackType","closeCurrent");
 		json.put("forwardUrl","");
-	}
-	public static Map<String,Object> getDefaultAjaxJson(){
 		return json;
 	}
 
