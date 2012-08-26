@@ -1,7 +1,4 @@
 /**
- * shijin
- *
- * FileUtil.java, Create on 2011-7-22
  */
 package com.eatle.utils;
 

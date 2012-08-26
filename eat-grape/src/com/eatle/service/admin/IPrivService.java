@@ -1,7 +1,4 @@
 /**
- * @Copyright:Copyright (c) 2009 深讯信息发展股份有限公司（农网基地）
-	*
- * @Company:sxit_chongqing
  */
 package com.eatle.service.admin;
 
@@ -16,7 +13,7 @@ import com.eatle.utils.Pagination;
 
 
 /**
- *@Title:
+ *@Title:权限service
  *@Description:
  *@Author:xt
  *@Since:2012-6-19
