@@ -6,6 +6,14 @@ import com.eatle.utils.Pagination;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 
+ *@Title:用户service
+ *@Description:
+ *@Author:xt
+ *@Since:2012-8-26
+ *@Version:1.1.0
+ */
 public interface IUserService {
     /**
 * @Description:

@@ -1,10 +1,8 @@
-package com.eatle.utils;
-
 /**  
- * @author xt
+ * @author soap
  * @date 2011-12-5 上午09:36:03
  */
-
+package com.eatle.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

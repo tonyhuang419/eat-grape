@@ -6,7 +6,8 @@
 <generatorConfiguration>
 	<properties resource="com/eatle/persistent/generator/generatorConfig.properties" />
 	
-	<context id="MBG" targetRuntime="MyBatis3" defaultModelType="conditional">	<!--targetRuntime 此属性用于指定生成的代码的运行目标。 -->
+	<!--targetRuntime 此属性用于指定生成的代码的运行目标。 -->
+	<context id="MBG" targetRuntime="MyBatis3" defaultModelType="conditional">	
 	
 		<!-- 重命名 Example 类-->
 		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">  
