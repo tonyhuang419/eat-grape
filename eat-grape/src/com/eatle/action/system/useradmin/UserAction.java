@@ -1,4 +1,4 @@
-package com.eatle.action.admin;
+package com.eatle.action.system.useradmin;
 
 import java.io.IOException;
 import java.util.Map;
@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.eatle.action.BaseAction;
-import com.eatle.persistent.pojo.admin.User;
-import com.eatle.service.admin.IUserService;
+import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 

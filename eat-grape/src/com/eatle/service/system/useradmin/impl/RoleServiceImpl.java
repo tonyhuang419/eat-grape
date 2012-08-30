@@ -1,4 +1,4 @@
-package com.eatle.service.admin.impl;
+package com.eatle.service.system.useradmin.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.eatle.persistent.mapper.PrivMapper;
 import com.eatle.persistent.mapper.RoleMapper;
-import com.eatle.persistent.pojo.admin.Priv;
-import com.eatle.persistent.pojo.admin.Role;
-import com.eatle.persistent.pojo.admin.RoleCriteria;
-import com.eatle.persistent.pojo.admin.RoleCriteria.Criteria;
-import com.eatle.service.admin.IRoleService;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.Role;
+import com.eatle.persistent.pojo.system.useradmin.RoleCriteria;
+import com.eatle.persistent.pojo.system.useradmin.RoleCriteria.Criteria;
+import com.eatle.service.system.useradmin.IRoleService;
 import com.eatle.utils.Pagination;
 
 

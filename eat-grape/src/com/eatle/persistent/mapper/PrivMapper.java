@@ -1,7 +1,8 @@
 package com.eatle.persistent.mapper;
 
-import com.eatle.persistent.pojo.admin.Priv;
-import com.eatle.persistent.pojo.admin.PrivCriteria;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
+
 import java.util.List;
 import java.util.Map;
 

@@ -1,41 +1,41 @@
 /**
  */
-package com.eatle.service.admin;
+package com.eatle.service.system.useradmin;
 
 import java.util.List;
 import java.util.Map;
 
-import com.eatle.persistent.pojo.admin.Priv;
-import com.eatle.persistent.pojo.admin.PrivCriteria;
-import com.eatle.persistent.pojo.admin.PrivTree;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.Role;
+import com.eatle.persistent.pojo.system.useradmin.RoleCriteria;
 import com.eatle.utils.Pagination;
 
 
 
 /**
- *@Title:权限service
+ *@Title: 角色service
  *@Description:
  *@Author:xt
  *@Since:2012-6-19
  *@Version:1.1.0
  */
-public interface IPrivService{
+public interface IRoleService{
 
 	Pagination findPagination(Map<String,Object> queryMap,int currentPage,int pageSize);
 
 	/**
 	 * @Description:
 		*
-		* @param priv
+		* @param role
 	 */
-	void update(Priv priv);
+	void update(Role role);
 
 	/**
 	 * @Description:
 		*
-		* @param priv
+		* @param role
 	 */
-	void add(Priv priv);
+	void add(Role role);
 
 	/**
 	 * @Description:
@@ -43,14 +43,14 @@ public interface IPrivService{
 		* @param id
 		* @return
 	 */
-	Priv findById(long id);
+	Role findById(long id);
 
 	/**
 	 * @Description:
 		*
 		* @return
 	 */
-	List<Priv> findAll();
+	List<Role> findAll();
 
 	/**
 	 * @Description:
@@ -58,21 +58,21 @@ public interface IPrivService{
 		* @param criteria
 		* @return
 	 */
-	List<Priv> findByCriteria(PrivCriteria criteria);
+	List<Role> findByCriteria(RoleCriteria criteria);
 
 	/**
 	 * @Description:
 		*
-		* @param priv
+		* @param role
 	 */
-	void delete(Priv priv);
+	void delete(Role role);
 
 	/**
 	 * @Description:
 		*
-		* @return
+		* @param id
 	 */
-	List<PrivTree> findPrivTree();
+	List<Priv> findPrivsByRoleId(Long id);
 	
 	
 }

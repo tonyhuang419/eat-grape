@@ -1,7 +1,8 @@
 package com.eatle.persistent.mapper;
 
-import com.eatle.persistent.pojo.admin.Role;
-import com.eatle.persistent.pojo.admin.RoleCriteria;
+import com.eatle.persistent.pojo.system.useradmin.Role;
+import com.eatle.persistent.pojo.system.useradmin.RoleCriteria;
+
 import java.util.List;
 import java.util.Map;
 

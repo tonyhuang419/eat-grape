@@ -1,6 +1,6 @@
 /**
  */
-package com.eatle.action.admin;
+package com.eatle.action.system.useradmin;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.eatle.action.BaseAction;
-import com.eatle.persistent.pojo.admin.Priv;
-import com.eatle.persistent.pojo.admin.PrivTree;
-import com.eatle.persistent.pojo.admin.Role;
-import com.eatle.service.admin.IPrivService;
-import com.eatle.service.admin.IRoleService;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.PrivTree;
+import com.eatle.persistent.pojo.system.useradmin.Role;
+import com.eatle.service.system.useradmin.IPrivService;
+import com.eatle.service.system.useradmin.IRoleService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.utils.TreeUtil;

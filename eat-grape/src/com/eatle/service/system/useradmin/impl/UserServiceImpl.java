@@ -1,10 +1,10 @@
-package com.eatle.service.admin.impl;
+package com.eatle.service.system.useradmin.impl;
 
 import com.eatle.persistent.mapper.UserMapper;
-import com.eatle.persistent.pojo.admin.User;
-import com.eatle.persistent.pojo.admin.UserCriteria.Criteria;
-import com.eatle.persistent.pojo.admin.UserCriteria;
-import com.eatle.service.admin.IUserService;
+import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.persistent.pojo.system.useradmin.UserCriteria;
+import com.eatle.persistent.pojo.system.useradmin.UserCriteria.Criteria;
+import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.Pagination;
 import java.util.List;
 import java.util.Map;
