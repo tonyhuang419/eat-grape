@@ -12,9 +12,10 @@
 	<constant name="struts.multipart.maxSize" value="1002097152" />
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.enable.SlashesInActionNames" value="true" />
-	<!-- *** Struts2优化参数 *** -->
+	
+	<!-- *** Struts2优化Constants *** -->
 	<constant name="struts.freemarker.templatesCache" value="true" />
-	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.configuration.xml.reload=false" value="true" />
 	
 	<!-- 提供json 格式的支持  -->
 	<package name="default" extends="json-default">
@@ -29,11 +30,9 @@
 				/timeout.jsp
 			</result>
 		</global-results>
-		
 	</package>
 	
 	<!-- 账号管理 -->
 	<include file="res/struts/struts-system.xml"></include>
-	
 	
 </struts>
