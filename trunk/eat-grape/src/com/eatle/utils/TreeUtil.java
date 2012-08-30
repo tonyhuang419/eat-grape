@@ -7,8 +7,8 @@ package com.eatle.utils;
 
 import java.util.List;
 
-import com.eatle.persistent.pojo.admin.Priv;
-import com.eatle.persistent.pojo.admin.PrivTree;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.PrivTree;
 
 
 /**
