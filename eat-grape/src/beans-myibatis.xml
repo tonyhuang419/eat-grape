@@ -73,7 +73,7 @@
 	    <property name="mapperLocations">
 			<list>                
 				<value>classpath:com/eatle/persistent/sqlmapper/*Mapper.xml</value>
-				<value>classpath:com/eatle/persistent/sqlmapper/*-resultmap.xml</value>
+				<value>classpath:com/eatle/persistent/resultmap/*-resultmap.xml</value>
 			</list>
 		</property>
 	</bean>

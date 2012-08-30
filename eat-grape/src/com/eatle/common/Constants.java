@@ -7,7 +7,7 @@ package com.eatle.common;
  * @Since:2012-6-19
  * @Version:1.1.0
  */
-public class Consts {
+public class Constants {
 
      /**
       * @Title: 通用类

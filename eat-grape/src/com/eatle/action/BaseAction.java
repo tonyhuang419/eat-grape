@@ -70,10 +70,9 @@ public class BaseAction extends ActionSupport implements  SessionAware, ServletR
           while (parameters.hasMoreElements()) {
                String key = parameters.nextElement().toString();
                String value = request.getParameter(key);
-               if(value!=null&&!"".equals(value)){
+               if(value != null && !"".equals(value)){
             	   map.put(key, value);
                }
-               
           }
 
           return map;
@@ -89,14 +88,15 @@ public class BaseAction extends ActionSupport implements  SessionAware, ServletR
  		}
  		HttpServletResponse response = ServletActionContext.getResponse();
  		response.setContentType(contentType);
- 		response.setHeader("Cache-Control", "no-cache");
+ 		response.setHeader("cache-control", "no-cache");
+ 		response.setHeader("pragma", "no-cache");
+ 		response.setHeader("expires", "0");
 		Writer writer = response.getWriter();
 		writer.write(sth);
-		writer.flush();
 		writer.close();
  	}
      
-     protected void writeMap(Map map) throws IOException {
+     protected void writeMap(Map<?, ?> map) throws IOException {
     	JsonConfig config = new JsonConfig();
     	config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
   		String json = JSONObject.fromObject(map, config).toString();
@@ -129,21 +129,18 @@ public class BaseAction extends ActionSupport implements  SessionAware, ServletR
     }
 
 	@Override
-	public void setServletResponse(HttpServletResponse arg0) {
-		this.response = arg0;
-		
+	public void setServletResponse(HttpServletResponse response) {
+		this.response = response;
 	}
 
 	@Override
-	public void setServletRequest(HttpServletRequest arg0) {
-		request = arg0;
-		
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 
 	@Override
-	public void setSession(Map<String, Object> arg0) {
-		session = arg0;
-		
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 
 	public String getNavTabId() {
@@ -161,6 +158,4 @@ public class BaseAction extends ActionSupport implements  SessionAware, ServletR
 	public void setDialogId(String dialogId) {
 		this.dialogId = dialogId;
 	}
-
-
 }
