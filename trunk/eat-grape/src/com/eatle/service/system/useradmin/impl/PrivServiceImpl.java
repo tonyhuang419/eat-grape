@@ -1,4 +1,4 @@
-package com.eatle.service.admin.impl;
+package com.eatle.service.system.useradmin.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.eatle.persistent.mapper.PrivMapper;
-import com.eatle.persistent.pojo.admin.Priv;
-import com.eatle.persistent.pojo.admin.PrivCriteria;
-import com.eatle.persistent.pojo.admin.PrivCriteria.Criteria;
-import com.eatle.persistent.pojo.admin.PrivTree;
-import com.eatle.service.admin.IPrivService;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
+import com.eatle.persistent.pojo.system.useradmin.PrivTree;
+import com.eatle.persistent.pojo.system.useradmin.PrivCriteria.Criteria;
+import com.eatle.service.system.useradmin.IPrivService;
 import com.eatle.utils.Pagination;
 
 

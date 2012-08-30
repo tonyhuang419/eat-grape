@@ -1,6 +1,6 @@
 /**
  */
-package com.eatle.action.admin;
+package com.eatle.action.system.useradmin;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,10 +9,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.eatle.action.BaseAction;
-import com.eatle.persistent.pojo.admin.Priv;
-import com.eatle.persistent.pojo.admin.PrivCriteria;
-import com.eatle.persistent.pojo.admin.PrivCriteria.Criteria;
-import com.eatle.service.admin.IPrivService;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
+import com.eatle.persistent.pojo.system.useradmin.PrivCriteria.Criteria;
+import com.eatle.service.system.useradmin.IPrivService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 

@@ -5,7 +5,7 @@
 <struts>
 	<!-- 账号管理 -->
 	<package name="account" extends="default" namespace="/system/account">
-		<action name="*" class="com.eatle.action.admin.UserAction" method="{1}">
+		<action name="*" class="com.eatle.action.system.useradmin.UserAction" method="{1}">
 			<result name="showIndex">/WEB-INF/jsp/account/account.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/account/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/account/update.jsp</result>
@@ -19,7 +19,7 @@
 	
 	<!-- 角色管理 -->
 	<package name="role" extends="default" namespace="/system/role">
-		<action name="*" class="com.eatle.action.admin.RoleAction" method="{1}">
+		<action name="*" class="com.eatle.action.system.useradmin.RoleAction" method="{1}">
 			<result name="showIndex">/WEB-INF/jsp/role/role.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/role/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/role/update.jsp</result>
@@ -33,7 +33,7 @@
 
 	<!-- 权限管理 -->
 	<package name="priv" extends="default" namespace="/system/priv">
-		<action name="*" class="com.eatle.action.admin.PrivAction" method="{1}">
+		<action name="*" class="com.eatle.action.system.useradmin.PrivAction" method="{1}">
 			<result name="showIndex">/WEB-INF/jsp/priv/priv.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/priv/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/priv/update.jsp</result>

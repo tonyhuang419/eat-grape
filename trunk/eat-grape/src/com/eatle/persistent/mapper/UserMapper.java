@@ -1,7 +1,8 @@
 package com.eatle.persistent.mapper;
 
-import com.eatle.persistent.pojo.admin.User;
-import com.eatle.persistent.pojo.admin.UserCriteria;
+import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.persistent.pojo.system.useradmin.UserCriteria;
+
 import java.util.List;
 import java.util.Map;
 

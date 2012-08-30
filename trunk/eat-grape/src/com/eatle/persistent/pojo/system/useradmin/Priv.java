@@ -1,4 +1,4 @@
-package com.eatle.persistent.pojo.admin;
+package com.eatle.persistent.pojo.system.useradmin;
 
 import java.io.Serializable;
 
