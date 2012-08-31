@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">  
 <configuration>
-    <!-- 别名  -->
+    <!-- 类型别名  -->
+    <typeAliases>
+    	<!-- 用户 -->
+    	<typeAlias alias="User" type="com.eatle.persistent.pojo.system.useradmin.User"/>
+    	<typeAlias alias="UserCriteria" type="com.eatle.persistent.pojo.system.useradmin.UserCriteria"/>
+    	<!-- 角色 -->
+    	<typeAlias alias="Role" type="com.eatle.persistent.pojo.system.useradmin.Role"/>
+    	<typeAlias alias="RoleCriteria" type="com.eatle.persistent.pojo.system.useradmin.RoleCriteria"/>
+    	<!-- 权限 -->
+    	<typeAlias alias="Priv" type="com.eatle.persistent.pojo.system.useradmin.Priv"/>
+    	<typeAlias alias="PrivCriteria" type="com.eatle.persistent.pojo.system.useradmin.PrivCriteria"/>
+    	<!-- 系统菜单 -->
+    	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.Menu"/>
+    	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.MenuCriteria"/>
+    	
+    </typeAliases>
 </configuration>    
