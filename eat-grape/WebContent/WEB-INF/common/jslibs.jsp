@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8"%>
+
 <script type="text/javascript" src="${ctx}/js/jquery.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery.timers-1.2.js"></script>		
 <script type="text/javascript" src="${ctx}/js/jquery.validate.js"></script>
@@ -21,10 +21,7 @@
 <script type="text/javascript" src="${ctx}/js/jquery.artDialog.source.js"></script>
 <script type="text/javascript" src="${ctx}/js/iframeTools.source.js"></script>
  --%>
-<link href="${ctx}/styles/skins/blue.css" rel="stylesheet"
-			type="text/css" />
+<link href="${ctx}/styles/skins/blue.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/styles/sink.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}/styles/zTreeStyle/zTreeStyle.css" rel="stylesheet"
-		type="text/css" />
-<link href="${ctx}/styles/datePickerSkins/WdatePicker.css" rel="stylesheet"
-type="text/css" />
+<link href="${ctx}/styles/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/styles/datePickerSkins/WdatePicker.css" rel="stylesheet" type="text/css" />
