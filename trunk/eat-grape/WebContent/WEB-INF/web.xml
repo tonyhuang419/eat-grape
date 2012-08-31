@@ -2,7 +2,9 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>eatle</display-name>
   
-  
+  	<session-config>
+  		<session-timeout>1</session-timeout>
+  	</session-config>
   
   	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -18,29 +20,12 @@
 		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
 	</filter>
 	
-	<!-- Struts2的FilterDispathcer的Filter -->
-	<filter>
-		<filter-name>global</filter-name>
-		<filter-class>com.eatle.filter.GlobalFilter</filter-class>
-	</filter>
-	
-	
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>*.htm</url-pattern>
 	</filter-mapping>
 	
-	<filter-mapping>
-		<filter-name>global</filter-name>
-		<url-pattern>*.htm</url-pattern>
-	</filter-mapping>
-	
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>index</welcome-file>
   </welcome-file-list>
 </web-app>
