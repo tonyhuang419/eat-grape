@@ -2,8 +2,8 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<!-- 账号管理 -->
-	<package extends="default" name="account" namespace="/system/account">
-		<action class="com.eatle.action.system.useradmin.UserAction" method="{1}" name="*">
+	<package extends="default" name="account" namespace="/system/useradmin/account">
+		<action class="com.eatle.web.action.system.useradmin.UserAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/account/account.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/account/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/account/update.jsp</result>
@@ -17,8 +17,8 @@
 	</package>
 	
 	<!-- 角色管理 -->
-	<package extends="default" name="role" namespace="/system/role">
-		<action class="com.eatle.action.system.useradmin.RoleAction" method="{1}" name="*">
+	<package extends="default" name="role" namespace="/system/useradmin/role">
+		<action class="com.eatle.web.action.system.useradmin.RoleAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/role/role.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/role/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/role/update.jsp</result>
@@ -32,8 +32,8 @@
 	</package>
 
 	<!-- 权限管理 -->
-	<package extends="default" name="priv" namespace="/system/priv">
-		<action class="com.eatle.action.system.useradmin.PrivAction" method="{1}" name="*">
+	<package extends="default" name="priv" namespace="/system/useradmin/priv">
+		<action class="com.eatle.web.action.system.useradmin.PrivAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/priv/priv.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/priv/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/priv/update.jsp</result>
@@ -49,7 +49,7 @@
 	
 	<!-- 菜单管理 -->
 	<package extends="default" name="menu" namespace="/system/menu">
-		<action class="com.eatle.action.system.MenuAction" method="{1}" name="*">
+		<action class="com.eatle.web.action.system.MenuAction" method="{1}" name="*">
 			<result name="showIndex">
 				/WEB-INF/jsp/menu/menu.jsp
       		</result>
