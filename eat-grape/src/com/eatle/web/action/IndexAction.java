@@ -1,6 +1,6 @@
 /**
  */
-package com.eatle.action;
+package com.eatle.web.action;
 
 /**
  * @Title:
