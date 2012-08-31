@@ -10,9 +10,9 @@
 			}
 			//刷新dlid指定的dialog，url：刷新时可重新指定加载数据的url, data：为加载数据时所需的参数。
 			//alert(json.dialogId);
-			//$.pdialog.reload('system/priv/showAdd.htm',{},json.dialogId);
+			//$.pdialog.reload('system/useradmin/priv/showAdd.htm',{},json.dialogId);
 			//$.pdialog.close(json.dialogId);
-			//$.pdialog.open('system/priv/showAdd.htm', json.dialogId, "wwwwwwwwww");
+			//$.pdialog.open('system/useradmin/priv/showAdd.htm', json.dialogId, "wwwwwwwwww");
 		}
 	}
 	}
@@ -21,7 +21,7 @@
 
 
 <div class="pageContent">
-	<form method="post" action="system/priv/add.htm?dialogId=${param.dialogId}" class="pageForm required-validate"
+	<form method="post" action="system/useradmin/priv/add.htm?dialogId=${param.dialogId}" class="pageForm required-validate"
 			 onsubmit="return validateCallback(this, <s:if test="#parameters.dialogId != '' ">refreshDialogAjaxDone</s:if><s:else>DialogAjaxDone</s:else>);">
 		<div class="pageFormContent" layoutH="56">
 			<input type="hidden"  name="priv.pId" value="${param.pid}">

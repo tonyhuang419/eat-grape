@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="/system/account/showIndex.htm">
+<form id="pagerForm" method="post" action="/system/useradmin/account/showIndex.htm">
 	
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
@@ -15,7 +15,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="/system/account/showIndex.htm" method="post">
+	<form onsubmit="return navTabSearch(this);" action="/system/useradmin/account/showIndex.htm" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -47,9 +47,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/account/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true"><span>添加</span></a></li>
-			<li><a class="delete" href="system/account/delete.htm?user.id={sid_user}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="system/account/showUpdate.htm?user.id={sid_user}" target="dialog" mask="true"><span>修改</span></a></li>
+			<li><a class="add" href="system/useradmin/account/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true"><span>添加</span></a></li>
+			<li><a class="delete" href="system/useradmin/account/delete.htm?user.id={sid_user}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="system/useradmin/account/showUpdate.htm?user.id={sid_user}&navTabId=${param.navTabId}" target="dialog" mask="true"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>

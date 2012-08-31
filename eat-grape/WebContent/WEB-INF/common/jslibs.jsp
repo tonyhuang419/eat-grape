@@ -1,27 +1,26 @@
-<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script type="text/javascript" src="${ctx}/js/jquery.js"></script>
-<script type="text/javascript" src="${ctx}/js/jquery.timers-1.2.js"></script>		
-<script type="text/javascript" src="${ctx}/js/jquery.validate.js"></script>
-<script type="text/javascript" src="${ctx}/js/jquery.ztree.core-3.0.js"></script>
-<script type="text/javascript" src="${ctx}/js/jquery.ztree.excheck-3.0.js"></script>
-<script type="text/javascript" src="${ctx}/js/jquery.ztree.exedit-3.0.js"></script>
-<script type="text/javascript" src="${ctx}/js/jquery.artDialog.source.js"></script>
-<script type="text/javascript" src="${ctx}/js/phoenixDialog.js"></script>	
-<script type="text/javascript" src="${ctx}/js/myDatePicker/WdatePicker.js"></script>
-<script type="text/javascript" src="${ctx}/js/iframeTools.source.js"></script>
-<script type="text/javascript" src="${ctx}/js/StringUtils.js"></script>
-<script type="text/javascript" src="${ctx}/js/loading-min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="${ctx}/js/jquery.bgiframe.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="${ctx}/js/button-hot.js"></script>
-<script type="text/javascript" src="${ctx}/js/common/selectUser.js"></script>
-<script type="text/javascript" src="${ctx}/js/common/selectAuditUser.js"></script>
-<script type="text/javascript" src="${ctx}/js/jquery.PrintArea.js"></script>
-<%--
-<script type="text/javascript" src="${ctx}/js/jquery.artDialog.source.js"></script>
-<script type="text/javascript" src="${ctx}/js/iframeTools.source.js"></script>
- --%>
-<link href="${ctx}/styles/skins/blue.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}/styles/sink.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}/styles/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}/styles/datePickerSkins/WdatePicker.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/js/artdialog/skins/blue.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${ctx}/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${ctx}/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+<link href="${ctx}/js/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
+<!--[if IE]>
+<link href="${ctx}/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
+<![endif]-->
+
+<script type="text/javascript" src="${ctx}/js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="${ctx}/js/artdialog/artDialog.source.js"></script>
+<script type="text/javascript" src="${ctx}/js/artdialog/iframeTools.js"></script>
+<script type="text/javascript" src="${ctx}/js/main.js"></script>
+
+<script src="${ctx}/js/speedup.js" type="text/javascript"></script>
+<script src="${ctx}/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="${ctx}/js/jquery.validate.js" type="text/javascript"></script>
+<script src="${ctx}/js/jquery.bgiframe.js" type="text/javascript"></script>
+<script src="${ctx}/js/xheditor/xheditor-1.1.12-zh-cn.min.js" type="text/javascript"></script>
+<script src="${ctx}/js/uploadify/scripts/swfobject.js" type="text/javascript"></script>
+<script src="${ctx}/js/uploadify/scripts/jquery.uploadify.v2.1.0.js" type="text/javascript"></script>
+
+<script src="${ctx}/js/dwz/dwz.min.js" type="text/javascript"></script>
+<script src="${ctx}/js/dwz/dwz.regional.zh.js" type="text/javascript"></script>
