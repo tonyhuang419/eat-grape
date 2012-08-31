@@ -32,6 +32,10 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
 	private String serveicePackge = "";
 	private String targetProject = "src";
 	
+	//--------------
+	private String recordLowerFullType = "";
+	private String serviceObjName= "";
+	
 	@Override
 	public boolean validate(List<String> warnings) {
 		return true;
@@ -60,7 +64,8 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
     	if(idx!=-1){
     		recordFullType = recordFullType.substring(idx+1);
     	}
-    	String recordLowerFullType = recordFullType.substring(0, 1).toLowerCase()+recordFullType.substring(1);
+        recordLowerFullType = recordFullType.substring(0, 1).toLowerCase()+recordFullType.substring(1);
+        serviceObjName = recordLowerFullType + "Service";
     	
     	String actionFullName  = actionPackge+"."+recordFullType +"Action";
     	String serviceInterfaceFullName  = serveicePackge+".I"+recordFullType +"Service";
@@ -92,7 +97,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         type = new FullyQualifiedJavaType(serviceInterfaceFullName);
         importedTypes.add(type);
         field.setType(type);
-        field.setName(recordLowerFullType+"Service"); //$NON-NLS-1$
+        field.setName(serviceObjName); //$NON-NLS-1$
         field.addAnnotation("@Resource");
         topLevelClass.addField(field);
         
@@ -230,7 +235,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("if(params.containsKey(\"numPerPage\")){");
         method.addBodyLine("pageSize = Integer.parseInt((String)params.get(\"numPerPage\"));");
         method.addBodyLine("}");
-        method.addBodyLine("page = userService.findPagination(params, pageNum, pageSize);");
+        method.addBodyLine("page = "+serviceObjName+".findPagination(params, pageNum, pageSize);");
         method.addBodyLine("return \"showIndex\";");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
@@ -257,7 +262,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");
-        method.addBodyLine("userService.delete(user);");
+        method.addBodyLine(serviceObjName+".delete(user);");
         method.addBodyLine("}");
         method.addBodyLine("super.writeMap(json);");
         topLevelClass.addImportedTypes(importedTypes);  
@@ -281,7 +286,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("showUpdate");
         
-        method.addBodyLine("user = userService.findById(user.getId());");
+        method.addBodyLine("user = "+serviceObjName+".findById(user.getId());");
         method.addBodyLine("return \"showUpdate\";");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
@@ -306,7 +311,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");
-        method.addBodyLine("userService.update(user);");
+        method.addBodyLine(serviceObjName+".update(user);");
         method.addBodyLine("}");
         method.addBodyLine("super.writeMap(json);");
         method.addException(new FullyQualifiedJavaType("java.io.IOException"));
@@ -356,7 +361,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");
-        method.addBodyLine("userService.add(user);");
+        method.addBodyLine(serviceObjName+".add(user);");
         method.addBodyLine("}");
         method.addBodyLine("super.writeMap(json);");
         topLevelClass.addImportedTypes(importedTypes);  
