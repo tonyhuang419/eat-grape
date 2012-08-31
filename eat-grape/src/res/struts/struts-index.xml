@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 登陆验证 -->
+	<package name="login" extends="struts-default" namespace="/">
+		<action name="*" class="com.eatle.action.system.useradmin.UserAction" method="{1}">
+			<result type="redirectAction">/index</result>
+		</action>
+		
+		<!-- 退出登陆 -->
+		<action name="loginout" class="com.eatle.action.system.useradmin.UserAction" >
+			<result name="login" type="redirect">/login.html</result>
+		</action>
+	</package>
+	
+	<!-- 首页展示 -->
+	<package name="index" extends="my-struts-default" namespace="/">
+		<action name="index" class="com.eatle.action.system.useradmin.UserAction" method="index">
+			<result>/WEB-INF/jsp/index.jsp</result>
+		</action>
+	</package>
+	
+</struts>
