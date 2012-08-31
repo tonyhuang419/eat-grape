@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
-    "http://struts.apache.org/dtds/struts-2.1.dtd">
-
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<!-- 账号管理 -->
-	<package name="account" extends="default" namespace="/system/account">
-		<action name="*" class="com.eatle.action.system.useradmin.UserAction" method="{1}">
+	<package extends="default" name="account" namespace="/system/account">
+		<action class="com.eatle.action.system.useradmin.UserAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/account/account.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/account/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/account/update.jsp</result>
@@ -13,13 +11,14 @@
 			<!-- <result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
 				<param name="includeProperties">resultMap.*</param>
-			</result> -->
+			</result>
+-->
 		</action>
 	</package>
 	
 	<!-- 角色管理 -->
-	<package name="role" extends="default" namespace="/system/role">
-		<action name="*" class="com.eatle.action.system.useradmin.RoleAction" method="{1}">
+	<package extends="default" name="role" namespace="/system/role">
+		<action class="com.eatle.action.system.useradmin.RoleAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/role/role.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/role/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/role/update.jsp</result>
@@ -27,13 +26,14 @@
 			<!-- <result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
 				<param name="includeProperties">resultMap.*</param>
-			</result> -->
+			</result>
+-->
 		</action>
 	</package>
 
 	<!-- 权限管理 -->
-	<package name="priv" extends="default" namespace="/system/priv">
-		<action name="*" class="com.eatle.action.system.useradmin.PrivAction" method="{1}">
+	<package extends="default" name="priv" namespace="/system/priv">
+		<action class="com.eatle.action.system.useradmin.PrivAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/priv/priv.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/priv/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/priv/update.jsp</result>
@@ -42,7 +42,23 @@
 			<!-- <result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
 				<param name="includeProperties">resultMap.*</param>
-			</result> -->
+			</result>
+-->
 		</action>
 	</package>
+	
+	<!-- 菜单管理 -->
+  <package name="menu" namespace="/system/menu">
+    <action class="com.eatle.action.system.MenuAction" method="{1}" name="*">
+      <result name="showIndex">
+        /WEB-INF/jsp/menu/menu.jsp
+      </result>
+      <result name="showAdd">
+        /WEB-INF/jsp/menu/add.jsp
+      </result>
+      <result name="showUpdate">
+        /WEB-INF/jsp/menu/update.jsp
+      </result>
+    </action>
+  </package>
 </struts>
