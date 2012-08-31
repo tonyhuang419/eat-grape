@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.eatle.persistent.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.system.useradmin.User" >
+  <resultMap id="BaseResultMap" type="User" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
@@ -41,7 +41,7 @@
   <sql id="Base_Column_List" >
     id, user_name, pwd, email, type, role_id
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.system.useradmin.UserCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="UserCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -69,13 +69,13 @@
     delete from t_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.eatle.persistent.pojo.system.useradmin.User" >
+  <insert id="insert" parameterType="User" >
     insert into t_user (id, user_name, pwd, 
       email, type, role_id)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{roleId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.system.useradmin.User" >
+  <insert id="insertSelective" parameterType="User" >
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -118,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.system.useradmin.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="User" >
     update t_user
     <set >
       <if test="userName != null" >
@@ -139,7 +139,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.system.useradmin.User" >
+  <update id="updateByPrimaryKey" parameterType="User" >
     update t_user
     set user_name = #{userName,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},
@@ -148,7 +148,7 @@
       role_id = #{roleId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.system.useradmin.UserCriteria" >
+  <select id="selectCountByCriteria" resultType="long" parameterType="UserCriteria" >
     select count(1) 
     from t_user
     <if test="_parameter != null" >
@@ -177,5 +177,9 @@
         and role_id = #{roleId,jdbcType=BIGINT}
       </if>
     </where>
+  </select>
+  
+  <select id="find" resultMap="BaseResultMap" parameterType="User">
+  	select * from t_user where user_name = #{userName, jdbcType=VARCHAR}
   </select>
 </mapper>
