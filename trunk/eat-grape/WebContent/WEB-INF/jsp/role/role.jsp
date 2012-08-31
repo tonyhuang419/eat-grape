@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="system/role/showIndex.htm">
+<form id="pagerForm" method="post" action="system/useradmin/role/showIndex.htm">
 	
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
@@ -15,7 +15,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="system/role/showIndex.htm" method="post">
+	<form onsubmit="return navTabSearch(this);" action="system/useradmin/role/showIndex.htm" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -36,9 +36,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/role/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true"><span>添加角色</span></a></li>
-			<li><a class="delete" href="system/role/delete.htm?role.id={sid}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="system/role/showUpdate.htm?role.id={sid}&navTabId=${param.navTabId}" target="dialog" mask="true"><span>修改</span></a></li>
+			<li><a class="add" href="system/useradmin/role/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true"><span>添加角色</span></a></li>
+			<li><a class="delete" href="system/useradmin/role/delete.htm?role.id={sid}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="system/useradmin/role/showUpdate.htm?role.id={sid}&navTabId=${param.navTabId}" target="dialog" mask="true"><span>修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table"  layoutH="138">
@@ -55,7 +55,7 @@
 					<td><s:property value="#item.roleName" /></td>
 					<td><s:property value="#item.description" /></td>
 					<td>
-						<a title="设置权限" target="dialog" mask=true href="system/role/showSetPriv.htm?role.id=<s:property value="#item.id" />">设置权限</a>
+						<a title="设置权限" target="dialog" mask=true href="system/useradmin/role/showSetPriv.htm?role.id=<s:property value="#item.id" />">设置权限</a>
 						<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
 					</td>
 				</tr>
