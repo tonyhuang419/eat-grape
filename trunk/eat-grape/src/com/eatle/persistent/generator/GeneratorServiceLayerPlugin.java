@@ -33,6 +33,10 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
 	
 	private String targetProject = "src";
 	
+	//--------------
+	private String recordLowCaseFullType = "";
+	private String mapperObjName = "";
+	
 	@Override
 	public boolean validate(List<String> warnings) {
 		return true;
@@ -66,7 +70,8 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
     		recordFullType = recordFullType.substring(idx+1);
     	}
     	String serviceInterfaceFullName  = serveicePackge+".I"+recordFullType +"Service";
-    	String recordLowCaseFullType = recordFullType.substring(0,1).toLowerCase()+recordFullType.substring(1);
+        recordLowCaseFullType = recordFullType.substring(0,1).toLowerCase()+recordFullType.substring(1);
+        mapperObjName = recordLowCaseFullType + "Mapper";
     	FullyQualifiedJavaType type = new FullyQualifiedJavaType(
     			serviceInterfaceFullName);
     	Interface interfaze = new Interface(type);
@@ -152,7 +157,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         FullyQualifiedJavaType pType = new FullyQualifiedJavaType(introspectedTable.getExampleType());
         importedTypes.add(pType);
         method.addParameter(new Parameter(pType, "criteria")); //$NON-NLS-1$ 
-        method.addBodyLine("return userMapper.selectByCriteria(criteria);"); //$NON-NLS-1$
+        method.addBodyLine("return "+mapperObjName+".selectByCriteria(criteria);"); //$NON-NLS-1$
         method.addAnnotation("@Override");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
@@ -175,7 +180,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         method.setReturnType(returnType); 
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("findAll");
-        method.addBodyLine("return userMapper.selectByCriteria(null);"); //$NON-NLS-1$
+        method.addBodyLine("return "+mapperObjName+".selectByCriteria(null);"); //$NON-NLS-1$
         method.addAnnotation("@Override");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
@@ -200,7 +205,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         method.setName("findById");
         method.addParameter(new Parameter(new FullyQualifiedJavaType("long"), "id")); //$NON-NLS-1$  
         //return userMapper.selectByPrimaryKey(id);
-        method.addBodyLine("return userMapper.selectByPrimaryKey(id);"); //$NON-NLS-1$
+        method.addBodyLine("return "+mapperObjName+".selectByPrimaryKey(id);"); //$NON-NLS-1$
         method.addAnnotation("@Override");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
@@ -243,8 +248,8 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         method.addBodyLine("//设置分页参数");
         method.addBodyLine("userCriteria.setPageSize(pageSize);");
         method.addBodyLine("userCriteria.setStartIndex((currentPage-1)*pageSize);");
-        method.addBodyLine("List<User> items = userMapper.selectByCriteria(userCriteria);");
-        method.addBodyLine("int totalCount = (int)userMapper.selectCountByCriteria(userCriteria);");
+        method.addBodyLine("List<User> items = "+mapperObjName+".selectByCriteria(userCriteria);");
+        method.addBodyLine("int totalCount = (int)"+mapperObjName+".selectCountByCriteria(userCriteria);");
         method.addBodyLine("return new Pagination(pageSize, currentPage, totalCount, items);");
         method.addAnnotation("@Override");
         
@@ -274,8 +279,8 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("update"); //$NON-NLS-1$
         method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$
-        //userMapper.updateByPrimaryKey(entity);
-        method.addBodyLine("userMapper.updateByPrimaryKey(entity);"); //$NON-NLS-1$
+        //"+mapperObjName+".updateByPrimaryKey(entity);
+        method.addBodyLine(""+mapperObjName+".updateByPrimaryKey(entity);"); //$NON-NLS-1$
         method.addAnnotation("@Override");
         topLevelClass.addMethod(method);
         topLevelClass.addImportedTypes(importedTypes);
@@ -299,8 +304,8 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("delete"); //$NON-NLS-1$
         method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$
-        //userMapper.deleteByPrimaryKey(entity.getId());
-        method.addBodyLine("userMapper.deleteByPrimaryKey(entity.getId());"); //$NON-NLS-1$
+        //"+mapperObjName+".deleteByPrimaryKey(entity.getId());
+        method.addBodyLine(""+mapperObjName+".deleteByPrimaryKey(entity.getId());"); //$NON-NLS-1$
         method.addAnnotation("@Override");
         topLevelClass.addMethod(method);
         topLevelClass.addImportedTypes(importedTypes);
@@ -323,8 +328,8 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter {
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("add"); //$NON-NLS-1$
         method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$
-        //userMapper.insert(entity);
-        method.addBodyLine("userMapper.insert(entity);"); //$NON-NLS-1$
+        //"+mapperObjName+".insert(entity);
+        method.addBodyLine(""+mapperObjName+".insert(entity);"); //$NON-NLS-1$
         method.addAnnotation("@Override");
         topLevelClass.addMethod(method);
         topLevelClass.addImportedTypes(importedTypes);
