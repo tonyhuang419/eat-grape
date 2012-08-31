@@ -69,6 +69,7 @@ public class UserAction extends BaseAction {
    
    public void delete() throws IOException{
 	   Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 	   }else{
@@ -85,6 +86,7 @@ public class UserAction extends BaseAction {
    
    public void update() throws IOException{
 	   Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 	   }else{

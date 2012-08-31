@@ -11,7 +11,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 public class MenuAction extends BaseAction {
-    @Resource
+	
+    private static final long serialVersionUID = -1598345728676407818L;
+
+	@Resource
     private IMenuService menuService;
 
     private Pagination page;
