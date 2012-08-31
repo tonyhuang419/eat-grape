@@ -1,7 +1,11 @@
 package com.eatle.web.interceptor;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
+
+import com.eatle.persistent.pojo.system.useradmin.User;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 /**
@@ -26,9 +30,8 @@ public class SessionInterceptor implements Interceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		Object obj = session.getAttribute("user");
-		if(obj == null){
+		Map<String, Object> session = invocation.getInvocationContext().getSession();
+		if(session.get("user") == null){
 			return "timeout";
 		}
 		return invocation.invoke();

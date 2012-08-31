@@ -14,7 +14,6 @@ public class IndexAction extends BaseAction {
      private static final long serialVersionUID = -5221880781064937400L;
 
      public String index() {
-
           return SUCCESS;
      }
 }

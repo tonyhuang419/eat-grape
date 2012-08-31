@@ -96,6 +96,7 @@ public class PrivAction extends BaseAction {
    
    public void update() throws IOException{
 	   Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(priv==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 	   }else{
