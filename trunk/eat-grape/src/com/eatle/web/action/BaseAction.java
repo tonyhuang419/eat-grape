@@ -1,4 +1,4 @@
-package com.eatle.action;
+package com.eatle.web.action;
 
 /**
  * xt
