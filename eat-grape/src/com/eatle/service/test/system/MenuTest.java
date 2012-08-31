@@ -2,6 +2,7 @@ package com.eatle.service.test.system;
 
 import org.junit.Test;
 
+import com.eatle.persistent.pojo.system.MenuCriteria;
 import com.eatle.service.system.IMenuService;
 import com.eatle.service.test.BaseTest;
 
@@ -18,6 +19,11 @@ public class MenuTest extends BaseTest{
 	public void test()
 	{
 		System.out.println(menuService.findById(1).getMenuName());
-		System.out.println(menuService.findAll().size());
+		System.out.println(menuService.findAll().size() + "a");
+		
+		MenuCriteria criteria = new MenuCriteria();
+		criteria.setStartIndex(1);
+		criteria.setPageSize(4);
+		System.out.println(menuService.findByCriteria(criteria).size());
 	}
 }

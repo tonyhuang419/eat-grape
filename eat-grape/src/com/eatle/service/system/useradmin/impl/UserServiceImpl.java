@@ -66,4 +66,10 @@ public class UserServiceImpl implements IUserService {
     public List<User> findByCriteria(UserCriteria criteria) {
         return userMapper.selectByCriteria(criteria);
     }
+
+	@Override
+	public User find(User user)
+	{
+		return userMapper.find(user);
+	}
 }

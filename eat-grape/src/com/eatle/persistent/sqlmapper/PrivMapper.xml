@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.eatle.persistent.mapper.PrivMapper" >
-  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.system.useradmin.Priv" >
+  <resultMap id="BaseResultMap" type="Priv" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="priv_name" property="privName" jdbcType="VARCHAR" />
     <result column="meue_name" property="meueName" jdbcType="VARCHAR" />
@@ -42,7 +42,7 @@
   <sql id="Base_Column_List" >
     id, priv_name, meue_name, action, description, is_show, p_id
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.system.useradmin.PrivCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="PrivCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -70,7 +70,7 @@
     delete from t_privilege
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.eatle.persistent.pojo.system.useradmin.Priv" >
+  <insert id="insert" parameterType="Priv" >
     insert into t_privilege (id, priv_name, meue_name, 
       action, description, is_show, 
       p_id)
@@ -78,7 +78,7 @@
       #{action,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{isShow,jdbcType=TINYINT}, 
       #{pId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.system.useradmin.Priv" >
+  <insert id="insertSelective" parameterType="Priv" >
     insert into t_privilege
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.system.useradmin.Priv" >
+  <update id="updateByPrimaryKeySelective" parameterType="Priv" >
     update t_privilege
     <set >
       <if test="privName != null" >
@@ -151,7 +151,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.system.useradmin.Priv" >
+  <update id="updateByPrimaryKey" parameterType="Priv" >
     update t_privilege
     set priv_name = #{privName,jdbcType=VARCHAR},
       meue_name = #{meueName,jdbcType=VARCHAR},
@@ -161,7 +161,7 @@
       p_id = #{pId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.system.useradmin.PrivCriteria" >
+  <select id="selectCountByCriteria" resultType="long" parameterType="PrivCriteria" >
     select count(1) 
     from t_privilege
     <if test="_parameter != null" >

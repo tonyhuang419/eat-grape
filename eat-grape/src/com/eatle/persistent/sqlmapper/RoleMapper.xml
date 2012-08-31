@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.eatle.persistent.mapper.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.system.useradmin.Role" >
+  <resultMap id="BaseResultMap" type="Role" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
@@ -38,7 +38,7 @@
   <sql id="Base_Column_List" >
     id, role_name, description
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.system.useradmin.RoleCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="RoleCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -66,13 +66,13 @@
     delete from t_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.eatle.persistent.pojo.system.useradmin.Role" >
+  <insert id="insert" parameterType="Role" >
     insert into t_role (id, role_name, description
       )
     values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.system.useradmin.Role" >
+  <insert id="insertSelective" parameterType="Role" >
     insert into t_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,7 +97,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.system.useradmin.Role" >
+  <update id="updateByPrimaryKeySelective" parameterType="Role" >
     update t_role
     <set >
       <if test="roleName != null" >
@@ -109,13 +109,13 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.system.useradmin.Role" >
+  <update id="updateByPrimaryKey" parameterType="Role" >
     update t_role
     set role_name = #{roleName,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.system.useradmin.RoleCriteria" >
+  <select id="selectCountByCriteria" resultType="long" parameterType="RoleCriteria" >
     select count(1) 
     from t_role
     <if test="_parameter != null" >

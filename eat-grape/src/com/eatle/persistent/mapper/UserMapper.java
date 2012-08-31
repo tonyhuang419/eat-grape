@@ -26,4 +26,7 @@ public interface UserMapper {
 
     //通过map参数进行查询
     List<User> selectByMap(Map paramMap);
+    
+    // 通过实体查询
+	User find(User user);
 }
