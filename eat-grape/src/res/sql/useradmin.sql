@@ -15,7 +15,7 @@ CREATE TABLE `t_privilege` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `priv_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '权限名称',
   `meue_name` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '菜单名称',
-  `action` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '动作表示',
+  `action` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '动作指令',
   `description` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '权限描述',
   `is_show` tinyint(4) DEFAULT '0' COMMENT '是否显示',
   `p_id` bigint(20) DEFAULT NULL COMMENT '父权限ID',
