@@ -71,36 +71,7 @@
 					<div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 	
 					<div class="accordion" fillSpace="sidebar">
-						<div class="accordionHeader">
-							<h2><span>Folder</span>系统管理</h2>
-						</div>
-						<div class="accordionContent">
-							<ul class="tree treeFolder">
-								<li><a href="system/useradmin/account/showIndex.htm?navTabId=account" target="navTab" rel="account">账号管理</a></li>
-								<li><a href="system/useradmin/role/showIndex.htm?navTabId=role" target="navTab" rel="role">角色管理</a></li>
-								<li><a href="system/useradmin/priv/showIndex.htm?navTabId=priv" target="navTab" rel="priv">权限管理</a></li>
-							</ul>
-						</div>
-						<div class="accordionHeader">
-							<h2><span>Folder</span>商家管理</h2>
-						</div>
-						<div class="accordionContent">
-							<ul class="tree treeFolder ">
-								<li><a href="demo_page1.html" target="navTab" rel="demo_page1">查询我的客户</a></li>
-								<li><a href="demo_page1.html" target="navTab" rel="demo_page2">表单查询页面</a></li>
-								<li><a href="demo_page4.html" target="navTab" rel="demo_page4">表单录入页面</a></li>
-								<li><a href="demo_page5.html" target="navTab" rel="demo_page5">有文本输入的表单</a></li>
-							</ul>
-						</div>
-						<div class="accordionHeader">
-							<h2><span>Folder</span>资讯管理</h2>
-						</div>
-						<div class="accordionContent">
-							<ul class="tree">
-								<li><a href="newPage1.html" target="dialog" rel="dlg_page">列表</a></li>
-								<li><a href="newPage1.html" target="dialog" rel="dlg_page2">列表</a></li>
-							</ul>
-						</div>
+						${allMenuHtml}
 					</div>
 				</div>
 			</div>
