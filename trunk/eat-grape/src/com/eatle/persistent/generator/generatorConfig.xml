@@ -21,21 +21,16 @@
 		    <property name="replaceString" value="Criteria" />
 		</plugin>
 		
-		<!-- POJO里生成equals hashcode方法 -->
-		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> 
-		<!-- POJO实现Serializable接口 --> 
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" /> 
-        
         <!-- 添加分页支持 -->
 		<plugin type="com.eatle.persistent.generator.GeneratorMysqlPagePlugin" />
 		<!-- 添加selectByMap mapper方法 -->
 		<plugin type="com.eatle.persistent.generator.GenSelectByMapPlugin" />
 		<!-- 添加service 层 代码生成 -->
 		<plugin type="com.eatle.persistent.generator.GeneratorServiceLayerPlugin" />
-		<!-- 添加Web层代码生成 -->
+		<!-- 添加action 层 代码生成 -->
 		<plugin type="com.eatle.persistent.generator.GeneratorActionLayerPlugin" />
-		<!-- 添加Struts2 Xml代码生成 -->
-		<plugin type="com.eatle.persistent.generator.GeneratorStrutsXmlPlugin" /> 
+		<!-- 添加action 层 struts 配置文件生成 -->
+		<plugin type="com.eatle.persistent.generator.GeneratorStrutsXmlPlugin" />
 		
 		
 		<commentGenerator>
