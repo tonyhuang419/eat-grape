@@ -192,6 +192,146 @@ public class MenuCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andRelIsNull() {
+            addCriterion("rel is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelIsNotNull() {
+            addCriterion("rel is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelEqualTo(String value) {
+            addCriterion("rel =", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelNotEqualTo(String value) {
+            addCriterion("rel <>", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelGreaterThan(String value) {
+            addCriterion("rel >", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelGreaterThanOrEqualTo(String value) {
+            addCriterion("rel >=", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelLessThan(String value) {
+            addCriterion("rel <", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelLessThanOrEqualTo(String value) {
+            addCriterion("rel <=", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelLike(String value) {
+            addCriterion("rel like", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelNotLike(String value) {
+            addCriterion("rel not like", value, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelIn(List<String> values) {
+            addCriterion("rel in", values, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelNotIn(List<String> values) {
+            addCriterion("rel not in", values, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelBetween(String value1, String value2) {
+            addCriterion("rel between", value1, value2, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelNotBetween(String value1, String value2) {
+            addCriterion("rel not between", value1, value2, "rel");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionIsNull() {
+            addCriterion("action is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionIsNotNull() {
+            addCriterion("action is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionEqualTo(String value) {
+            addCriterion("action =", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotEqualTo(String value) {
+            addCriterion("action <>", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionGreaterThan(String value) {
+            addCriterion("action >", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionGreaterThanOrEqualTo(String value) {
+            addCriterion("action >=", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionLessThan(String value) {
+            addCriterion("action <", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionLessThanOrEqualTo(String value) {
+            addCriterion("action <=", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionLike(String value) {
+            addCriterion("action like", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotLike(String value) {
+            addCriterion("action not like", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionIn(List<String> values) {
+            addCriterion("action in", values, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotIn(List<String> values) {
+            addCriterion("action not in", values, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionBetween(String value1, String value2) {
+            addCriterion("action between", value1, value2, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotBetween(String value1, String value2) {
+            addCriterion("action not between", value1, value2, "action");
+            return (Criteria) this;
+        }
+
         public Criteria andMenuNameIsNull() {
             addCriterion("menu_name is null");
             return (Criteria) this;

@@ -1,7 +1,14 @@
 package com.eatle.service.test.system; 
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
 import org.junit.Test;
 
+import com.eatle.persistent.pojo.system.Menu;
 import com.eatle.persistent.pojo.system.MenuCriteria;
 import com.eatle.service.system.IMenuService;
 import com.eatle.service.test.BaseTest;
@@ -25,5 +32,26 @@ public class MenuTest extends BaseTest{
 		criteria.setStartIndex(1);
 		criteria.setPageSize(4);
 		System.out.println(menuService.findByCriteria(criteria).size());
+		
+		// 查询所有根菜单
+		List<Menu> rootMenus = menuService.findRootMenu();
+		for(Menu m : rootMenus)
+			System.out.println("谭又中："+m.getMenuName());
+		
+		String allMenu = menuService.findAllMenu();
+//		a(allMenu);
+		System.out.println(allMenu);
+	}
+	
+	public void a(Map map)
+	{
+		Iterator ii = map.entrySet().iterator();
+		while(ii.hasNext())
+		{
+			Entry entry = (Entry) ii.next();
+			Long k = (Long) entry.getKey();
+			Menu v = (Menu) entry.getValue();
+			System.out.println(k + "    " + v.getMenuName());
+		}
 	}
 }

@@ -20,9 +20,12 @@ public interface MenuMapper {
 
     int updateByPrimaryKey(Menu record);
 
-    //统计总的记录数
+    // 通过map参数进行查询
     long selectCountByCriteria(MenuCriteria example);
 
-    //通过map参数进行查询
+    // 通过map参数进行查询
     List<Menu> selectByMap(Map paramMap);
+    
+    // 通过父级菜单ID(parentId)进行查询
+    List<Menu> findByParentId(Long parentId);
 }
