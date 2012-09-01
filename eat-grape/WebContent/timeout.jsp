@@ -1,22 +1,35 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
     <title>登陆超时</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
+	<%@ include file="/WEB-INF/common/jslibs.jsp"%>
   </head>
   
   <body>
-	登陆超时
+	<script>
+		art.dialog({
+			title : "温馨提示",
+			content : "登陆超时，请重新登陆",
+			left : "50%",
+			icon : "face-sad",
+		    drag : false,
+		    fixed : true,
+		    resize : false,
+			close : function(){
+				return false;
+			},
+			okVal : "登  陆",
+			ok : function(){
+				window.location.href = "${ctx}/index.htm";
+				return false;
+			},
+		}).lock();
+	</script>
   </body>
 </html>
