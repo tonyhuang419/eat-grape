@@ -15,7 +15,7 @@
 	
 	<!-- *** Struts2优化Constants *** -->
 	<constant name="struts.freemarker.templatesCache" value="true" />
-	<constant name="struts.configuration.xml.reload=false" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
 	
 	<!-- 提供json 格式的支持  -->
 	<package name="default" extends="json-default">
