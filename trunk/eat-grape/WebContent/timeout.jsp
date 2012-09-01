@@ -28,7 +28,7 @@
 			ok : function(){
 				window.location.href = "${ctx}/index.htm";
 				return false;
-			},
+			}
 		}).lock();
 	</script>
   </body>
