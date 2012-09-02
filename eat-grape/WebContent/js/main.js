@@ -54,11 +54,37 @@ function login(username, password, verifycode)
 	});
 }
 
+//文本输入框获得焦点
+function getFocus(id)
+{
+	$("#" + id).css("border", "1px solid #14A3F1");
+}
+
+//文本输入框失去焦点
+function loseFocus(id)
+{
+	$("#" + id).css("border", "0px solid #14A3F1");
+}
+
+// 鼠标捕获按钮
+function mouseOver(id, url)
+{
+	$("#" + id).css("background-image", "url(" + url + ")");
+}
+
+// 鼠标离开按钮
+function mouseOut(id, url)
+{
+	$("#" + id).css("background-image", "url(" + url + ")");
+}
+
+
+// 相应登陆按钮回车事件
 function clickLoginButton(event, btnId)
 {
 	if(event.keyCode==13)
 	{
-		$("#"+btnId).focus();
+		$("#" + btnId).focus();
 	}
 }
 
