@@ -13,7 +13,7 @@ public class CreateVerificationCode
 {
 	//验证码图片尺寸
 	private final static int WIDTH = 75;
-	private final static int HEIGHT = 24;
+	private final static int HEIGHT = 25;
 
 /******************************生成返回数字验证码图片*****************************************/
 	

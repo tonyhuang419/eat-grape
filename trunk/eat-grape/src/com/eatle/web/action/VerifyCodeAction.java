@@ -28,7 +28,7 @@ public class VerifyCodeAction extends BaseAction
 		// 验证码图片输出流
 		ImageOutputStream iops = ImageIO.createImageOutputStream(baos);
 		// 将获取的验证码图片写到输出流
-		ImageIO.write(CreateVerificationCode.getNumCheckCode(new Color(255, 255, 255)), "gif", iops);
+		ImageIO.write(CreateVerificationCode.getNumCheckCode(new Color(223, 241, 255)), "gif", iops);
 		// 以上面的输出流为源创建输入流
 		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 		

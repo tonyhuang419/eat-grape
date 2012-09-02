@@ -3,6 +3,7 @@
 <link href="${ctx}/js/artdialog/skins/blue.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="${ctx}/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${ctx}/themes/css/login.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="${ctx}/js/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
 <!--[if IE]>
