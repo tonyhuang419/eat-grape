@@ -91,16 +91,8 @@
 						<li><a href="javascript:;">&nbsp;首&nbsp;&nbsp;页</a></li>
 					</ul>
 					<div class="navTab-panel tabsPageContent layoutBox">
-						<div class="page unitBox">
-							<div class="pageFormContent" layoutH="80" style="margin-right:230px">
-								查询表单
-							</div>
-							<div style="width:50%;position: absolute;top:60px;left:1px" layoutH="60">
-								<iframe width="100%" height="100%" class="share_self"  frameborder="0" scrolling="no" src="http://t.qq.com/iweibo_x?preview"></iframe>
-							</div>
-							<div style="width:50%;position: absolute;top:60px;right:1px;" layoutH="60">
-								<iframe width="100%" height="100%" class="share_self"  frameborder="0" scrolling="no" src="http://t.qq.com/tsq2007?preview"></iframe>
-							</div>
+						<div class="page unitBox" style="height: 100%; margin: 1px;">
+							<img src="${ctx}/image/welcome.png" alt="" width="100%" height="100%"/>
 						</div>
 						
 					</div>
