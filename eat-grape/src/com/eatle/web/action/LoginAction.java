@@ -49,7 +49,6 @@ public class LoginAction extends BaseAction
 		if(verifycode_c.equals(verifycode_s))
 		{
 			User user = userService.find(this.user);
-			System.out.println(user);
 			if(user == null)
 			{
 				resultMap.put("res", "0");
