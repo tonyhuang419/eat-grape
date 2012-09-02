@@ -105,7 +105,6 @@ public class MenuServiceImpl implements IMenuService
 	@Override
 	public void findChildMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer)
 	{
-		boolean hasChild = false;
 		for(Menu menu : parentMenu)
 		{
 			List<Menu> childMenu = findByParentId(menu.getId());
@@ -113,7 +112,6 @@ public class MenuServiceImpl implements IMenuService
 			{
 				allMenuBuffer.append("\t\t<li><a>" + menu.getMenuName() + "</a>\n");
 				allMenuBuffer.append("\t\t\t<ul class=\"treeFolder treeCheck\">\n");
-				hasChild = true;
 				findChildMenu(childMenu, allMenuBuffer);
 			}
 			else
@@ -123,11 +121,8 @@ public class MenuServiceImpl implements IMenuService
 						+ "\">" + menu.getMenuName() + "</a></li>\n");
 			}
 		}
-		if(!hasChild)
-		{
-			allMenuBuffer.append("\t\t\t</ul>\n");
-			allMenuBuffer.append("\t\t</li>\n");
-		}
+		allMenuBuffer.append("\t\t\t</ul>\n");
+		allMenuBuffer.append("\t\t</li>\n");
 	}
 	
 	@Override
@@ -142,7 +137,7 @@ public class MenuServiceImpl implements IMenuService
 	@Override
 	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
-		allMenuBuffer.append("\t<ul class=\"tree treeFolder treeCheck\">\n");
+		allMenuBuffer.append("\t<ul class=\"tree treeFolder treeCheck collapse\">\n");
 		findChildMenu(findByParentId(menu.getId()), allMenuBuffer);
 		allMenuBuffer.append("\t</ul>\n");
 		allMenuBuffer.append("</div>\n");
