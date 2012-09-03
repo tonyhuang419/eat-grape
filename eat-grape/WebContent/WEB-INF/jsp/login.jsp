@@ -11,7 +11,7 @@
 		body { 
 			margin: 0px;
 			background: #FFFFFF;
-			background-image: url(${ctx}/themes/default/images/login_bg.jpg);
+			background-image: url(${ctx}/image/login_bg.jpg);
 			background-repeat: repeat-x;
 		}
 	</style>
@@ -44,15 +44,15 @@
 					</p>
 					<div class="login_bar">
 						<input id="loginBtn" class="sub" type="button" value="" onclick="check()" 
-							onmouseover="mouseOver(this.id, '${ctx}/themes/default/images/login_btn_bg2.jpg')" 
-								onmouseout="mouseOut(this.id, '${ctx}/themes/default/images/login_btn_bg1.jpg')"/>
+							onmouseover="mouseOver(this.id, '${ctx}/image/login_btn_bg2.jpg')" 
+								onmouseout="mouseOut(this.id, '${ctx}/image/login_btn_bg1.jpg')"/>
 						<input id="resetBtn" class="reset" type="reset" value="" 
-							onmouseover="mouseOver(this.id, '${ctx}/themes/default/images/reset_btn_bg2.jpg')" 
-								onmouseout="mouseOut(this.id, '${ctx}/themes/default/images/reset_btn_bg1.jpg')"/>
+							onmouseover="mouseOver(this.id, '${ctx}/image/reset_btn_bg2.jpg')" 
+								onmouseout="mouseOut(this.id, '${ctx}/image/reset_btn_bg1.jpg')"/>
 					</div>
 				</form>
 			</div>
-			<div class="login_banner"><img src="themes/default/images/login_banner.jpg" /></div>
+			<div class="login_banner"><img src="${ctx}/image/login_banner.jpg" /></div>
 	  	</div>
 		<div id="login_footer">
 			Copyright &copy; 2012 eatle Inc. All Rights Reserved.
