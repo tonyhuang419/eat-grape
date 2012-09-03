@@ -2,6 +2,7 @@ package com.eatle.web.action.system.useradmin;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -40,7 +41,9 @@ public class UserAction extends BaseAction {
        
 	   Map<String,Object> params = super.getRequestParameters(request);
 	   int pageNum = Pagination.CURRENTPAGE;
-	   int pageSize = Pagination.PAGESIZE;
+	   String numPerPage = (String) params.get("numPerPage");
+	   int pageSize = Integer.parseInt((numPerPage == null) ? "" + Pagination.PAGESIZE : numPerPage);
+	   System.out.println("谭又中谭又中："+pageSize);
 	   if(params.containsKey("pageNum")){
 		   pageNum = Integer.parseInt((String)params.get("pageNum"));
 	   }

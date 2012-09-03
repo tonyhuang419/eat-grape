@@ -30,7 +30,7 @@
 	</package>
 	
 	<!-- 首页展示 -->
-	<package name="index" extends="my-struts-default" namespace="/">
+	<package name="index" extends="default" namespace="/">
 		<action name="home" class="com.eatle.web.action.IndexAction" method="index">
 			<result>/WEB-INF/jsp/index.jsp</result>
 		</action>
