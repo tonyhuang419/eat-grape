@@ -45,7 +45,7 @@
 						
 						<li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
 						<li><a href="http://weibo.com/dwzui" target="_blank">微博</a></li>
-						<li><a href="login.htm" target="ajaxTodo" title="确认退出吗？">退出</a></li>
+						<li><a href="#" onclick="confirm2Link('您确定退出吗？', 'loginout.htm')">退出</a></li>
 					</ul>
 					<ul class="themeList" id="themeList">
 						<li theme="default"><div class="selected">蓝色</div></li>

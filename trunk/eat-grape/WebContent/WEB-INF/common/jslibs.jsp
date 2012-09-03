@@ -14,6 +14,7 @@
 <script type="text/javascript" src="${ctx}/js/artdialog/artDialog.source.js"></script>
 <script type="text/javascript" src="${ctx}/js/artdialog/iframeTools.js"></script>
 <script type="text/javascript" src="${ctx}/js/main.js"></script>
+<script type="text/javascript" src="${ctx}/js/dwz.js"></script>
 
 <script src="${ctx}/js/speedup.js" type="text/javascript"></script>
 <script src="${ctx}/js/jquery.cookie.js" type="text/javascript"></script>

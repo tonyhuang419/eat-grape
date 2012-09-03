@@ -34,23 +34,6 @@
 		</global-results>
 	</package>
 	
-	<package name="my-struts-default" extends="struts-default">
-		<interceptors>
-			<interceptor name="sessionInterceptor" class="com.eatle.web.interceptor.SessionInterceptor" />
-			<interceptor-stack name="baseInterceptorStack">
-				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="sessionInterceptor" />
-			</interceptor-stack>
-		</interceptors>
-		<default-interceptor-ref name="baseInterceptorStack" />
-		<global-results>
-			<result name="timeout" type="redirect">
-				/timeout.jsp
-			</result>
-		</global-results>
-	</package>
-	
-	
 	<!-- 登陆首页 -->
 	<include file="res/struts/struts-index.xml"></include>
 	<!-- 账号管理 -->

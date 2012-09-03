@@ -72,14 +72,14 @@
 	</table>
 	<div class="panelBar">
 		<div class="pages">
-			<span>显示</span>
+			<span style="margin-right: 3px;">显示</span>
 			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-				<option value="20">20</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-				<option value="200">200</option>
+				<option value="15" <c:if test="${page.pageSize == 15}">selected</c:if>>15</option>
+				<option value="20" <c:if test="${page.pageSize == 20}">selected</c:if>>20</option>
+				<option value="25" <c:if test="${page.pageSize == 25}">selected</c:if>>25</option>
+				<option value="30" <c:if test="${page.pageSize == 30}">selected</c:if>>30</option>
 			</select>
-			<span>条，共${totalCount}条</span>
+			<span style="margin-left: 5px;">共 - ${page.totalCount} - 条</span>
 		</div>
 		
 		<div class="pagination" targetType="navTab" totalCount="${page.totalCount }" numPerPage="${page.pageSize }" pageNumShown="10" currentPage="${page.currentPage }"></div>
