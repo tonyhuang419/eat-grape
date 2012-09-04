@@ -57,13 +57,13 @@ function login(username, password, verifycode)
 //文本输入框获得焦点
 function getFocus(id)
 {
-	$("#" + id).css("border", "1px solid #14A3F1");
+	$("#" + id).css("border", "1px solid #1493FF");
 }
 
 //文本输入框失去焦点
 function loseFocus(id)
 {
-	$("#" + id).css("border", "0px solid #14A3F1");
+	$("#" + id).css("border", "1px solid #64C3F6");
 }
 
 // 鼠标捕获按钮

@@ -1,12 +1,6 @@
 package com.eatle.web.action; 
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
-import javax.servlet.Servlet;
-
-import org.apache.struts2.ServletActionContext;
 
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.system.useradmin.IUserService;
@@ -58,12 +52,7 @@ public class LoginAction extends BaseAction
 				if(user.getPwd().equals(this.user.getPwd()))
 				{
 					session.remove("verifyCode_s");
-//					
-//					Map<String, Object> map = new HashMap<String, Object>();
-//					map.put("user", user);
-//					setSession(map);
-					ServletActionContext.getRequest().getSession().setAttribute("user", user);
-					
+					session.put("user", user);
 					resultMap.put("res", "1");
 				}
 				else

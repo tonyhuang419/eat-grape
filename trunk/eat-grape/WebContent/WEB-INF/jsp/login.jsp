@@ -16,7 +16,7 @@
 		}
 	</style>
 </head>
-<body onload="$('#username').focus();">
+<body>
 	<div id="login">
 		<div id="login_content">
 			<div class="loginForm">

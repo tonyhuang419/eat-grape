@@ -66,7 +66,7 @@ public class BaseAction extends ActionSupport implements  SessionAware, ServletR
      @SuppressWarnings("rawtypes")
      public Map<String, Object> getRequestParameters(HttpServletRequest request) {
           Map<String, Object> map = new HashMap<String, Object>();
-          Enumeration parameters = request.getParameterNames();
+          Enumeration<?> parameters = request.getParameterNames();
           while (parameters.hasMoreElements()) {
                String key = parameters.nextElement().toString();
                String value = request.getParameter(key);
