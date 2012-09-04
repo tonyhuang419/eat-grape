@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
@@ -18,7 +16,7 @@ public class VerifyCodeAction extends BaseAction
 {
 	private static final long serialVersionUID = 4948574845742310L;
 	
-	//保存服务器端生成的验证码值（由cn.tyz.utils.CreateVerificationCode.java产生验证码图片时赋值）
+	// 保存服务器端生成的验证码值（由com.eatle.utils.CreateVerificationCode.java产生验证码图片时赋值）
 	public static String verifyCode_s = "";
 	
 	public InputStream  getVerifyCode() throws Exception 
@@ -28,7 +26,8 @@ public class VerifyCodeAction extends BaseAction
 		// 验证码图片输出流
 		ImageOutputStream iops = ImageIO.createImageOutputStream(baos);
 		// 将获取的验证码图片写到输出流
-		ImageIO.write(CreateVerificationCode.getNumCheckCode(new Color(223, 241, 255)), "gif", iops);
+		ImageIO.write(CreateVerificationCode.getNumCheckCode(75, 25,
+				new Color(223, 241, 255), new Color(100, 195, 246), 4, 3), "gif", iops);
 		// 以上面的输出流为源创建输入流
 		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 		
