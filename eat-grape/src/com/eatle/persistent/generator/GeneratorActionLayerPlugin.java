@@ -123,7 +123,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         addGetPageMethod(topLevelClass,introspectedTable);
         
         addSetBaseRecordMethod(topLevelClass,introspectedTable,recordFullType,recordLowerFullType);
-        addGetBaseRecordMethod(topLevelClass,introspectedTable,recordFullType,recordLowerFullType);
         
         //add Method....
         addShowIndexMethod(topLevelClass,introspectedTable);
@@ -155,7 +154,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.setName("get"+recordFullType); //$NON-NLS-1$
         method.addBodyLine("return this."+recordLowerFullType+";"); //$NON-NLS-1$
         topLevelClass.addMethod(method);
-		
 	}
 
 	/**
@@ -174,7 +172,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addParameter(new Parameter(new FullyQualifiedJavaType(recordFullType), recordLowerFullType));
         method.addBodyLine("this."+recordLowerFullType+" = "+recordLowerFullType+";"); //$NON-NLS-1$
         topLevelClass.addMethod(method);
-		
 	}
 
 	/**
@@ -191,7 +188,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.setName("getPage"); //$NON-NLS-1$
         method.addBodyLine("return this.page;"); //$NON-NLS-1$
         topLevelClass.addMethod(method);
-		
 	}
 
 	/**
@@ -239,7 +235,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("return \"showIndex\";");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
-		
 	}
 
 	/**
@@ -258,7 +253,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
     	importedTypes.add(type);
         method.addException(type);
         
-        method.addBodyLine("Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
+        method.addBodyLine("Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");
@@ -267,7 +262,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("super.writeMap(json);");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
-		
 	}
 
 	/**
@@ -290,7 +284,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("return \"showUpdate\";");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
-		
 	}
 
 
@@ -307,7 +300,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("update");
         
-        method.addBodyLine("Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
+        method.addBodyLine("Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");
@@ -317,7 +310,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addException(new FullyQualifiedJavaType("java.io.IOException"));
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
-		
 	}
 
 	/**
@@ -356,7 +348,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         importedTypes.add(type);
         method.addException(type);
         
-        method.addBodyLine("Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
+        method.addBodyLine("Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);");
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
@@ -366,7 +358,5 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("super.writeMap(json);");
         topLevelClass.addImportedTypes(importedTypes);  
         topLevelClass.addMethod(method);
-		
 	}
-    
 }  
