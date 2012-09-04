@@ -56,7 +56,7 @@ public class MenuAction extends BaseAction {
     }
 
     public void add() throws IOException {
-        Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+        Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
         json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
         if(menu==null){
             json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
@@ -67,7 +67,7 @@ public class MenuAction extends BaseAction {
     }
 
     public void delete() throws IOException {
-        Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+        Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
         if(menu==null){
             json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
         }else{
@@ -82,7 +82,7 @@ public class MenuAction extends BaseAction {
     }
 
     public void update() throws IOException {
-        Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+        Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
         if(menu==null){
             json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
         }else{

@@ -24,11 +24,11 @@ public class DwzAjaxJsonUtil {
 	public static Map<String,Object> getDefaultAjaxJson(){
 		Map<String,Object> json = new HashMap<String,Object>();
 		json.put("statusCode", 200);
-		json.put("message","操作成功");
-		json.put("navTabId","");
-		json.put("rel","");
-		json.put("callbackType","closeCurrent");
-		json.put("forwardUrl","");
+		json.put("message", "操作成功");
+		json.put("navTabId", "");
+		json.put("rel", "");
+		json.put("callbackType", "closeCurrent");
+		json.put("forwardUrl", "");
 		return json;
 	}
 

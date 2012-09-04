@@ -69,7 +69,10 @@
 					<td><s:property value="#item.userName" /></td>
 					<td><s:property value="#item.pwd" /></td>
 					<td><s:property value="#item.email" /></td>
-					<td><s:property value="#item.type" /></td>
+					<td>
+						<s:if test="#item.type == 1">个人</s:if>
+						<s:elseif test="#item.type == 2">公司</s:elseif>
+					</td>
 				</tr>
 			</s:iterator>
 			

@@ -27,11 +27,13 @@
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="baseInterceptorStack" />
+		<!-- 
 		<global-results>
-			<result name="timeout" type="redirect">
-				/timeout.jsp
+			<result name="timeout" type="json">
+				<param name="includeProperties">json</param>
 			</result>
 		</global-results>
+		 -->
 	</package>
 	
 	<!-- 登陆首页 -->

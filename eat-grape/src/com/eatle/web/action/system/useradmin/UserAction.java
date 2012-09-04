@@ -2,7 +2,6 @@ package com.eatle.web.action.system.useradmin;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -43,7 +42,6 @@ public class UserAction extends BaseAction {
 	   int pageNum = Pagination.CURRENTPAGE;
 	   String numPerPage = (String) params.get("numPerPage");
 	   int pageSize = Integer.parseInt((numPerPage == null) ? "" + Pagination.PAGESIZE : numPerPage);
-	   System.out.println("谭又中谭又中："+pageSize);
 	   if(params.containsKey("pageNum")){
 		   pageNum = Integer.parseInt((String)params.get("pageNum"));
 	   }
@@ -60,7 +58,7 @@ public class UserAction extends BaseAction {
    }
    
    public void add() throws IOException{
-	   Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
@@ -71,7 +69,7 @@ public class UserAction extends BaseAction {
    }
    
    public void delete() throws IOException{
-	   Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
@@ -88,7 +86,7 @@ public class UserAction extends BaseAction {
    }
    
    public void update() throws IOException{
-	   Map json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
@@ -113,5 +111,4 @@ public class UserAction extends BaseAction {
 	public void setUser(User user) {
 		this.user = user;
 	}
-    
 }
