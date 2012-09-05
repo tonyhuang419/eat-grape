@@ -10,32 +10,34 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/useradmin/priv/showAdd.htm?dialogId=${param.dialogId}&pid=${param.pid}" target="dialog"  mask="true" rel="${param.dialogId}_add"><span>添加权限</span></a></li>
+			<li><a class="add" href="system/useradmin/priv/showAdd.htm?dialogId=${param.dialogId}&pid=${param.pid}" target="dialog"  mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>添加权限</span></a></li>
 			<li><a class="delete" href="system/useradmin/priv/delete.htm?priv.id={sid}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&navTabId=${param.navTabId}" target="dialog"  mask="true"><span>修改</span></a></li>
 		</ul>
 	</div>
-	<table class="table"  layoutH="138">
+	<table class="table" layoutH="50">
 		<thead>
-			<tr>
-				<th width="180">权限名称</th>
-				<th width="200">菜单名称</th>
-				<th width="200">动作标识</th>
-				<th width="200">描述</th>
-				<th width="200">是否显示</th>
-				<th width="120">操作</th>
+			<tr align="center">
+				<th width="120">权限名称</th>
+				<th width="120">菜单名称</th>
+				<th width="120">动作标识</th>
+				<th width="260">描述</th>
+				<th width="80">是否显示</th>
+				<th width="100">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="list" var="item">
-				<tr target="sid" rel="<s:property value="#item.id" />">
+				<tr target="sid" rel="<s:property value="#item.id" />" align="center">
 					<td><s:property value="#item.privName" /></td>
 					<td><s:property value="#item.meueName" /></td>
 					<td><s:property value="#item.action" /></td>
 					<td><s:property value="#item.description" /></td>
 					<td><s:if test="#item.isShow == 1">是</s:if><s:else>否</s:else></td>
 					<td>
-						<a title="设置子权限" target="dialog" rel="dialog_${item.id}" mask=true href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&dialogId=dialog_${item.id}">设置子权限</a>
+						<a title="${item.privName}-设置子权限" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&dialogId=dialog_${item.id}"
+							width="800" height="480">设置子权限</a>
 					</td>
 				</tr>
 			</s:iterator>
