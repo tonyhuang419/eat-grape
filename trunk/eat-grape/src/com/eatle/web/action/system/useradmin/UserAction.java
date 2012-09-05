@@ -40,8 +40,8 @@ public class UserAction extends BaseAction {
        
 	   Map<String,Object> params = super.getRequestParameters(request);
 	   int pageNum = Pagination.CURRENTPAGE;
-	   String numPerPage = (String) params.get("numPerPage");
-	   int pageSize = Integer.parseInt((numPerPage == null) ? "" + Pagination.PAGESIZE : numPerPage);
+	   int pageSize = Pagination.PAGESIZE;
+	   
 	   if(params.containsKey("pageNum")){
 		   pageNum = Integer.parseInt((String)params.get("pageNum"));
 	   }
@@ -71,6 +71,7 @@ public class UserAction extends BaseAction {
    public void delete() throws IOException{
 	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
+	   json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 	   }else{

@@ -15,7 +15,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/system/useradmin/account/showIndex.htm" method="post">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/system/useradmin/account/showIndex.htm" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -29,18 +29,19 @@
 				<td>
 					<select class="combox" name="province">
 						<option value="">用户类型</option>
-						<option value="北京">北京</option>
-						<option value="上海">上海</option>
+						<option value="1">个人</option>
+						<option value="2">公司</option>
 					</select>
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">搜索</button></div></div></li>
+						</ul>
+					</div>
 				</td>
 			</tr>
 		</table>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-				<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
-			</ul>
-		</div>
 	</div>
 	</form>
 </div>

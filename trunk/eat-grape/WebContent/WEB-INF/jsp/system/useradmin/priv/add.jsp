@@ -3,26 +3,24 @@
 <script type="text/javascript">
 	function refreshDialogAjaxDone(json){
 		//DWZ.ajaxDone(json);
-		if(json.statusCode==DWZ.statusCode.ok){
-		if(json.dialogId){
-			if("closeCurrent"==json.callbackType){
-				$.pdialog.closeCurrent();
+		if(json.statusCode == DWZ.statusCode.ok){
+			if(json.dialogId){
+				if("closeCurrent" == json.callbackType){
+					$.pdialog.closeCurrent();
+				}
+				// 刷新dialogId指定的dialog，url：刷新时可重新指定加载数据的url, data：为加载数据时所需的参数。
+				var dialogId = json.dialogId;
+				var pid = json.pid;
+				$.pdialog.reload("system/useradmin/priv/showSetSubPriv.htm?pid=" + pid + "&dialogId=" + dialogId, {}, dialogId);
 			}
-			//刷新dlid指定的dialog，url：刷新时可重新指定加载数据的url, data：为加载数据时所需的参数。
-			//alert(json.dialogId);
-			//$.pdialog.reload('system/useradmin/priv/showAdd.htm',{},json.dialogId);
-			//$.pdialog.close(json.dialogId);
-			//$.pdialog.open('system/useradmin/priv/showAdd.htm', json.dialogId, "wwwwwwwwww");
 		}
-	}
 	}
 </script>
 
 
-
 <div class="pageContent">
-	<form method="post" action="system/useradmin/priv/add.htm?dialogId=${param.dialogId}" class="pageForm required-validate"
-			 onsubmit="return validateCallback(this, <s:if test="#parameters.dialogId != '' ">refreshDialogAjaxDone</s:if><s:else>DialogAjaxDone</s:else>);">
+	<form method="post" action="system/useradmin/priv/add.htm?navTabId=${navTabId}&dialogId=${dialogId}" class="pageForm required-validate"
+			 onsubmit="return validateCallback(this, <s:if test="#attr.dialogId != \"\"">refreshDialogAjaxDone</s:if><s:else>dialogAjaxDone</s:else>);">
 		<div class="pageFormContent" layoutH="56">
 			<input type="hidden"  name="priv.pId" value="${param.pid}">
 			<p>

@@ -6,7 +6,7 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>用户名称：</label>
-				<input name="user.userName" class="required" type="text" size="30" value="张慧华" alt="请输入用户名称"/>
+				<input name="user.userName" class="required" type="text" size="30" alt="请输入用户名称"/>
 			</p>
 			<p>
 				<label>密码：</label>

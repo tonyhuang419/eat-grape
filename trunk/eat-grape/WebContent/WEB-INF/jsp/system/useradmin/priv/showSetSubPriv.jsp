@@ -35,7 +35,7 @@
 					<td><s:property value="#item.description" /></td>
 					<td><s:if test="#item.isShow == 1">是</s:if><s:else>否</s:else></td>
 					<td>
-						<a title="设置子权限" target="dialog" rel="<s:property value="#item.id" />" mask=true href="system/useradmin/priv/showSetSubPriv.htm?pid=<s:property value='#item.id' />">设置子权限</a>
+						<a title="设置子权限" target="dialog" rel="dialog_${item.id}" mask=true href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&dialogId=dialog_${item.id}">设置子权限</a>
 					</td>
 				</tr>
 			</s:iterator>

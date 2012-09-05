@@ -25,14 +25,15 @@
 				<td>
 					菜单名称：<input type="text" name="meueName" />
 				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">搜索</button></div></div></li>
+						</ul>
+					</div>
+				</td>
 			</tr>
 		</table>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-				<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
-			</ul>
-		</div>
 	</div>
 	</form>
 </div>
@@ -64,7 +65,7 @@
 					<td><s:property value="#item.description" /></td>
 					<td><s:if test="#item.isShow == 1">是</s:if><s:else>否</s:else></td>
 					<td>
-						<a title="设置子权限" target="dialog" rel="<s:property value="#item.id" />_dialog" mask="true" href="system/useradmin/priv/showSetSubPriv.htm?pid=<s:property value='#item.id' />&dialogId=<s:property value='#item.id' />_dialog">设置子权限</a>
+						<a title="设置子权限" target="dialog" rel="dialog_${item.id}" mask="true" href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&dialogId=dialog_${item.id}">设置子权限</a>
 					</td>
 				</tr>
 			</s:iterator>
