@@ -83,6 +83,7 @@ public class RoleAction extends BaseAction {
    public void delete() throws IOException{
 	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
+	   json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
 	   if(role==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 	   }else{

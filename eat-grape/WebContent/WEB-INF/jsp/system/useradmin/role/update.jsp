@@ -11,7 +11,7 @@
 			</p>
 			<p>
 				<label>描述：</label>
-				<input type="text"  value="" name="role.description" value="${role.description}" class="textInput">
+				<input type="text"  value="${role.description}" name="role.description" value="${role.description}" class="textInput">
 			</p>
 		</div>
 		<div class="formBar">

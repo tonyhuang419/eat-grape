@@ -140,5 +140,4 @@ public class PrivServiceImpl implements IPrivService {
 		}
 		return temp;
 	}
-	
 }

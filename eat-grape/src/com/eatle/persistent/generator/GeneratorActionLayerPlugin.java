@@ -18,6 +18,8 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
+import com.eatle.utils.DwzAjaxJsonUtil;
+
 /**
  * 
  *@Title: Action 层生成器
@@ -254,6 +256,8 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addException(type);
         
         method.addBodyLine("Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
+        method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);");
+        method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, \"\");");
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");
@@ -301,6 +305,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.setName("update");
         
         method.addBodyLine("Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
+        method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);");
         method.addBodyLine("if(user==null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
         method.addBodyLine("}else{");

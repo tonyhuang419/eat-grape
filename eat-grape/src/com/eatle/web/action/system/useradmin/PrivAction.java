@@ -68,7 +68,9 @@ public class PrivAction extends BaseAction {
    public void add() throws IOException{
 	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-	   json.put("dialogId", dialogId);
+	   json.put(DwzAjaxJsonUtil.KEY_DIALOGID, dialogId);
+	   json.put("pid", priv.getPId());
+	   System.out.println(dialogId + "         " + navTabId);
 	   if(priv==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 	   }else{
@@ -80,6 +82,7 @@ public class PrivAction extends BaseAction {
    public void delete() throws IOException{
 	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
+	   json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
 	   if(priv==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 	   }else{
@@ -140,5 +143,4 @@ public class PrivAction extends BaseAction {
 	public void setList(List<Priv> list) {
 		this.list = list;
 	}
-    
 }

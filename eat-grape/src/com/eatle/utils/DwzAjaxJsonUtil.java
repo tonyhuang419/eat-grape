@@ -18,6 +18,7 @@ public class DwzAjaxJsonUtil {
 	public static String KEY_STATUSCODE = "statusCode";
 	public static String KEY_MESSAGE = "message";
 	public static String KEY_NAVTABID = "navTabId";
+	public static String KEY_DIALOGID = "dialogId";
 	public static String KEY_REL = "rel";
 	public static String KEY_CALLBACKTYPE = "callbackType";
 	public static String KEY_FORWARDURL = "forwardUrl";
@@ -26,6 +27,7 @@ public class DwzAjaxJsonUtil {
 		json.put("statusCode", 200);
 		json.put("message", "操作成功");
 		json.put("navTabId", "");
+		json.put("dialogId", "");
 		json.put("rel", "");
 		json.put("callbackType", "closeCurrent");
 		json.put("forwardUrl", "");

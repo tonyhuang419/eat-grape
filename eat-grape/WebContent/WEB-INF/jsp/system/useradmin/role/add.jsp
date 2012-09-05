@@ -6,7 +6,7 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>角色名称：</label>
-				<input name="role.roleName" class="required" type="text" size="30" value="张慧华" alt="请输入角色名称"/>
+				<input name="role.roleName" class="required" type="text" size="30" alt="请输入角色名称"/>
 			</p>
 			<p>
 				<label>描述：</label>
