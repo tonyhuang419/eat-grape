@@ -48,16 +48,16 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/useradmin/account/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true"><span>添加</span></a></li>
+			<li><a class="add" href="system/useradmin/account/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加</span></a></li>
 			<li><a class="delete" href="system/useradmin/account/delete.htm?user.id={sid_user}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="system/useradmin/account/showUpdate.htm?user.id={sid_user}&navTabId=${param.navTabId}" target="dialog" mask="true"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="138">
+	<table class="table" width="100%" layoutH="112">
 		<thead>
-			<tr>
+			<tr align="center">
 				<th width="120">用户名</th>
 				<th>密码</th>
 				<th width="100">邮箱</th>
@@ -66,7 +66,7 @@
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
-				<tr target="sid_user" rel="<s:property value="#item.id" />">
+				<tr target="sid_user" rel="<s:property value="#item.id" />" align="center">
 					<td><s:property value="#item.userName" /></td>
 					<td><s:property value="#item.pwd" /></td>
 					<td><s:property value="#item.email" /></td>

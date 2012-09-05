@@ -37,14 +37,14 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/useradmin/role/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true"><span>添加角色</span></a></li>
+			<li><a class="add" href="system/useradmin/role/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加角色</span></a></li>
 			<li><a class="delete" href="system/useradmin/role/delete.htm?role.id={sid}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="system/useradmin/role/showUpdate.htm?role.id={sid}&navTabId=${param.navTabId}" target="dialog" mask="true"><span>修改</span></a></li>
 		</ul>
 	</div>
-	<table class="table"  layoutH="138">
+	<table class="table"  layoutH="112">
 		<thead>
-			<tr>
+			<tr align="center">
 				<th width="180">角色名称</th>
 				<th width="200">角色描述</th>
 				<th width="120">操作</th>
@@ -52,11 +52,11 @@
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
-				<tr target="sid" rel="<s:property value="#item.id" />">
+				<tr target="sid" rel="<s:property value="#item.id"/>" align="center">
 					<td><s:property value="#item.roleName" /></td>
 					<td><s:property value="#item.description" /></td>
 					<td>
-						<a title="设置权限" target="dialog" mask=true href="system/useradmin/role/showSetPriv.htm?role.id=<s:property value="#item.id" />">设置权限</a>
+						<a title="${item.roleName}-设置权限" target="dialog" mask="true" width="700" height="450" href="system/useradmin/role/showSetPriv.htm?role.id=<s:property value="#item.id" />">设置权限</a>
 						<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
 					</td>
 				</tr>
