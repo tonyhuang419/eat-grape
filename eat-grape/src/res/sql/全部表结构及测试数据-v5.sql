@@ -2,10 +2,25 @@
 MySQL Backup
 Source Server Version: 5.1.32
 Source Database: eatledb
-Date: 2012-9-5 20:40:25
+Date: 2012-9-6 17:24:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+--  Table structure for `t_advert`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_advert`;
+CREATE TABLE `t_advert` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pic_url` varchar(200) COLLATE utf8_bin NOT NULL COMMENT '图片URL',
+  `pic_width` int(5) DEFAULT NULL COMMENT '图片宽度',
+  `pic_height` int(5) DEFAULT NULL COMMENT '图片高度',
+  `show_text` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '展示（说明）文本',
+  `link_url` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '链接地址',
+  `issue_time` datetime DEFAULT NULL COMMENT '发布时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='广告位信息表';
 
 -- ----------------------------
 --  Table structure for `t_area`
@@ -19,30 +34,6 @@ CREATE TABLE `t_area` (
   KEY `FK_t_area_t_city` (`city_id`),
   CONSTRAINT `FK_t_area_t_city` FOREIGN KEY (`city_id`) REFERENCES `t_city` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='地区/区县表';
-
--- ----------------------------
---  Table structure for `t_buy-sell_records`
--- ----------------------------
-DROP TABLE IF EXISTS `t_buy-sell_records`;
-CREATE TABLE `t_buy-sell_records` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `order_id` bigint(20) NOT NULL COMMENT '菜品ID',
-  `trade_count` bigint(10) DEFAULT NULL COMMENT '买/卖数量',
-  `trade_money` bigint(10) DEFAULT NULL,
-  `trade_time` datetime DEFAULT NULL COMMENT '交易时间',
-  `merc_id` bigint(20) DEFAULT NULL COMMENT '商家（卖家）',
-  `customer_id` bigint(20) DEFAULT NULL COMMENT '顾客（买家）',
-  `comm_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_t_buy_sell_records_t_order_list` (`order_id`),
-  KEY `FK_t_buy_sell_records_t_merchant` (`merc_id`),
-  KEY `FK_t_buy_sell_records_t_customer` (`customer_id`),
-  KEY `FK_t_buy_sell_records_t_community` (`comm_id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_community` FOREIGN KEY (`comm_id`) REFERENCES `t_community` (`id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_customer` FOREIGN KEY (`customer_id`) REFERENCES `t_customer` (`id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_order_list` FOREIGN KEY (`order_id`) REFERENCES `t_order_list` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='买（顾客）卖（商家）记录表';
 
 -- ----------------------------
 --  Table structure for `t_city`
@@ -127,6 +118,7 @@ DROP TABLE IF EXISTS `t_customer`;
 CREATE TABLE `t_customer` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '真是姓名（用于积分兑换商品邮寄）',
+  `type` smallint(2) DEFAULT '2' COMMENT '用户类型（固定是顾客）',
   `phone_num` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '联系电话（用于积分兑换商品邮寄）',
   `home_addr` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '住所地址（用于积分兑换商品邮寄）',
   `send_addr` varchar(200) COLLATE utf8_bin NOT NULL COMMENT '收货地址',
@@ -155,6 +147,20 @@ CREATE TABLE `t_distinct` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='地段 / 片区表';
 
 -- ----------------------------
+--  Table structure for `t_feedback`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_feedback`;
+CREATE TABLE `t_feedback` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `content` text COLLATE utf8_bin COMMENT '反馈建议内容',
+  `email` varchar(40) COLLATE utf8_bin DEFAULT NULL COMMENT '联系电子邮件',
+  `identify_type` smallint(2) DEFAULT NULL COMMENT '反馈者身份类型（0：商家，1：顾客）',
+  `identify_id` smallint(2) DEFAULT NULL COMMENT '身份ID',
+  `sub_time` datetime DEFAULT NULL COMMENT '提交时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='反馈建议表';
+
+-- ----------------------------
 --  Table structure for `t_join_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_join_info`;
@@ -162,11 +168,12 @@ CREATE TABLE `t_join_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `send_place` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT '送餐地点',
   `shop_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '商店名称',
+  `shop_addr` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商店地址',
   `link_man` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '联系人',
   `link_tel` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '联系电话',
   `link_email` varchar(40) COLLATE utf8_bin DEFAULT NULL COMMENT '联系人电子邮件',
   `link_qq` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '联系人QQ',
-  `join_time` datetime DEFAULT NULL COMMENT '录入时间',
+  `sub_time` datetime DEFAULT NULL COMMENT '提交时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='加盟联系信息表';
 
@@ -210,6 +217,19 @@ CREATE TABLE `t_leave_remark` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='顾客（消费者）给商家的评论表';
 
 -- ----------------------------
+--  Table structure for `t_login_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_login_log`;
+CREATE TABLE `t_login_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `identify_type` smallint(2) DEFAULT NULL COMMENT '身份类型（0：管理员，1：商家，2：顾客）',
+  `identify_id` smallint(2) DEFAULT NULL COMMENT '身份ID',
+  `login_ip` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '登录IP',
+  `login_time` datetime DEFAULT NULL COMMENT '登录时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='登录日志表';
+
+-- ----------------------------
 --  Table structure for `t_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_menu`;
@@ -224,28 +244,67 @@ CREATE TABLE `t_menu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='系统菜单表';
 
 -- ----------------------------
+--  Table structure for `t_menu_catagory`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_menu_catagory`;
+CREATE TABLE `t_menu_catagory` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cata_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '分类名称',
+  `cata_describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '分类描述',
+  `merc_id` bigint(20) NOT NULL COMMENT '商家ID',
+  PRIMARY KEY (`id`),
+  KEY `FK_t_menu_catagory_t_merchant` (`merc_id`) USING BTREE,
+  CONSTRAINT `FK_t_menu_catagory_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单分类表';
+
+-- ----------------------------
+--  Table structure for `t_menu_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_menu_list`;
+CREATE TABLE `t_menu_list` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '菜名',
+  `feature` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '菜品特征（0：招牌菜，1：特色菜，2：麻辣，3：新菜品）',
+  `describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '简介/描述',
+  `pic_url` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '图片URL',
+  `price` int(5) NOT NULL COMMENT '单价',
+  `spec_price` int(5) DEFAULT NULL COMMENT '特价价格',
+  `is_spec_price` smallint(2) DEFAULT NULL COMMENT '是否是特价菜品（0：是，1：不是）',
+  `score` int(5) DEFAULT '0' COMMENT '赠送积分',
+  `cata_id` bigint(20) NOT NULL COMMENT '菜单分类ID',
+  PRIMARY KEY (`id`),
+  KEY `FK_t_menu_list_t_menu_catagory` (`cata_id`),
+  CONSTRAINT `FK_t_menu_list_t_menu_catagory` FOREIGN KEY (`cata_id`) REFERENCES `t_menu_catagory` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单表';
+
+-- ----------------------------
 --  Table structure for `t_merchant`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_merchant`;
 CREATE TABLE `t_merchant` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户ID',
   `merc_name` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '商家姓名',
   `merc_ID_NO` varchar(40) COLLATE utf8_bin DEFAULT NULL COMMENT '商家身份证号码',
   `merc_tel` varchar(15) COLLATE utf8_bin NOT NULL COMMENT '商家电话',
   `merc_qq` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '商家QQ',
   `merc_addr` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商家住所地址',
   `shop_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '店铺名称',
+  `shop_type` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '店铺主营产品类型标志集（多个标示，分隔）（标识与表t_shop_type同步）',
+  `shop_addr` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '店铺地址',
   `shop_logo_url` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商店标志图片URL',
   `shop_tel` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '订餐电话',
   `busi_hour` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '营业时间',
-  `shop_addr` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '店铺地址',
   `send_type` smallint(2) NOT NULL COMMENT '送餐类型（0：在线，1：电话）',
   `send_rate` smallint(2) DEFAULT NULL COMMENT '配送费',
   `send_explain` varchar(200) COLLATE utf8_bin DEFAULT '' COMMENT '送餐说明',
+  `last_login_time` datetime DEFAULT NULL COMMENT '上次登录时间',
   `dist_id` bigint(20) DEFAULT NULL COMMENT '地段/片区ID',
   `join_date` datetime DEFAULT NULL COMMENT '加入时间',
   PRIMARY KEY (`id`),
   KEY `FK_t_merchant_t_distinct` (`dist_id`),
+  KEY `FK_t_merchant_t_user` (`user_id`),
+  CONSTRAINT `FK_t_merchant_t_user` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`),
   CONSTRAINT `FK_t_merchant_t_distinct` FOREIGN KEY (`dist_id`) REFERENCES `t_distinct` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家信息表';
 
@@ -257,43 +316,54 @@ CREATE TABLE `t_merc_notice` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '标题',
   `content` varchar(200) COLLATE utf8_bin DEFAULT '' COMMENT '内容',
-  `merc_id` bigint(20) DEFAULT NULL COMMENT '所属商家',
+  `merc_id` bigint(20) DEFAULT NULL COMMENT '商家ID',
+  `send_time` datetime DEFAULT NULL COMMENT '发送时间',
   PRIMARY KEY (`id`),
   KEY `FK_t_merc_notice_t_merchant` (`merc_id`),
   CONSTRAINT `FK_t_merc_notice_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家公告表';
 
 -- ----------------------------
---  Table structure for `t_order_catagory`
+--  Table structure for `t_merc_pv`
 -- ----------------------------
-DROP TABLE IF EXISTS `t_order_catagory`;
-CREATE TABLE `t_order_catagory` (
+DROP TABLE IF EXISTS `t_merc_pv`;
+CREATE TABLE `t_merc_pv` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `cata_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '分类名称',
-  `cata_describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '分类描述',
   `merc_id` bigint(20) NOT NULL COMMENT '商家ID',
+  `customer_id` bigint(20) NOT NULL,
+  `access_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_t_order_catagory_t_merchant` (`merc_id`),
-  CONSTRAINT `FK_t_order_catagory_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单分类表';
+  KEY `FK_merc_pv_t_merchant` (`merc_id`),
+  KEY `FK_merc_pv_t_customer` (`customer_id`),
+  CONSTRAINT `FK_merc_pv_t_customer` FOREIGN KEY (`customer_id`) REFERENCES `t_customer` (`id`),
+  CONSTRAINT `FK_merc_pv_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家访问量信息';
 
 -- ----------------------------
---  Table structure for `t_order_list`
+--  Table structure for `t_order_lib`
 -- ----------------------------
-DROP TABLE IF EXISTS `t_order_list`;
-CREATE TABLE `t_order_list` (
+DROP TABLE IF EXISTS `t_order_lib`;
+CREATE TABLE `t_order_lib` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '菜名',
-  `describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '简介/描述',
-  `pic_url` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '图片URL',
-  `price` int(5) NOT NULL COMMENT '单价',
-  `is_spec_price` smallint(2) DEFAULT NULL COMMENT '是否是特价菜品（0：是，1：不是）',
-  `score` int(5) DEFAULT '0' COMMENT '赠送积分',
-  `cata_id` bigint(20) NOT NULL COMMENT '菜单分类ID',
+  `order_num` bigint(20) NOT NULL COMMENT '订单号',
+  `menu_id` bigint(20) NOT NULL COMMENT '菜品ID',
+  `merc_id` bigint(20) NOT NULL COMMENT '商家（卖家）',
+  `customer_id` bigint(20) NOT NULL COMMENT '顾客（买家）',
+  `comm_id` bigint(20) DEFAULT NULL COMMENT '社区/楼宇/学校ID',
+  `trade_count` bigint(10) DEFAULT NULL COMMENT '买/卖数量',
+  `trade_money` bigint(10) DEFAULT NULL COMMENT '交易金额',
+  `trade_time` datetime DEFAULT NULL COMMENT '交易时间',
+  `trade_state` smallint(2) DEFAULT NULL COMMENT '该交易当前状态（0：完成，1：未完成）',
   PRIMARY KEY (`id`),
-  KEY `FK_t_order_list_t_order_catagory` (`cata_id`),
-  CONSTRAINT `FK_t_order_list_t_order_catagory` FOREIGN KEY (`cata_id`) REFERENCES `t_order_catagory` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单表';
+  KEY `FK_t_order_lib_t_menu_list` (`menu_id`),
+  KEY `FK_t_order_lib_t_merchant` (`merc_id`),
+  KEY `FK_t_order_lib_t_customer` (`customer_id`),
+  KEY `FK_t_order_lib_t_community` (`comm_id`),
+  CONSTRAINT `FK_t_order_lib_t_community` FOREIGN KEY (`comm_id`) REFERENCES `t_community` (`id`),
+  CONSTRAINT `FK_t_order_lib_t_customer` FOREIGN KEY (`customer_id`) REFERENCES `t_customer` (`id`),
+  CONSTRAINT `FK_t_order_lib_t_menu_list` FOREIGN KEY (`menu_id`) REFERENCES `t_menu_list` (`id`),
+  CONSTRAINT `FK_t_order_lib_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='订单表';
 
 -- ----------------------------
 --  Table structure for `t_privilege`
@@ -319,6 +389,43 @@ CREATE TABLE `t_province` (
   `prov_name` varchar(50) COLLATE utf8_bin DEFAULT '' COMMENT '省份/州名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='省份表';
+
+-- ----------------------------
+--  Table structure for `t_recommend_merc`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_recommend_merc`;
+CREATE TABLE `t_recommend_merc` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shop_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '店铺名称',
+  `shop_tel` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '店铺电话',
+  `shop_addr` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '店铺地址',
+  `customer_id` bigint(20) DEFAULT NULL COMMENT '顾客ID',
+  `sub_time` datetime DEFAULT NULL COMMENT '提交时间',
+  PRIMARY KEY (`id`),
+  KEY `FK_recommend_merc_t_customer` (`customer_id`),
+  CONSTRAINT `FK_recommend_merc_t_customer` FOREIGN KEY (`customer_id`) REFERENCES `t_customer` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='顾客推荐商家信息表';
+
+-- ----------------------------
+--  Table structure for `t_recruit_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_recruit_info`;
+CREATE TABLE `t_recruit_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `job_name` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '职位名称',
+  `job_duty` text COLLATE utf8_bin COMMENT '工作职责',
+  `job_seniority` int(5) DEFAULT NULL COMMENT '工作年限',
+  `sex` smallint(2) DEFAULT NULL COMMENT '性别（0：不限，1：男，2：女）',
+  `age` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '年龄范围',
+  `education` smallint(2) DEFAULT NULL COMMENT '学历（0：不限，1：小学，2：初中，3：高中/中专，4：大专，5：本科，6：研究生，7：硕士，8：博士）',
+  `link_tel` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '联系电话',
+  `sub_time` datetime DEFAULT NULL COMMENT '发布时间',
+  `deadline` datetime DEFAULT NULL,
+  `merc_id` bigint(20) NOT NULL COMMENT '商家ID',
+  PRIMARY KEY (`id`),
+  KEY `FK_t_recruit_info_t_merchant` (`merc_id`),
+  CONSTRAINT `FK_t_recruit_info_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='人才招聘信息表';
 
 -- ----------------------------
 --  Table structure for `t_role`
@@ -347,6 +454,67 @@ CREATE TABLE `t_role_privilege` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='角色与权限关联表';
 
 -- ----------------------------
+--  Table structure for `t_service_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_service_info`;
+CREATE TABLE `t_service_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `serv_mobile` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '客服移动电话',
+  `serv_tel` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '客服电话',
+  `serv_qq` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '客服QQ',
+  `serv_email` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '客服邮件',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='客户服务信息表';
+
+-- ----------------------------
+--  Table structure for `t_shop_type`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_shop_type`;
+CREATE TABLE `t_shop_type` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '类型名称',
+  `type_identify` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '类型标示',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商店主要经营类型字典表';
+
+-- ----------------------------
+--  Table structure for `t_system_notice`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_system_notice`;
+CREATE TABLE `t_system_notice` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '系统公告标题',
+  `content` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '系统公告内容',
+  `admin_id` bigint(20) DEFAULT NULL COMMENT '管理员ID',
+  `send_time` datetime DEFAULT NULL COMMENT '发送时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='系统公告表';
+
+-- ----------------------------
+--  Table structure for `t_to_employ`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_to_employ`;
+CREATE TABLE `t_to_employ` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '应聘者姓名',
+  `email` varchar(40) COLLATE utf8_bin DEFAULT NULL COMMENT '电子邮件',
+  `link_tel` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT '联系电话',
+  `resume_text` text COLLATE utf8_bin COMMENT '文本简历内容',
+  `resume_url` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '文档简历URL',
+  `sub_time` datetime DEFAULT NULL COMMENT '提交时间',
+  `merc_id` bigint(20) DEFAULT NULL,
+  `recruit_id` bigint(20) NOT NULL COMMENT '招聘信息ID',
+  `customer_id` bigint(20) DEFAULT NULL COMMENT '顾客ID（为空则为游客应聘）',
+  PRIMARY KEY (`id`),
+  KEY `FK_t_to_employ_t_customer` (`customer_id`),
+  KEY `FK_t_to_employ_t_merchant` (`merc_id`),
+  KEY `FK_t_to_employ_t_recruit_info` (`recruit_id`),
+  CONSTRAINT `FK_t_to_employ_t_recruit_info` FOREIGN KEY (`recruit_id`) REFERENCES `t_recruit_info` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_t_to_employ_t_customer` FOREIGN KEY (`customer_id`) REFERENCES `t_customer` (`id`),
+  CONSTRAINT `FK_t_to_employ_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='应聘记录信息表';
+
+-- ----------------------------
 --  Table structure for `t_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
@@ -355,7 +523,7 @@ CREATE TABLE `t_user` (
   `user_name` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '用户名',
   `pwd` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '密码',
   `email` varchar(40) COLLATE utf8_bin DEFAULT NULL COMMENT '电子邮件',
-  `type` tinyint(4) NOT NULL COMMENT '用户类型',
+  `type` tinyint(4) NOT NULL COMMENT '用户类型（0：管理员，1：商家）',
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
