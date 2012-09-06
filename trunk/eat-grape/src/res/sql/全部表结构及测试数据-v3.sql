@@ -2,7 +2,7 @@
 MySQL Backup
 Source Server Version: 5.1.32
 Source Database: eatledb
-Date: 2012-9-5 20:40:25
+Date: 2012-9-6 11:17:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,30 +19,6 @@ CREATE TABLE `t_area` (
   KEY `FK_t_area_t_city` (`city_id`),
   CONSTRAINT `FK_t_area_t_city` FOREIGN KEY (`city_id`) REFERENCES `t_city` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='地区/区县表';
-
--- ----------------------------
---  Table structure for `t_buy-sell_records`
--- ----------------------------
-DROP TABLE IF EXISTS `t_buy-sell_records`;
-CREATE TABLE `t_buy-sell_records` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `order_id` bigint(20) NOT NULL COMMENT '菜品ID',
-  `trade_count` bigint(10) DEFAULT NULL COMMENT '买/卖数量',
-  `trade_money` bigint(10) DEFAULT NULL,
-  `trade_time` datetime DEFAULT NULL COMMENT '交易时间',
-  `merc_id` bigint(20) DEFAULT NULL COMMENT '商家（卖家）',
-  `customer_id` bigint(20) DEFAULT NULL COMMENT '顾客（买家）',
-  `comm_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_t_buy_sell_records_t_order_list` (`order_id`),
-  KEY `FK_t_buy_sell_records_t_merchant` (`merc_id`),
-  KEY `FK_t_buy_sell_records_t_customer` (`customer_id`),
-  KEY `FK_t_buy_sell_records_t_community` (`comm_id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_community` FOREIGN KEY (`comm_id`) REFERENCES `t_community` (`id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_customer` FOREIGN KEY (`customer_id`) REFERENCES `t_customer` (`id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`),
-  CONSTRAINT `FK_t_buy_sell_records_t_order_list` FOREIGN KEY (`order_id`) REFERENCES `t_order_list` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='买（顾客）卖（商家）记录表';
 
 -- ----------------------------
 --  Table structure for `t_city`
@@ -224,6 +200,40 @@ CREATE TABLE `t_menu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='系统菜单表';
 
 -- ----------------------------
+--  Table structure for `t_menu_catagory`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_menu_catagory`;
+CREATE TABLE `t_menu_catagory` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cata_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '分类名称',
+  `cata_describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '分类描述',
+  `merc_id` bigint(20) NOT NULL COMMENT '商家ID',
+  PRIMARY KEY (`id`),
+  KEY `FK_t_menu_catagory_t_merchant` (`merc_id`) USING BTREE,
+  CONSTRAINT `FK_t_menu_catagory_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单分类表';
+
+-- ----------------------------
+--  Table structure for `t_menu_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_menu_list`;
+CREATE TABLE `t_menu_list` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '菜名',
+  `feature` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '菜品特征（0：招牌菜，1：特色菜，2：麻辣，3：新菜品）',
+  `describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '简介/描述',
+  `pic_url` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '图片URL',
+  `price` int(5) NOT NULL COMMENT '单价',
+  `spec_price` int(5) DEFAULT NULL COMMENT '特价价格',
+  `is_spec_price` smallint(2) DEFAULT NULL COMMENT '是否是特价菜品（0：是，1：不是）',
+  `score` int(5) DEFAULT '0' COMMENT '赠送积分',
+  `cata_id` bigint(20) NOT NULL COMMENT '菜单分类ID',
+  PRIMARY KEY (`id`),
+  KEY `FK_t_menu_list_t_menu_catagory` (`cata_id`),
+  CONSTRAINT `FK_t_menu_list_t_menu_catagory` FOREIGN KEY (`cata_id`) REFERENCES `t_menu_catagory` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单表';
+
+-- ----------------------------
 --  Table structure for `t_merchant`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_merchant`;
@@ -264,36 +274,29 @@ CREATE TABLE `t_merc_notice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家公告表';
 
 -- ----------------------------
---  Table structure for `t_order_catagory`
+--  Table structure for `t_order_lib`
 -- ----------------------------
-DROP TABLE IF EXISTS `t_order_catagory`;
-CREATE TABLE `t_order_catagory` (
+DROP TABLE IF EXISTS `t_order_lib`;
+CREATE TABLE `t_order_lib` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `cata_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '分类名称',
-  `cata_describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '分类描述',
-  `merc_id` bigint(20) NOT NULL COMMENT '商家ID',
+  `menu_id` bigint(20) NOT NULL COMMENT '菜品ID',
+  `merc_id` bigint(20) DEFAULT NULL COMMENT '商家（卖家）',
+  `customer_id` bigint(20) DEFAULT NULL COMMENT '顾客（买家）',
+  `comm_id` bigint(20) DEFAULT NULL COMMENT '社区/楼宇/学校ID',
+  `trade_count` bigint(10) DEFAULT NULL COMMENT '买/卖数量',
+  `trade_money` bigint(10) DEFAULT NULL COMMENT '交易金额',
+  `trade_time` datetime DEFAULT NULL COMMENT '交易时间',
+  `trade_state` smallint(2) DEFAULT NULL COMMENT '该交易当前状态（0：完成，1：未完成）',
   PRIMARY KEY (`id`),
-  KEY `FK_t_order_catagory_t_merchant` (`merc_id`),
-  CONSTRAINT `FK_t_order_catagory_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单分类表';
-
--- ----------------------------
---  Table structure for `t_order_list`
--- ----------------------------
-DROP TABLE IF EXISTS `t_order_list`;
-CREATE TABLE `t_order_list` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '菜名',
-  `describe` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '简介/描述',
-  `pic_url` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '图片URL',
-  `price` int(5) NOT NULL COMMENT '单价',
-  `is_spec_price` smallint(2) DEFAULT NULL COMMENT '是否是特价菜品（0：是，1：不是）',
-  `score` int(5) DEFAULT '0' COMMENT '赠送积分',
-  `cata_id` bigint(20) NOT NULL COMMENT '菜单分类ID',
-  PRIMARY KEY (`id`),
-  KEY `FK_t_order_list_t_order_catagory` (`cata_id`),
-  CONSTRAINT `FK_t_order_list_t_order_catagory` FOREIGN KEY (`cata_id`) REFERENCES `t_order_catagory` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='点菜单表';
+  KEY `FK_t_order_lib_t_menu_list` (`menu_id`),
+  KEY `FK_t_order_lib_t_merchant` (`merc_id`),
+  KEY `FK_t_order_lib_t_customer` (`customer_id`),
+  KEY `FK_t_order_lib_t_community` (`comm_id`),
+  CONSTRAINT `FK_t_order_lib_t_community` FOREIGN KEY (`comm_id`) REFERENCES `t_community` (`id`),
+  CONSTRAINT `FK_t_order_lib_t_customer` FOREIGN KEY (`customer_id`) REFERENCES `t_customer` (`id`),
+  CONSTRAINT `FK_t_order_lib_t_menu_list` FOREIGN KEY (`menu_id`) REFERENCES `t_menu_list` (`id`),
+  CONSTRAINT `FK_t_order_lib_t_merchant` FOREIGN KEY (`merc_id`) REFERENCES `t_merchant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='买（顾客）卖（商家）记录表';
 
 -- ----------------------------
 --  Table structure for `t_privilege`
