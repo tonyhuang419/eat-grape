@@ -228,6 +228,14 @@
 	<li rel="closeAll">关闭全部弹出窗口</li>
 </ul>
 ]]></_PAGE_>
+<_PAGE_ id="funcMgrCM"><![CDATA[
+<ul id="funcMgrCM">
+	<li rel="newMenu">新建菜单</li>
+	<li rel="updateMenu">修改菜单</li>
+	<li rel="deleteMenu">删除菜单</li>
+	<li rel="freshMenu">刷新菜单</li>
+</ul>
+]]></_PAGE_>
 <_PAGE_ id="externalFrag"><![CDATA[
 <iframe src="{url}" style="width:100%;height:{height};" frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>
 ]]></_PAGE_>

@@ -24,8 +24,8 @@ public class IndexAction extends BaseAction
 	public String index()
 	{
 		String allMenuHtml = menuService.findAllMenu();
+		allMenuHtml = allMenuHtml.replaceAll("class=\"menu\"", "");
 		request.setAttribute("allMenuHtml", allMenuHtml);
-		
 		return SUCCESS;
 	}
 

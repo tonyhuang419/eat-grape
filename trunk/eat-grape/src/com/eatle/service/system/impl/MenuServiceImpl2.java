@@ -13,8 +13,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-@Service("menuService")
-public class MenuServiceImpl implements IMenuService
+@Service("menuService2")
+public class MenuServiceImpl2 implements IMenuService
 {
 	@Resource
 	private MenuMapper menuMapper;
@@ -34,7 +34,7 @@ public class MenuServiceImpl implements IMenuService
 	@Override
 	public void update(Menu entity)
 	{
-		menuMapper.updateByPrimaryKey(entity);
+		menuMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override
@@ -84,11 +84,12 @@ public class MenuServiceImpl implements IMenuService
 	public String findAllMenu()
 	{
 		StringBuffer allMenuBuffer = new StringBuffer();
-		for(Menu menu : findRootMenu())
-		{
-			assembleRootMenu(menu, allMenuBuffer);
-			assembleChildMenu(menu, allMenuBuffer);
-		}
+		allMenuBuffer.append("<div class=\"accordionContent\">\n");
+		allMenuBuffer.append("\t<ul class=\"tree treeFolder treeCheck collapse\">\n");
+		findChildMenu(findRootMenu(), allMenuBuffer);
+		allMenuBuffer.append("\t</ul>\n");
+		allMenuBuffer.append("</div>\n");
+		
 		return allMenuBuffer.toString();
 	}
 
@@ -100,36 +101,34 @@ public class MenuServiceImpl implements IMenuService
 			List<Menu> childMenu = findByParentId(menu.getId());
 			if(childMenu.size() > 0)
 			{
-				allMenuBuffer.append("\t\t<li><a>" + menu.getMenuName() + "</a>\n");
+				allMenuBuffer.append("\t\t<li><a id=\"" + menu.getId() 
+						+ "\" class=\"menu\" rel=\"" + menu.getRel() 
+						+ "\">" + menu.getMenuName() + "</a>\n");
 				allMenuBuffer.append("\t\t\t<ul class=\"treeFolder treeCheck\">\n");
 				findChildMenu(childMenu, allMenuBuffer);
 			}
 			else
 			{
-				allMenuBuffer.append("\t\t\t\t<li><a href=\"" + menu.getUrl() + "?navTabId=" 
-						+ menu.getRel() + "\" target=\"navTab\" rel=\"" + menu.getRel()
-						+ "\">" + menu.getMenuName() + "</a></li>\n");
+				allMenuBuffer.append("\t\t\t\t<li><a id=\"" + menu.getId() 
+						+ "\" class=\"menu\" rel=\"" + menu.getRel() + "\" "
+						+ "target=\"navTab\" href=\"" + menu.getUrl() 
+						+ "?navTabId=" + menu.getRel() + "\">" 
+						+ menu.getMenuName() + "</a></li>\n");
 			}
 		}
 		allMenuBuffer.append("\t\t\t</ul>\n");
 		allMenuBuffer.append("\t\t</li>\n");
 	}
-	
+
 	@Override
 	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
-		allMenuBuffer.append("<div class=\"accordionHeader\">\n");
-		allMenuBuffer.append("\t<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
-		allMenuBuffer.append("</div>\n");
-		allMenuBuffer.append("<div class=\"accordionContent\">\n");
+
 	}
 	
 	@Override
 	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
-		allMenuBuffer.append("\t<ul class=\"tree treeFolder treeCheck collapse\">\n");
-		findChildMenu(findByParentId(menu.getId()), allMenuBuffer);
-		allMenuBuffer.append("\t</ul>\n");
-		allMenuBuffer.append("</div>\n");
+		
 	}
 }

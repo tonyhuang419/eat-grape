@@ -9,7 +9,7 @@ function confirm2Link(msg, url)
 }
 
 // 确认提示框（Ajax）
-function confirm2Ajax(msg, data, callback, type)
+function confirm2Ajax(url, msg, data, callback, type)
 {
 	alertMsg.confirm(msg, {
 		okCall: function(){
