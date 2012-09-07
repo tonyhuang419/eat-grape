@@ -2,7 +2,6 @@ package com.eatle.service.system.impl;
 
 import com.eatle.persistent.mapper.MenuMapper;
 import com.eatle.persistent.pojo.system.Menu;
-import com.eatle.persistent.pojo.system.MenuCriteria.Criteria;
 import com.eatle.persistent.pojo.system.MenuCriteria;
 import com.eatle.service.system.IMenuService;
 import com.eatle.utils.Pagination;
@@ -35,7 +34,7 @@ public class MenuServiceImpl implements IMenuService
 	@Override
 	public void update(Menu entity)
 	{
-		menuMapper.updateByPrimaryKey(entity);
+		menuMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override
@@ -43,15 +42,6 @@ public class MenuServiceImpl implements IMenuService
 			int currentPage, int pageSize)
 	{
 		MenuCriteria menuCriteria = new MenuCriteria();
-		Criteria criteria = menuCriteria.createCriteria();
-		// if(queryMap!=null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
 		// 设置分页参数
 		menuCriteria.setPageSize(pageSize);
 		menuCriteria.setStartIndex((currentPage - 1) * pageSize);
@@ -110,15 +100,19 @@ public class MenuServiceImpl implements IMenuService
 			List<Menu> childMenu = findByParentId(menu.getId());
 			if(childMenu.size() > 0)
 			{
-				allMenuBuffer.append("\t\t<li><a>" + menu.getMenuName() + "</a>\n");
+				allMenuBuffer.append("\t\t<li><a id=\"" + menu.getId() 
+						+ "\" class=\"menu\" rel=\"" + menu.getRel() 
+						+ "\">" + menu.getMenuName() + "</a>\n");
 				allMenuBuffer.append("\t\t\t<ul class=\"treeFolder treeCheck\">\n");
 				findChildMenu(childMenu, allMenuBuffer);
 			}
 			else
 			{
-				allMenuBuffer.append("\t\t\t\t<li><a href=\"" + menu.getUrl() 
-						+ "\" target=\"navTab\" rel=\"" + menu.getRel()
-						+ "\">" + menu.getMenuName() + "</a></li>\n");
+				allMenuBuffer.append("\t\t\t\t<li><a id=\"" + menu.getId() 
+						+ "\" class=\"menu\" rel=\"" + menu.getRel() + "\" "
+						+ "target=\"navTab\" href=\"" + menu.getUrl() 
+						+ "?navTabId=" + menu.getRel() + "\">" 
+						+ menu.getMenuName() + "</a></li>\n");
 			}
 		}
 		allMenuBuffer.append("\t\t\t</ul>\n");
@@ -128,9 +122,10 @@ public class MenuServiceImpl implements IMenuService
 	@Override
 	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
-		allMenuBuffer.append("<div class=\"accordionHeader\">\n");
-		allMenuBuffer.append("\t<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
-		allMenuBuffer.append("</div>\n");
+//		allMenuBuffer.append("<div class=\"accordionHeader\"><a id=\"" + menu.getId() 
+//				+ "\" class=\"menu\" rel=\"" + menu.getRel() + "\">\n");
+//		allMenuBuffer.append("\t<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
+//		allMenuBuffer.append("</a></div>\n");
 		allMenuBuffer.append("<div class=\"accordionContent\">\n");
 	}
 	
@@ -142,26 +137,4 @@ public class MenuServiceImpl implements IMenuService
 		allMenuBuffer.append("\t</ul>\n");
 		allMenuBuffer.append("</div>\n");
 	}
-	
-//	@Override
-//	public Map findAllMenu()
-//	{
-//		Map<Long, Menu> map = new LinkedHashMap<Long, Menu>();
-//		findChildMenu(findRootMenu(), map);
-//		return map;
-//	}
-//
-//	@Override
-//	public void findChildMenu(List<Menu> parentMenu, Map map)
-//	{
-//		for(Menu menu : parentMenu)
-//		{
-//			List<Menu> childMenu = findByParentId(menu.getId());
-//			if(childMenu.size() > 0)
-//			{
-//				findChildMenu(childMenu, map);
-//			}
-//			map.put(menu.getId(), menu);
-//		}
-//	}
 }
