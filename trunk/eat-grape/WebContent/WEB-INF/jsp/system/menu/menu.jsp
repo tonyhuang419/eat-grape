@@ -35,15 +35,38 @@
 				};
             	$.pdialog.open(url, dlgId, title, options);
             },
-            // 删除菜单
+            // 删除菜单(支持多项)
 			deleteMenu : function(t){
-				var url = "system/menu/delete.htm";
-				var msg = "您确认删除 ”" + t.text() + "“ 吗？";
-				var data = {
-					"menu.id" : t.attr("id"),
-					"navTabId" : "${navTabId}"
-				};
-            	confirm2Ajax(url, msg, data, null, "json");
+            	var checkBoxs = $("input:checked");
+            	if(checkBoxs.length == 0)
+            	{
+            		alertErr("请勾选需要删除的菜单！");
+            	}
+            	else
+	            {
+	            	var url = "system/menu/delete.htm";
+					var msg = "您确认删除这 - " + checkBoxs.length + " - 项菜单吗？";
+					var delMenuIds = "";	// 需删除的菜单ID集合
+					for(var i = 0; i < checkBoxs.length; i++)
+					{
+						delMenuIds += checkBoxs[i].value + ",";
+					}
+					delMenuIds = delMenuIds.substring(0, delMenuIds.length - 1);
+					var data = {
+						"delMenuIds" : delMenuIds,
+						"navTabId" : "${navTabId}"
+					};
+					// Ajax删除确认
+	            	confirm2Ajax(url, msg, data, 
+	            		function(json){
+		            		DWZ.ajaxDone(json);
+		            		if(json.statusCode == DWZ.statusCode.ok)
+		            		{
+								navTab.reloadFlag("${navTabId}");
+		            		}
+	            		}, "json"
+	            	);
+            	}
             },
             // 刷新菜单树
 			freshMenu : function(t){

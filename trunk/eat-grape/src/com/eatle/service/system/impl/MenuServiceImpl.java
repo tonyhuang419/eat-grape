@@ -100,26 +100,24 @@ public class MenuServiceImpl implements IMenuService
 			List<Menu> childMenu = findByParentId(menu.getId());
 			if(childMenu.size() > 0)
 			{
-				allMenuBuffer.append("\t\t<li><a>" + menu.getMenuName() + "</a>\n");
-				allMenuBuffer.append("\t\t\t<ul class=\"treeFolder treeCheck\">\n");
+				allMenuBuffer.append("<li><a>" + menu.getMenuName() + "</a>\n<ul>\n");
 				findChildMenu(childMenu, allMenuBuffer);
 			}
 			else
 			{
-				allMenuBuffer.append("\t\t\t\t<li><a href=\"" + menu.getUrl() + "?navTabId=" 
+				allMenuBuffer.append("<li><a href=\"" + menu.getUrl() + "?navTabId=" 
 						+ menu.getRel() + "\" target=\"navTab\" rel=\"" + menu.getRel()
 						+ "\">" + menu.getMenuName() + "</a></li>\n");
 			}
 		}
-		allMenuBuffer.append("\t\t\t</ul>\n");
-		allMenuBuffer.append("\t\t</li>\n");
+		allMenuBuffer.append("</ul>\n</li>\n");
 	}
 	
 	@Override
 	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
 		allMenuBuffer.append("<div class=\"accordionHeader\">\n");
-		allMenuBuffer.append("\t<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
+		allMenuBuffer.append("<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
 		allMenuBuffer.append("</div>\n");
 		allMenuBuffer.append("<div class=\"accordionContent\">\n");
 	}
@@ -127,9 +125,9 @@ public class MenuServiceImpl implements IMenuService
 	@Override
 	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
-		allMenuBuffer.append("\t<ul class=\"tree treeFolder treeCheck collapse\">\n");
+		allMenuBuffer.append("<ul class=\"tree treeFolder collapse\">\n");
 		findChildMenu(findByParentId(menu.getId()), allMenuBuffer);
-		allMenuBuffer.append("\t</ul>\n");
+		allMenuBuffer.append("</ul>\n");
 		allMenuBuffer.append("</div>\n");
 	}
 }

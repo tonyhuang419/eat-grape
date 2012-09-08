@@ -239,7 +239,7 @@
 <_PAGE_ id="externalFrag"><![CDATA[
 <iframe src="{url}" style="width:100%;height:{height};" frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>
 ]]></_PAGE_>
-<_MSG_ id="validateFormError"><![CDATA[提交数据不完整，{0}个字段有错误，请改正后再提交!]]></_MSG_>
+<_MSG_ id="validateFormError"><![CDATA[{0}个字段未填写，请改正后再提交!]]></_MSG_>
 <_MSG_ id="sessionTimout"><![CDATA[会话超时，请重新登录!]]></_MSG_>
 <_MSG_ id="alertSelectMsg"><![CDATA[请选择信息!]]></_MSG_>
 <_MSG_ id="forwardConfirmMsg"><![CDATA[继续下一步!]]></_MSG_>

@@ -85,9 +85,9 @@ public class MenuServiceImpl2 implements IMenuService
 	{
 		StringBuffer allMenuBuffer = new StringBuffer();
 		allMenuBuffer.append("<div class=\"accordionContent\">\n");
-		allMenuBuffer.append("\t<ul class=\"tree treeFolder treeCheck collapse\">\n");
+		allMenuBuffer.append("<ul class=\"tree treeFolder treeCheck expand\">\n");
 		findChildMenu(findRootMenu(), allMenuBuffer);
-		allMenuBuffer.append("\t</ul>\n");
+		allMenuBuffer.append("</ul>\n");
 		allMenuBuffer.append("</div>\n");
 		
 		return allMenuBuffer.toString();
@@ -101,23 +101,17 @@ public class MenuServiceImpl2 implements IMenuService
 			List<Menu> childMenu = findByParentId(menu.getId());
 			if(childMenu.size() > 0)
 			{
-				allMenuBuffer.append("\t\t<li><a id=\"" + menu.getId() 
-						+ "\" class=\"menu\" rel=\"" + menu.getRel() 
-						+ "\">" + menu.getMenuName() + "</a>\n");
-				allMenuBuffer.append("\t\t\t<ul class=\"treeFolder treeCheck\">\n");
+				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"menu\" rel=\"" + menu.getRel() 
+						+ "\" tname=\"check_menu\" tvalue=\"" + menu.getId() + "\">" + menu.getMenuName() + "</a>\n<ul>\n");
 				findChildMenu(childMenu, allMenuBuffer);
 			}
 			else
 			{
-				allMenuBuffer.append("\t\t\t\t<li><a id=\"" + menu.getId() 
-						+ "\" class=\"menu\" rel=\"" + menu.getRel() + "\" "
-						+ "target=\"navTab\" href=\"" + menu.getUrl() 
-						+ "?navTabId=" + menu.getRel() + "\">" 
-						+ menu.getMenuName() + "</a></li>\n");
+				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"menu\" rel=\"" + menu.getRel() 
+						+ "\" tname=\"check_menu\" tvalue=\"" + menu.getId() + "\">" + menu.getMenuName() + "</a></li>\n");
 			}
 		}
-		allMenuBuffer.append("\t\t\t</ul>\n");
-		allMenuBuffer.append("\t\t</li>\n");
+		allMenuBuffer.append("</ul>\n</li>\n");
 	}
 
 	@Override
