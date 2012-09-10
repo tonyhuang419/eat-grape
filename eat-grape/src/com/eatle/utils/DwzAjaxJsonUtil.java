@@ -25,7 +25,7 @@ public class DwzAjaxJsonUtil {
 	public static Map<String,Object> getDefaultAjaxJson(){
 		Map<String,Object> json = new HashMap<String,Object>();
 		json.put("statusCode", 200);
-		json.put("message", "操作成功");
+		json.put("message", "操作成功！");
 		json.put("navTabId", "");
 		json.put("dialogId", "");
 		json.put("rel", "");

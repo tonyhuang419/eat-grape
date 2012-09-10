@@ -1,8 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="system/useradmin/role/showIndex.htm">
+<form id="pagerForm" method="post" action="system/useradmin/role/showIndex.htm?navTabId=${param.navTabId}">
 	
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="asc" />
