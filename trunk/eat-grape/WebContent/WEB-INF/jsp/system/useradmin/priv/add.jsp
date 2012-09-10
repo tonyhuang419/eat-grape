@@ -18,7 +18,7 @@
 </script>
 
 
-<div class="pageContent">${dialogId}
+<div class="pageContent">
 	<form method="post" action="system/useradmin/priv/add.htm?navTabId=${navTabId}&dialogId=${dialogId}" class="pageForm required-validate"
 			 onsubmit="return validateCallback(this, <s:if test="#attr.dialogId != \"\"">refreshDialogAjaxDone</s:if><s:else>dialogAjaxDone</s:else>);">
 		<div class="pageFormContent" layoutH="56">
