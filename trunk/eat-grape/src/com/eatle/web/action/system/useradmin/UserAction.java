@@ -62,6 +62,7 @@ public class UserAction extends BaseAction {
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   userService.add(user);
 	   }
@@ -74,6 +75,7 @@ public class UserAction extends BaseAction {
 	   json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   userService.delete(user);
 	   }
@@ -91,6 +93,7 @@ public class UserAction extends BaseAction {
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(user==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   userService.update(user);
 	   }

@@ -74,6 +74,7 @@ public class RoleAction extends BaseAction {
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(role==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   roleService.add(role);
 	   }
@@ -86,6 +87,7 @@ public class RoleAction extends BaseAction {
 	   json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
 	   if(role==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   roleService.delete(role);
 	   }
@@ -103,6 +105,7 @@ public class RoleAction extends BaseAction {
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   if(role==null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   roleService.update(role);
 	   }

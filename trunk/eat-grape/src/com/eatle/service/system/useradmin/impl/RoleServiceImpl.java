@@ -51,9 +51,7 @@ public class RoleServiceImpl implements IRoleService {
 		
 		List<Role> items = roleMapper.selectByCriteria(roleCriteria);
 		int totalCount = (int)roleMapper.selectCountByCriteria(roleCriteria);
-		
-		
-		
+
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
 	

@@ -1,8 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="system/useradmin/priv/showIndex.htm">
+<form id="pagerForm" method="post" action="${ctx}/system/useradmin/priv/showIndex.htm?navTabId=${param.navTabId}">
 	
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="asc" />
@@ -41,7 +41,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="system/useradmin/priv/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加权限</span></a></li>
-			<li><a class="delete" href="system/useradmin/priv/delete.htm?priv.id={sid}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="delete" href="system/useradmin/priv/delete.htm?priv.id={sid}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
 			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&navTabId=${param.navTabId}" target="dialog" mask="true"><span>修改</span></a></li>
 		</ul>
 	</div>

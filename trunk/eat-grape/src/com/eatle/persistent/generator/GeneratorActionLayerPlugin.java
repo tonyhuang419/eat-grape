@@ -258,8 +258,9 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         method.addBodyLine("Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, \"\");");
-        method.addBodyLine("if(user==null){");
+        method.addBodyLine("if(user == null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
+        method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_MESSAGE, \"操作失败！\");");
         method.addBodyLine("}else{");
         method.addBodyLine(serviceObjName+".delete(user);");
         method.addBodyLine("}");
@@ -306,8 +307,9 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         
         method.addBodyLine("Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);");
-        method.addBodyLine("if(user==null){");
+        method.addBodyLine("if(user == null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
+        method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_MESSAGE, \"操作失败！\");");
         method.addBodyLine("}else{");
         method.addBodyLine(serviceObjName+".update(user);");
         method.addBodyLine("}");
@@ -355,8 +357,9 @@ public class GeneratorActionLayerPlugin extends PluginAdapter {
         
         method.addBodyLine("Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);");
-        method.addBodyLine("if(user==null){");
+        method.addBodyLine("if(user == null){");
         method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);");
+        method.addBodyLine("json.put(DwzAjaxJsonUtil.KEY_MESSAGE, \"操作失败！\");");
         method.addBodyLine("}else{");
         method.addBodyLine(serviceObjName+".add(user);");
         method.addBodyLine("}");

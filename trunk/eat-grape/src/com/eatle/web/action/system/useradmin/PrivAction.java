@@ -71,8 +71,9 @@ public class PrivAction extends BaseAction {
 	   json.put(DwzAjaxJsonUtil.KEY_DIALOGID, dialogId);
 	   json.put("pid", priv.getPId());
 	   System.out.println(dialogId + "         " + navTabId);
-	   if(priv==null){
+	   if(priv == null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   privService.add(priv);
 	   }
@@ -83,8 +84,9 @@ public class PrivAction extends BaseAction {
 	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 	   json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
-	   if(priv==null){
+	   if(priv == null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   privService.delete(priv);
 	   }
@@ -100,8 +102,9 @@ public class PrivAction extends BaseAction {
    public void update() throws IOException{
 	   Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 	   json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-	   if(priv==null){
+	   if(priv == null){
 		   json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+		   json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 	   }else{
 		   privService.update(priv);
 	   }

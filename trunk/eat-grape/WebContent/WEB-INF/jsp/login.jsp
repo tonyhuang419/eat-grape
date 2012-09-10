@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>后台管理</title>
+	<title>登陆后台管理系统</title>
 	<%@ include file="/WEB-INF/common/jslibs.jsp"%>
 	<style type="text/css">
 		body { 
