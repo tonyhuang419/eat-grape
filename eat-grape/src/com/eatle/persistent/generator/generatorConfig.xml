@@ -32,7 +32,6 @@
 		<!-- 添加action 层 struts 配置文件生成 -->
 		<plugin type="com.eatle.persistent.generator.GeneratorStrutsXmlPlugin" />
 		
-		
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
