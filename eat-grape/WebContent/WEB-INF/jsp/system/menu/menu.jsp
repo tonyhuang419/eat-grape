@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
-<div style="margin: 5px 5px 0px 5px;" layoutH="10">
-	<div class="accordion" fillSpace="sidebar">
+<div class="accordion" style="margin: 5px 5px 0px 5px;" layoutH="10">
+	<ul class="tree treeFolder treeCheck expand">
 		${allMenuHtml}
-	</div>
+	</ul>
 </div>
 
 <script type="text/javascript">

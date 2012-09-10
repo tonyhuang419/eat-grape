@@ -35,8 +35,6 @@ public class MyBatisGeneratorTool {
 			MyBatisGenerator myBatisGenerator = null;
 			myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 			myBatisGenerator.generate(null);
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -46,7 +44,6 @@ public class MyBatisGeneratorTool {
 		}catch (InvalidConfigurationException e) {
 			e.printStackTrace();
 		} catch (XMLParserException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
