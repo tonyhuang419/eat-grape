@@ -75,24 +75,4 @@ public interface IMenuService
 	 * 
 	 */
 	String findAllMenu();
-
-
-	/**
-	 * @Description: 查找所有子菜单
-	 * 
-	 */
-	void findChildMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer);
-	
-
-	/**
-	 * @Description: 拼装根菜单HTML
-	 * 
-	 */
-	void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer);
-
-	/**
-	 * @Description: 拼装子菜单HTML
-	 * 
-	 */
-	void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer);
 }

@@ -84,16 +84,19 @@ public class MenuServiceImpl2 implements IMenuService
 	public String findAllMenu()
 	{
 		StringBuffer allMenuBuffer = new StringBuffer();
-		allMenuBuffer.append("<div class=\"accordionContent\">\n");
-		allMenuBuffer.append("<ul class=\"tree treeFolder treeCheck expand\">\n");
-		findChildMenu(findRootMenu(), allMenuBuffer);
-		allMenuBuffer.append("</ul>\n");
-		allMenuBuffer.append("</div>\n");
-		
+		assembleMenu(findRootMenu(), allMenuBuffer);
 		return allMenuBuffer.toString();
 	}
-
-	@Override
+	
+	public void assembleMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer)
+	{
+		allMenuBuffer.append("<div class=\"accordionContent\">\n");
+		allMenuBuffer.append("<ul class=\"tree treeFolder treeCheck expand\">\n");
+		findChildMenu(parentMenu, allMenuBuffer);
+		allMenuBuffer.append("</ul>\n");
+		allMenuBuffer.append("</div>\n");
+	}
+	
 	public void findChildMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer)
 	{
 		for(Menu menu : parentMenu)
@@ -112,17 +115,5 @@ public class MenuServiceImpl2 implements IMenuService
 			}
 		}
 		allMenuBuffer.append("</ul>\n</li>\n");
-	}
-
-	@Override
-	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer)
-	{
-
-	}
-	
-	@Override
-	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer)
-	{
-		
 	}
 }
