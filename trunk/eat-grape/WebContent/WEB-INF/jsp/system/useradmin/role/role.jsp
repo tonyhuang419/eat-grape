@@ -52,11 +52,12 @@
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
-				<tr target="sid" rel="<s:property value="#item.id"/>" align="center">
-					<td><s:property value="#item.roleName" /></td>
-					<td><s:property value="#item.description" /></td>
+				<tr target="sid" rel="${item.id}" align="center">
+					<td>${item.roleName}</td>
+					<td>${item.description}</td>
 					<td>
-						<a title="${item.roleName}-设置权限" target="dialog" mask="true" width="700" height="450" href="system/useradmin/role/showSetPriv.htm?role.id=<s:property value="#item.id" />">设置权限</a>
+						<a title="${item.roleName}-设置权限" target="dialog" mask="true" width="780" height="480" 
+							href="system/useradmin/role/showSetPriv.htm?role.id=${item.id}">设置权限</a>
 						<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
 					</td>
 				</tr>
