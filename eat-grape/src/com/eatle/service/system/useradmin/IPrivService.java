@@ -10,8 +10,6 @@ import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivTree;
 import com.eatle.utils.Pagination;
 
-
-
 /**
  *@Title:权限service
  *@Description:
@@ -19,60 +17,59 @@ import com.eatle.utils.Pagination;
  *@Since:2012-6-19
  *@Version:1.1.0
  */
-public interface IPrivService{
-
-	Pagination findPagination(Map<String,Object> queryMap,int currentPage,int pageSize);
+public interface IPrivService
+{
+	Pagination findPagination(Map<String, Object> queryMap, int currentPage,
+			int pageSize);
 
 	/**
 	 * @Description:
-		*
-		* @param priv
+	 * 
+	 * @param priv
 	 */
 	void update(Priv priv);
 
 	/**
 	 * @Description:
-		*
-		* @param priv
+	 * 
+	 * @param priv
 	 */
 	void add(Priv priv);
 
 	/**
 	 * @Description:
-		*
-		* @param id
-		* @return
+	 * 
+	 * @param id
+	 * @return
 	 */
 	Priv findById(long id);
 
 	/**
 	 * @Description:
-		*
-		* @return
+	 * 
+	 * @return
 	 */
 	List<Priv> findAll();
 
 	/**
 	 * @Description:
-		*
-		* @param criteria
-		* @return
+	 * 
+	 * @param criteria
+	 * @return
 	 */
 	List<Priv> findByCriteria(PrivCriteria criteria);
 
 	/**
 	 * @Description:
-		*
-		* @param priv
+	 * 
+	 * @param priv
 	 */
 	void delete(Priv priv);
 
 	/**
 	 * @Description:
-		*
-		* @return
+	 * 
+	 * @return
 	 */
 	List<PrivTree> findPrivTree();
-	
-	
 }

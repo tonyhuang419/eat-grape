@@ -11,7 +11,9 @@ import javax.annotation.Resource;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivTree;
 import com.eatle.persistent.pojo.system.useradmin.Role;
+import com.eatle.persistent.pojo.system.useradmin.RolePrivilege;
 import com.eatle.service.system.useradmin.IPrivService;
+import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.system.useradmin.IRoleService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
@@ -27,7 +29,6 @@ import com.eatle.web.action.BaseAction;
  */
 public class RoleAction extends BaseAction
 {
-
 	private static final long serialVersionUID = 1L;
 
 	@Resource
@@ -35,6 +36,9 @@ public class RoleAction extends BaseAction
 
 	@Resource
 	private IPrivService privService;
+	
+	@Resource
+	private IRolePrivilegeService rolePrivilegeService;
 
 	private Pagination page;
 
@@ -44,6 +48,8 @@ public class RoleAction extends BaseAction
 
 	private List<Priv> havePrivs;
 
+	private String privsIds; 	// 为角色分配权限需要保存的权限的id集合
+
 	/**
 	 * 
 	 * @Description:显示首页
@@ -52,7 +58,6 @@ public class RoleAction extends BaseAction
 	 */
 	public String showIndex()
 	{
-
 		Map<String, Object> params = super.getRequestParameters(request);
 		int pageNum = Pagination.CURRENTPAGE;
 		int pageSize = Pagination.PAGESIZE;
@@ -143,14 +148,20 @@ public class RoleAction extends BaseAction
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (role == null)
+		if (privsIds == "" || privsIds == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
-			roleService.update(role);
+			for (String id : privsIds.split(","))
+			{
+				RolePrivilege rp = new RolePrivilege();
+				rp.setRoleId(role.getId());
+				rp.setPrivId(Long.parseLong(id));
+				rolePrivilegeService.add(rp);
+			}
 		}
 		super.writeMap(json);
 	}
@@ -205,6 +216,16 @@ public class RoleAction extends BaseAction
 		this.privService = privService;
 	}
 
+	public IRolePrivilegeService getRolePrivilegeService()
+	{
+		return rolePrivilegeService;
+	}
+
+	public void setRolePrivilegeService(IRolePrivilegeService rolePrivilegeService)
+	{
+		this.rolePrivilegeService = rolePrivilegeService;
+	}
+
 	public List<PrivTree> getTopPrivTrees()
 	{
 		return topPrivTrees;
@@ -213,5 +234,15 @@ public class RoleAction extends BaseAction
 	public void setTopPrivTrees(List<PrivTree> topPrivTrees)
 	{
 		this.topPrivTrees = topPrivTrees;
+	}
+
+	public String getPrivsIds()
+	{
+		return privsIds;
+	}
+
+	public void setPrivsIds(String privsIds)
+	{
+		this.privsIds = privsIds;
 	}
 }

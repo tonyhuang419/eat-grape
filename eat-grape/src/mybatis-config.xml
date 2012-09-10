@@ -12,6 +12,9 @@
     	<!-- 权限 -->
     	<typeAlias alias="Priv" type="com.eatle.persistent.pojo.system.useradmin.Priv"/>
     	<typeAlias alias="PrivCriteria" type="com.eatle.persistent.pojo.system.useradmin.PrivCriteria"/>
+    	<!-- 角色权限关联 -->
+    	<typeAlias alias="RolePrivilege" type="com.eatle.persistent.pojo.system.useradmin.RolePrivilege"/>
+    	<typeAlias alias="RolePrivilegeCriteria" type="com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria"/>
     	<!-- 系统菜单 -->
     	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.Menu"/>
     	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.MenuCriteria"/>

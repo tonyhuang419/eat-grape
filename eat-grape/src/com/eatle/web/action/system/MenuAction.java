@@ -115,6 +115,7 @@ public class MenuAction extends BaseAction
 		super.writeMap(json);
 	}
 
+	// 批量删除菜单
 	public void delete() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
