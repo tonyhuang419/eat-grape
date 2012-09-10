@@ -47,6 +47,21 @@
 		</action>
 	</package>
 	
+	<!-- 角色权限关联 -->
+  	<package extends="default" name="rolePrivilege" namespace="/system/useradmin/rolePrivilege">
+    	<action class="com.eatle.web.action.system.useradmin.RolePrivilege" method="{1}" name="*">
+	      	<result name="showIndex">
+	        	/WEB-INF/jsp/rolePrivilege/rolePrivilege.jsp
+	      	</result>
+	      	<result name="showAdd">
+        		/WEB-INF/jsp/rolePrivilege/add.jsp
+      		</result>
+      		<result name="showUpdate">
+        		/WEB-INF/jsp/rolePrivilege/update.jsp
+      		</result>
+    	</action>
+  	</package>
+	
 	<!-- 菜单管理 -->
 	<package extends="default" name="menu" namespace="/system/menu">
 		<action class="com.eatle.web.action.system.MenuAction" method="{1}" name="*">

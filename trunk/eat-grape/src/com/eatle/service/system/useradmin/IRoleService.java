@@ -10,8 +10,6 @@ import com.eatle.persistent.pojo.system.useradmin.Role;
 import com.eatle.persistent.pojo.system.useradmin.RoleCriteria;
 import com.eatle.utils.Pagination;
 
-
-
 /**
  *@Title: 角色service
  *@Description:
@@ -19,60 +17,59 @@ import com.eatle.utils.Pagination;
  *@Since:2012-6-19
  *@Version:1.1.0
  */
-public interface IRoleService{
-
-	Pagination findPagination(Map<String,Object> queryMap,int currentPage,int pageSize);
+public interface IRoleService
+{
+	Pagination findPagination(Map<String, Object> queryMap, int currentPage,
+			int pageSize);
 
 	/**
 	 * @Description:
-		*
-		* @param role
+	 * 
+	 * @param role
 	 */
 	void update(Role role);
 
 	/**
 	 * @Description:
-		*
-		* @param role
+	 * 
+	 * @param role
 	 */
 	void add(Role role);
 
 	/**
 	 * @Description:
-		*
-		* @param id
-		* @return
+	 * 
+	 * @param id
+	 * @return
 	 */
 	Role findById(long id);
 
 	/**
 	 * @Description:
-		*
-		* @return
+	 * 
+	 * @return
 	 */
 	List<Role> findAll();
 
 	/**
 	 * @Description:
-		*
-		* @param criteria
-		* @return
+	 * 
+	 * @param criteria
+	 * @return
 	 */
 	List<Role> findByCriteria(RoleCriteria criteria);
 
 	/**
 	 * @Description:
-		*
-		* @param role
+	 * 
+	 * @param role
 	 */
 	void delete(Role role);
 
 	/**
 	 * @Description:
-		*
-		* @param id
+	 * 
+	 * @param id
 	 */
 	List<Priv> findPrivsByRoleId(Long id);
-	
-	
 }
