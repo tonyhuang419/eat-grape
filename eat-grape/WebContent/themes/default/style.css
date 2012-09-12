@@ -151,7 +151,7 @@ body, #splitBar { background:#e5edef;}
 #header { background-color:#102c4a;}
 #header .logo { background:url(./images/logo.png) no-repeat;}
 #header .nav li { float:left; margin-left:-1px; padding:0 8px; line-height:11px; background:url(./images/listLine.png) no-repeat;}
-#header .nav li a { color:#b9ccda;}
+#header .nav li a { color:#15428B;}
 #header .themeList li div { background:url(./images/themeButton.png) no-repeat;}
 .toggleCollapse, .toggleCollapse div { background:url(./images/layout/toggleSidebar.png) no-repeat;}
 .toggleCollapse { border-style:solid; border-width:1px 1px 0 1px; border-color:#b8d0d6; background-color:#e7eff0;}
