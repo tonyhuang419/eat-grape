@@ -29,7 +29,7 @@
 		<div id="layout">
 			<div id="header">
 				<div class="headerNav">
-					<a class="logo" href="http://j-ui.com">标志</a>
+					<a class="logo" href="http://183.230.8.209/eatle">标志</a>
 					<ul class="nav">
 						<li id="switchEnvBox"><a href="javascript:">（<span>北京</span>）切换城市</a>
 							<ul>
