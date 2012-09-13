@@ -1,5 +1,6 @@
 package com.eatle.service.system.useradmin;
 
+import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilege;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria;
 import com.eatle.utils.Pagination;
@@ -57,4 +58,11 @@ public interface IRolePrivilegeService
 	 * 
 	 */
 	List<RolePrivilege> findByCriteria(RolePrivilegeCriteria criteria);
+	
+	/**
+	 * @Description: 根据角色ID查询出所拥有的权限集合
+	 * @param id 角色id
+	 * @return: 该角色所拥有的所有权限集合
+	 */
+	Map<String, Priv> findPrivsByRoleId(Long id);
 }
