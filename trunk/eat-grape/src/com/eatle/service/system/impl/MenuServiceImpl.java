@@ -3,6 +3,7 @@ package com.eatle.service.system.impl;
 import com.eatle.persistent.mapper.MenuMapper;
 import com.eatle.persistent.pojo.system.Menu;
 import com.eatle.persistent.pojo.system.MenuCriteria;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.service.system.IMenuService;
 import com.eatle.utils.Pagination;
 
@@ -81,50 +82,64 @@ public class MenuServiceImpl implements IMenuService
 	}
 
 	@Override
-	public String findAllMenu()
+	public String findAllMenu(Map<String, Priv> allPrivs)
 	{
 		StringBuffer allMenuBuffer = new StringBuffer();
 		for(Menu menu : findRootMenu())
 		{
-			assembleRootMenu(menu, allMenuBuffer);
-			assembleChildMenu(menu, allMenuBuffer);
+			assembleRootMenu(menu, allMenuBuffer, allPrivs);
+			assembleChildMenu(menu, allMenuBuffer, allPrivs);
 		}
 		return allMenuBuffer.toString();
 	}
 	
-	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer)
+	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
 	{
-		allMenuBuffer.append("<div class=\"accordionHeader\">\n");
-		allMenuBuffer.append("<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
-		allMenuBuffer.append("</div>\n");
-		allMenuBuffer.append("<div class=\"accordionContent\">\n");
+		if(allPrivs.containsKey(menu.getAction()))
+		{
+			allMenuBuffer.append("<div class=\"accordionHeader\">\n");
+			allMenuBuffer.append("<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
+			allMenuBuffer.append("</div>\n");
+			allMenuBuffer.append("<div class=\"accordionContent\">\n");
+		}
 	}
 	
-	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer)
+	public void assembleChildMenu(Menu menu, 
+			StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
 	{
 		allMenuBuffer.append("<ul class=\"tree treeFolder collapse\">\n");
-		findChildMenu(findByParentId(menu.getId()), allMenuBuffer);
+		findChildMenu(findByParentId(menu.getId()), allMenuBuffer, allPrivs);
 		allMenuBuffer.append("</ul>\n");
 		allMenuBuffer.append("</div>\n");
 	}
 
-	public void findChildMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer)
+	public void findChildMenu(List<Menu> parentMenu, 
+			StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
 	{
 		for(Menu menu : parentMenu)
 		{
-			List<Menu> childMenu = findByParentId(menu.getId());
-			if(childMenu.size() > 0)
+			if(allPrivs.containsKey(menu.getAction()))
 			{
-				allMenuBuffer.append("<li><a>" + menu.getMenuName() + "</a>\n<ul>\n");
-				findChildMenu(childMenu, allMenuBuffer);
-			}
-			else
-			{
-				allMenuBuffer.append("<li><a href=\"" + menu.getUrl() + "?navTabId=" + menu.getRel() 
-						+ "&action=" + menu.getAction() + "\" target=\"navTab\" rel=\"" + menu.getRel()
-						+ "\">" + menu.getMenuName() + "</a></li>\n");
+				List<Menu> childMenu = findByParentId(menu.getId());
+				if(childMenu.size() > 0)
+				{
+					allMenuBuffer.append("<li><a>" + menu.getMenuName() + "</a>\n<ul>\n");
+					findChildMenu(childMenu, allMenuBuffer, allPrivs);
+				}
+				else
+				{
+					allMenuBuffer.append("<li><a href=\"" + menu.getUrl() + "?navTabId=" + menu.getRel() 
+							+ "&action=" + menu.getAction() + "\" target=\"navTab\" rel=\"" + menu.getRel()
+							+ "\">" + menu.getMenuName() + "</a></li>\n");
+				}
 			}
 		}
 		allMenuBuffer.append("</ul>\n</li>\n");
+	}
+
+	@Override
+	public String findAllMenu()
+	{
+		return null;
 	}
 }

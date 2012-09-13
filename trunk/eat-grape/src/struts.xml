@@ -21,19 +21,18 @@
 	<package name="default" extends="json-default">
 		<interceptors>
 			<interceptor name="sessionInterceptor" class="com.eatle.web.interceptor.SessionInterceptor" />
+			<interceptor name="permissionInterceptor" class="com.eatle.web.interceptor.PermissionInterceptor" />
 			<interceptor-stack name="baseInterceptorStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="permissionInterceptor" />
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="baseInterceptorStack" />
-		<!-- 
 		<global-results>
-			<result name="timeout" type="json">
-				<param name="includeProperties">json</param>
-			</result>
+			<result name="timeout" type="redirect">/timeout.jsp</result>
+			<result name="nopower" type="redirect">/home.htm</result>
 		</global-results>
-		 -->
 	</package>
 	
 	<!-- 登陆首页 -->

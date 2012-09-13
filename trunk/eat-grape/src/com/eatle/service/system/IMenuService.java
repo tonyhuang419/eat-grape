@@ -2,6 +2,7 @@ package com.eatle.service.system;
 
 import com.eatle.persistent.pojo.system.Menu;
 import com.eatle.persistent.pojo.system.MenuCriteria;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.utils.Pagination;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,14 @@ public interface IMenuService
 	List<Menu> findRootMenu();
 
 	/**
-	 * @Description: 查找所有菜单
+	 * @Description: 查找所有菜单(展示首页，权限处理)
+	 * 
+	 */
+	String findAllMenu(Map<String, Priv> allPrivs);
+
+
+	/**
+	 * @Description: 查找所有菜单(菜单管理树形展示)
 	 * 
 	 */
 	String findAllMenu();

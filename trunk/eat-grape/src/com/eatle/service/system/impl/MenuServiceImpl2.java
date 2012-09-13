@@ -3,6 +3,7 @@ package com.eatle.service.system.impl;
 import com.eatle.persistent.mapper.MenuMapper;
 import com.eatle.persistent.pojo.system.Menu;
 import com.eatle.persistent.pojo.system.MenuCriteria;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.service.system.IMenuService;
 import com.eatle.utils.Pagination;
 
@@ -106,5 +107,11 @@ public class MenuServiceImpl2 implements IMenuService
 			}
 		}
 		allMenuBuffer.append("</ul>\n</li>\n");
+	}
+
+	@Override
+	public String findAllMenu(Map<String, Priv> allPrivs)
+	{
+		return null;
 	}
 }
