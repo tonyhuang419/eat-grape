@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.eatle.persistent.pojo.system.Menu;
 import com.eatle.persistent.pojo.system.MenuCriteria;
 import com.eatle.service.system.IMenuService;
+import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.test.BaseTest;
 
 /** @corpor  公司：深讯信科
@@ -20,6 +21,7 @@ import com.eatle.service.test.BaseTest;
 public class MenuTest extends BaseTest{
 
 	private static IMenuService menuService  = (IMenuService) ctx.getBean("menuService");
+	private static IRolePrivilegeService rpService  = (IRolePrivilegeService) ctx.getBean("rolePrivilegeService");
 
 	@Test
 	public void test()
@@ -38,19 +40,12 @@ public class MenuTest extends BaseTest{
 			System.out.println("谭又中："+m.getMenuName());
 		
 		String allMenu = menuService.findAllMenu();
-//		a(allMenu);
 		System.out.println(allMenu);
 	}
 	
-	public void a(Map map)
+	@Test
+	public void b()
 	{
-		Iterator ii = map.entrySet().iterator();
-		while(ii.hasNext())
-		{
-			Entry entry = (Entry) ii.next();
-			Long k = (Long) entry.getKey();
-			Menu v = (Menu) entry.getValue();
-			System.out.println(k + "    " + v.getMenuName());
-		}
+		System.out.println(menuService.findAllMenu(rpService.findPrivsByRoleId(2L)));
 	}
 }

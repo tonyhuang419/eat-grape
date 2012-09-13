@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=7" />
-		<title>Eatle_后台管理系统</title>
+		<title>后台管理系统-馋八戒</title>
 		<%@ include file="/WEB-INF/common/jslibs.jsp"%>
 		<script type="text/javascript">
 			$(function(){
@@ -29,7 +29,7 @@
 		<div id="layout">
 			<div id="header">
 				<div class="headerNav">
-					<a class="logo" href="http://www.c8j.cn/eatle">标志</a>
+					<a class="logo" href="http://www.c8j.cn/eatle">Logo</a>
 					<ul class="nav">
 						<li id="switchEnvBox"><a href="javascript:">（<span>北京</span>）切换城市</a>
 							<ul>
@@ -44,7 +44,7 @@
 						</li>
 						
 						<li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
-						<li><a href="http://weibo.com/dwzui" target="_blank">微博</a></li>
+						<li><a href="http://t.qq.com/tsq2007" target="_blank">微博</a></li>
 						<li><a href="#" onclick="confirm2Link('您确定退出吗？', 'loginout.htm')">退出</a></li>
 					</ul>
 					<ul class="themeList" id="themeList">

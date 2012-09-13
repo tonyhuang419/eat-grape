@@ -1,5 +1,3 @@
-/**
- */
 package com.eatle.web.action;
 
 import java.util.Map;
@@ -29,8 +27,10 @@ public class IndexAction extends BaseAction
 	{
 		// 当前登录用户所属角色拥有的权限集合
 		Map<String, Priv> allPrivs = (Map<String, Priv>) session.get("allPrivs");
+		// 存入菜单HTML
 		String allMenuHtml = menuService.findAllMenu(allPrivs);
 		request.setAttribute("allMenuHtml", allMenuHtml);
+		
 		return SUCCESS;
 	}
 
