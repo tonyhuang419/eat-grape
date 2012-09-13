@@ -120,8 +120,8 @@ public class MenuServiceImpl implements IMenuService
 			}
 			else
 			{
-				allMenuBuffer.append("<li><a href=\"" + menu.getUrl() + "?navTabId=" 
-						+ menu.getRel() + "\" target=\"navTab\" rel=\"" + menu.getRel()
+				allMenuBuffer.append("<li><a href=\"" + menu.getUrl() + "?navTabId=" + menu.getRel() 
+						+ "&action=" + menu.getAction() + "\" target=\"navTab\" rel=\"" + menu.getRel()
 						+ "\">" + menu.getMenuName() + "</a></li>\n");
 			}
 		}

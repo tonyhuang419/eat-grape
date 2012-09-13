@@ -244,7 +244,8 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		method.addParameter(new Parameter(FullyQualifiedJavaType.getIntInstance(), "pageSize"));// int pageSize
 		method.addBodyLine("" + recordFullType + "Criteria " + recordLowCaseFullType + "Criteria = new " + recordFullType + "Criteria();");
 		method.addBodyLine("Criteria criteria = " + recordLowCaseFullType + "Criteria.createCriteria();");
-		method.addBodyLine("//if(queryMap!=null){");
+		method.addBodyLine("// 设置搜索条件参数");
+		method.addBodyLine("//if(queryMap != null){");
 		method.addBodyLine("//if(queryMap.containsKey(\"username\")){");
 		method.addBodyLine("//criteria.andUserNameLike(\"%\"+(String)queryMap.get(\"username\")+\"%\");");
 		method.addBodyLine("//}");
@@ -252,9 +253,9 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		method.addBodyLine("//criteria.andEmailLike((String)queryMap.get(\"email\"));");
 		method.addBodyLine("//}");
 		method.addBodyLine("//}");
-		method.addBodyLine("//设置分页参数");
-		method.addBodyLine("" + recordLowCaseFullType + "Criteria.setPageSize(pageSize);");
-		method.addBodyLine("" + recordLowCaseFullType + "Criteria.setStartIndex((currentPage-1)*pageSize);");
+		method.addBodyLine("// 设置分页参数");
+		method.addBodyLine(recordLowCaseFullType + "Criteria.setPageSize(pageSize);");
+		method.addBodyLine(recordLowCaseFullType + "Criteria.setStartIndex((currentPage-1)*pageSize);");
 		method.addBodyLine("List<" + recordFullType + "> items = " + mapperObjName + ".selectByCriteria(" + recordLowCaseFullType + "Criteria);");
 		method.addBodyLine("int totalCount = (int)" + mapperObjName + ".selectCountByCriteria(" + recordLowCaseFullType + "Criteria);");
 		method.addBodyLine("return new Pagination(pageSize, currentPage, totalCount, items);");

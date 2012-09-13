@@ -36,21 +36,27 @@ public class UserServiceImpl implements IUserService {
     public Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize) {
         UserCriteria userCriteria = new UserCriteria();
         Criteria criteria = userCriteria.createCriteria();
-        //if(queryMap!=null){
-            //if(queryMap.containsKey("username")){
-                //criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-                //}
-                //if(queryMap.containsKey("email")){
-                    //criteria.andEmailLike((String)queryMap.get("email"));
-                    //}
-                    //}
-                    //设置分页参数
-                    userCriteria.setPageSize(pageSize);
-                    userCriteria.setStartIndex((currentPage-1)*pageSize);
-                    List<User> items = userMapper.selectByCriteria(userCriteria);
-                    int totalCount = (int)userMapper.selectCountByCriteria(userCriteria);
-                    return new Pagination(pageSize, currentPage, totalCount, items);
-                }
+        // 设置搜索条件参数
+        if(queryMap != null)
+        {
+	        if(queryMap.containsKey("userName"))
+	        {
+	        	criteria.andUserNameLike("%" + queryMap.get("userName") + "%");
+	        }
+	        if(queryMap.containsKey("email"))
+	        {
+	        	criteria.andEmailLike("%" + queryMap.get("email") + "%");
+	        }
+        }
+        // 设置分页参数
+        userCriteria.setPageSize(pageSize);
+        userCriteria.setStartIndex((currentPage - 1) * pageSize);
+        
+        List<User> items = userMapper.selectByCriteria(userCriteria);
+        int totalCount = (int) userMapper.selectCountByCriteria(userCriteria);
+        
+        return new Pagination(pageSize, currentPage, totalCount, items);
+	}
 
     @Override
     public User findById(long id) {

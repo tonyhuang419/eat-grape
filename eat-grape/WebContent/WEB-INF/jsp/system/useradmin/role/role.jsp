@@ -58,7 +58,8 @@
 					<td>
 						<a title="${item.roleName}-设置权限" target="dialog" mask="true" width="780" height="480" 
 							href="system/useradmin/role/showSetPriv.htm?role.id=${item.id}">设置权限</a>
-						<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
+						<a title="编辑" target="dialog" mask="true" width="520" height="250" 
+							href="system/useradmin/role/showUpdate.htm?role.id=${item.id}&navTabId=${param.navTabId}" class="btnEdit">编辑</a>
 					</td>
 				</tr>
 			</s:iterator>
