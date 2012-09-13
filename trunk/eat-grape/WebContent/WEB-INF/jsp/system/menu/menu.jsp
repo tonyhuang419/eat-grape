@@ -17,9 +17,9 @@
 				var dlgId = "dialog_menu_" + t.attr("id");
 				var title = t.text() + " - 菜单添加";
 				var options = {
-					mask : true, 
+					mask : true,
 					width :520,
-					height : 250
+					height : 252
 				};
             	$.pdialog.open(url, dlgId, title, options);
             },

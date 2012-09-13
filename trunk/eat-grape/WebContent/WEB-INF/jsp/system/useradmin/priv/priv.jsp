@@ -23,7 +23,7 @@
 					权限名称：<input type="text" name="privName" />
 				</td>
 				<td>
-					菜单名称：<input type="text" name="meueName" />
+					菜单名称：<input type="text" name="menuName" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -45,7 +45,7 @@
 			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
 		</ul>
 	</div>
-	<table class="table"  layoutH="112">
+	<table class="table" layoutH="112">
 		<thead>
 			<tr align="center">
 				<th width="180">权限名称</th>
