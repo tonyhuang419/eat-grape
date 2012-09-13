@@ -29,9 +29,11 @@
 		</action>
 	</package>
 	
-	<!-- 首页展示 -->
+	<!-- 首页展示(由于展示首页不需要做权限验证，因此重新引用了父包的拦截器，覆盖了父包的默认拦截器栈) -->
 	<package name="index" extends="default" namespace="/">
 		<action name="home" class="com.eatle.web.action.IndexAction" method="index">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="sessionInterceptor"></interceptor-ref>
 			<result>/WEB-INF/jsp/index.jsp</result>
 		</action>
 	</package>

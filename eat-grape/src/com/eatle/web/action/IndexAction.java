@@ -2,8 +2,11 @@
  */
 package com.eatle.web.action;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
+import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.service.system.IMenuService;
 
 /**
@@ -21,9 +24,12 @@ public class IndexAction extends BaseAction
 	@Resource
 	private IMenuService menuService;
 	
+	@SuppressWarnings("unchecked")
 	public String index()
 	{
-		String allMenuHtml = menuService.findAllMenu();
+		// 当前登录用户所属角色拥有的权限集合
+		Map<String, Priv> allPrivs = (Map<String, Priv>) session.get("allPrivs");
+		String allMenuHtml = menuService.findAllMenu(allPrivs);
 		request.setAttribute("allMenuHtml", allMenuHtml);
 		return SUCCESS;
 	}

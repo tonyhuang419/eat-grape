@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 	<HEAD id=Head1>
-		<title>登陆后台管理系统</title>
+		<title>登录后台管理系统</title>
 		<%@ include file="/WEB-INF/common/jslibs.jsp"%>
 		<STYLE type=text/css>
 			BODY {
