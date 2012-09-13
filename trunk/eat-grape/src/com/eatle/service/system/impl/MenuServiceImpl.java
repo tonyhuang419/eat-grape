@@ -4,7 +4,6 @@ import com.eatle.persistent.mapper.MenuMapper;
 import com.eatle.persistent.pojo.system.Menu;
 import com.eatle.persistent.pojo.system.MenuCriteria;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
-import com.eatle.service.system.IMenuService;
 import com.eatle.utils.Pagination;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 @Service("menuService")
-public class MenuServiceImpl implements IMenuService
+public class MenuServiceImpl extends MenuServiceDefaultImpl
 {
 	@Resource
 	private MenuMapper menuMapper;
@@ -87,21 +86,21 @@ public class MenuServiceImpl implements IMenuService
 		StringBuffer allMenuBuffer = new StringBuffer();
 		for(Menu menu : findRootMenu())
 		{
-			assembleRootMenu(menu, allMenuBuffer, allPrivs);
-			assembleChildMenu(menu, allMenuBuffer, allPrivs);
+			if(allPrivs.containsKey(menu.getAction()))
+			{
+				assembleRootMenu(menu, allMenuBuffer, allPrivs);
+				assembleChildMenu(menu, allMenuBuffer, allPrivs);
+			}
 		}
 		return allMenuBuffer.toString();
 	}
 	
 	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
 	{
-		if(allPrivs.containsKey(menu.getAction()))
-		{
-			allMenuBuffer.append("<div class=\"accordionHeader\">\n");
-			allMenuBuffer.append("<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
-			allMenuBuffer.append("</div>\n");
-			allMenuBuffer.append("<div class=\"accordionContent\">\n");
-		}
+		allMenuBuffer.append("<div class=\"accordionHeader\">\n");
+		allMenuBuffer.append("<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
+		allMenuBuffer.append("</div>\n");
+		allMenuBuffer.append("<div class=\"accordionContent\">\n");
 	}
 	
 	public void assembleChildMenu(Menu menu, 
@@ -116,12 +115,14 @@ public class MenuServiceImpl implements IMenuService
 	public void findChildMenu(List<Menu> parentMenu, 
 			StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
 	{
+		int childMenuSize = 0;
 		for(Menu menu : parentMenu)
 		{
 			if(allPrivs.containsKey(menu.getAction()))
 			{
 				List<Menu> childMenu = findByParentId(menu.getId());
-				if(childMenu.size() > 0)
+				childMenuSize = childMenu.size();
+				if(childMenuSize > 0)
 				{
 					allMenuBuffer.append("<li><a>" + menu.getMenuName() + "</a>\n<ul>\n");
 					findChildMenu(childMenu, allMenuBuffer, allPrivs);
@@ -134,12 +135,7 @@ public class MenuServiceImpl implements IMenuService
 				}
 			}
 		}
+//		if(childMenuSize > 0)
 		allMenuBuffer.append("</ul>\n</li>\n");
-	}
-
-	@Override
-	public String findAllMenu()
-	{
-		return null;
 	}
 }
