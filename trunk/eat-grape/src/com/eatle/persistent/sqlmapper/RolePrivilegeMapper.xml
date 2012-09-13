@@ -6,6 +6,16 @@
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="priv_id" jdbcType="BIGINT" property="privId" />
   </resultMap>
+  <resultMap id="PrivResultMap" type="Priv" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="priv_name" property="privName" jdbcType="VARCHAR" />
+    <result column="meue_name" property="meueName" jdbcType="VARCHAR" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="is_show" property="isShow" jdbcType="TINYINT" />
+    <result column="p_id" property="pId" jdbcType="BIGINT" />
+  </resultMap>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -132,5 +142,17 @@
         and priv_id = #{privId,jdbcType=BIGINT}
       </if>
     </where>
+  </select>
+  
+  <select id="selectPrivsByRoleId" parameterType="java.lang.Long" resultMap="PrivResultMap">
+  	select 
+  		b.id, b.priv_name, b.meue_name, b.action, b.description, b.is_show, b.p_id 
+  	from 
+  		t_role_privilege a, t_privilege b 
+  	<where> 
+  		<if test="_parameter != null">
+  			a.role_id = #{id, jdbcType=BIGINT} and a.priv_id = b.id;
+  		</if>
+  	</where>
   </select>
 </mapper>

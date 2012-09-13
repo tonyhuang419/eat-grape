@@ -1,8 +1,15 @@
 package com.eatle.web.action; 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import com.eatle.persistent.pojo.system.useradmin.RolePrivilege;
+import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria;
 import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria.Criteria;
+import com.eatle.service.system.useradmin.IRolePrivilegeService;
+import com.eatle.service.system.useradmin.IRoleService;
 import com.eatle.service.system.useradmin.IUserService;
 
 /** @corpor  公司：深讯信科
@@ -16,8 +23,11 @@ public class LoginAction extends BaseAction
 
     @Resource
     private IUserService userService;
+    
+    @Resource
+    private IRolePrivilegeService rolePrivilegeService;
 
-    private User user;
+	private User user;
 
 	private String verifycode_c;
 
@@ -51,8 +61,14 @@ public class LoginAction extends BaseAction
 			{
 				if(user.getPwd().equals(this.user.getPwd()))
 				{
+					// 移除验证码
 					session.remove("verifyCode_s");
+					// 存入登录信息
 					session.put("user", user);
+					// 存入权限集合
+					session.put("allPrivs", 
+							rolePrivilegeService.findPrivsByRoleId(user.getRoleId()));
+					
 					resultMap.put("res", "1");
 				}
 				else
@@ -77,6 +93,8 @@ public class LoginAction extends BaseAction
 	public String loginOut()
 	{
 		session.remove("user");
+		session.remove("allPrivs");
+		
 		return INPUT;
 	}
 
@@ -89,6 +107,16 @@ public class LoginAction extends BaseAction
 	public void setUserService(IUserService userService)
 	{
 		this.userService = userService;
+	}
+
+    public IRolePrivilegeService getRolePrivilegeService()
+	{
+		return rolePrivilegeService;
+	}
+
+	public void setRolePrivilegeService(IRolePrivilegeService rolePrivilegeService)
+	{
+		this.rolePrivilegeService = rolePrivilegeService;
 	}
 	
 	public User getUser()

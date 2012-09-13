@@ -1,10 +1,13 @@
 package com.eatle.service.system.useradmin.impl;
 
 import com.eatle.persistent.mapper.RolePrivilegeMapper;
+import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilege;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.utils.Pagination;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -61,5 +64,17 @@ public class RolePrivilegeServiceImpl implements IRolePrivilegeService
 	public List<RolePrivilege> findByCriteria(RolePrivilegeCriteria criteria)
 	{
 		return rolePrivilegeMapper.selectByCriteria(criteria);
+	}
+	
+	@Override
+	public Map<String, Priv> findPrivsByRoleId(Long id)
+	{
+		Map<String, Priv> privsMap = new HashMap<String, Priv>();
+		for(Priv priv : rolePrivilegeMapper.selectPrivsByRoleId(id))
+		{
+			privsMap.put(priv.getAction(), priv);
+		}
+		
+		return privsMap;
 	}
 }
