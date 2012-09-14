@@ -54,7 +54,7 @@
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="${item.id}" align="center">
 					<td>${item.roleName}</td>
-					<td>${item.description}</td>
+					<td align="left">${item.description}</td>
 					<td>
 						<a title="${item.roleName}-设置权限" target="dialog" mask="true" width="780" height="480" 
 							href="system/useradmin/role/showSetPriv.htm?role.id=${item.id}&action=qxfpzs">设置权限</a>

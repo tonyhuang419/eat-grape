@@ -65,7 +65,7 @@
 					<td><s:property value="#item.privName" /></td>
 					<td><s:property value="#item.meueName" /></td>
 					<td><s:property value="#item.action" /></td>
-					<td><s:property value="#item.description" /></td>
+					<td align="left"><s:property value="#item.description" /></td>
 					<td><s:if test="#item.isShow == 1">是</s:if><s:else>否</s:else></td>
 					<td>
 						<a title="${item.privName}-设置子权限" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
