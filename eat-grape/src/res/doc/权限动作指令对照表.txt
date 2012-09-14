@@ -1,0 +1,46 @@
+系统管理		sys_mgr
+用户管理		user_mgr
+
+
+角色管理		role_mgr
+
+//角色列表展示	jslbzs
+执行角色搜索	zxjsss
+添加角色展示	tjjszs
+执行角色添加	zxjstj
+执行角色删除	zxjssc
+修改角色展示	xgjszs
+执行角色修改	zxjsxg
+权限分配展示	qxfpzs
+执行权限分配	zxqxfp
+
+权限管理		priv_mgr
+
+//权限列表展示	qxlbzs
+执行权限搜索	zxqxss
+添加权限展示	tjqxzs
+执行权限添加	zxqxtj
+执行权限删除	zxqxsc
+修改权限展示	xgqxzs
+执行权限修改	zxqxxg
+子权限列表展示	zqxlbzs
+
+账号管理		account_mgr
+
+//账号列表展示	zhlbzs
+执行账号搜索	zxzhss
+添加账号展示	tjzhzs
+执行账号添加	zxzhtj
+执行账号删除	zxzhsc
+修改账号展示	xgzhzs
+执行账号修改	zxzhxg
+导出Excel		dzexcel
+
+功能管理		func_mgr
+
+//功能列表展示	gnlbzs
+添加功能展示	tjgnzs
+执行功能添加	zxgntj
+执行功能删除	zxgnsc
+修改功能展示	xggnzs
+执行功能修改	zxgnxg
