@@ -1,15 +1,9 @@
 package com.eatle.web.action; 
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
-import com.eatle.persistent.pojo.system.useradmin.RolePrivilege;
-import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria;
 import com.eatle.persistent.pojo.system.useradmin.User;
-import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria.Criteria;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
-import com.eatle.service.system.useradmin.IRoleService;
 import com.eatle.service.system.useradmin.IUserService;
 
 /** @corpor  公司：深讯信科
@@ -66,8 +60,8 @@ public class LoginAction extends BaseAction
 					// 存入登录信息
 					session.put("user", user);
 					// 存入权限集合
-					session.put("allPrivs", 
-							rolePrivilegeService.findPrivsByRoleId(user.getRoleId()));
+					session.put("allPrivs", rolePrivilegeService
+							.findPrivsByRoleId(user.getRoleId()));
 					
 					resultMap.put("res", "1");
 				}

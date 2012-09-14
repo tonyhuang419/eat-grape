@@ -45,6 +45,10 @@ public class PrivServiceImpl implements IPrivService
 			{
 				criteria.andMeueNameLike("%" + (String) queryMap.get("menuName") + "%");
 			}
+			if (queryMap.containsKey("actionCmd"))
+			{
+				criteria.andActionLike("%" + (String) queryMap.get("actionCmd") + "%");
+			}
 			if (queryMap.containsKey("pidisnull"))
 			{
 				criteria.andPIdIsNull();

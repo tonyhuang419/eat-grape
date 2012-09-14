@@ -47,6 +47,14 @@ public class UserServiceImpl implements IUserService {
 	        {
 	        	criteria.andEmailLike("%" + queryMap.get("email") + "%");
 	        }
+	        if(queryMap.containsKey("type"))
+	        {
+	        	criteria.andTypeEqualTo(new Byte((String) queryMap.get("type")));
+	        }
+	        if(queryMap.containsKey("roleId"))
+	        {
+	        	criteria.andRoleIdEqualTo(Long.parseLong((String) queryMap.get("roleId")));
+	        }
         }
         // 设置分页参数
         userCriteria.setPageSize(pageSize);

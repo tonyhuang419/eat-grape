@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 @Service("menuService2")
-public class MenuServiceImpl2 implements IMenuService
+public class MenuServiceImpl2 extends MenuServiceDefaultImpl
 {
 	@Resource
 	private MenuMapper menuMapper;
@@ -107,11 +107,5 @@ public class MenuServiceImpl2 implements IMenuService
 			}
 		}
 		allMenuBuffer.append("</ul>\n</li>\n");
-	}
-
-	@Override
-	public String findAllMenu(Map<String, Priv> allPrivs)
-	{
-		return null;
 	}
 }

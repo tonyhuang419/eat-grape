@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="system/useradmin/priv/showSetSubPriv.htm">
+<form id="pagerForm" method="post" action="system/useradmin/priv/showSetSubPriv.htm?action=zqxlbzs">
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
 	<input type="hidden" name="userName" value="${param.userName}" />
@@ -10,9 +10,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/useradmin/priv/showAdd.htm?pid=${param.pid}&dialogId=${param.dialogId}" target="dialog"  mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>添加权限</span></a></li>
-			<li><a class="delete" href="system/useradmin/priv/delete.htm?priv.id={sid}&dialogId=${param.dialogId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&dialogId=${param.dialogId}" target="dialog"  mask="true"><span>修改</span></a></li>
+			<li><a class="add" href="system/useradmin/priv/showAdd.htm?pid=${param.pid}&action=tjqxzs&dialogId=${param.dialogId}" target="dialog"  mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>添加权限</span></a></li>
+			<li><a class="delete" href="system/useradmin/priv/delete.htm?priv.id={sid}&action=zxqxsc&dialogId=${param.dialogId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&action=xgqxzs&dialogId=${param.dialogId}" target="dialog"  mask="true"><span>修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="50">
@@ -36,7 +36,7 @@
 					<td><s:if test="#item.isShow == 1">是</s:if><s:else>否</s:else></td>
 					<td>
 						<a title="${item.privName}-设置子权限" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&dialogId=dialog_${item.id}"
+							href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&action=zqxlbzs&dialogId=dialog_${item.id}"
 							width="800" height="480">设置子权限</a>
 					</td>
 				</tr>

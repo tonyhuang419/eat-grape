@@ -51,6 +51,7 @@ public class PermissionInterceptor extends BaseAction implements Interceptor {
 			    json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 			    json.put("message", "抱歉，您没有操作权限！");
 			    writeMap(json);
+			    return null;
 			}
 		}
 		return invocation.invoke();

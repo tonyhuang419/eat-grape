@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <div class="pageContent">
-	<form method="post" action="system/useradmin/account/update.htm?navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<form method="post" action="system/useradmin/account/update.htm?action=zxzhxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
 			<input name="user.id" type="hidden" value="${user.id}" />
 			<p>
@@ -22,6 +22,16 @@
 				<select name="user.type" class="required combox">
 					<option value="1" <s:if test="user.type == 1">selected</s:if> >个人</option>
 					<option value="2" <s:if test="user.type == 2">selected</s:if> >公司</option>
+				</select>
+			</p>
+			<p>
+				<label>角色类型：</label>
+				<select name="user.roleId" class="required combox">
+					<s:iterator value="#request.allRole" var="r">
+						<option value="${r.id}" <s:if test="#r.id == #request.user.roleId">selected</s:if>>
+							${r.roleName}
+						</option>
+					</s:iterator>
 				</select>
 			</p>
 		</div>
