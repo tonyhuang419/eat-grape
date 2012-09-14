@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="system/useradmin/role/showIndex.htm?navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="system/useradmin/role/showIndex.htm?action=jslbzs&navTabId=${param.navTabId}">
 	
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
@@ -15,7 +15,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="system/useradmin/role/showIndex.htm" method="post">
+	<form onsubmit="return navTabSearch(this);" action="system/useradmin/role/showIndex.htm?action=zxjsss" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -37,9 +37,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/useradmin/role/showAdd.htm?navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加角色</span></a></li>
-			<li><a class="delete" href="system/useradmin/role/delete.htm?role.id={sid}&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="system/useradmin/role/showUpdate.htm?role.id={sid}&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="add" href="system/useradmin/role/showAdd.htm?action=tjjszs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加角色</span></a></li>
+			<li><a class="delete" href="system/useradmin/role/delete.htm?role.id={sid}&action=zxjssc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="system/useradmin/role/showUpdate.htm?role.id={sid}&action=xgjszs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table"  layoutH="112">
@@ -57,9 +57,9 @@
 					<td>${item.description}</td>
 					<td>
 						<a title="${item.roleName}-设置权限" target="dialog" mask="true" width="780" height="480" 
-							href="system/useradmin/role/showSetPriv.htm?role.id=${item.id}">设置权限</a>
+							href="system/useradmin/role/showSetPriv.htm?role.id=${item.id}&action=qxfpzs">设置权限</a>
 						<a title="编辑" target="dialog" mask="true" width="520" height="250" 
-							href="system/useradmin/role/showUpdate.htm?role.id=${item.id}&navTabId=${param.navTabId}" class="btnEdit">编辑</a>
+							href="system/useradmin/role/showUpdate.htm?role.id=${item.id}&action=xgjszs&navTabId=${param.navTabId}" class="btnEdit">编辑</a>
 					</td>
 				</tr>
 			</s:iterator>

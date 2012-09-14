@@ -46,6 +46,7 @@ public class SessionInterceptor extends BaseAction implements Interceptor {
 			    json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 301);
 			    json.put("message", "登录超时，请您重新登录！");
 			    writeMap(json);
+			    return null;
 			}
 		}
 		return invocation.invoke();

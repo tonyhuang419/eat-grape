@@ -73,7 +73,7 @@ public interface IMenuService
 
 	/**
 	 * @Description: 查找所有菜单(展示首页，权限处理)
-	 * 
+	 * @param allPrivs 所拥有的权限集合
 	 */
 	String findAllMenu(Map<String, Priv> allPrivs);
 

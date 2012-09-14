@@ -17,7 +17,7 @@
 		</action>
 		<!-- 退出 -->
 		<action name="loginout" class="com.eatle.web.action.LoginAction" method="loginOut">
-			<result name="input" type="redirect">index.htm</result>
+			<result name="input" type="redirectAction">index</result>
 		</action>
 		<!--  验证码 -->
 		<action name="verifycode" class="com.eatle.web.action.VerifyCodeAction">

@@ -19,6 +19,8 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 	@Resource
 	private MenuMapper menuMapper;
 
+	private Map<String, Priv> allPrivs;
+
 	@Override
 	public void add(Menu entity)
 	{
@@ -83,19 +85,20 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 	@Override
 	public String findAllMenu(Map<String, Priv> allPrivs)
 	{
+		this.allPrivs = allPrivs;
 		StringBuffer allMenuBuffer = new StringBuffer();
 		for(Menu menu : findRootMenu())
 		{
 			if(allPrivs.containsKey(menu.getAction()))
 			{
-				assembleRootMenu(menu, allMenuBuffer, allPrivs);
-				assembleChildMenu(menu, allMenuBuffer, allPrivs);
+				assembleRootMenu(menu, allMenuBuffer);
+				assembleChildMenu(menu, allMenuBuffer);
 			}
 		}
 		return allMenuBuffer.toString();
 	}
 	
-	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
+	public void assembleRootMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
 		allMenuBuffer.append("<div class=\"accordionHeader\">\n");
 		allMenuBuffer.append("<h2><span>Folder</span>" + menu.getMenuName() + "</h2>\n");
@@ -103,17 +106,15 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 		allMenuBuffer.append("<div class=\"accordionContent\">\n");
 	}
 	
-	public void assembleChildMenu(Menu menu, 
-			StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
+	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer)
 	{
 		allMenuBuffer.append("<ul class=\"tree treeFolder collapse\">\n");
-		findChildMenu(findByParentId(menu.getId()), allMenuBuffer, allPrivs);
+		findChildMenu(findByParentId(menu.getId()), allMenuBuffer);
 		allMenuBuffer.append("</ul>\n");
 		allMenuBuffer.append("</div>\n");
 	}
 
-	public void findChildMenu(List<Menu> parentMenu, 
-			StringBuffer allMenuBuffer, Map<String, Priv> allPrivs)
+	public void findChildMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer)
 	{
 		int childMenuSize = 0;
 		for(Menu menu : parentMenu)
@@ -125,7 +126,7 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 				if(childMenuSize > 0)
 				{
 					allMenuBuffer.append("<li><a>" + menu.getMenuName() + "</a>\n<ul>\n");
-					findChildMenu(childMenu, allMenuBuffer, allPrivs);
+					findChildMenu(childMenu, allMenuBuffer);
 				}
 				else
 				{

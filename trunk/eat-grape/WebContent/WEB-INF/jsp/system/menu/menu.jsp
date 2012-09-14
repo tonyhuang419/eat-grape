@@ -13,7 +13,7 @@
     	bindings : {
     		// 新增菜单
 			newMenu : function(t){
-				var url = "system/menu/showAdd.htm?menu.parentId=" + t.attr("id") + "&navTabId=${navTabId}";
+				var url = "system/menu/showAdd.htm?menu.parentId=" + t.attr("id") + "&action=tjgnzs&navTabId=${navTabId}";
 				var dlgId = "dialog_menu_" + t.attr("id");
 				var title = t.text() + " - 菜单添加";
 				var options = {
@@ -25,7 +25,7 @@
             },
     		// 修改菜单
 			updateMenu : function(t){
-				var url = "system/menu/showUpdate.htm?menu.id=" + t.attr("id") + "&navTabId=${navTabId}";
+				var url = "system/menu/showUpdate.htm?menu.id=" + t.attr("id") + "&action=xggnzs&navTabId=${navTabId}";
 				var dlgId = "dialog_menu_" + t.attr("id");
 				var title = t.text() + " - 菜单修改";
 				var options = {
@@ -54,6 +54,7 @@
 					delMenuIds = delMenuIds.substring(0, delMenuIds.length - 1);
 					var data = {
 						"delMenuIds" : delMenuIds,
+						"action" : "zxgnsc",
 						"navTabId" : "${navTabId}"
 					};
 					// Ajax删除确认

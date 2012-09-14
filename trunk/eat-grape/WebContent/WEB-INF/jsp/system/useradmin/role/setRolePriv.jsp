@@ -18,7 +18,7 @@
 	{
 		var chkPrivs = $("input:checked");
 		
-		var url = "system/useradmin/role/setPriv.htm";
+		var url = "system/useradmin/role/setPriv.htm?action=zxqxfp";
 		var msg = "您确认分配这 - " + chkPrivs.length + " - 项权限吗？";
 		var privsIds = "";	// 需设置的权限的ID集合
 		for(var i = 0; i < chkPrivs.length; i++)
