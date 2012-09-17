@@ -4,6 +4,7 @@ import com.eatle.persistent.mapper.RolePrivilegeMapper;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilege;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria;
+import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria.Criteria;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.utils.Pagination;
 
@@ -76,5 +77,16 @@ public class RolePrivilegeServiceImpl implements IRolePrivilegeService
 		}
 		
 		return privsMap;
+	}
+	
+	@Override
+	public void deleteByRoleIdAndPrivId(Long roleId, Long privId)
+	{
+		RolePrivilegeCriteria rpCriteria = new RolePrivilegeCriteria();
+		Criteria criteria = rpCriteria.createCriteria();
+		criteria.andRoleIdEqualTo(roleId);
+		criteria.andPrivIdEqualTo(privId);
+		
+		rolePrivilegeMapper.deleteByCriteria(rpCriteria);
 	}
 }

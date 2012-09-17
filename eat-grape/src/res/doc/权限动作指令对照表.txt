@@ -34,7 +34,7 @@
 执行账号删除	zxzhsc
 修改账号展示	xgzhzs
 执行账号修改	zxzhxg
-导出Excel		dzexcel
+导出账号Excel	dzzhexcel
 
 功能管理		func_mgr
 

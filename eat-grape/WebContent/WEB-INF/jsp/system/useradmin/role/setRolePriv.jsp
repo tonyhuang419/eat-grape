@@ -3,7 +3,7 @@
 
 <div class="accordion" layoutH="35">
 	<ul class="tree treeFolder treeCheck expand">
-		${privTreeStr}
+		${allPrivHtml}
 	</ul>
 </div>
 <div class="formBar">

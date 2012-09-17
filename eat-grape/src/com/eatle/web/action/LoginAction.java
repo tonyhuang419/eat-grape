@@ -57,11 +57,10 @@ public class LoginAction extends BaseAction
 				{
 					// 移除验证码
 					session.remove("verifyCode_s");
-					// 存入登录信息
-					session.put("user", user);
-					// 存入权限集合
-					session.put("allPrivs", rolePrivilegeService
+					// 设置权限，存入登录信息
+					user.setAllPrivs(rolePrivilegeService
 							.findPrivsByRoleId(user.getRoleId()));
+					session.put("user", user);
 					
 					resultMap.put("res", "1");
 				}
@@ -87,7 +86,6 @@ public class LoginAction extends BaseAction
 	public String loginOut()
 	{
 		session.remove("user");
-		session.remove("allPrivs");
 		
 		return INPUT;
 	}

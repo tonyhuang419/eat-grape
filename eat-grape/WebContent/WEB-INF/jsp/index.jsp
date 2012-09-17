@@ -31,6 +31,7 @@
 				<div class="headerNav">
 					<a class="logo" href="http://www.c8j.cn/eatle">Logo</a>
 					<ul class="nav">
+						<li>欢迎您！${user.userName}</li>
 						<li id="switchEnvBox"><a href="javascript:">（<span>北京</span>）切换城市</a>
 							<ul>
 								<li><a href="sidebar_1.html">北京</a></li>

@@ -6,6 +6,8 @@ import com.eatle.persistent.pojo.system.useradmin.UserCriteria;
 import com.eatle.persistent.pojo.system.useradmin.UserCriteria.Criteria;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -85,5 +87,13 @@ public class UserServiceImpl implements IUserService {
 	public User find(User user)
 	{
 		return userMapper.find(user);
+	}
+	
+	@Override
+	public LinkedHashMap<String, List> getExportData()
+	{
+		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
+		map.put("用户数据", findAll());
+		return map;
 	}
 }

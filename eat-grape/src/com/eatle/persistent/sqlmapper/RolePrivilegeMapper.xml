@@ -155,4 +155,11 @@
   		</if>
   	</where>
   </select>
+  
+  <delete id="deleteByCriteria" parameterType="RolePrivilegeCriteria">
+  	delete from t_role_privilege
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
 </mapper>

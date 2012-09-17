@@ -65,4 +65,11 @@ public interface IRolePrivilegeService
 	 * @return: 该角色所拥有的所有权限集合
 	 */
 	Map<String, Priv> findPrivsByRoleId(Long id);
+	
+	/**
+	 * @Description: 根据角色ID和权限ID删除
+	 * @param roleId 角色ID
+	 * @param privId 权限ID
+	 */
+	void deleteByRoleIdAndPrivId(Long roleId, Long privId);
 }
