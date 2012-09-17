@@ -10,7 +10,7 @@
 			</p>
 			<p>
 				<label>描述：</label>
-				<input type="text"  value="" name="role.description" class="textInput">
+				<input type="text"  value="" name="role.description" size="30" class="textInput">
 			</p>
 		</div>
 		<div class="formBar">

@@ -1,8 +1,3 @@
-/**
- * @Copyright:Copyright (c) 2009 深讯信息发展股份有限公司（农网基地）
- *
- * @Company:sxit_chongqing
- */
 package com.eatle.utils;
 
 import java.util.List;
@@ -12,10 +7,10 @@ import com.eatle.persistent.pojo.system.useradmin.PrivTree;
 
 /**
  *@Title:
- *@Description:
- *@Author:xt
- *@Since:2012-6-24
- *@Version:1.1.0
+ *@Description: 角色权限分配权限树展示HTML拼装工具
+ *@Author: xiangtao, tanyouzhong
+ *@Since: 2012-6-24
+ *@Version: 1.1.0
  */
 public class TreeUtil
 {
@@ -41,7 +36,7 @@ public class TreeUtil
 		for (int i = 0; i < topTree.size(); i++)
 		{
 			PrivTree pt = topTree.get(i);
-			sb.append(outputStr(pt, hasPrivs == null ? false : hasPrivs.contains(pt)));
+			sb.append(outputStr(pt, hasPrivs));
 		}
 		return sb;
 	}
@@ -73,12 +68,14 @@ public class TreeUtil
 		return sb.toString();
 	}
 
-	private static String outputStr(PrivTree pt, boolean checked)
+	private static String outputStr(PrivTree pt, List<Priv> hasPrivs)
 	{
 		StringBuilder sb = new StringBuilder();
 		sb.append("<li>");
 		sb.append("<a tname=\"priv\" tvalue=\"" + pt.getPriv().getId() + "\" ");
-		sb.append("checked=" + checked + ">");
+		if ((hasPrivs == null ? false : hasPrivs.contains(pt.getPriv())))
+			sb.append("checked=\"true\"");
+		sb.append(">");
 		sb.append(pt.getPriv().getPrivName());
 		sb.append("</a>");
 		List<PrivTree> child = pt.getChildPrivs();
@@ -87,7 +84,7 @@ public class TreeUtil
 			for (int i = 0; i < child.size(); i++)
 			{
 				sb.append("<ul>");
-				sb.append(outputStr(child.get(i)));
+				sb.append(outputStr(child.get(i), hasPrivs));
 				sb.append("</ul>");
 			}
 		}

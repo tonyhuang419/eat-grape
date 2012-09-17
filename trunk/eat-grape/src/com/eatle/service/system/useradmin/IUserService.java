@@ -3,6 +3,8 @@ package com.eatle.service.system.useradmin;
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.persistent.pojo.system.useradmin.UserCriteria;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,8 +46,7 @@ public interface IUserService
 	 * @param currentPage 当前页
 	 * @param pageSize 每页大小
 	 */
-	Pagination findPagination(Map<String, Object> queryMap, int currentPage,
-			int pageSize);
+	Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize);
 
 	/**
 	 * @Description:
@@ -71,4 +72,9 @@ public interface IUserService
 	 * 
 	 */
 	User find(User user);
+	
+	/**
+	 * @Description:获取导出Excel需要的数据
+	 */
+	LinkedHashMap<String, List> getExportData();
 }

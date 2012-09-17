@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.eatle.persistent.generator;
 
 import java.io.IOException;

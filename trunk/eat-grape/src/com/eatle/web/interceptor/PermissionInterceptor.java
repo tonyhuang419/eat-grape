@@ -5,14 +5,17 @@ import java.util.Map;
 import org.apache.struts2.ServletActionContext;
 
 import com.eatle.persistent.pojo.system.useradmin.Priv;
+import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.web.action.BaseAction;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
 /**
- * @author tanyouzhong
- *  权限拦截器
+ * @corpor 公司：深讯信科
+ * @author 作者：谭又中
+ * @explain 释义：权限拦截验证
+ * @version 日期：2012-9-15 下午02:12:33
  */
 public class PermissionInterceptor extends BaseAction implements Interceptor {
 
@@ -28,13 +31,12 @@ public class PermissionInterceptor extends BaseAction implements Interceptor {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception 
 	{
 		Map<String, Object> session = invocation.getInvocationContext().getSession();
 		// 拥有的权限集合
-		Map<String, Priv> allPrivs = (Map<String, Priv>) session.get("allPrivs");
+		Map<String, Priv> allPrivs = ((User) session.get("user")).getAllPrivs();
 		// 请求的动作的动作指令
 		String action = (String) getRequestParameters(ServletActionContext.getRequest()).get("action");
 		// 请求来源URL

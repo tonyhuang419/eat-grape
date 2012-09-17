@@ -3,7 +3,7 @@ function confirm2Link(msg, url)
 {
 	alertMsg.confirm(msg, {
 		okCall: function(){
-			window.location.href = url;
+			top.location.href = url;
 		}
 	});
 }

@@ -3,18 +3,22 @@ package com.eatle.service.test.system;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.eatle.persistent.pojo.system.Menu;
+import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria;
 import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria.Criteria;
 import com.eatle.service.system.IMenuService;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.service.test.BaseTest;
 import com.eatle.utils.ExcelUtil;
+import com.eatle.utils.ExcelUtil.ExportSetInfo;
 
 /** @corpor  公司：深讯信科
  *  @author  作者：谭又中
@@ -33,7 +37,14 @@ public class RolePrivilegeTest extends BaseTest{
 	}
 	
 	@Test
-	public void a() throws FileNotFoundException, IOException
+	public void deleteByCriteria()
+	{
+		rolePrivilegeService.deleteByRoleIdAndPrivId(3L, 17L);
+	}
+	
+	// Excel导出测试
+	@Test
+	public void export2Excel() throws FileNotFoundException, IOException
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
 		List l1 = userService.findAll();
@@ -42,7 +53,20 @@ public class RolePrivilegeTest extends BaseTest{
 		map.put("菜单信息1", l2);
 		map.put("菜单信息2", l2);
 		
-		ExcelUtil.export2Excel(map,new Class[]{User.class, Menu.class, Menu.class}, 
-				new String[]{"用户列表", "菜单列表1", "菜单列表2"}, new FileOutputStream("c:\\a.xls"));
+		List<String[]> headNames = new ArrayList<String[]>();
+		headNames.add(new String[]{"用户名","密码","电子邮件","类型","角色"});
+		headNames.add(new String[]{"Rel","动作指令","菜单名称","URL","父级菜单"});
+		headNames.add(new String[]{"Rel","动作指令","菜单名称","URL","父级菜单"});
+		
+		ExportSetInfo setInfo = new ExportSetInfo();
+		setInfo.setObjsMap(map);
+		setInfo.setClazz(new Class[]{User.class, Menu.class, Menu.class});
+		setInfo.setTitles(new String[]{"用户列表", "菜单列表1", "菜单列表2"});
+		setInfo.setStartFieldIndexs(new int[]{2,1,1});
+		setInfo.setEndFieldIndexs(new int[]{6,5,5});
+		setInfo.setHeadNames(headNames);
+		setInfo.setOut(new FileOutputStream("c:\\a.xls"));
+		
+		ExcelUtil.export2Excel(setInfo);
 	}
 }

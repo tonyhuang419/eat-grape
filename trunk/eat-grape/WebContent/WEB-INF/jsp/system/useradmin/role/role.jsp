@@ -46,7 +46,7 @@
 		<thead>
 			<tr align="center">
 				<th width="180">角色名称</th>
-				<th width="200">角色描述</th>
+				<th width="300">角色描述</th>
 				<th width="120">操作</th>
 			</tr>
 		</thead>

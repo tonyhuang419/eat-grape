@@ -26,4 +26,7 @@ public interface RolePrivilegeMapper
     
 	// 根据角色ID查询出所拥有的权限集合
 	List<Priv> selectPrivsByRoleId(Long id);
+	
+	// 根据条件删除
+	void deleteByCriteria(RolePrivilegeCriteria criteria);
 }

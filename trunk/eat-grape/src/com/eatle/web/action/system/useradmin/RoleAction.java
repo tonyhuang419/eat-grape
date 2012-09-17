@@ -1,8 +1,7 @@
-/**
- */
 package com.eatle.web.action.system.useradmin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +22,7 @@ import com.eatle.web.action.BaseAction;
 /**
  *@Title:
  *@Description:
- *@Author:xt
+ *@Author:xiangtao, tanyouzhong
  *@Since:2012-6-20
  *@Version:1.1.0
  */
@@ -36,7 +35,7 @@ public class RoleAction extends BaseAction
 
 	@Resource
 	private IPrivService privService;
-	
+
 	@Resource
 	private IRolePrivilegeService rolePrivilegeService;
 
@@ -44,11 +43,13 @@ public class RoleAction extends BaseAction
 
 	private Role role;
 
-	private List<PrivTree> topPrivTrees;
+	private List<PrivTree> topPrivTrees;	// 系统存在的所有权限
 
-	private List<Priv> havePrivs;
+	private List<Priv> havePrivs;			// 当前分配角色所拥有的权限
 
-	private String privsIds; 	// 为角色分配权限需要保存的权限的id集合
+	private String allPrivHtml;				// 权限分配展示树HTML
+
+	private String privsIds; 				// 为角色分配权限需要保存的权限的id集合
 
 	/**
 	 * 
@@ -138,12 +139,20 @@ public class RoleAction extends BaseAction
 	{
 		havePrivs = roleService.findPrivsByRoleId(role.getId());
 		topPrivTrees = privService.findPrivTree();
-		request.setAttribute("privTreeStr", TreeUtil.getTreeString(
-				topPrivTrees, havePrivs).toString());
-		request.setAttribute("topPrivTrees", topPrivTrees);
+		allPrivHtml = TreeUtil.getTreeString(topPrivTrees, havePrivs).toString();
+		
+		// 存入分配前拥有的权限ID集合
+		List<Long> oldPrivIds = new ArrayList<Long>();
+		for(Priv priv : havePrivs)
+		{
+			oldPrivIds.add(priv.getId());
+		}
+		session.put("oldPrivIds", oldPrivIds);
+		
 		return "showSetPriv";
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public void setPriv() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
@@ -155,14 +164,35 @@ public class RoleAction extends BaseAction
 		}
 		else
 		{
+			// 获取分配前拥有的权限
+			List<Long> oldPrivIds = (List<Long>) session.get("oldPrivIds");
+			
+			// 执行权限分配
 			for (String id : privsIds.split(","))
 			{
-				RolePrivilege rp = new RolePrivilege();
-				rp.setRoleId(role.getId());
-				rp.setPrivId(Long.parseLong(id));
-				rolePrivilegeService.add(rp);
+				// 新分配的权限中包含分配前已有的权限，则不做任何数据库动作，从分配前的权限集合中移除
+				if(oldPrivIds.contains(Long.parseLong(id)))
+				{
+					oldPrivIds.remove(Long.parseLong(id));
+				}
+				else
+				{
+					// 新增分配前没有的权限
+					RolePrivilege rp = new RolePrivilege();
+					rp.setRoleId(role.getId());
+					rp.setPrivId(Long.parseLong(id));
+					rolePrivilegeService.add(rp);
+				}
+			}
+			// 将分配前有的权限，然而分配后没有的权限删除掉
+			for(Long privId : oldPrivIds)
+			{
+				rolePrivilegeService.deleteByRoleIdAndPrivId(role.getId(), privId);
 			}
 		}
+		// 清理内存，移除分配前拥有的权限ID集合
+		session.remove("oldPrivIds");
+		
 		super.writeMap(json);
 	}
 
@@ -221,7 +251,8 @@ public class RoleAction extends BaseAction
 		return rolePrivilegeService;
 	}
 
-	public void setRolePrivilegeService(IRolePrivilegeService rolePrivilegeService)
+	public void setRolePrivilegeService(
+			IRolePrivilegeService rolePrivilegeService)
 	{
 		this.rolePrivilegeService = rolePrivilegeService;
 	}
@@ -234,6 +265,16 @@ public class RoleAction extends BaseAction
 	public void setTopPrivTrees(List<PrivTree> topPrivTrees)
 	{
 		this.topPrivTrees = topPrivTrees;
+	}
+
+	public String getAllPrivHtml()
+	{
+		return allPrivHtml;
+	}
+
+	public void setAllPrivHtml(String allPrivHtml)
+	{
+		this.allPrivHtml = allPrivHtml;
 	}
 
 	public String getPrivsIds()

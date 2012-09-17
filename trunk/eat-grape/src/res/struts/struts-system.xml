@@ -7,12 +7,20 @@
 			<result name="showIndex">/WEB-INF/jsp/system/useradmin/account/account.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/system/useradmin/account/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/system/useradmin/account/update.jsp</result>
-			
 			<!-- <result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
 				<param name="includeProperties">resultMap.*</param>
 			</result>
--->
+			-->
+		</action>
+		<!-- 导出账号数据到Excel -->
+		<action name="downXls" class="com.eatle.web.action.DownloadAction" method="downXls">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">userExcel</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
 		</action>
 	</package>
 	

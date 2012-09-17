@@ -1,6 +1,7 @@
 package com.eatle.persistent.pojo.system.useradmin;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class User implements Serializable
 {
@@ -17,6 +18,9 @@ public class User implements Serializable
 	private Byte type;
 
 	private Long roleId;
+	
+	// 拥有的权限集合
+	private Map<String, Priv> allPrivs;
 
 	public Long getId()
 	{
@@ -76,6 +80,16 @@ public class User implements Serializable
 	public void setRoleId(Long roleId)
 	{
 		this.roleId = roleId;
+	}
+
+	public Map<String, Priv> getAllPrivs()
+	{
+		return allPrivs;
+	}
+
+	public void setAllPrivs(Map<String, Priv> allPrivs)
+	{
+		this.allPrivs = allPrivs;
 	}
 
 	@Override
