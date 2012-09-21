@@ -1,12 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 <div class="pageContent">
-	<form method="post" action="system/menu/basedata/add.htm?action=zxgntj&navTabId=${navTabId}" 
+	<form method="post" action="system/basedata/menu/add.htm?action=zxgntj&navTabId=${navTabId}" 
 		class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>Rel标识：</label>
-				<input name="menu.rel" class="required" type="text" maxlength="15"  alt="请输入Rel标识"/>
+				<input name="menu.rel" class="required" type="text" maxlength="20"  alt="请输入Rel标识"/>
 			</p>
 			<p>
 				<label>菜单名称：</label>

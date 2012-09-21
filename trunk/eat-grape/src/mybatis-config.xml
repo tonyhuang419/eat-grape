@@ -19,8 +19,8 @@
     	<typeAlias alias="RolePrivilege" type="com.eatle.persistent.pojo.system.useradmin.RolePrivilege"/>
     	<typeAlias alias="RolePrivilegeCriteria" type="com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria"/>
     	<!-- 系统菜单 -->
-    	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.Menu"/>
-    	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.MenuCriteria"/>
+    	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.basedata.Menu"/>
+    	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.basedata.MenuCriteria"/>
     	
     	
     	<!-- *****************************业务数据************************************* -->

@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/system/useradmin/account/showIndex.htm?action=zhlbzs&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/system/useradmin/account/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />

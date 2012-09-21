@@ -37,7 +37,9 @@
 	
 	<!-- 登陆首页 -->
 	<include file="res/struts/struts-index.xml"></include>
-	<!-- 账号管理 -->
+	<!-- 系统管理 -->
 	<include file="res/struts/struts-system.xml"></include>
+	<!-- 业务数据 -->
+	<include file="res/struts/struts-business.xml"></include>
 	
 </struts>
