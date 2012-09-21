@@ -39,7 +39,7 @@
 		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userId}" password="${password}"/>
 		
 		<javaTypeResolver>
-			<property name="forceBigDecimals" value="false" />								   <!-- 类型解析器 -->
+			<property name="forceBigDecimals" value="false" />								   	<!-- 类型解析器 -->
 		</javaTypeResolver>
 
 		<javaModelGenerator targetPackage="${modelPackage}" targetProject="${targetProject}">	<!-- 实体类 -->
