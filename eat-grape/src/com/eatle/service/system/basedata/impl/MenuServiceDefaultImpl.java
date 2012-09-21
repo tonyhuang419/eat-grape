@@ -1,12 +1,12 @@
-package com.eatle.service.system.impl; 
+package com.eatle.service.system.basedata.impl; 
 
 import java.util.List;
 import java.util.Map;
 
-import com.eatle.persistent.pojo.system.Menu;
-import com.eatle.persistent.pojo.system.MenuCriteria;
+import com.eatle.persistent.pojo.system.basedata.Menu;
+import com.eatle.persistent.pojo.system.basedata.MenuCriteria;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
-import com.eatle.service.system.IMenuService;
+import com.eatle.service.system.basedata.IMenuService;
 import com.eatle.utils.Pagination;
 
 /** @corpor  公司：深讯信科

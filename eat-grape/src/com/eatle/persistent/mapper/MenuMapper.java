@@ -1,7 +1,8 @@
 package com.eatle.persistent.mapper;
 
-import com.eatle.persistent.pojo.system.Menu;
-import com.eatle.persistent.pojo.system.MenuCriteria;
+import com.eatle.persistent.pojo.system.basedata.Menu;
+import com.eatle.persistent.pojo.system.basedata.MenuCriteria;
+
 import java.util.List;
 import java.util.Map;
 

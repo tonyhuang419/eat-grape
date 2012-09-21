@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 
-import com.eatle.persistent.pojo.system.Menu;
+import com.eatle.persistent.pojo.system.basedata.Menu;
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.ExcelUtil;

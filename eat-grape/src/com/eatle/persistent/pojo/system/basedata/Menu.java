@@ -1,4 +1,4 @@
-package com.eatle.persistent.pojo.system;
+package com.eatle.persistent.pojo.system.basedata;
 
 public class Menu {
     private Long id;

@@ -1,25 +1,24 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 <div class="pageContent">
-	<form method="post" action="system/menu/update.htm?action=zxgnxg&navTabId=${navTabId}" 
+	<form method="post" action="system/menu/basedata/add.htm?action=zxgntj&navTabId=${navTabId}" 
 		class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
-		<input name="menu.id" type="hidden" value="${menu.id}">
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>Rel标识：</label>
-				<input name="menu.rel" class="required" type="text" maxlength="15" value="${menu.rel}" alt="请输入Rel标识"/>
+				<input name="menu.rel" class="required" type="text" maxlength="15"  alt="请输入Rel标识"/>
 			</p>
 			<p>
 				<label>菜单名称：</label>
-				<input name="menu.menuName" class="required" type="text" maxlength="20" value="${menu.menuName}" alt="请输入菜单名称"/>
+				<input name="menu.menuName" class="required" type="text" maxlength="20"  alt="请输入菜单名称"/>
 			</p>
 			<p>
 				<label>链接URL：</label>
-				<input name="menu.url" type="text" maxlength="100" size="35" value="${menu.url}"/>
+				<input name="menu.url" type="text" maxlength="100" size="35"/>
 			</p>
 			<p>
 				<label>动作标识：</label>
-				<input name="menu.action" type="text" maxlength="100" value="${menu.action}" class="text">
+				<input name="menu.action" type="text" maxlength="100" class="text">
 			</p>
 			<p>
 				<label>父级菜单：</label>

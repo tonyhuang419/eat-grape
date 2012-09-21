@@ -1,8 +1,8 @@
-package com.eatle.service.system.impl;
+package com.eatle.service.system.basedata.impl;
 
 import com.eatle.persistent.mapper.MenuMapper;
-import com.eatle.persistent.pojo.system.Menu;
-import com.eatle.persistent.pojo.system.MenuCriteria;
+import com.eatle.persistent.pojo.system.basedata.Menu;
+import com.eatle.persistent.pojo.system.basedata.MenuCriteria;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.utils.Pagination;
 

@@ -13,7 +13,7 @@
     	bindings : {
     		// 新增菜单
 			newMenu : function(t){
-				var url = "system/menu/showAdd.htm?menu.parentId=" + t.attr("id") + "&action=tjgnzs&navTabId=${navTabId}";
+				var url = "system/menu/basedata/showAdd.htm?menu.parentId=" + t.attr("id") + "&action=tjgnzs&navTabId=${navTabId}";
 				var dlgId = "dialog_menu_" + t.attr("id");
 				var title = t.text() + " - 菜单添加";
 				var options = {
@@ -25,7 +25,7 @@
             },
     		// 修改菜单
 			updateMenu : function(t){
-				var url = "system/menu/showUpdate.htm?menu.id=" + t.attr("id") + "&action=xggnzs&navTabId=${navTabId}";
+				var url = "system/menu/basedata/showUpdate.htm?menu.id=" + t.attr("id") + "&action=xggnzs&navTabId=${navTabId}";
 				var dlgId = "dialog_menu_" + t.attr("id");
 				var title = t.text() + " - 菜单修改";
 				var options = {
@@ -44,7 +44,7 @@
             	}
             	else
 	            {
-	            	var url = "system/menu/delete.htm";
+	            	var url = "system/menu/basedata/delete.htm";
 					var msg = "您确认删除这 - " + checkBoxs.length + " - 项菜单吗？";
 					var delMenuIds = "";	// 需删除的菜单ID集合
 					for(var i = 0; i < checkBoxs.length; i++)

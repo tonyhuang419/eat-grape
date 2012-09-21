@@ -71,16 +71,16 @@
   	</package>
 	
 	<!-- 菜单管理 -->
-	<package extends="default" name="menu" namespace="/system/menu">
-		<action class="com.eatle.web.action.system.MenuAction" method="{1}" name="*">
+	<package extends="default" name="menu" namespace="/system/basedata/menu">
+		<action class="com.eatle.web.action.system.basedata.MenuAction" method="{1}" name="*">
 			<result name="showIndex">
-				/WEB-INF/jsp/system/menu/menu.jsp
+				/WEB-INF/jsp/system/basedata/menu/menu.jsp
       		</result>
 			<result name="showAdd">
-        		/WEB-INF/jsp/system/menu/add.jsp
+        		/WEB-INF/jsp/system/basedata/menu/add.jsp
       		</result>
       		<result name="showUpdate">
-        		/WEB-INF/jsp/system/menu/update.jsp
+        		/WEB-INF/jsp/system/basedata/menu/update.jsp
       		</result>
     	</action>
 	</package>
