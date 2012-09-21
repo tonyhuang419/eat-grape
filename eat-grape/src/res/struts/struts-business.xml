@@ -3,16 +3,11 @@
 <struts>
 	<package name="distinct" namespace="/business/distcommmgr/distinct"
 		extends="default">
-		<action name="*" class="Distinct" method="{1}">
-			<result name="showIndex">
-				/WEB-INF/jsp/distinct/distinct.jsp
-      		</result>
-			<result name="showAdd">
-				/WEB-INF/jsp/distinct/add.jsp
-      		</result>
-			<result name="showUpdate">
-				/WEB-INF/jsp/distinct/update.jsp
-      		</result>
+		<action name="*" class="com.eatle.web.action.business.distcommmgr.DistinctAction" method="{1}">
+			<result name="showIndex">/WEB-INF/jsp/business/distcommmgr/distinct/distinct.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/business/distcommmgr/distinct/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/business/distcommmgr/distinct/update.jsp</result>
+			<result name="showSetSubDist">/WEB-INF/jsp/business/distcommmgr/distinct/showSetSubDist.jsp</result>
 		</action>
 	</package>
 </struts>

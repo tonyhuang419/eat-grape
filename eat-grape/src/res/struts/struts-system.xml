@@ -58,30 +58,18 @@
 	<!-- 角色权限关联 -->
   	<package extends="default" name="rolePrivilege" namespace="/system/useradmin/rolePrivilege">
     	<action class="com.eatle.web.action.system.useradmin.RolePrivilege" method="{1}" name="*">
-	      	<result name="showIndex">
-	        	/WEB-INF/jsp/rolePrivilege/rolePrivilege.jsp
-	      	</result>
-	      	<result name="showAdd">
-        		/WEB-INF/jsp/rolePrivilege/add.jsp
-      		</result>
-      		<result name="showUpdate">
-        		/WEB-INF/jsp/rolePrivilege/update.jsp
-      		</result>
+	      	<result name="showIndex">/WEB-INF/jsp/rolePrivilege/rolePrivilege.jsp</result>
+	      	<result name="showAdd">/WEB-INF/jsp/rolePrivilege/add.jsp</result>
+      		<result name="showUpdate">/WEB-INF/jsp/rolePrivilege/update.jsp</result>
     	</action>
   	</package>
 	
 	<!-- 菜单管理 -->
 	<package extends="default" name="menu" namespace="/system/basedata/menu">
 		<action class="com.eatle.web.action.system.basedata.MenuAction" method="{1}" name="*">
-			<result name="showIndex">
-				/WEB-INF/jsp/system/basedata/menu/menu.jsp
-      		</result>
-			<result name="showAdd">
-        		/WEB-INF/jsp/system/basedata/menu/add.jsp
-      		</result>
-      		<result name="showUpdate">
-        		/WEB-INF/jsp/system/basedata/menu/update.jsp
-      		</result>
+			<result name="showIndex">/WEB-INF/jsp/system/basedata/menu/menu.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/system/basedata/menu/add.jsp</result>
+      		<result name="showUpdate">/WEB-INF/jsp/system/basedata/menu/update.jsp</result>
     	</action>
 	</package>
 </struts>

@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/system/useradmin/priv/showIndex.htm?action=priv_mgr&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/business/distcommmgr/distinct/showIndex.htm?action=city_distinct_area&TabId=${param.navTabId}">
 	
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
@@ -15,18 +15,12 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="system/useradmin/priv/showIndex.htm?action=zxqxss" method="post">
+	<form onsubmit="return navTabSearch(this);" action="business/distcommmgr/distinct/showIndex.htm?action=zxdyss" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					权限名称：<input type="text" name="privName" />
-				</td>
-				<td>
-					菜单名称：<input type="text" name="menuName" />
-				</td>
-				<td>
-					动作指令：<input type="text" name="actionCmd" />
+					地域名称：<input type="text" name="distName" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -43,34 +37,26 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/useradmin/priv/showAdd.htm?action=tjqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加权限</span></a></li>
-			<li><a class="delete" href="system/useradmin/priv/delete.htm?priv.id={sid}&action=zxqxsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
-			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&action=xgqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="add" href="business/distcommmgr/distinct/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加地域</span></a></li>
+			<li><a class="delete" href="business/distcommmgr/distinct/delete.htm?distinct.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li><a class="edit" href="business/distcommmgr/distinct/showUpdate.htm?distinct.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="180">权限名称</th>
-				<th width="200">菜单名称</th>
-				<th width="200">动作标识</th>
-				<th width="200">描述</th>
-				<th width="200">是否显示</th>
-				<th width="120">操作</th>
+				<th width="180">地域名称</th>
+				<th width="150">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="<s:property value="#item.id" />" align="center">
-					<td><s:property value="#item.privName" /></td>
-					<td><s:property value="#item.meueName" /></td>
-					<td><s:property value="#item.action" /></td>
-					<td align="left"><s:property value="#item.description" /></td>
-					<td><s:if test="#item.isShow == 1">是</s:if><s:else>否</s:else></td>
+					<td><s:property value="#item.distName" /></td>
 					<td>
-						<a title="${item.privName}-设置子权限" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&action=zqxlbzs&dialogId=dialog_${item.id}"
-							width="800" height="480">设置子权限</a>
+						<a title="${item.distName}-设置子地域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="business/distcommmgr/distinct/showSetSubDist.htm?pid=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							width="800" height="480">设置子地域</a>
 					</td>
 				</tr>
 			</s:iterator>
