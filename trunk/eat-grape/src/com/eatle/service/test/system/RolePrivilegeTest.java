@@ -9,11 +9,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.eatle.persistent.pojo.system.Menu;
+import com.eatle.persistent.pojo.system.basedata.Menu;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria;
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria.Criteria;
-import com.eatle.service.system.IMenuService;
+import com.eatle.service.system.basedata.IMenuService;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.service.test.BaseTest;

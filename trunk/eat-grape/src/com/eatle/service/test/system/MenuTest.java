@@ -7,9 +7,9 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
-import com.eatle.persistent.pojo.system.Menu;
-import com.eatle.persistent.pojo.system.MenuCriteria;
-import com.eatle.service.system.IMenuService;
+import com.eatle.persistent.pojo.system.basedata.Menu;
+import com.eatle.persistent.pojo.system.basedata.MenuCriteria;
+import com.eatle.service.system.basedata.IMenuService;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.test.BaseTest;
 

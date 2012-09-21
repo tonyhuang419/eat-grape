@@ -1,7 +1,7 @@
-package com.eatle.web.action.system;
+package com.eatle.web.action.system.basedata;
 
-import com.eatle.persistent.pojo.system.Menu;
-import com.eatle.service.system.IMenuService;
+import com.eatle.persistent.pojo.system.basedata.Menu;
+import com.eatle.service.system.basedata.IMenuService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;

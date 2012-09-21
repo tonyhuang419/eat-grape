@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.User;
-import com.eatle.service.system.IMenuService;
+import com.eatle.service.system.basedata.IMenuService;
 
 /**
  * @Title:

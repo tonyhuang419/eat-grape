@@ -3,6 +3,9 @@
 <configuration>
     <!-- 类型别名  -->
     <typeAliases>
+    
+    	<!-- *****************************系统管理************************************* -->
+    	
     	<!-- 用户 -->
     	<typeAlias alias="User" type="com.eatle.persistent.pojo.system.useradmin.User"/>
     	<typeAlias alias="UserCriteria" type="com.eatle.persistent.pojo.system.useradmin.UserCriteria"/>
@@ -19,5 +22,11 @@
     	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.Menu"/>
     	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.MenuCriteria"/>
     	
+    	
+    	<!-- *****************************业务数据************************************* -->
+    	
+    	<!-- 城市/区域/地段 -->
+    	<typeAlias alias="Distinct" type="com.eatle.persistent.pojo.business.distcommmgr.Distinct"/>
+    	<typeAlias alias="DistinctCriteria" type="com.eatle.persistent.pojo.business.distcommmgr.DistinctCriteria"/>
     </typeAliases>
 </configuration>    
