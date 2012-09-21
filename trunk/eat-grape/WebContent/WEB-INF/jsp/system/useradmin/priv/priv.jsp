@@ -48,7 +48,7 @@
 			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&action=xgqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
 		</ul>
 	</div>
-	<table class="table" layoutH="112">
+	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
 				<th width="180">权限名称</th>
@@ -76,7 +76,7 @@
 			</s:iterator>
 		</tbody>
 	</table>
-	<div class="panelBar">
+	<div class="panelBar" layoutH="0">
 		<div class="pages">
 			<span style="margin-right: 3px;">显示</span>
 			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">

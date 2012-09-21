@@ -61,7 +61,7 @@
 			<li><a class="icon" href="system/useradmin/account/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
 		</ul>
 	</div>
-	<table class="table" layoutH="112">
+	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
 				<th width="180">用户名</th>
@@ -91,7 +91,7 @@
 			
 		</tbody>
 	</table>
-	<div class="panelBar">
+	<div class="panelBar" layoutH="0">
 		<div class="pages">
 			<span style="margin-right: 3px;">显示</span>
 			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
