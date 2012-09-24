@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 /**
  * @corpor 公司：深讯信科
  * @author 作者：谭又中
- * @explain 释义：登陆拦截验证
+ * @explain 释义：登录拦截验证
  * @version 日期：2012-9-14 下午05:50:06
  */
 public class SessionInterceptor extends BaseAction implements Interceptor {
