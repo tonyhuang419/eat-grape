@@ -18,15 +18,15 @@ public class MenuServiceDefaultImpl implements IMenuService
 {
 
 	@Override
-	public void add(Menu entity)
+	public int add(Menu entity)
 	{
-
+		return 0;
 	}
 
 	@Override
-	public void delete(Menu entity)
+	public int delete(Menu entity)
 	{
-
+		return 0;
 	}
 
 	@Override
@@ -79,9 +79,9 @@ public class MenuServiceDefaultImpl implements IMenuService
 	}
 
 	@Override
-	public void update(Menu entity)
+	public int update(Menu entity)
 	{
-
+		return 0;
 	}
 }
  

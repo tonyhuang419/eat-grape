@@ -14,21 +14,21 @@ public interface IMenuService
 	 * 
 	 * @param entity
 	 */
-	void add(Menu entity);
+	int add(Menu entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	void delete(Menu entity);
+	int delete(Menu entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	void update(Menu entity);
+	int update(Menu entity);
 
 	/**
 	 * @Description:
@@ -76,7 +76,6 @@ public interface IMenuService
 	 * @param allPrivs 所拥有的权限集合
 	 */
 	String findAllMenu(Map<String, Priv> allPrivs);
-
 
 	/**
 	 * @Description: 查找所有菜单(菜单管理树形展示)

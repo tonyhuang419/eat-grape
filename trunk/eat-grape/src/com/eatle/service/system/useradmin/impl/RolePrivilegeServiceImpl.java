@@ -21,21 +21,21 @@ public class RolePrivilegeServiceImpl implements IRolePrivilegeService
 	private RolePrivilegeMapper rolePrivilegeMapper;
 
 	@Override
-	public void add(RolePrivilege entity)
+	public int add(RolePrivilege entity)
 	{
-		rolePrivilegeMapper.insert(entity);
+		return rolePrivilegeMapper.insert(entity);
 	}
 
 	@Override
-	public void delete(RolePrivilege entity)
+	public int delete(RolePrivilege entity)
 	{
-		rolePrivilegeMapper.deleteByPrimaryKey(entity.getId());
+		return rolePrivilegeMapper.deleteByPrimaryKey(entity.getId());
 	}
 
 	@Override
-	public void update(RolePrivilege entity)
+	public int update(RolePrivilege entity)
 	{
-		rolePrivilegeMapper.updateByPrimaryKey(entity);
+		return rolePrivilegeMapper.updateByPrimaryKey(entity);
 	}
 
 	@Override

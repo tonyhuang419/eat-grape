@@ -19,21 +19,21 @@ public class MenuServiceImpl2 extends MenuServiceDefaultImpl
 	private MenuMapper menuMapper;
 
 	@Override
-	public void add(Menu entity)
+	public int add(Menu entity)
 	{
-		menuMapper.insert(entity);
+		return menuMapper.insert(entity);
 	}
 
 	@Override
-	public void delete(Menu entity)
+	public int delete(Menu entity)
 	{
-		menuMapper.deleteByPrimaryKey(entity.getId());
+		return menuMapper.deleteByPrimaryKey(entity.getId());
 	}
 
 	@Override
-	public void update(Menu entity)
+	public int update(Menu entity)
 	{
-		menuMapper.updateByPrimaryKeySelective(entity);
+		return menuMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

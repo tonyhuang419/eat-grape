@@ -20,18 +20,18 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public void add(User entity) {
-        userMapper.insert(entity);
+    public int add(User entity) {
+        return userMapper.insert(entity);
     }
 
     @Override
-    public void delete(User entity) {
-        userMapper.deleteByPrimaryKey(entity.getId());
+    public int delete(User entity) {
+    	return userMapper.deleteByPrimaryKey(entity.getId());
     }
 
     @Override
-    public void update(User entity) {
-        userMapper.updateByPrimaryKey(entity);
+    public int update(User entity) {
+    	return userMapper.updateByPrimaryKey(entity);
     }
 
     @Override

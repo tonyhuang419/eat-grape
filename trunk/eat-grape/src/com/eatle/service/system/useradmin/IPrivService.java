@@ -27,14 +27,14 @@ public interface IPrivService
 	 * 
 	 * @param priv
 	 */
-	void update(Priv priv);
+	int update(Priv priv);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param priv
 	 */
-	void add(Priv priv);
+	int add(Priv priv);
 
 	/**
 	 * @Description:
@@ -64,7 +64,7 @@ public interface IPrivService
 	 * 
 	 * @param priv
 	 */
-	void delete(Priv priv);
+	int delete(Priv priv);
 
 	/**
 	 * @Description:
