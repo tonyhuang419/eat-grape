@@ -27,7 +27,7 @@ public interface IPrivService
 	 * 
 	 * @param priv
 	 */
-	int update(Priv priv);
+	int update(Priv priv, Priv oldPiv);
 
 	/**
 	 * @Description:

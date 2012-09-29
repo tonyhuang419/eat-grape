@@ -27,7 +27,7 @@ public interface IRoleService
 	 * 
 	 * @param role
 	 */
-	int update(Role role);
+	int update(Role role, Role oldRole);
 
 	/**
 	 * @Description:

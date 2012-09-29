@@ -12,6 +12,8 @@ import com.eatle.persistent.mapper.PrivMapper;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivTree;
+import com.eatle.persistent.pojo.system.useradmin.Role;
+import com.eatle.persistent.pojo.system.useradmin.RoleCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria.Criteria;
 import com.eatle.service.system.useradmin.IPrivService;
 import com.eatle.utils.Pagination;
@@ -85,13 +87,38 @@ public class PrivServiceImpl implements IPrivService
 	@Override
 	public int add(Priv priv)
 	{
-		return privMapper.insert(priv);
+		int result = 0;
+		PrivCriteria privCriteria = new PrivCriteria();
+		Criteria criteria = privCriteria.createCriteria();
+		criteria.andActionEqualTo(priv.getAction());
+		List<Priv> privs = privMapper.selectByCriteria(privCriteria);
+		if (privs.size() < 1)
+		{
+			result = privMapper.insert(priv);
+		}
+		return result;
 	}
 
 	@Override
-	public int update(Priv priv)
+	public int update(Priv priv, Priv oldPiv)
 	{
-		return privMapper.updateByPrimaryKey(priv);
+		int result = 0;
+		PrivCriteria privCriteria = new PrivCriteria();
+		Criteria criteria = privCriteria.createCriteria();
+		criteria.andActionEqualTo(priv.getAction());
+		List<Priv> privs = privMapper.selectByCriteria(privCriteria);
+		if (privs.size() < 1)
+		{
+			result = privMapper.updateByPrimaryKey(priv);
+		}
+		else
+		{
+			if(privs.get(0).getAction().equals(oldPiv.getAction()))
+			{
+				result = privMapper.updateByPrimaryKey(priv);
+			}
+		}
+		return result;
 	}
 
 	@Override

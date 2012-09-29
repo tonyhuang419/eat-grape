@@ -80,13 +80,38 @@ public class RoleServiceImpl implements IRoleService
 	@Override
 	public int add(Role role)
 	{
-		return roleMapper.insert(role);
+		int result = 0;
+		RoleCriteria roleCriteria = new RoleCriteria();
+		Criteria criteria = roleCriteria.createCriteria();
+		criteria.andRoleNameEqualTo(role.getRoleName());
+		List<Role> roles = roleMapper.selectByCriteria(roleCriteria);
+		if (roles.size() < 1)
+		{
+			result = roleMapper.insert(role);
+		}
+		return result;
 	}
 
 	@Override
-	public int update(Role role)
+	public int update(Role role, Role oldRole)
 	{
-		return roleMapper.updateByPrimaryKey(role);
+		int result = 0;
+		RoleCriteria roleCriteria = new RoleCriteria();
+		Criteria criteria = roleCriteria.createCriteria();
+		criteria.andRoleNameEqualTo(role.getRoleName());
+		List<Role> roles = roleMapper.selectByCriteria(roleCriteria);
+		if (roles.size() < 1)
+		{
+			result = roleMapper.updateByPrimaryKey(role);
+		}
+		else
+		{
+			if(roles.get(0).getRoleName().equals(oldRole.getRoleName()))
+			{
+				result = roleMapper.updateByPrimaryKey(role);
+			}
+		}
+		return result;
 	}
 
 	@Override
