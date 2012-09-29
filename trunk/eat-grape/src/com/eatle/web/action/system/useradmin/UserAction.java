@@ -82,7 +82,11 @@ public class UserAction extends BaseAction
 		}
 		else
 		{
-			userService.add(user);
+			if(userService.add(user) < 1)
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "用户已存在，请重新输入！");
+			}
 		}
 		super.writeMap(json);
 	}
@@ -99,7 +103,11 @@ public class UserAction extends BaseAction
 		}
 		else
 		{
-			userService.delete(user);
+			if(userService.delete(user) < 1)
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "删除失败！");
+			}
 		}
 		super.writeMap(json);
 
@@ -111,6 +119,8 @@ public class UserAction extends BaseAction
 		user = userService.findById(user.getId());
 		// 所有角色
 		allRole = roleService.findAll();
+		// 存入修改的用户，执行修改时查重使用
+		session.put("oldUser", user);
 		
 		return "showUpdate";
 	}
@@ -126,7 +136,12 @@ public class UserAction extends BaseAction
 		}
 		else
 		{
-			userService.update(user);
+			if(userService.update(user, (User) session.get("oldUser")) < 1)
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "用户已存在，请重新输入！");
+			}
+			session.remove("oldUser");
 		}
 		super.writeMap(json);
 	}

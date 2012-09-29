@@ -91,7 +91,11 @@ public class RoleAction extends BaseAction
 		}
 		else
 		{
-			roleService.add(role);
+			if(roleService.add(role) < 1)
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "角色已存在，请重新输入！");
+			}
 		}
 		super.writeMap(json);
 	}
@@ -108,7 +112,11 @@ public class RoleAction extends BaseAction
 		}
 		else
 		{
-			roleService.delete(role);
+			if(roleService.delete(role) < 1)
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "删除失败！");
+			}
 		}
 		super.writeMap(json);
 	}
@@ -116,6 +124,10 @@ public class RoleAction extends BaseAction
 	public String showUpdate()
 	{
 		role = roleService.findById(role.getId());
+		
+		// 存入修改的角色，执行修改时查重使用
+		session.put("oldRole", role);
+		
 		return "showUpdate";
 	}
 
@@ -130,7 +142,12 @@ public class RoleAction extends BaseAction
 		}
 		else
 		{
-			roleService.update(role);
+			if(roleService.update(role, (Role) session.get("oldRole")) < 1)
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "角色已存在，请重新输入！");
+			}
+			session.remove("oldRole");
 		}
 		super.writeMap(json);
 	}
