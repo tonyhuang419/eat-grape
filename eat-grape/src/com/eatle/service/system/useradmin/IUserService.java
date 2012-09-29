@@ -23,21 +23,21 @@ public interface IUserService
 	 * 
 	 * @param entity
 	 */
-	void add(User entity);
+	int add(User entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	void delete(User entity);
+	int delete(User entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	void update(User entity);
+	int update(User entity);
 
 	/**
 	 * @Description:

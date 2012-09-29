@@ -27,14 +27,14 @@ public interface IRoleService
 	 * 
 	 * @param role
 	 */
-	void update(Role role);
+	int update(Role role);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param role
 	 */
-	void add(Role role);
+	int add(Role role);
 
 	/**
 	 * @Description:
@@ -64,7 +64,7 @@ public interface IRoleService
 	 * 
 	 * @param role
 	 */
-	void delete(Role role);
+	int delete(Role role);
 
 	/**
 	 * @Description:

@@ -83,21 +83,21 @@ public class PrivServiceImpl implements IPrivService
 	}
 
 	@Override
-	public void add(Priv priv)
+	public int add(Priv priv)
 	{
-		privMapper.insert(priv);
+		return privMapper.insert(priv);
 	}
 
 	@Override
-	public void update(Priv priv)
+	public int update(Priv priv)
 	{
-		privMapper.updateByPrimaryKey(priv);
+		return privMapper.updateByPrimaryKey(priv);
 	}
 
 	@Override
-	public void delete(Priv priv)
+	public int delete(Priv priv)
 	{
-		privMapper.deleteByPrimaryKey(priv.getId());
+		return privMapper.deleteByPrimaryKey(priv.getId());
 	}
 
 	@Override

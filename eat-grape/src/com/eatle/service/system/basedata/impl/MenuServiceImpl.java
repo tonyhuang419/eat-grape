@@ -22,21 +22,21 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 	private Map<String, Priv> allPrivs;
 
 	@Override
-	public void add(Menu entity)
+	public int add(Menu entity)
 	{
-		menuMapper.insert(entity);
+		return menuMapper.insert(entity);
 	}
 
 	@Override
-	public void delete(Menu entity)
+	public int delete(Menu entity)
 	{
-		menuMapper.deleteByPrimaryKey(entity.getId());
+		return menuMapper.deleteByPrimaryKey(entity.getId());
 	}
 
 	@Override
-	public void update(Menu entity)
+	public int update(Menu entity)
 	{
-		menuMapper.updateByPrimaryKey(entity);
+		return menuMapper.updateByPrimaryKey(entity);
 	}
 
 	@Override

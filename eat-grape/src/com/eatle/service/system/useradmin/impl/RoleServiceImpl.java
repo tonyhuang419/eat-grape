@@ -78,21 +78,21 @@ public class RoleServiceImpl implements IRoleService
 	}
 
 	@Override
-	public void add(Role role)
+	public int add(Role role)
 	{
-		roleMapper.insert(role);
+		return roleMapper.insert(role);
 	}
 
 	@Override
-	public void update(Role role)
+	public int update(Role role)
 	{
-		roleMapper.updateByPrimaryKey(role);
+		return roleMapper.updateByPrimaryKey(role);
 	}
 
 	@Override
-	public void delete(Role role)
+	public int delete(Role role)
 	{
-		roleMapper.deleteByPrimaryKey(role.getId());
+		return roleMapper.deleteByPrimaryKey(role.getId());
 	}
 
 	@Override

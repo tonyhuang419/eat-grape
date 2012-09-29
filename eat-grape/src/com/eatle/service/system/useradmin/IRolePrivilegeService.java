@@ -14,21 +14,21 @@ public interface IRolePrivilegeService
 	 * 
 	 * @param entity
 	 */
-	void add(RolePrivilege entity);
+	int add(RolePrivilege entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	void delete(RolePrivilege entity);
+	int delete(RolePrivilege entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	void update(RolePrivilege entity);
+	int update(RolePrivilege entity);
 
 	/**
 	 * @Description:

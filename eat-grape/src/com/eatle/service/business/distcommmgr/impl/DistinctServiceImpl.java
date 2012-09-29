@@ -18,21 +18,21 @@ public class DistinctServiceImpl implements IDistinctService
 	private DistinctMapper distinctMapper;
 
 	@Override
-	public void add(Distinct entity)
+	public int add(Distinct entity)
 	{
-		distinctMapper.insert(entity);
+		return distinctMapper.insert(entity);
 	}
 
 	@Override
-	public void delete(Distinct entity)
+	public int delete(Distinct entity)
 	{
-		distinctMapper.deleteByPrimaryKey(entity.getId());
+		return distinctMapper.deleteByPrimaryKey(entity.getId());
 	}
 
 	@Override
-	public void update(Distinct entity)
+	public int update(Distinct entity)
 	{
-		distinctMapper.updateByPrimaryKey(entity);
+		return distinctMapper.updateByPrimaryKey(entity);
 	}
 
 	@Override
