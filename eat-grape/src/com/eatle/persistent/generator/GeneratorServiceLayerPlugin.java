@@ -40,7 +40,6 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 
 	private String mapperObjName = "";
 
-	@Override
 	public boolean validate(List<String> warnings)
 	{
 		return true;
@@ -283,11 +282,12 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		importedTypes.add(type);
 
 		Method method = new Method();
+		method.setReturnType(new FullyQualifiedJavaType("int"));
 		method.setVisibility(JavaVisibility.PUBLIC);
 		method.setName("update"); //$NON-NLS-1$
 		method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$
 		// "+mapperObjName+".updateByPrimaryKey(entity);
-		method.addBodyLine("" + mapperObjName + ".updateByPrimaryKey(entity);"); //$NON-NLS-1$
+		method.addBodyLine("return " + mapperObjName + ".updateByPrimaryKey(entity);"); //$NON-NLS-1$
 		method.addAnnotation("@Override");
 		topLevelClass.addMethod(method);
 		topLevelClass.addImportedTypes(importedTypes);
@@ -308,11 +308,12 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		importedTypes.add(type);
 
 		Method method = new Method();
+		method.setReturnType(new FullyQualifiedJavaType("int"));
 		method.setVisibility(JavaVisibility.PUBLIC);
 		method.setName("delete"); //$NON-NLS-1$
 		method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$
 		// "+mapperObjName+".deleteByPrimaryKey(entity.getId());
-		method.addBodyLine("" + mapperObjName + ".deleteByPrimaryKey(entity.getId());"); //$NON-NLS-1$
+		method.addBodyLine("return " + mapperObjName + ".deleteByPrimaryKey(entity.getId());"); //$NON-NLS-1$
 		method.addAnnotation("@Override");
 		topLevelClass.addMethod(method);
 		topLevelClass.addImportedTypes(importedTypes);
@@ -332,11 +333,12 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		importedTypes.add(type);
 
 		Method method = new Method();
+		method.setReturnType(new FullyQualifiedJavaType("int"));
 		method.setVisibility(JavaVisibility.PUBLIC);
 		method.setName("add"); //$NON-NLS-1$
 		method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$
 		// "+mapperObjName+".insert(entity);
-		method.addBodyLine("" + mapperObjName + ".insert(entity);"); //$NON-NLS-1$
+		method.addBodyLine("return " + mapperObjName + ".insert(entity);"); //$NON-NLS-1$
 		method.addAnnotation("@Override");
 		topLevelClass.addMethod(method);
 		topLevelClass.addImportedTypes(importedTypes);
@@ -350,6 +352,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		FullyQualifiedJavaType type = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
 		importedTypes.add(type);
 		Method method = new Method();
+		method.setReturnType(new FullyQualifiedJavaType("int"));
 		method.setVisibility(JavaVisibility.PUBLIC);
 		method.setName("add");
 		method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$  
@@ -364,6 +367,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		FullyQualifiedJavaType type = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
 		importedTypes.add(type);
 		Method method = new Method();
+		method.setReturnType(new FullyQualifiedJavaType("int"));
 		method.setVisibility(JavaVisibility.PUBLIC);
 		method.setName("update");
 		method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$  
@@ -378,6 +382,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		FullyQualifiedJavaType type = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
 		importedTypes.add(type);
 		Method method = new Method();
+		method.setReturnType(new FullyQualifiedJavaType("int"));
 		method.setVisibility(JavaVisibility.PUBLIC);
 		method.setName("delete");
 		method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$  
