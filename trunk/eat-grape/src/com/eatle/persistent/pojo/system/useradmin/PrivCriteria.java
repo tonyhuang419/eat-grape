@@ -533,62 +533,62 @@ public class PrivCriteria {
         }
 
         public Criteria andPIdIsNull() {
-            addCriterion("p_id is null");
+            addCriterion("pid is null");
             return (Criteria) this;
         }
 
         public Criteria andPIdIsNotNull() {
-            addCriterion("p_id is not null");
+            addCriterion("pid is not null");
             return (Criteria) this;
         }
 
         public Criteria andPIdEqualTo(Long value) {
-            addCriterion("p_id =", value, "pId");
+            addCriterion("pid =", value, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdNotEqualTo(Long value) {
-            addCriterion("p_id <>", value, "pId");
+            addCriterion("pid <>", value, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdGreaterThan(Long value) {
-            addCriterion("p_id >", value, "pId");
+            addCriterion("pid >", value, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("p_id >=", value, "pId");
+            addCriterion("pid >=", value, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdLessThan(Long value) {
-            addCriterion("p_id <", value, "pId");
+            addCriterion("pid <", value, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdLessThanOrEqualTo(Long value) {
-            addCriterion("p_id <=", value, "pId");
+            addCriterion("pid <=", value, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdIn(List<Long> values) {
-            addCriterion("p_id in", values, "pId");
+            addCriterion("pid in", values, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdNotIn(List<Long> values) {
-            addCriterion("p_id not in", values, "pId");
+            addCriterion("pid not in", values, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdBetween(Long value1, Long value2) {
-            addCriterion("p_id between", value1, value2, "pId");
+            addCriterion("pid between", value1, value2, "pId");
             return (Criteria) this;
         }
 
         public Criteria andPIdNotBetween(Long value1, Long value2) {
-            addCriterion("p_id not between", value1, value2, "pId");
+            addCriterion("pid not between", value1, value2, "pId");
             return (Criteria) this;
         }
     }

@@ -137,7 +137,7 @@ public class PrivServiceImpl implements IPrivService
 		for (int i = 0; i < list.size(); i++)
 		{
 			Priv pri = list.get(i);
-			if (pri.getPId() == null)
+			if (pri.getPid() == null)
 			{
 				ptList.add(findAllChildPrivs(pri, null, list));
 			}
@@ -150,7 +150,7 @@ public class PrivServiceImpl implements IPrivService
 		for (int i = 0; i < list.size(); i++)
 		{
 			Priv pri = list.get(i);
-			if (priv.getPId() == pri.getId())
+			if (priv.getPid() == pri.getId())
 			{
 				return pri;
 			}
@@ -168,7 +168,7 @@ public class PrivServiceImpl implements IPrivService
 		for (int i = 0; i < list.size(); i++)
 		{
 			Priv pri = list.get(i);
-			if (cur.getId() == pri.getPId())
+			if (cur.getId() == pri.getPid())
 			{
 				temp.add(findAllChildPrivs(pri, topTree, list));
 			}
@@ -190,7 +190,7 @@ public class PrivServiceImpl implements IPrivService
 		for (int i = 0; i < list.size(); i++)
 		{
 			Priv pri = list.get(i);
-			if (priv.getId() == pri.getPId())
+			if (priv.getId() == pri.getPid())
 			{
 				temp.add(pri);
 			}

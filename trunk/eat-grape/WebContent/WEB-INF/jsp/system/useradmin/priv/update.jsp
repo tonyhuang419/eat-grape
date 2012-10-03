@@ -5,6 +5,7 @@
 	<form method="post" action="system/useradmin/priv/update.htm?action=zxqxxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
 			<input name="priv.id" type="hidden" value="${priv.id}" />
+			<input name="priv.pid" type="hidden" value="${priv.pid}" />
 			<p>
 				<label>权限名称：</label>
 				<input name="priv.privName" class="required" type="text" size="30" value="${priv.privName}"  alt="请输入权限名称"/>

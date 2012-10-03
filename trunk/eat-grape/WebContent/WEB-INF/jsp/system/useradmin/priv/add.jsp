@@ -22,7 +22,7 @@
 	<form method="post" action="system/useradmin/priv/add.htm?navTabId=${navTabId}&action=zxqxtj&dialogId=${dialogId}" class="pageForm required-validate"
 			 onsubmit="return validateCallback(this, <s:if test="#attr.dialogId != \"\"">refreshDialogAjaxDone</s:if><s:else>dialogAjaxDone</s:else>);">
 		<div class="pageFormContent" layoutH="56">
-			<input type="hidden"  name="priv.pId" value="${param.pid}">
+			<input type="hidden"  name="priv.pid" value="${param.pid}">
 			<p>
 				<label>权限名称：</label>
 				<input name="priv.privName" class="required" type="text" size="30"  alt="请输入权限名称"/>
