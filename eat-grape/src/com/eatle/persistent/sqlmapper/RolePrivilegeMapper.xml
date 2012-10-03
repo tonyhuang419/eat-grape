@@ -13,7 +13,7 @@
     <result column="action" property="action" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="is_show" property="isShow" jdbcType="TINYINT" />
-    <result column="p_id" property="pId" jdbcType="BIGINT" />
+    <result column="pid" property="pid" jdbcType="BIGINT" />
   </resultMap>
   
   <sql id="Example_Where_Clause">
@@ -146,7 +146,7 @@
   
   <select id="selectPrivsByRoleId" parameterType="java.lang.Long" resultMap="PrivResultMap">
   	select 
-  		b.id, b.priv_name, b.meue_name, b.action, b.description, b.is_show, b.p_id 
+  		b.id, b.priv_name, b.meue_name, b.action, b.description, b.is_show, b.pid 
   	from 
   		t_role_privilege a, t_privilege b 
   	<where> 

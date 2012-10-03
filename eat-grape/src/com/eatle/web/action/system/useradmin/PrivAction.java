@@ -71,7 +71,7 @@ public class PrivAction extends BaseAction
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 		json.put(DwzAjaxJsonUtil.KEY_DIALOGID, dialogId);
-		json.put("pid", priv.getPId());
+		json.put("pid", priv.getPid());
 		if (priv == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
