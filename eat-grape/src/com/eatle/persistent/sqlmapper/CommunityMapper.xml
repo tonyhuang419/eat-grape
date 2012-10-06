@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.CommunityMapper" >
+  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.foundation.place.Community" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pinyin_name" property="pinyinName" jdbcType="VARCHAR" />
+    <result column="hot" property="hot" jdbcType="INTEGER" />
+    <result column="district_id" property="districtId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, pinyin_name, hot, district_id
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.foundation.place.CommunityCriteria" >
+    select
+    <if test="district" >
+      district
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_community
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_community
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_community
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+    insert into t_community (id, name, pinyin_name, 
+      hot, district_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pinyinName,jdbcType=VARCHAR}, 
+      #{hot,jdbcType=INTEGER}, #{districtId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+    insert into t_community
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pinyinName != null" >
+        pinyin_name,
+      </if>
+      <if test="hot != null" >
+        hot,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinName != null" >
+        #{pinyinName,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        #{hot,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+    update t_community
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinName != null" >
+        pinyin_name = #{pinyinName,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        hot = #{hot,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+    update t_community
+    set name = #{name,jdbcType=VARCHAR},
+      pinyin_name = #{pinyinName,jdbcType=VARCHAR},
+      hot = #{hot,jdbcType=INTEGER},
+      district_id = #{districtId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.foundation.place.CommunityCriteria" >
+    select count(1) 
+    from t_community
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_community
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="pinyinName != null" >
+        and pinyin_name = #{pinyinName,jdbcType=VARCHAR}
+      </if>
+      <if test="hot != null" >
+        and hot = #{hot,jdbcType=INTEGER}
+      </if>
+      <if test="districtId != null" >
+        and district_id = #{districtId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+</mapper>
