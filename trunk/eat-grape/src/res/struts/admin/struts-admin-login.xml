@@ -5,12 +5,12 @@
 	<package name="adminlogin" extends="session_permission_interceptor_not_default" namespace="/admin">
 	
 		<!-- 登陆页面 -->
-		<action name="index" class="com.eatle.web.action.LoginAction">
+		<action name="index" class="com.eatle.web.action.backend.LoginAction">
 			<result name="input">/WEB-INF/jsp/login.jsp</result>
 		</action>
 		
 		<!-- 登陆 -->
-		<action name="login" class="com.eatle.web.action.LoginAction" method="login">
+		<action name="login" class="com.eatle.web.action.backend.LoginAction" method="login">
 			<result type="json">
 				<param name="ignoreHierarchy">false</param>
 				<param name="includeProperties">resultMap.*</param>
@@ -18,11 +18,11 @@
 		</action>
 		
 		<!-- 退出 -->
-		<action name="loginout" class="com.eatle.web.action.LoginAction" method="loginOut">
+		<action name="loginout" class="com.eatle.web.action.backend.LoginAction" method="loginOut">
 			<result name="input" type="redirectAction">index</result>
 		</action>
 		
-		<action name="home" class="com.eatle.web.action.IndexAction" method="index">
+		<action name="home" class="com.eatle.web.action.backend.IndexAction" method="index">
 			<interceptor-ref name="sessionInterceptorStack"></interceptor-ref>
 			<result>/WEB-INF/jsp/index.jsp</result>
 		</action>

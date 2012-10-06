@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
   <package extends="default" name="district" namespace="/foundation/place/district">
-    <action name="*" class="com.eatle.web.action.foundation.place.DistrictAction" method="{1}">
+    <action name="*" class="com.eatle.web.action.backend.foundation.place.DistrictAction" method="{1}">
 			<result name="showIndex">/WEB-INF/jsp/foundation/place/district/district.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/foundation/place/district/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/foundation/place/district/update.jsp</result>
@@ -10,7 +10,7 @@
 	</action>
   </package>
   <package extends="default" name="shool" namespace="/foundation/place/shool">
-    <action class="com.eatle.web.action.foundation.place.ShoolAction" method="{1}" name="*">
+    <action class="com.eatle.web.action.backend.foundation.place.ShoolAction" method="{1}" name="*">
       <result name="showIndex">
         /WEB-INF/jsp/foundation/place/shool/shool.jsp
       </result>
@@ -23,7 +23,7 @@
     </action>
   </package>
   <package extends="default" name="community" namespace="/foundation/place/community">
-    <action  name="*" class="com.eatle.web.action.foundation.place.CommunityAction" method="{1}">
+    <action  name="*" class="com.eatle.web.action.backend.foundation.place.CommunityAction" method="{1}">
       <result name="showIndex">
         /WEB-INF/jsp/foundation/place/community/community.jsp
       </result>

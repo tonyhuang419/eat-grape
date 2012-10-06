@@ -3,7 +3,7 @@
 <struts>
 	<package name="index" namespace="/front" extends="front_session_permission_interceptor_not_default">
 	
-		<action name="index-*" class="com.eatle.web.front.action.IndexAction" method="{1}">
+		<action name="index-*" class="com.eatle.web.action.front.IndexAction" method="{1}">
 			<result name="showIndex" type="velocity">
 				/WEB-INF/vm/index.vm
 			</result>
