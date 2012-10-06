@@ -30,11 +30,13 @@ public class MyBatisGeneratorTool {
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = null;
 		try {
+			System.out.println("--------->>>Start to generate code....--------------------");
 			config = cp.parseConfiguration(configFile);
 			DefaultShellCallback callback = new DefaultShellCallback(overwrite);
 			MyBatisGenerator myBatisGenerator = null;
 			myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 			myBatisGenerator.generate(null);
+			System.out.println("--------->>>Finished to generate code....--------------------");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
