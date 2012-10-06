@@ -26,7 +26,7 @@
     	<!-- *****************************业务数据************************************* -->
     	
     	<!-- 城市/区域/地段 -->
-    	<typeAlias alias="Distinct" type="com.eatle.persistent.pojo.business.distcommmgr.Distinct"/>
-    	<typeAlias alias="DistinctCriteria" type="com.eatle.persistent.pojo.business.distcommmgr.DistinctCriteria"/>
+    	<typeAlias alias="District" type="com.eatle.persistent.pojo.foundation.place.District"/>
+    	<typeAlias alias="DistrictCriteria" type="com.eatle.persistent.pojo.foundation.place.DistrictCriteria"/>
     </typeAliases>
 </configuration>    

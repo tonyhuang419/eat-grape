@@ -17,29 +17,15 @@
 	<constant name="struts.freemarker.templatesCache" value="true" />
 	<constant name="struts.configuration.xml.reload" value="true" />
 	
-	<!-- 提供json 格式的支持  -->
-	<package name="default" extends="json-default">
-		<interceptors>
-			<interceptor name="sessionInterceptor" class="com.eatle.web.interceptor.SessionInterceptor" />
-			<interceptor name="permissionInterceptor" class="com.eatle.web.interceptor.PermissionInterceptor" />
-			<interceptor-stack name="baseInterceptorStack">
-				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="sessionInterceptor" />
-				<interceptor-ref name="permissionInterceptor" />
-			</interceptor-stack>
-		</interceptors>
-		<default-interceptor-ref name="baseInterceptorStack" />
-		<global-results>
-			<result name="timeout" type="redirect">/timeout.jsp</result>
-			<result name="nopower" type="redirect">/home.htm</result>
-		</global-results>
-	</package>
+	<constant name="struts.velocity.configfile" value="/WEB-INF/cnf/velocity.properties"></constant>
+	<constant name="struts.velocity.toolboxlocation" value="/WEB-INF/cnf/velocity-toolbox.xml"></constant>
 	
-	<!-- 登陆首页 -->
-	<include file="res/struts/struts-index.xml"></include>
-	<!-- 系统管理 -->
-	<include file="res/struts/struts-system.xml"></include>
-	<!-- 业务数据 -->
-	<include file="res/struts/struts-business.xml"></include>
+		
+	<!-- 前台相关配置 -->
+	<include file="struts-front.xml"></include>
+	
+	<!-- 后台管理配置 -->
+	<include file="struts-admin.xml"></include>
+	
 	
 </struts>
