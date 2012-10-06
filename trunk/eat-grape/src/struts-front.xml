@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<!-- 前台配置  -->
+	
+	<!--session 和 permission 不是默认的拦截器  -->
+	<package name="front_session_permission_interceptor_not_default" extends="json-default">
+	   	<result-types>
+			<result-type name="velocityLayout" class="com.eatle.velocity.VelocityLayoutResult"/>
+		</result-types>
+		<interceptors>
+			<interceptor-stack name="baseInterceptorStack">
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			
+			<interceptor-stack name="sessionInterceptorStack">
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			
+		</interceptors>
+		<global-results>
+			<result name="timeout" type="redirect">/timeout.jsp</result>
+			<result name="nopower" type="redirect">/home.htm</result>
+		</global-results>
+		
+		<!--验证码-->
+		<action name="verifycode" class="com.eatle.web.action.VerifyCodeAction">
+			<result type="stream">
+				<param name="contentType">image/jpg</param>
+				<param name="inputName">verifyCode</param>
+				<param name="contentDisposition">filename="verifycode.jpg"</param>
+			</result>
+		</action>
+	</package>
+	<!-- session 和 permission 是默认的拦截器  -->
+	<package name="front_default" extends="front_session_permission_interceptor_not_default">
+		<result-types>
+			<result-type name="velocity" class="com.eatle.velocity.VelocityLayoutResult"/>
+		</result-types>
+		<default-interceptor-ref name="baseInterceptorStack" />
+	</package>
+	
+	
+	<!-- 登陆首页 -->
+	<include file="res/struts/front/struts-front-index.xml"></include>	
+	
+	
+	
+	
+</struts>

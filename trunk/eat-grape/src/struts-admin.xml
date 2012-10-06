@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<!-- 后台管理配置 -->
+	
+	
+	<!--session 和 permission 不是默认的拦截器  -->
+	<package name="session_permission_interceptor_not_default" extends="json-default" >
+		<interceptors>
+			<interceptor name="sessionInterceptor" class="com.eatle.web.interceptor.SessionInterceptor" />
+			<interceptor name="permissionInterceptor" class="com.eatle.web.interceptor.PermissionInterceptor" />
+			<interceptor-stack name="baseInterceptorStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="permissionInterceptor" />
+			</interceptor-stack>
+			
+			<interceptor-stack name="sessionInterceptorStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="sessionInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="timeout" type="redirect">/timeout.jsp</result>
+			<result name="nopower" type="redirect">/home.htm</result>
+		</global-results>
+		
+		<!--验证码-->
+		<action name="verifycode" class="com.eatle.web.action.backend.VerifyCodeAction">
+			<result type="stream">
+				<param name="contentType">image/jpg</param>
+				<param name="inputName">verifyCode</param>
+				<param name="contentDisposition">filename="verifycode.jpg"</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- session 和 permission 是默认的拦截器  -->
+	<package name="default" extends="session_permission_interceptor_not_default">
+		<default-interceptor-ref name="baseInterceptorStack" />
+	</package>
+	
+	<!-- 后台登陆 -->
+	<include file="res/struts/admin/struts-admin-login.xml"></include>
+	<!-- 系统管理 -->
+	<include file="res/struts/admin/struts-admin-system.xml"></include>
+	<!-- 基础数据 -->
+	<include file="res/struts/admin/struts-admin-foundation.xml"></include>
+	
+</struts>
