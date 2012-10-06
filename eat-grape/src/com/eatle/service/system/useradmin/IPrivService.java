@@ -72,4 +72,9 @@ public interface IPrivService
 	 * @return
 	 */
 	List<PrivTree> findPrivTree();
+	
+	//-------------------
+	public String findAllPrivMenu(String contextName);
+	
+	public List<Priv> findRootPrivMenu();
 }

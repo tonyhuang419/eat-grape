@@ -83,7 +83,7 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 	}
 
 	@Override
-	public String findAllMenu(Map<String, Priv> allPrivs)
+	public String findAllMenu(Map<String, Priv> allPrivs,String contextName)
 	{
 		this.allPrivs = allPrivs;
 		StringBuffer allMenuBuffer = new StringBuffer();
@@ -92,7 +92,7 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 			if(allPrivs.containsKey(menu.getAction()))
 			{
 				assembleRootMenu(menu, allMenuBuffer);
-				assembleChildMenu(menu, allMenuBuffer);
+				assembleChildMenu(menu, allMenuBuffer,contextName);
 			}
 		}
 		return allMenuBuffer.toString();
@@ -106,15 +106,15 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 		allMenuBuffer.append("<div class=\"accordionContent\">\n");
 	}
 	
-	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer)
+	public void assembleChildMenu(Menu menu, StringBuffer allMenuBuffer,String contextName)
 	{
 		allMenuBuffer.append("<ul class=\"tree treeFolder collapse\">\n");
-		findChildMenu(findByParentId(menu.getId()), allMenuBuffer);
+		findChildMenu(findByParentId(menu.getId()), allMenuBuffer,contextName);
 		allMenuBuffer.append("</ul>\n");
 		allMenuBuffer.append("</div>\n");
 	}
 
-	public void findChildMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer)
+	public void findChildMenu(List<Menu> parentMenu, StringBuffer allMenuBuffer,String contextName)
 	{
 		int childMenuSize = 0;
 		for(Menu menu : parentMenu)
@@ -126,11 +126,11 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 				if(childMenuSize > 0)
 				{
 					allMenuBuffer.append("<li><a>" + menu.getMenuName() + "</a>\n<ul>\n");
-					findChildMenu(childMenu, allMenuBuffer);
+					findChildMenu(childMenu, allMenuBuffer,contextName);
 				}
 				else
 				{
-					allMenuBuffer.append("<li><a href=\"" + menu.getUrl() + "?navTabId=" + menu.getRel() 
+					allMenuBuffer.append("<li><a href=\"" + contextName+"/"+menu.getUrl() + "?navTabId=" + menu.getRel() 
 							+ "&action=" + menu.getAction() + "\" target=\"navTab\" rel=\"" + menu.getRel()
 							+ "\">" + menu.getMenuName() + "</a></li>\n");
 				}

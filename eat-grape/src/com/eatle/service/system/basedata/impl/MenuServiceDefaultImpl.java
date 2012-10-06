@@ -36,7 +36,7 @@ public class MenuServiceDefaultImpl implements IMenuService
 	}
 
 	@Override
-	public String findAllMenu(Map<String, Priv> allPrivs)
+	public String findAllMenu(Map<String, Priv> allPrivs,String contextName)
 	{
 		return null;
 	}
