@@ -41,7 +41,9 @@ public class PermissionInterceptor extends BaseAction implements Interceptor {
 		String action = (String) getRequestParameters(ServletActionContext.getRequest()).get("action");
 		// 请求来源URL
 		String referer = ServletActionContext.getRequest().getHeader("referer");
-		if(allPrivs.get(action) == null)
+		
+		//TODO　暂时注释
+		/*if(allPrivs.get(action) == null)
 		{
 			if(referer == null || "".equals(referer))
 			{
@@ -55,7 +57,7 @@ public class PermissionInterceptor extends BaseAction implements Interceptor {
 			    writeMap(json);
 			    return null;
 			}
-		}
+		}*/
 		return invocation.invoke();
 	}
 }
