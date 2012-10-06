@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.eatle.persistent.mapper.DistinctMapper" >
-  <resultMap id="BaseResultMap" type="Distinct" >
+<mapper namespace="com.eatle.persistent.mapper.DistrictMapper" >
+  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.foundation.place.District" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="dist_name" property="distName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pinyin_name" property="pinyinName" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -36,16 +37,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, dist_name, parent_id
+    id, name, pinyin_name, parent_id
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="DistinctCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.foundation.place.DistrictCriteria" >
     select
     <if test="distinct" >
       distinct
     </if>
     'false' as QUERYID,
     <include refid="Base_Column_List" />
-    from t_distinct
+    from t_district
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -59,27 +60,30 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_distinct
+    from t_district
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_distinct
+    delete from t_district
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="Distinct" >
-    insert into t_distinct (id, dist_name, parent_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{distName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}
-      )
+  <insert id="insert" parameterType="com.eatle.persistent.pojo.foundation.place.District" >
+    insert into t_district (id, name, pinyin_name, 
+      parent_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pinyinName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="Distinct" >
-    insert into t_distinct
+  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.foundation.place.District" >
+    insert into t_district
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="distName != null" >
-        dist_name,
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pinyinName != null" >
+        pinyin_name,
       </if>
       <if test="parentId != null" >
         parent_id,
@@ -89,19 +93,25 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="distName != null" >
-        #{distName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinName != null" >
+        #{pinyinName,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
         #{parentId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="Distinct" >
-    update t_distinct
+  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.foundation.place.District" >
+    update t_district
     <set >
-      <if test="distName != null" >
-        dist_name = #{distName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinName != null" >
+        pinyin_name = #{pinyinName,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=BIGINT},
@@ -109,27 +119,31 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="Distinct" >
-    update t_distinct
-    set dist_name = #{distName,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.foundation.place.District" >
+    update t_district
+    set name = #{name,jdbcType=VARCHAR},
+      pinyin_name = #{pinyinName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCountByCriteria" resultType="long" parameterType="DistinctCriteria" >
+  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.foundation.place.DistrictCriteria" >
     select count(1) 
-    from t_distinct
+    from t_district
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
-    select * from t_distinct
+    select * from t_district
     <where >
       <if test="id != null" >
         and id = #{id,jdbcType=BIGINT}
       </if>
-      <if test="distName != null" >
-        and dist_name = #{distName,jdbcType=VARCHAR}
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="pinyinName != null" >
+        and pinyin_name = #{pinyinName,jdbcType=VARCHAR}
       </if>
       <if test="parentId != null" >
         and parent_id = #{parentId,jdbcType=BIGINT}
