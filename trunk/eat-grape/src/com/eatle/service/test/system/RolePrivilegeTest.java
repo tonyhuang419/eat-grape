@@ -33,6 +33,8 @@ public class RolePrivilegeTest extends BaseTest{
 	@Test
 	public void test()
 	{
+//		System.out.println(rolePrivilegeService.findAll().size());
+		
 		System.out.println(rolePrivilegeService.findAll().size());
 	}
 	
