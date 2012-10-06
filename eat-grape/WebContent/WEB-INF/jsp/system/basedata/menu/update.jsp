@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 <div class="pageContent">
-	<form method="post" action="system/basedata/menu/update.htm?action=zxgnxg&navTabId=${navTabId}" 
+	<form method="post" action="${ctx}/system/basedata/menu/update.htm?action=zxgnxg&navTabId=${navTabId}" 
 		class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<input name="menu.id" type="hidden" value="${menu.id}">
 		<div class="pageFormContent" layoutH="56">

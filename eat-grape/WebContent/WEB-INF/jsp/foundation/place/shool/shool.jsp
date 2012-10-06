@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/system/useradmin/role/showIndex.htm?action=role_mgr&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/foundation/place/shool/showIndex.htm?action=city_shool_area&TabId=${param.navTabId}">
 	
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
@@ -9,18 +9,21 @@
 	
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="userName" value="${param.userName}" />
-	<input type="hidden" name="email" value="${param.email}" />
+	<input type="hidden" name="name" value="${param.name}" />
+	<input type="hidden" name="englishName" value="${param.englishName}" />
 </form>
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/system/useradmin/role/showIndex.htm?action=zxjsss" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/foundation/place/shool/showIndex.htm?action=zxdyss" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					角色名称：<input type="text" name="roleName" />
+					学校名称：<input type="text" name="name" />
+				</td>
+				<td>
+					学校拼音名称：<input type="text" name="englishName" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -37,29 +40,28 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/system/useradmin/role/showAdd.htm?action=tjjszs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加角色</span></a></li>
-			<li><a class="delete" href="${ctx}/system/useradmin/role/delete.htm?role.id={sid}&action=zxjssc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/system/useradmin/role/showUpdate.htm?role.id={sid}&action=xgjszs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="add" href="${ctx}/foundation/place/shool/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加学校</span></a></li>
+			<li><a class="delete" href="${ctx}/foundation/place/shool/delete.htm?shool.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/foundation/place/shool/showUpdate.htm?shool.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
 		</ul>
 	</div>
-	<table class="table"  layoutH="117">
+	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="180">角色名称</th>
-				<th width="300">角色描述</th>
-				<th width="120">操作</th>
+				<th width="180">学校名称</th>
+				<th width="180">学校拼音名称</th>
+				<th width="150">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
-				<tr target="sid" rel="${item.id}" align="center">
-					<td>${item.roleName}</td>
-					<td align="left">${item.description}</td>
+				<tr target="sid" rel="<s:property value="#item.id" />"  align="center">
+					<td><s:property value="#item.name" /></td>
+					<td><s:property value="#item.englishName" /></td>
 					<td>
-						<a title="${item.roleName}-设置权限" target="dialog" mask="true" width="780" height="480" 
-							href="${ctx}/system/useradmin/role/showSetPriv.htm?role.id=${item.id}&action=qxfpzs">设置权限</a>
-						<a title="编辑" target="dialog" mask="true" width="520" height="250" 
-							href="${ctx}/system/useradmin/role/showUpdate.htm?role.id=${item.id}&action=xgjszs&navTabId=${param.navTabId}" class="btnEdit">编辑</a>
+						<a title="${item.name}-关联区域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href=""
+							width="800" height="480">关联区域</a>
 					</td>
 				</tr>
 			</s:iterator>

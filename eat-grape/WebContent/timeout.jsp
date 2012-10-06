@@ -26,7 +26,7 @@
 			},
 			okVal : "登  录",
 			ok : function(){
-				window.location.href = "${ctx}/index.htm";
+				window.location.href = "${ctx}/admin/index.htm";
 				return false;
 			}
 		}).lock();

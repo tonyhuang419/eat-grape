@@ -15,7 +15,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="system/useradmin/priv/showIndex.htm?action=zxqxss" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/system/useradmin/priv/showIndex.htm?action=zxqxss" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -43,9 +43,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="system/useradmin/priv/showAdd.htm?action=tjqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加权限</span></a></li>
-			<li><a class="delete" href="system/useradmin/priv/delete.htm?priv.id={sid}&action=zxqxsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
-			<li><a class="edit" href="system/useradmin/priv/showUpdate.htm?priv.id={sid}&action=xgqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="add" href="${ctx}/system/useradmin/priv/showAdd.htm?action=tjqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加权限</span></a></li>
+			<li><a class="delete" href="${ctx}/system/useradmin/priv/delete.htm?priv.id={sid}&action=zxqxsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/system/useradmin/priv/showUpdate.htm?priv.id={sid}&action=xgqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
@@ -69,7 +69,7 @@
 					<td><s:if test="#item.isShow == 1">是</s:if><s:else>否</s:else></td>
 					<td>
 						<a title="${item.privName}-设置子权限" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&action=zqxlbzs&dialogId=dialog_${item.id}"
+							href="${ctx}/system/useradmin/priv/showSetSubPriv.htm?pid=${item.id}&action=zqxlbzs&dialogId=dialog_${item.id}"
 							width="800" height="480">设置子权限</a>
 					</td>
 				</tr>

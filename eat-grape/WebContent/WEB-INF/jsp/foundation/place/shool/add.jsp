@@ -11,7 +11,7 @@
 				// 刷新dialogId指定的dialog，url：刷新时可重新指定加载数据的url, data：为加载数据时所需的参数。
 				var dialogId = json.dialogId;
 				var pid = json.pid;
-				$.pdialog.reload("${ctx}/system/useradmin/priv/showSetSubPriv.htm?pid=" + pid + "&action=zqxlbzs&dialogId=" + dialogId, {}, dialogId);
+				$.pdialog.reload("${ctx}/foundation/place/shool/showSetSubDist.htm?pid=" + pid + "&action=zdylbzs&dialogId=" + dialogId, {}, dialogId);
 			}
 		}
 	}
@@ -19,29 +19,16 @@
 
 
 <div class="pageContent">
-	<form method="post" action="${ctx}/system/useradmin/priv/add.htm?navTabId=${navTabId}&action=zxqxtj&dialogId=${dialogId}" class="pageForm required-validate"
+	<form method="post" action="${ctx}/foundation/place/shool/add.htm?navTabId=${navTabId}&action=zxdytj&dialogId=${dialogId}" class="pageForm required-validate"
 			 onsubmit="return validateCallback(this, <s:if test="#attr.dialogId != \"\"">refreshDialogAjaxDone</s:if><s:else>dialogAjaxDone</s:else>);">
 		<div class="pageFormContent" layoutH="56">
-			<input type="hidden"  name="priv.pid" value="${param.pid}">
 			<p>
-				<label>权限名称：</label>
-				<input name="priv.privName" class="required" type="text" size="30"  alt="请输入权限名称"/>
+				<label>学校名称：</label>
+				<input name="shool.name" class="required" type="text" size="30"  alt="请输入学校名称"/>
 			</p>
 			<p>
-				<label>菜单名称：</label>
-				<input name="priv.meueName"  type="text" size="30"  alt="请输入菜单名称"/>
-			</p>
-			<p>
-				<label>动作标识：</label>
-				<input name="priv.action"  type="text" size="30"  alt="请输入动作标识"/>
-			</p>
-			<p>
-				<label>描述：</label>
-				<input type="text"  value="" name="priv.description" class="textInput">
-			</p>
-			<p>
-				<label>是否显示：</label>
-				<input type="checkbox" name="priv.isShow" value="1"/>
+				<label>学校拼音名称：</label>
+				<input name="shool.englishName"  type="text" size="30"  alt="请输入学校拼音名称"/>
 			</p>
 		</div>
 		<div class="formBar">

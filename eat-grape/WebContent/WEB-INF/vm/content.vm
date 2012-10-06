@@ -1,0 +1,7 @@
+## index.vm
+#set($layout = "layout.vm") ##选择布局页面
+#set($page_title ="Struts2Velocity")
+#set($name = "Winter Lau")
+<p>
+Hello <b>$name</b>, Welcome to Struts2 with velocity <br/>
+</p>ffffff
