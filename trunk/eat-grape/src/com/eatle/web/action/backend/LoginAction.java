@@ -1,10 +1,11 @@
-package com.eatle.web.action; 
+package com.eatle.web.action.backend; 
 
 import javax.annotation.Resource;
 
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.system.useradmin.IUserService;
+import com.eatle.web.action.BaseAction;
 
 /** @corpor  公司：深讯信科
  *  @author  作者：谭又中

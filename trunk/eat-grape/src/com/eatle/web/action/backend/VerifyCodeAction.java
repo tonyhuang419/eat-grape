@@ -1,4 +1,4 @@
-package com.eatle.web.action;
+package com.eatle.web.action.backend;
 
 import java.awt.Color;
 import java.io.ByteArrayInputStream;
@@ -11,6 +11,7 @@ import javax.imageio.stream.ImageOutputStream;
 import org.apache.struts2.ServletActionContext;
 
 import com.eatle.utils.CreateVerificationCode;
+import com.eatle.web.action.BaseAction;
 
 public class VerifyCodeAction extends BaseAction
 {
