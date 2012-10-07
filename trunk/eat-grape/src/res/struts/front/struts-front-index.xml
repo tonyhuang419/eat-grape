@@ -7,9 +7,6 @@
 			<result name="showIndex" type="velocity">
 				/WEB-INF/vm/index.vm
 			</result>
-			<result name="showAdd">/WEB-INF/jsp/business/distcommmgr/distinct/add.jsp</result>
-			<result name="showUpdate">/WEB-INF/jsp/business/distcommmgr/distinct/update.jsp</result>
-			<result name="showSetSubDist">/WEB-INF/jsp/business/distticommmgr/distinct/showSetSubDist.jsp</result>
 		</action>
 	</package>
 </struts>
