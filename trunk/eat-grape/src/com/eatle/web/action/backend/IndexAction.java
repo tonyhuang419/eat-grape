@@ -36,7 +36,7 @@ public class IndexAction extends BaseAction
 		//request.setAt	tribute("allMenuHtml", allMenuHtml);
 		
 		//FIX 改为通过Priv里的is_show字段来显示
-		String allMenuHtml = privService.findAllPrivMenu(contextPath);
+		String allMenuHtml = privService.findAllPrivMenu(contextPath, allPrivs);
 		request.setAttribute("allMenuHtml", allMenuHtml);
 		
 		

@@ -47,8 +47,8 @@ public class MenuTest extends BaseTest{
 //		System.out.println(allMenu);
 		
 		//--------------
-		String allMenu1 = privService.findAllPrivMenu("/eatle");
-		System.out.println(allMenu1);
+//		String allMenu1 = privService.findAllPrivMenu("/eatle");
+//		System.out.println(allMenu1);
 		
 	}
 	
