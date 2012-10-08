@@ -1,7 +1,7 @@
 package com.eatle.web.action.backend.foundation.place;
 
-import com.eatle.persistent.pojo.foundation.place.Shool;
-import com.eatle.service.foundation.place.IShoolService;
+import com.eatle.persistent.pojo.foundation.place.School;
+import com.eatle.service.foundation.place.ISchoolService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.utils.ReflectionUtils;
@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.util.Map;
 import javax.annotation.Resource;
 
-public class ShoolAction extends BaseAction {
+public class SchoolAction extends BaseAction {
     @Resource
-    private IShoolService shoolService;
+    private ISchoolService schoolService;
 
     private Pagination page;
 
-    private Shool shool;
+    private School school;
 
     public void setPage(Pagination page) {
         this.page = page;
@@ -26,8 +26,8 @@ public class ShoolAction extends BaseAction {
         return this.page;
     }
 
-    public void setShool(Shool shool) {
-        this.shool = shool;
+    public void setSchool(School school) {
+        this.school = school;
     }
 
     public String showIndex() {
@@ -40,7 +40,7 @@ public class ShoolAction extends BaseAction {
         if(params.containsKey("numPerPage")){
             pageSize = Integer.parseInt((String)params.get("numPerPage"));
         }
-        page = shoolService.findPagination(params, pageNum, pageSize);
+        page = schoolService.findPagination(params, pageNum, pageSize);
         return "showIndex";
     }
 
@@ -51,11 +51,11 @@ public class ShoolAction extends BaseAction {
     public void add() throws IOException {
         Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
         json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-        if(shool == null){
+        if(school == null){
             json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
             json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
         }else{
-            shoolService.add(shool);
+            schoolService.add(school);
         }
         super.writeMap(json);
     }
@@ -64,35 +64,35 @@ public class ShoolAction extends BaseAction {
         Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
         json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
         json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
-        if(shool == null){
+        if(school == null){
             json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
             json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
         }else{
-            shoolService.delete(shool);
+            schoolService.delete(school);
         }
         super.writeMap(json);
     }
 
     public String showUpdate() {
-        shool = shoolService.findById(shool.getId());
+        school = schoolService.findById(school.getId());
         return "showUpdate";
     }
 
     public void update() throws Exception {
         Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
         json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-        if(shool == null){
+        if(school == null){
             json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
             json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
         }else{
-        	Shool sl = shoolService.findById(shool.getId());
-        	ReflectionUtils.copyPorperties(sl, shool, new String[]{"name","englishName"});
-            shoolService.update(sl);
+        	School sl = schoolService.findById(school.getId());
+        	ReflectionUtils.copyPorperties(sl, school, new String[]{"name","englishName"});
+            schoolService.update(sl);
         }
         super.writeMap(json);
     }
 
-	public Shool getShool() {
-		return shool;
+	public School getSchool() {
+		return school;
 	}
 }
