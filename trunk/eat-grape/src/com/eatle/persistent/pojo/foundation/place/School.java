@@ -1,6 +1,6 @@
 package com.eatle.persistent.pojo.foundation.place;
 
-public class Shool {
+public class School {
     private Long id;
 
     private String name;

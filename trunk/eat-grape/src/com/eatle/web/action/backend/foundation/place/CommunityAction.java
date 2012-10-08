@@ -1,7 +1,7 @@
 package com.eatle.web.action.backend.foundation.place;
 
 import com.eatle.persistent.pojo.foundation.place.Community;
-import com.eatle.persistent.pojo.foundation.place.Shool;
+import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.service.foundation.place.ICommunityService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;

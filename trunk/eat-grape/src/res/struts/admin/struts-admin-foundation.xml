@@ -9,16 +9,16 @@
 			<result name="showSetSubDist">/WEB-INF/jsp/foundation/place/district/showSetSubDist.jsp</result>
 	</action>
   </package>
-  <package extends="default" name="shool" namespace="/foundation/place/shool">
-    <action class="com.eatle.web.action.backend.foundation.place.ShoolAction" method="{1}" name="*">
+  <package extends="default" name="school" namespace="/foundation/place/school">
+    <action class="com.eatle.web.action.backend.foundation.place.SchoolAction" method="{1}" name="*">
       <result name="showIndex">
-        /WEB-INF/jsp/foundation/place/shool/shool.jsp
+        /WEB-INF/jsp/foundation/place/school/school.jsp
       </result>
       <result name="showAdd">
-        /WEB-INF/jsp/foundation/place/shool/add.jsp
+        /WEB-INF/jsp/foundation/place/school/add.jsp
       </result>
       <result name="showUpdate">
-        /WEB-INF/jsp/foundation/place/shool/update.jsp
+        /WEB-INF/jsp/foundation/place/school/update.jsp
       </result>
     </action>
   </package>

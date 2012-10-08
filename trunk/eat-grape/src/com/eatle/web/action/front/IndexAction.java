@@ -17,10 +17,10 @@ import org.apache.taglibs.standard.lang.jstl.ArraySuffix;
 
 import com.eatle.persistent.pojo.foundation.place.Community;
 import com.eatle.persistent.pojo.foundation.place.District;
-import com.eatle.persistent.pojo.foundation.place.Shool;
+import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.service.foundation.place.ICommunityService;
 import com.eatle.service.foundation.place.IDistrictService;
-import com.eatle.service.foundation.place.IShoolService;
+import com.eatle.service.foundation.place.ISchoolService;
 
 
 /**
@@ -37,7 +37,7 @@ public class IndexAction {
 	@Resource
     private ICommunityService communityService;
 	@Resource
-    private IShoolService shoolService;
+    private ISchoolService shoolService;
 	
 	private List<District> provinceList;
 //	private Map map = new HashMap();
@@ -59,13 +59,13 @@ public class IndexAction {
 				cityDist.setChildDistricts(areaList);
 				
 				//得到学校，社区
-				List<Shool> shoolList = shoolService.findAll();
+				List<School> shoolList = shoolService.findAll();
 				List<Community> communityList = communityService.findAll();
-				Map<Long,List<Shool>> shoolMap = pushShoolListIntoMap(shoolList);
+				Map<Long,List<School>> shoolMap = pushShoolListIntoMap(shoolList);
 				Map<Long,List<Community>> communityMap = pushCommunityListIntoMap(communityList);
 				if(areaList==null) areaList = Collections.emptyList();
 				for(District areaDist:areaList){
-					List<Shool> shools = shoolMap.get(areaDist.getId());
+					List<School> shools = shoolMap.get(areaDist.getId());
 					areaDist.setShools(shools);
 					List<Community> communities = communityMap.get(areaDist.getId());
 					areaDist.setCommunities(communities);
@@ -95,18 +95,18 @@ public class IndexAction {
 		return disMap;
 	}
 	
-	private Map<Long,List<Shool>> pushShoolListIntoMap(List<Shool> shoolList){
-		Map<Long,List<Shool>> shoolMap = new HashMap<Long, List<Shool>>();
+	private Map<Long,List<School>> pushShoolListIntoMap(List<School> shoolList){
+		Map<Long,List<School>> shoolMap = new HashMap<Long, List<School>>();
 		for(int i=0;i<shoolList.size();i++){
-			Shool shool = shoolList.get(i);
+			School shool = shoolList.get(i);
 			Long distinctId = shool.getDistrictId();
 			Long key = distinctId;
 			if(distinctId==null||distinctId==0){
 				key = 0L;
 			}
-			List<Shool> disList = shoolMap.get(key);
+			List<School> disList = shoolMap.get(key);
 			if(disList==null){
-				disList = new ArrayList<Shool>();
+				disList = new ArrayList<School>();
 			}
 			disList.add(shool);
 			shoolMap.put(key, disList);

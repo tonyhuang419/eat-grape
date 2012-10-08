@@ -3,7 +3,7 @@ package com.eatle.persistent.pojo.foundation.place;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoolCriteria {
+public class SchoolCriteria {
     protected String orderByClause;
 
     protected boolean district;
@@ -16,7 +16,7 @@ public class ShoolCriteria {
     //每页大小
     private int pageSize;
 
-    public ShoolCriteria() {
+    public SchoolCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -85,7 +85,7 @@ public class ShoolCriteria {
         return this.pageSize;
     }
 
-    public ShoolCriteria(int pageSize, int startIndex) {
+    public SchoolCriteria(int pageSize, int startIndex) {
         this();
         this.pageSize=pageSize;
         this.startIndex=startIndex;
