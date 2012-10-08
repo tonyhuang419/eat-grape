@@ -9,12 +9,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.eatle.persistent.mapper.PrivMapper;
-import com.eatle.persistent.pojo.system.basedata.Menu;
+//import com.eatle.persistent.pojo.system.basedata.Menu;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivTree;
-import com.eatle.persistent.pojo.system.useradmin.Role;
-import com.eatle.persistent.pojo.system.useradmin.RoleCriteria;
+//import com.eatle.persistent.pojo.system.useradmin.Role;
+//import com.eatle.persistent.pojo.system.useradmin.RoleCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria.Criteria;
 import com.eatle.service.system.useradmin.IPrivService;
 import com.eatle.utils.Pagination;
@@ -31,6 +31,8 @@ public class PrivServiceImpl implements IPrivService
 {
 	@Resource
 	private PrivMapper privMapper;
+	
+	private Map<String, Priv> allPrivs;
 
 	@Override
 	public Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize)
@@ -199,15 +201,18 @@ public class PrivServiceImpl implements IPrivService
 		return temp;
 	}
 	
-	//----------
 	@Override
-	public String findAllPrivMenu(String contextName)
+	public String findAllPrivMenu(String contextName, Map<String, Priv> allPrivs)
 	{
+		this.allPrivs = allPrivs;
 		StringBuffer allMenuBuffer = new StringBuffer();
 		for(Priv priv : findRootPrivMenu())
 		{
-			assembleRootPrivMenu(priv, allMenuBuffer);
-			assembleChildPrivMenu(priv, allMenuBuffer,contextName);
+//			if(allPrivs.get(priv.getAction()) != null)
+//			{
+				assembleRootPrivMenu(priv, allMenuBuffer);
+				assembleChildPrivMenu(priv, allMenuBuffer,contextName);
+//			}
 		}
 		return allMenuBuffer.toString();
 	}
@@ -229,7 +234,7 @@ public class PrivServiceImpl implements IPrivService
 		allMenuBuffer.append("</div>\n");
 		allMenuBuffer.append("<div class=\"accordionContent\">\n");
 	}
-	public void assembleChildPrivMenu(Priv priv, StringBuffer allMenuBuffer,String contextName)
+	public void assembleChildPrivMenu(Priv priv, StringBuffer allMenuBuffer, String contextName)
 	{
 		allMenuBuffer.append("<ul class=\"tree treeFolder collapse\">\n");
 		
@@ -242,31 +247,32 @@ public class PrivServiceImpl implements IPrivService
 		allMenuBuffer.append("</div>\n");
 	}
 	
-	public void findChildPrivMenu(List<Priv> parentPrivMenu, StringBuffer allMenuBuffer,String contextName)
+	public void findChildPrivMenu(List<Priv> parentPrivMenu, StringBuffer allMenuBuffer, String contextName)
 	{
 		int childMenuSize = 0;
 		for(Priv priv : parentPrivMenu)
 		{
-			PrivCriteria privCriteria = new PrivCriteria();
-			Criteria criteria = privCriteria.createCriteria();
-			criteria.andPIdEqualTo(priv.getId());
-			criteria.andIsShowEqualTo((byte)1);
-			List<Priv> childPrivMenu = findByCriteria(privCriteria);
-			childMenuSize = childPrivMenu.size();
-			if(childMenuSize > 0)
-			{
-				allMenuBuffer.append("<li><a>" + priv.getMeueName() + "</a>\n<ul>\n");
-				findChildPrivMenu(childPrivMenu, allMenuBuffer,contextName);
-			}
-			else
-			{
-				allMenuBuffer.append("<li><a href=\"" + contextName+"/"+priv.getAction() + "?navTabId=" + priv.getId() 
-						+ "&action=" + priv.getAction() + "\" target=\"navTab\" rel=\"" + priv.getId()
-						+ "\">" + priv.getMeueName() + "</a></li>\n");
-			}
+//			if(allPrivs.get(priv.getAction()) != null)
+//			{
+				PrivCriteria privCriteria = new PrivCriteria();
+				Criteria criteria = privCriteria.createCriteria();
+				criteria.andPIdEqualTo(priv.getId());
+				criteria.andIsShowEqualTo((byte)1);
+				List<Priv> childPrivMenu = findByCriteria(privCriteria);
+				childMenuSize = childPrivMenu.size();
+				if(childMenuSize > 0)
+				{
+					allMenuBuffer.append("<li><a>" + priv.getMeueName() + "</a>\n<ul>\n");
+					findChildPrivMenu(childPrivMenu, allMenuBuffer,contextName);
+				}
+				else
+				{
+					allMenuBuffer.append("<li><a href=\"" + contextName+"/"+priv.getAction() + "?navTabId=" + priv.getId() 
+							+ "&action=" + priv.getAction() + "\" target=\"navTab\" rel=\"" + priv.getId()
+							+ "\">" + priv.getMeueName() + "</a></li>\n");
+				}
+//			}
 		}
-//		if(childMenuSize > 0)
 		allMenuBuffer.append("</ul>\n</li>\n");
 	}
-	
 }

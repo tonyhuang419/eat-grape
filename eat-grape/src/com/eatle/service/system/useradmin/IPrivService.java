@@ -1,5 +1,3 @@
-/**
- */
 package com.eatle.service.system.useradmin;
 
 import java.util.List;
@@ -73,8 +71,7 @@ public interface IPrivService
 	 */
 	List<PrivTree> findPrivTree();
 	
-	//-------------------
-	public String findAllPrivMenu(String contextName);
+	public String findAllPrivMenu(String contextName, Map<String, Priv> allPrivs);
 	
 	public List<Priv> findRootPrivMenu();
 }
