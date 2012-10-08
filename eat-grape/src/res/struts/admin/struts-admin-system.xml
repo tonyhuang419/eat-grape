@@ -7,7 +7,8 @@
 			<result name="showIndex">/WEB-INF/jsp/system/useradmin/account/account.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/system/useradmin/account/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/system/useradmin/account/update.jsp</result>
-			<!-- <result name="add" type="json">
+			<!-- 
+			<result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
 				<param name="includeProperties">resultMap.*</param>
 			</result>
@@ -31,11 +32,12 @@
 			<result name="showAdd">/WEB-INF/jsp/system/useradmin/role/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/system/useradmin/role/update.jsp</result>
 			<result name="showSetPriv">/WEB-INF/jsp/system/useradmin/role/setRolePriv.jsp</result>
-			<!-- <result name="add" type="json">
+			<!-- 
+			<result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
 				<param name="includeProperties">resultMap.*</param>
 			</result>
--->
+			-->
 		</action>
 	</package>
 
@@ -47,22 +49,14 @@
 			<result name="showUpdate">/WEB-INF/jsp/system/useradmin/priv/update.jsp</result>
 			<result name="showSetSubPriv">/WEB-INF/jsp/system/useradmin/priv/showSetSubPriv.jsp</result>
 			
-			<!-- <result name="add" type="json">
+			<!-- 
+			<result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
 				<param name="includeProperties">resultMap.*</param>
 			</result>
--->
+			-->
 		</action>
 	</package>
-	
-	<!-- 角色权限关联 -->
-  	<package extends="default" name="rolePrivilege" namespace="/system/useradmin/rolePrivilege">
-    	<action class="com.eatle.web.action.backend.system.useradmin.RolePrivilegeAction" method="{1}" name="*">
-	      	<result name="showIndex">/WEB-INF/jsp/rolePrivilege/rolePrivilege.jsp</result>
-	      	<result name="showAdd">/WEB-INF/jsp/rolePrivilege/add.jsp</result>
-      		<result name="showUpdate">/WEB-INF/jsp/rolePrivilege/update.jsp</result>
-    	</action>
-  	</package>
 	
 	<!-- 菜单管理 -->
 	<package extends="default" name="menu" namespace="/system/basedata/menu">
