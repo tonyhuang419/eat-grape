@@ -13,7 +13,22 @@
 				<label>名称拼音：</label>
 				<input name="community.pinyinName"  type="text" size="30"   value="${community.pinyinName}" alt="请输入名称拼音" />
 			</p>
-			
+				<label>所属区域：</label>
+				<select class="combox" id="w_combox_province" ref="w_combox_city" refUrl="${ctx}/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">
+					<option value="-1">省份</option>
+					<s:iterator value="#request.topLevelDistrict" id="d">
+						<option value="${d.id}">${d.name}</option>
+					</s:iterator>
+				</select>
+				<select class="combox" id="w_combox_city" ref="w_combox_area" refUrl="${ctx}/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">
+					<option value="" >城市</option>
+				</select>
+				<select class="combox" id="w_combox_area" ref="w_combox_district" refUrl="${ctx}/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">
+					<option value="">区县</option>
+				</select>
+				<select class="combox" id="w_combox_district" name="community.districtId">
+					<option value="">区域</option>
+				</select>
 		</div>
 		<div class="formBar">
 			<ul>

@@ -24,12 +24,12 @@
 		<div class="pageFormContent" layoutH="56">
 			<input type="hidden"  name="district.parentId" value="${param.pid}">
 			<p>
-				<label>地域名称：</label>
-				<input name="district.name" class="required" type="text" size="30"  alt="请输入地域名称"/>
+				<label>区域名称：</label>
+				<input name="district.name" class="required" type="text" size="30"  alt="请输入区域名称"/>
 			</p>
 			<p>
-				<label>地域拼音名称：</label>
-				<input name="district.pinyinName"  type="text" size="30"  alt="请输入地域拼音名称"/>
+				<label>名称拼音：</label>
+				<input name="district.pinyinName"  type="text" size="30"  alt="请输入名称拼音"/>
 			</p>
 		</div>
 		<div class="formBar">

@@ -7,12 +7,12 @@
 			<input name="district.id" type="hidden" value="${district.id}" />
 			<input name="district.parentId" type="hidden" value="${district.parentId}" />
 			<p>
-				<label>地域名称：</label>
-				<input name="district.name" class="required" type="text" size="30"  value="${district.name}" alt="请输入地域名称"/>
+				<label>区域名称：</label>
+				<input name="district.name" class="required" type="text" size="30"  value="${district.name}" alt="请输入区域名称"/>
 			</p>
 			<p>
-				<label>地域拼音名称：</label>
-				<input name="district.pinyinName"  type="text" size="30"   value="${district.pinyinName}" alt="请输入地域拼音名称" />
+				<label>名称拼音：</label>
+				<input name="district.pinyinName"  type="text" size="30"   value="${district.pinyinName}" alt="请输入名称拼音" />
 			</p>
 			
 		</div>

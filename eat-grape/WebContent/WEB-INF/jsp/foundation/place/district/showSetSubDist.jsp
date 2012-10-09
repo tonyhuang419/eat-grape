@@ -10,16 +10,16 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/foundation/place/district/showAdd.htm?pid=${param.pid}&action=tjdyzs&dialogId=${param.dialogId}" target="dialog"  mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>添加地域</span></a></li>
+			<li><a class="add" href="${ctx}/foundation/place/district/showAdd.htm?pid=${param.pid}&action=tjdyzs&dialogId=${param.dialogId}" target="dialog"  mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>添加区域</span></a></li>
 			<li><a class="delete" href="${ctx}/foundation/place/district/delete.htm?district.id={sid}&action=zxdysc&dialogId=${param.dialogId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/foundation/place/district/showUpdate.htm?district.id={sid}&action=xgdyzs&dialogId=${param.dialogId}" target="dialog"  mask="true"><span>修改</span></a></li>
+			<li><a class="edit" href="${ctx}/foundation/place/district/showUpdate.htm?district.id={sid}&action=xgdyzs&dialogId=${param.dialogId}" target="dialog"  mask="true"><span>区域修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="50">
 		<thead>
 			<tr align="center">
-				<th width="180">地域名称</th>
-				<th width="180">地域拼音名称</th>
+				<th width="180">区域名称</th>
+				<th width="180">名称拼音</th>
 				<th width="150">操作</th>
 			</tr>
 		</thead>
@@ -29,9 +29,9 @@
 					<td><s:property value="#item.name" /></td>
 					<td><s:property value="#item.pinyinName" /></td>
 					<td>
-						<a title="${item.name}-设置子地域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+						<a title="${item.name}-设置子区域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/foundation/place/district/showSetSubDist.htm?pid=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
-							width="800" height="480">设置子地域</a>
+							width="800" height="480">设置子区域</a>
 					</td>
 				</tr>
 			</s:iterator>
