@@ -27,7 +27,7 @@
 		</global-results>
 		
 		<!--验证码-->
-		<action name="verifycode" class="com.eatle.web.action.VerifyCodeAction">
+		<action name="verifycode" class="com.eatle.web.action.backend.VerifyCodeAction">
 			<result type="stream">
 				<param name="contentType">image/jpg</param>
 				<param name="inputName">verifyCode</param>
@@ -35,6 +35,7 @@
 			</result>
 		</action>
 	</package>
+	
 	<!-- session 和 permission 是默认的拦截器  -->
 	<package name="front_default" extends="front_session_permission_interceptor_not_default">
 		<result-types>
