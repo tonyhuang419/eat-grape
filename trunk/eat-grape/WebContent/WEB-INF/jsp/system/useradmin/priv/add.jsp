@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 <script type="text/javascript">
 	function refreshDialogAjaxDone(json){
-		//DWZ.ajaxDone(json);
+		DWZ.ajaxDone(json);
 		if(json.statusCode == DWZ.statusCode.ok){
 			if(json.dialogId){
 				if("closeCurrent" == json.callbackType){
@@ -47,9 +47,7 @@
 		<div class="formBar">
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li>
-					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
-				</li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
 			</ul>
 		</div>
 	</form>

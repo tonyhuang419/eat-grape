@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 <script type="text/javascript">
 	function refreshDialogAjaxDone(json){
-		//DWZ.ajaxDone(json);
+		DWZ.ajaxDone(json);
 		if(json.statusCode == DWZ.statusCode.ok){
 			if(json.dialogId){
 				if("closeCurrent" == json.callbackType){
@@ -10,8 +10,8 @@
 				}
 				// 刷新dialogId指定的dialog，url：刷新时可重新指定加载数据的url, data：为加载数据时所需的参数。
 				var dialogId = json.dialogId;
-				var pid = json.pid;
-				$.pdialog.reload("${ctx}/foundation/place/district/showSetSubDist.htm?pid=" + pid + "&action=zdylbzs&dialogId=" + dialogId, {}, dialogId);
+				var parentId = json.parentId;
+				$.pdialog.reload("${ctx}/foundation/place/district/showSetSubDist.htm?pid=" + parentId + "&action=zdylbzs&dialogId=" + dialogId, {}, dialogId);
 			}
 		}
 	}

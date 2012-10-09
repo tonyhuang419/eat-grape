@@ -10,8 +10,21 @@ public class School {
     private Integer hot;
 
     private Long districtId;
+    
+    // 临时字段
+    private String districtName;
 
-    public Long getId() {
+    public String getDistrictName()
+	{
+		return districtName;
+	}
+
+	public void setDistrictName(String districtName)
+	{
+		this.districtName = districtName;
+	}
+
+	public Long getId() {
         return id;
     }
 

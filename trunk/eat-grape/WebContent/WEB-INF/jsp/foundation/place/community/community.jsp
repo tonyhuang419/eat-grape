@@ -23,7 +23,7 @@
 					社区名称：<input type="text" name="name" />
 				</td>
 				<td>
-					社区拼音名称：<input type="text" name="pinyinName" />
+					名称拼音：<input type="text" name="pinyinName" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -42,14 +42,14 @@
 		<ul class="toolBar">
 			<li><a class="add" href="${ctx}/foundation/place/community/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加社区</span></a></li>
 			<li><a class="delete" href="${ctx}/foundation/place/community/delete.htm?community.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/foundation/place/community/showUpdate.htm?community.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="edit" href="${ctx}/foundation/place/community/showUpdate.htm?community.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>社区修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
 				<th width="180">社区名称</th>
-				<th width="180">社区拼音名称</th>
+				<th width="180">名称拼音</th>
 				<th width="150">操作</th>
 			</tr>
 		</thead>

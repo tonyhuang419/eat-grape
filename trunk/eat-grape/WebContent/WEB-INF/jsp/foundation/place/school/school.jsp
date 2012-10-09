@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/foundation/place/shool/showIndex.htm?action=city_shool_area&TabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/foundation/place/school/showIndex.htm?action=city_school_area&TabId=${param.navTabId}">
 	
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
@@ -15,7 +15,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/foundation/place/shool/showIndex.htm?action=zxdyss" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/foundation/place/school/showIndex.htm?action=zxdyss" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -23,7 +23,7 @@
 					学校名称：<input type="text" name="name" />
 				</td>
 				<td>
-					学校拼音名称：<input type="text" name="englishName" />
+					英文名称：<input type="text" name="englishName" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -40,17 +40,17 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/foundation/place/shool/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加学校</span></a></li>
-			<li><a class="delete" href="${ctx}/foundation/place/shool/delete.htm?shool.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/foundation/place/shool/showUpdate.htm?shool.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="add" href="${ctx}/foundation/place/school/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加学校</span></a></li>
+			<li><a class="delete" href="${ctx}/foundation/place/school/delete.htm?school.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/foundation/place/school/showUpdate.htm?school.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>学校修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
 				<th width="180">学校名称</th>
-				<th width="180">学校拼音名称</th>
-				<th width="150">操作</th>
+				<th width="180">英文名称</th>
+				<th width="150">所属区域</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -59,9 +59,7 @@
 					<td><s:property value="#item.name" /></td>
 					<td><s:property value="#item.englishName" /></td>
 					<td>
-						<a title="${item.name}-关联区域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href=""
-							width="800" height="480">关联区域</a>
+						<s:property value="#item.districtName" />
 					</td>
 				</tr>
 			</s:iterator>

@@ -15,7 +15,7 @@ public class District {
     //业务数据
     private List<District> childDistricts;
     private List<Community> communities;
-    private List<School> shools;
+    private List<School> schools;
     
     public Long getId() {
         return id;
@@ -66,10 +66,10 @@ public class District {
 	}
 
 	public List<School> getShools() {
-		return shools;
+		return schools;
 	}
 
 	public void setShools(List<School> shools) {
-		this.shools = shools;
+		this.schools = shools;
 	}
 }
