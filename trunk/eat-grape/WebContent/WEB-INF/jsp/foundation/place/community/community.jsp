@@ -49,8 +49,8 @@
 		<thead>
 			<tr align="center">
 				<th width="180">社区名称</th>
-				<th width="180">名称拼音</th>
-				<th width="150">操作</th>
+				<th width="300">英文名称</th>
+				<th width="250">所属区域</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -59,9 +59,7 @@
 					<td><s:property value="#item.name" /></td>
 					<td><s:property value="#item.pinyinName" /></td>
 					<td>
-						<a title="${item.name}-关联区域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href=""
-							width="800" height="480">关联区域</a>
+						<s:property value="#item.districtName" />
 					</td>
 				</tr>
 			</s:iterator>

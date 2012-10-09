@@ -49,8 +49,8 @@
 		<thead>
 			<tr align="center">
 				<th width="180">学校名称</th>
-				<th width="180">英文名称</th>
-				<th width="150">所属区域</th>
+				<th width="300">英文名称</th>
+				<th width="250">所属区域</th>
 			</tr>
 		</thead>
 		<tbody>

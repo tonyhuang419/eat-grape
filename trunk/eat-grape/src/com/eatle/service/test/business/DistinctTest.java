@@ -1,7 +1,11 @@
 package com.eatle.service.test.business; 
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import org.junit.Test;
 
+import com.eatle.persistent.pojo.foundation.place.District;
 import com.eatle.service.foundation.place.IDistrictService;
 import com.eatle.service.test.BaseTest;
 
@@ -19,8 +23,11 @@ public class DistinctTest extends BaseTest
 	{
 		System.out.println(districtService.findAll().size());
 		StringBuffer a = new StringBuffer();
+		LinkedList<District> list = new LinkedList<District>();
 		districtService.findAllFatherById(37L, a);
 		System.out.println(a);
+		for(District d : list)
+			System.out.println(d.getName());
 	}
 }
  

@@ -69,7 +69,7 @@ public class SchoolServiceImpl implements ISchoolService
 		for(School s : schools)
 		{
 			StringBuffer sb = new StringBuffer();
-			districtService.findAllFatherById(s.getDistrictId(), sb);
+			districtService.findAllFatherById(s.getDistrictId() == null ? -1 : s.getDistrictId(), sb);
 			s.setDistrictName(StringUtil.reverseStrAsSplitStr(sb.toString(), ";"));
 			items.add(s);
 		}
