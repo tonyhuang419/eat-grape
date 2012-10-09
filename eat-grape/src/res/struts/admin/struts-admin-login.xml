@@ -6,7 +6,7 @@
 	
 		<!-- 登陆页面 -->
 		<action name="index" class="com.eatle.web.action.backend.LoginAction">
-			<result name="input">/WEB-INF/jsp/login.jsp</result>
+			<result name="input">/WEB-INF/jsp/admin/login.jsp</result>
 		</action>
 		
 		<!-- 登陆 -->
@@ -24,7 +24,7 @@
 		
 		<action name="home" class="com.eatle.web.action.backend.IndexAction" method="index">
 			<interceptor-ref name="sessionInterceptorStack"></interceptor-ref>
-			<result>/WEB-INF/jsp/index.jsp</result>
+			<result>/WEB-INF/jsp/admin/index.jsp</result>
 		</action>
 		
 	</package>

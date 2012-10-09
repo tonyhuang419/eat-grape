@@ -2,11 +2,11 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<!-- 账号管理 -->
-	<package extends="default" name="account" namespace="/system/useradmin/account">
+	<package extends="default" name="account" namespace="/admin/system/useradmin/account">
 		<action class="com.eatle.web.action.backend.system.useradmin.UserAction" method="{1}" name="*">
-			<result name="showIndex">/WEB-INF/jsp/system/useradmin/account/account.jsp</result>
-			<result name="showAdd">/WEB-INF/jsp/system/useradmin/account/add.jsp</result>
-			<result name="showUpdate">/WEB-INF/jsp/system/useradmin/account/update.jsp</result>
+			<result name="showIndex">/WEB-INF/jsp/admin/system/useradmin/account/account.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/useradmin/account/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/useradmin/account/update.jsp</result>
 			<!-- 
 			<result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
@@ -26,12 +26,12 @@
 	</package>
 	
 	<!-- 角色管理 -->
-	<package extends="default" name="role" namespace="/system/useradmin/role">
+	<package extends="default" name="role" namespace="/admin/system/useradmin/role">
 		<action class="com.eatle.web.action.backend.system.useradmin.RoleAction" method="{1}" name="*">
-			<result name="showIndex">/WEB-INF/jsp/system/useradmin/role/role.jsp</result>
-			<result name="showAdd">/WEB-INF/jsp/system/useradmin/role/add.jsp</result>
-			<result name="showUpdate">/WEB-INF/jsp/system/useradmin/role/update.jsp</result>
-			<result name="showSetPriv">/WEB-INF/jsp/system/useradmin/role/setRolePriv.jsp</result>
+			<result name="showIndex">/WEB-INF/jsp/admin/system/useradmin/role/role.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/useradmin/role/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/useradmin/role/update.jsp</result>
+			<result name="showSetPriv">/WEB-INF/jsp/admin/system/useradmin/role/setRolePriv.jsp</result>
 			<!-- 
 			<result name="add" type="json">
 				<param name="ignoreHierarchy">false</param>   
@@ -42,12 +42,12 @@
 	</package>
 
 	<!-- 权限管理 -->
-	<package extends="default" name="priv" namespace="/system/useradmin/priv">
+	<package extends="default" name="priv" namespace="/admin/system/useradmin/priv">
 		<action class="com.eatle.web.action.backend.system.useradmin.PrivAction" method="{1}" name="*">
-			<result name="showIndex">/WEB-INF/jsp/system/useradmin/priv/priv.jsp</result>
-			<result name="showAdd">/WEB-INF/jsp/system/useradmin/priv/add.jsp</result>
-			<result name="showUpdate">/WEB-INF/jsp/system/useradmin/priv/update.jsp</result>
-			<result name="showSetSubPriv">/WEB-INF/jsp/system/useradmin/priv/showSetSubPriv.jsp</result>
+			<result name="showIndex">/WEB-INF/jsp/admin/system/useradmin/priv/priv.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/useradmin/priv/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/useradmin/priv/update.jsp</result>
+			<result name="showSetSubPriv">/WEB-INF/jsp/admin/system/useradmin/priv/showSetSubPriv.jsp</result>
 			
 			<!-- 
 			<result name="add" type="json">
@@ -59,11 +59,11 @@
 	</package>
 	
 	<!-- 菜单管理 -->
-	<package extends="default" name="menu" namespace="/system/basedata/menu">
+	<package extends="default" name="menu" namespace="/admin/system/basedata/menu">
 		<action class="com.eatle.web.action.backend.system.basedata.MenuAction" method="{1}" name="*">
-			<result name="showIndex">/WEB-INF/jsp/system/basedata/menu/menu.jsp</result>
-			<result name="showAdd">/WEB-INF/jsp/system/basedata/menu/add.jsp</result>
-      		<result name="showUpdate">/WEB-INF/jsp/system/basedata/menu/update.jsp</result>
+			<result name="showIndex">/WEB-INF/jsp/admin/system/basedata/menu/menu.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/basedata/menu/add.jsp</result>
+      		<result name="showUpdate">/WEB-INF/jsp/admin/system/basedata/menu/update.jsp</result>
     	</action>
 	</package>
 </struts>
