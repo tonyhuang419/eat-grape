@@ -1,6 +1,7 @@
 package com.eatle.web.action.backend.foundation.place;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import com.eatle.persistent.pojo.foundation.place.DistrictCriteria;
 import com.eatle.persistent.pojo.foundation.place.DistrictCriteria.Criteria;
 import com.eatle.service.foundation.place.IDistrictService;
 import com.eatle.utils.DwzAjaxJsonUtil;
+import com.eatle.utils.JsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 
@@ -40,13 +42,16 @@ public class DistrictAction extends BaseAction {
         return "showIndex";
     }
 
-    public String showAdd() {
+    public String showAdd() 
+    {
         return "showAdd";
     }
 
     public void add() throws IOException {
         Map<String,Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
         json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
+		json.put(DwzAjaxJsonUtil.KEY_DIALOGID, dialogId);
+		json.put("parentId", district.getParentId());
         if(district == null){
             json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
             json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
@@ -98,6 +103,33 @@ public class DistrictAction extends BaseAction {
 
 		return "showSetSubDist";
 	}
+    
+    // 根据父区域ID获取所有子区域的集合
+    public void getDistrictsByParentId() throws IOException
+    {
+    	DistrictCriteria dc = new DistrictCriteria();
+    	Criteria criteria = dc.createCriteria();
+    	Long parentId = district.getParentId();
+    	if(parentId == 0L)
+    	{
+    		criteria.andParentIdIsNull();
+    	}
+    	else
+    	{
+    		criteria.andParentIdEqualTo(parentId);
+    	}
+    	List<District> distincts = districtService.findByCriteria(dc);
+    	
+    	Map<Long, String> districtsMap = new HashMap<Long, String>();
+    	for(District d : distincts)
+    	{
+    		districtsMap.put(d.getId(), d.getName());
+    	}
+//    	writeMap(districtsMap);
+    	response.setContentType("text/html;charset=utf-8");
+    	response.setCharacterEncoding("utf-8");
+    	response.getWriter().write(JsonUtil.map2Json(districtsMap));
+    }
     
     public void setPage(Pagination page) {
         this.page = page;

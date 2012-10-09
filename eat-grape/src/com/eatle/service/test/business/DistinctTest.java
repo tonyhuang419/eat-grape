@@ -18,6 +18,9 @@ public class DistinctTest extends BaseTest
 	public void test()
 	{
 		System.out.println(districtService.findAll().size());
+		StringBuffer a = new StringBuffer();
+		districtService.findAllFatherById(37L, a);
+		System.out.println(a);
 	}
 }
  

@@ -3,36 +3,24 @@
 <struts>
   <package extends="default" name="district" namespace="/foundation/place/district">
     <action name="*" class="com.eatle.web.action.backend.foundation.place.DistrictAction" method="{1}">
-			<result name="showIndex">/WEB-INF/jsp/foundation/place/district/district.jsp</result>
-			<result name="showAdd">/WEB-INF/jsp/foundation/place/district/add.jsp</result>
-			<result name="showUpdate">/WEB-INF/jsp/foundation/place/district/update.jsp</result>
-			<result name="showSetSubDist">/WEB-INF/jsp/foundation/place/district/showSetSubDist.jsp</result>
+		<result name="showIndex">/WEB-INF/jsp/foundation/place/district/district.jsp</result>
+		<result name="showAdd">/WEB-INF/jsp/foundation/place/district/add.jsp</result>
+		<result name="showUpdate">/WEB-INF/jsp/foundation/place/district/update.jsp</result>
+		<result name="showSetSubDist">/WEB-INF/jsp/foundation/place/district/showSetSubDist.jsp</result>
 	</action>
   </package>
   <package extends="default" name="school" namespace="/foundation/place/school">
     <action class="com.eatle.web.action.backend.foundation.place.SchoolAction" method="{1}" name="*">
-      <result name="showIndex">
-        /WEB-INF/jsp/foundation/place/school/school.jsp
-      </result>
-      <result name="showAdd">
-        /WEB-INF/jsp/foundation/place/school/add.jsp
-      </result>
-      <result name="showUpdate">
-        /WEB-INF/jsp/foundation/place/school/update.jsp
-      </result>
+      <result name="showIndex">/WEB-INF/jsp/foundation/place/school/school.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/foundation/place/school/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/foundation/place/school/update.jsp</result>
     </action>
   </package>
   <package extends="default" name="community" namespace="/foundation/place/community">
     <action  name="*" class="com.eatle.web.action.backend.foundation.place.CommunityAction" method="{1}">
-      <result name="showIndex">
-        /WEB-INF/jsp/foundation/place/community/community.jsp
-      </result>
-      <result name="showAdd">
-        /WEB-INF/jsp/foundation/place/community/add.jsp
-      </result>
-      <result name="showUpdate">
-        /WEB-INF/jsp/foundation/place/community/update.jsp
-      </result>
+      <result name="showIndex">/WEB-INF/jsp/foundation/place/community/community.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/foundation/place/community/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/foundation/place/community/update.jsp</result>
     </action>
   </package>
 </struts>

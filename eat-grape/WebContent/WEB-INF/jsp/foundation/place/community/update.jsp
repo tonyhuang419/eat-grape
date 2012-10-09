@@ -6,12 +6,12 @@
 		<div class="pageFormContent" layoutH="56">
 			<input name="community.id" type="hidden" value="${community.id}" />
 			<p>
-				<label>地域名称：</label>
-				<input name="community.name" class="required" type="text" size="30"  value="${community.name}" alt="请输入地域名称"/>
+				<label>社区名称：</label>
+				<input name="community.name" class="required" type="text" size="30"  value="${community.name}" alt="请输入社区名称"/>
 			</p>
 			<p>
-				<label>地域拼音名称：</label>
-				<input name="community.pinyinName"  type="text" size="30"   value="${community.pinyinName}" alt="请输入地域拼音名称" />
+				<label>名称拼音：</label>
+				<input name="community.pinyinName"  type="text" size="30"   value="${community.pinyinName}" alt="请输入名称拼音" />
 			</p>
 			
 		</div>

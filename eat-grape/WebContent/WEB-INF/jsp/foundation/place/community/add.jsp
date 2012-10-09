@@ -27,8 +27,8 @@
 				<input name="community.name" class="required" type="text" size="30"  alt="请输入社区名称"/>
 			</p>
 			<p>
-				<label>社区拼音名称：</label>
-				<input name="community.pinyinName"  type="text" size="30"  alt="请输入社区拼音名称"/>
+				<label>名称拼音：</label>
+				<input name="community.pinyinName"  type="text" size="30"  alt="请输入名称拼音"/>
 			</p>
 		</div>
 		<div class="formBar">

@@ -1,8 +1,14 @@
 package com.eatle.service.test.system; 
 
+import java.util.List;
+
 import org.junit.Test;
 
+import com.eatle.persistent.pojo.foundation.place.District;
+import com.eatle.persistent.pojo.foundation.place.DistrictCriteria;
+import com.eatle.persistent.pojo.foundation.place.DistrictCriteria.Criteria;
 import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.service.foundation.place.IDistrictService;
 import com.eatle.service.system.useradmin.IRoleService;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.service.test.BaseTest;
@@ -15,6 +21,7 @@ import com.eatle.service.test.BaseTest;
 public class UserTest extends BaseTest{
 
 	private static IUserService userService  = (IUserService) ctx.getBean("userService");
+	private static IDistrictService districtService  = (IDistrictService) ctx.getBean("districtService");
 
 	@Test
 	public void test()
@@ -29,6 +36,15 @@ public class UserTest extends BaseTest{
 	@Test
 	public void b()
 	{
-		
+
+    	DistrictCriteria dc = new DistrictCriteria();
+    	Criteria criteria = dc.createCriteria();
+    	Long parentId = null;
+    	if(parentId == null)
+    		criteria.andParentIdIsNull();
+    	else
+    		criteria.andParentIdEqualTo(parentId);
+    	List<District> distincts = districtService.findByCriteria(dc);
+    	System.out.println(distincts.size());
 	}
 }
