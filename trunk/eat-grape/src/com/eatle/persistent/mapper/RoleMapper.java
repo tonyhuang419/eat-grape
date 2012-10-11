@@ -26,5 +26,6 @@ public interface RoleMapper
 	long selectCountByCriteria(RoleCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<Role> selectByMap(Map paramMap);
 }

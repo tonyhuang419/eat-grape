@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/merchant/list/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${param.merchantId}&action=account_mgr&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -8,29 +8,30 @@
 	
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="merchantName" value="${param.merchantName}" />
-	<input type="hidden" name="merchantAddress" value="${param.merchantAddress}" />
-	<input type="hidden" name="legalName" value="${param.legalName}" />
-	<input type="hidden" name="legalPhone" value="${param.legalPhone}" />
+	<input type="hidden" name="name" value="${param.name}" />
+	<input type="hidden" name="address" value="${param.address}" />
+	<input type="hidden" name="contactPhone" value="${param.contactPhone}" />
+	<input type="hidden" name="businessHours" value="${param.businessHours}" />
 </form>
 
 
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/list/showIndex.htm?action=zxzhss" method="post">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${param.merchantId}&action=zxzhss" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					商家名称：<input type="text" name="merchantName" />
+					餐厅名称：<input type="text" name="name" />
 				</td>
 				<td>
-					商家地址：<input type="text" name="merchantAddress" />
+					餐厅地址：<input type="text" name="address" />
 				</td>
 				<td>
-					法定人：<input type="text" name="legalName" />
+					联系电话：<input type="text" name="contactPhone" />
 				</td>
 				<td>
-					法定人电话：<input type="text" name="legalPhone" />
+					营业时间：
+				<input type="text" name="businessHours" class="date" format="HH:mm" readonly="true"/>
 				</td>
 				<td>
 					<div class="subBar">
@@ -47,42 +48,46 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/merchant/list/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="550" height="450"><span>添加商家</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/merchant/list/delete.htm?merchant.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/merchant/list/showUpdate.htm?merchant.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="550" height="450"><span>商家修改</span></a></li>
+			<li><a class="add" href="${ctx}/admin/merchant/restaurant/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="550" height="450"><span>添加商家</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/merchant/restaurant/delete.htm?restaurant.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/merchant/restaurant/showUpdate.htm?restaurant.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="550" height="450"><span>商家修改</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/merchant/list/downXls.htm?fileName=MerchantData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
+			<li><a class="icon" href="${ctx}/admin/merchant/restaurant/downXls.htm?fileName=MerchantData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="150">商家名称</th>
-				<th width="150">商家电话</th>
-				<th width="180">商家邮箱</th>
-				<th width="120">法定人</th>
-				<th width="150">法定人电话</th>
+				<th width="150">餐厅名称</th>
+				<th width="150">联系人</th>
+				<th width="180">联系电话</th>
+				<th width="120">联系邮箱</th>
+				<th width="150">营业时间</th>
 				<th width="120">详细信息</th>
-				<th width="120">操作</th>
+				<th width="140">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
 				<tr target="sid_user" rel="${item.id}" align="center">
-					<td>${item.merchantName}</td>
-					<td>${item.merchantPhone}</td>
-					<td>${item.merchantEmail}</td>
-					<td>${item.legalName}</td>
-					<td>${item.legalPhone}</td>
+					<td>${item.name}</td>
+					<td>${item.contactName}</td>
+					<td>${item.contactPhone}</td>
+					<td>${item.contactEmail}</td>
+					<td>${item.businessHours}</td>
 					<td>
-						<a title="${item.merchantName}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/list/showDetail.htm?merchant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+						<a title="${item.name}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/merchant/restaurant/showDetail.htm?restaurant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
 							width="700" height="400">查  看</a>
 					</td>
 					<td>
-						<a title="${item.merchantName}-餐厅管理" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/list/showDetail.htm?merchant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
-							width="700" height="400">餐厅管理</a>
+						<a title="${item.name}-Logo设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/merchant/restaurant/showLogoUpload.htm?restaurant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							width="500" height="250">设置Logo</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a title="${item.name}-送餐地点" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/merchant/restaurant/showDetail.htm?restaurant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							width="700" height="400">送餐地点</a>
 					</td>
 				</tr>
 			</s:iterator>

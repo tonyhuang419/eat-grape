@@ -25,5 +25,6 @@ public interface CommunityMapper
 	long selectCountByCriteria(CommunityCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<Community> selectByMap(Map paramMap);
 }

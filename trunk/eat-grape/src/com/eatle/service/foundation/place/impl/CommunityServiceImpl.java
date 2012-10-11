@@ -2,7 +2,6 @@ package com.eatle.service.foundation.place.impl;
 
 import com.eatle.persistent.mapper.CommunityMapper;
 import com.eatle.persistent.pojo.foundation.place.Community;
-import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.persistent.pojo.foundation.place.CommunityCriteria.Criteria;
 import com.eatle.persistent.pojo.foundation.place.CommunityCriteria;
 import com.eatle.service.foundation.place.ICommunityService;

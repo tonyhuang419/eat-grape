@@ -25,5 +25,6 @@ public interface SchoolMapper
 	long selectCountByCriteria(SchoolCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<School> selectByMap(Map paramMap);
 }

@@ -63,7 +63,7 @@
 				<th width="120">法定人</th>
 				<th width="150">法定人电话</th>
 				<th width="100">详细信息</th>
-				<th width="240">操  作</th>
+				<th width="210">操  作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -80,8 +80,8 @@
 							width="700" height="400">查  看</a>
 					</td>
 					<td>
-						<a title="${item.merchantName}-餐厅管理" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/restaurant/showIndex.htm?merchant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+						<a title="${item.merchantName}-餐厅管理" target="navTab" rel="${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${item.id}&action=zdylbzs&navTabId=${item.id}"
 							width="700" height="400">管理餐厅</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.merchantName}-Logo设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 

@@ -26,6 +26,7 @@ public interface PrivMapper
 	long selectCountByCriteria(PrivCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<Priv> selectByMap(Map paramMap);
 
 	List<Priv> selectByRoleId(long roleId);

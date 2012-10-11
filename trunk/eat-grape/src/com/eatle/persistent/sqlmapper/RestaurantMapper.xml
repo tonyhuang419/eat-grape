@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.RestaurantMapper" >
+  <resultMap id="BaseResultMap" type="Restaurant" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="send_meals_speeding" property="sendMealsSpeeding" jdbcType="VARCHAR" />
+    <result column="send_up_price" property="sendUpPrice" jdbcType="VARCHAR" />
+    <result column="send_meals_description" property="sendMealsDescription" jdbcType="VARCHAR" />
+    <result column="send_meals_status" property="sendMealsStatus" jdbcType="SMALLINT" />
+    <result column="business_hours" property="businessHours" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
+    <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
+    <result column="merchant_id" property="merchantId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, send_meals_speeding, send_up_price, send_meals_description, send_meals_status, 
+    business_hours, address, logo_url, contact_name, contact_phone, contact_email, contact_qq, 
+    merchant_id
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="RestaurantCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_restaurant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_restaurant
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_restaurant
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="Restaurant" >
+    insert into t_restaurant (id, name, send_meals_speeding, 
+      send_up_price, send_meals_description, send_meals_status, 
+      business_hours, address, logo_url, 
+      contact_name, contact_phone, contact_email, 
+      contact_qq, merchant_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sendMealsSpeeding,jdbcType=VARCHAR}, 
+      #{sendUpPrice,jdbcType=VARCHAR}, #{sendMealsDescription,jdbcType=VARCHAR}, #{sendMealsStatus,jdbcType=SMALLINT}, 
+      #{businessHours,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{contactEmail,jdbcType=VARCHAR}, 
+      #{contactQq,jdbcType=VARCHAR}, #{merchantId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="Restaurant" >
+    insert into t_restaurant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sendMealsSpeeding != null" >
+        send_meals_speeding,
+      </if>
+      <if test="sendUpPrice != null" >
+        send_up_price,
+      </if>
+      <if test="sendMealsDescription != null" >
+        send_meals_description,
+      </if>
+      <if test="sendMealsStatus != null" >
+        send_meals_status,
+      </if>
+      <if test="businessHours != null" >
+        business_hours,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="contactEmail != null" >
+        contact_email,
+      </if>
+      <if test="contactQq != null" >
+        contact_qq,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMealsSpeeding != null" >
+        #{sendMealsSpeeding,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUpPrice != null" >
+        #{sendUpPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMealsDescription != null" >
+        #{sendMealsDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMealsStatus != null" >
+        #{sendMealsStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="businessHours != null" >
+        #{businessHours,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Restaurant" >
+    update t_restaurant
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMealsSpeeding != null" >
+        send_meals_speeding = #{sendMealsSpeeding,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUpPrice != null" >
+        send_up_price = #{sendUpPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMealsDescription != null" >
+        send_meals_description = #{sendMealsDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMealsStatus != null" >
+        send_meals_status = #{sendMealsStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="businessHours != null" >
+        business_hours = #{businessHours,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        contact_qq = #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Restaurant" >
+    update t_restaurant
+    set name = #{name,jdbcType=VARCHAR},
+      send_meals_speeding = #{sendMealsSpeeding,jdbcType=VARCHAR},
+      send_up_price = #{sendUpPrice,jdbcType=VARCHAR},
+      send_meals_description = #{sendMealsDescription,jdbcType=VARCHAR},
+      send_meals_status = #{sendMealsStatus,jdbcType=SMALLINT},
+      business_hours = #{businessHours,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      contact_qq = #{contactQq,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="RestaurantCriteria" >
+    select count(1) 
+    from t_restaurant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_restaurant
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="sendMealsSpeeding != null" >
+        and send_meals_speeding = #{sendMealsSpeeding,jdbcType=VARCHAR}
+      </if>
+      <if test="sendUpPrice != null" >
+        and send_up_price = #{sendUpPrice,jdbcType=VARCHAR}
+      </if>
+      <if test="sendMealsDescription != null" >
+        and send_meals_description = #{sendMealsDescription,jdbcType=VARCHAR}
+      </if>
+      <if test="sendMealsStatus != null" >
+        and send_meals_status = #{sendMealsStatus,jdbcType=SMALLINT}
+      </if>
+      <if test="businessHours != null" >
+        and business_hours = #{businessHours,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null" >
+        and address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="logoUrl != null" >
+        and logo_url = #{logoUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="contactName != null" >
+        and contact_name = #{contactName,jdbcType=VARCHAR}
+      </if>
+      <if test="contactPhone != null" >
+        and contact_phone = #{contactPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="contactEmail != null" >
+        and contact_email = #{contactEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="contactQq != null" >
+        and contact_qq = #{contactQq,jdbcType=VARCHAR}
+      </if>
+      <if test="merchantId != null" >
+        and merchant_id = #{merchantId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+</mapper>

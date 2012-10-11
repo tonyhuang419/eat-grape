@@ -21,36 +21,43 @@ import com.eatle.db.DBManager;
  * @author xt
  * @date 2010-1-13 下午08:36:18
  */
-public class GlobalFilter implements Filter {
+public class GlobalFilter implements Filter
+{
+	private ServletContext context;
 
-     private ServletContext context;
+	/**
+	 * 过滤器初始化
+	 */
+	public void init(FilterConfig cfg) throws ServletException
+	{
+		this.context = cfg.getServletContext();
+	}
 
-     /**
-      * 过滤器初始化
-      */
-     public void init(FilterConfig cfg) throws ServletException {
-          this.context = cfg.getServletContext();
-     }
+	/**
+	 * 执行过滤操作
+	 */
+	public void doFilter(ServletRequest req, ServletResponse res,
+			FilterChain chain) throws IOException, ServletException
+	{
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
 
-     /**
-      * 执行过滤操作
-      */
-     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-          HttpServletRequest request = (HttpServletRequest) req;
-          HttpServletResponse response = (HttpServletResponse) res;
+		try
+		{
+			chain.doFilter(request, response);
+		}
+		finally
+		{
+			DBManager.closeConnection();
+		}
+	}
 
-          try {
-               chain.doFilter(request, response);
-          } finally {
-               DBManager.closeConnection();
-          }
-     }
+	/**
+	 * 过滤器释放资源
+	 */
+	public void destroy()
+	{
 
-     /**
-      * 过滤器释放资源
-      */
-     public void destroy() {
-          
-     }
+	}
 
 }

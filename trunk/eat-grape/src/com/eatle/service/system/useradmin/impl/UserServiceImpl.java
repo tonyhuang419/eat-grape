@@ -55,7 +55,7 @@ public class UserServiceImpl implements IUserService
 		}
 		else
 		{
-			if(users.get(0).getUserName().equals(oldUser.getUserName()))
+			if (users.get(0).getUserName().equals(oldUser.getUserName()))
 			{
 				result = userMapper.updateByPrimaryKey(user);
 			}
@@ -82,13 +82,11 @@ public class UserServiceImpl implements IUserService
 			}
 			if (queryMap.containsKey("type"))
 			{
-				criteria
-						.andTypeEqualTo(new Byte((String) queryMap.get("type")));
+				criteria.andTypeEqualTo(new Byte((String) queryMap.get("type")));
 			}
 			if (queryMap.containsKey("roleId"))
 			{
-				criteria.andRoleIdEqualTo(Long.parseLong((String) queryMap
-						.get("roleId")));
+				criteria.andRoleIdEqualTo(Long.parseLong((String) queryMap.get("roleId")));
 			}
 		}
 		// 设置分页参数
@@ -125,6 +123,7 @@ public class UserServiceImpl implements IUserService
 		return userMapper.find(user);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public LinkedHashMap<String, List> getExportData()
 	{

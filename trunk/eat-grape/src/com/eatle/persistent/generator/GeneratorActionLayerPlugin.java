@@ -161,6 +161,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter
 	 * @param recordLowerFullType
 	 * @param recordLowerFullType2
 	 */
+	@SuppressWarnings("unused")
 	private void addGetBaseRecordMethod(TopLevelClass topLevelClass,
 			IntrospectedTable introspectedTable, String recordFullType,
 			String recordLowerFullType)

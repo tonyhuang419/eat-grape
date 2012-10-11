@@ -1,5 +1,3 @@
-/**
- */
 package com.eatle.exception;
 
 /**
@@ -7,18 +5,22 @@ package com.eatle.exception;
  * 
  * @author Winter Lau
  */
-public class CacheException extends RuntimeException {
+public class CacheException extends RuntimeException
+{
+	private static final long serialVersionUID = 1L;
 
-     public CacheException(String s) {
-          super(s);
-     }
+	public CacheException(String s)
+	{
+		super(s);
+	}
 
-     public CacheException(String s, Throwable e) {
-          super(s, e);
-     }
+	public CacheException(String s, Throwable e)
+	{
+		super(s, e);
+	}
 
-     public CacheException(Throwable e) {
-          super(e);
-     }
-
+	public CacheException(Throwable e)
+	{
+		super(e);
+	}
 }

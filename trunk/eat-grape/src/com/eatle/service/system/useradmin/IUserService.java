@@ -46,7 +46,8 @@ public interface IUserService
 	 * @param currentPage 当前页
 	 * @param pageSize 每页大小
 	 */
-	Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize);
+	Pagination findPagination(Map<String, Object> queryMap, int currentPage,
+			int pageSize);
 
 	/**
 	 * @Description:
@@ -66,15 +67,16 @@ public interface IUserService
 	 * 
 	 */
 	List<User> findByCriteria(UserCriteria criteria);
-	
+
 	/**
 	 * @Description:
 	 * 
 	 */
 	User find(User user);
-	
+
 	/**
 	 * @Description:获取导出Excel需要的数据
 	 */
+	@SuppressWarnings("unchecked")
 	LinkedHashMap<String, List> getExportData();
 }

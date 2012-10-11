@@ -1,16 +1,12 @@
 package com.eatle.service.test.system; 
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.junit.Test;
 
 import com.eatle.persistent.pojo.system.basedata.Menu;
 import com.eatle.persistent.pojo.system.basedata.MenuCriteria;
 import com.eatle.service.system.basedata.IMenuService;
-import com.eatle.service.system.useradmin.IPrivService;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.test.BaseTest;
 
@@ -25,7 +21,7 @@ public class MenuTest extends BaseTest{
 	private static IRolePrivilegeService rpService  = (IRolePrivilegeService) ctx.getBean("rolePrivilegeService");
 	
 	
-	private static IPrivService privService  = (IPrivService) ctx.getBean("privService");
+//	private static IPrivService privService  = (IPrivService) ctx.getBean("privService");
 
 	@Test
 	public void test()
