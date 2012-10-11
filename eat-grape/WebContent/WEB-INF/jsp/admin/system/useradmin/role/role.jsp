@@ -9,8 +9,7 @@
 	
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="userName" value="${param.userName}" />
-	<input type="hidden" name="email" value="${param.email}" />
+	<input type="hidden" name="roleName" value="${param.roleName}" />
 </form>
 
 

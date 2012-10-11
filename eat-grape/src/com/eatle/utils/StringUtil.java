@@ -1,5 +1,7 @@
 package com.eatle.utils; 
 
+import java.util.UUID;
+
 /** @corpor  公司：深讯信科
  *  @author  作者：谭又中
  *  @explain 释义：
@@ -23,6 +25,18 @@ public class StringUtil
 		}
 		returnStr = returnStr.substring(0, returnStr.length() - 1);
 		return returnStr;
+	}
+
+	/**
+	 *  @deprecated: getUUID() ：构造上传文件保存的UUID文件名
+	 * 	@param fileName ：源文件名，用于获取文件拓展名
+	 */
+	public static String getUUIDName(String fileName)
+	{
+		String uuid = UUID.randomUUID().toString();
+		String fileType = fileName.substring(fileName.lastIndexOf("."));
+		
+		return uuid + fileType;		
 	}
 	
 	public static void main(String[] args)

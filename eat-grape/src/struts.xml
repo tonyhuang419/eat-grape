@@ -17,6 +17,9 @@
 	<constant name="struts.freemarker.templatesCache" value="true" />
 	<constant name="struts.configuration.xml.reload" value="true" />
 	
+	<!-- 国际化资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="upload"/>
+	
 	<constant name="struts.velocity.configfile" value="/WEB-INF/cnf/velocity.properties"></constant>
 	<constant name="struts.velocity.toolboxlocation" value="/WEB-INF/cnf/velocity-toolbox.xml"></constant>
 	

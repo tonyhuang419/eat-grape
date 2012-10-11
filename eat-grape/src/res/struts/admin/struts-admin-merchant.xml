@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts >
+  <!-- 商家相关 -->
+
+  <package name="merchant" namespace="/admin/merchant/list" extends="default" >
+	<!-- 增删改查 -->
+    <action name="*" class="com.eatle.web.action.backend.merchant.MerchantAction" method="{1}" >
+      	<result name="showIndex" >/WEB-INF/jsp/admin/merchant/list/merchant.jsp</result>
+      	<result name="showAdd" >/WEB-INF/jsp/admin/merchant/list/add.jsp</result>
+      	<result name="showUpdate" >/WEB-INF/jsp/admin/merchant/list/update.jsp</result>
+      	<result name="showDetail" >/WEB-INF/jsp/admin/merchant/list/detail.jsp</result>
+      	<result name="showLogoUpload" >/WEB-INF/jsp/admin/merchant/list/logoupload.jsp</result>
+    </action>
+    
+	<!-- 商家Logo上传 -->
+	<action name="merchantLogoUpload" class="com.eatle.web.action.backend.UploadAction" method="merchantLogoUpload">
+		<param name="savePath">/logo/logo_merchant</param>
+		<interceptor-ref name="fileUpload">
+			<param name="allowedTypes">
+				image/pjpeg, image/bmp, image/gif, image/x-png,
+				image/jpeg, image/bmp, image/gif, image/png
+			</param>
+			<param name="maximumSize">1048576</param>
+		</interceptor-ref>
+		<interceptor-ref name="baseInterceptorStack"/>
+		<result name="success">/WEB-INF/jsp/admin/merchant/list/logoupload.jsp</result>
+		<result name="input">/WEB-INF/jsp/admin/merchant/list/logoupload.jsp</result>
+	</action>
+	
+	<!-- 导出账号数据到Excel -->
+	<action name="downXls" class="com.eatle.web.action.backend.DownloadAction" method="downXls">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">merchantExcel</param>
+			<param name="contentDisposition">attachment;filename=${fileName}</param>
+			<param name="bufferSize">4096</param>
+		</result>
+	</action>
+  </package>
+</struts>

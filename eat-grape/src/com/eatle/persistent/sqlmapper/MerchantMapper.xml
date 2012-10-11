@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.MerchantMapper" >
+  <resultMap id="BaseResultMap" type="Merchant" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="legal_name" property="legalName" jdbcType="VARCHAR" />
+    <result column="legal_id_card" property="legalIdCard" jdbcType="VARCHAR" />
+    <result column="legal_home_address" property="legalHomeAddress" jdbcType="VARCHAR" />
+    <result column="legal_address" property="legalAddress" jdbcType="VARCHAR" />
+    <result column="legal_phone" property="legalPhone" jdbcType="VARCHAR" />
+    <result column="merchant_join_time" property="merchantJoinTime" jdbcType="DATE" />
+    <result column="merchant_logo_url" property="merchantLogoUrl" jdbcType="VARCHAR" />
+    <result column="merchant_name" property="merchantName" jdbcType="VARCHAR" />
+    <result column="merchant_phone" property="merchantPhone" jdbcType="VARCHAR" />
+    <result column="merchant_address" property="merchantAddress" jdbcType="VARCHAR" />
+    <result column="merchant_email" property="merchantEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, legal_name, legal_id_card, legal_home_address, legal_address, legal_phone, merchant_join_time, 
+    merchant_logo_url, merchant_name, merchant_phone, merchant_address, merchant_email
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="MerchantCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_merchant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_merchant
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_merchant
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="Merchant" >
+    insert into t_merchant (id, legal_name, legal_id_card, 
+      legal_home_address, legal_address, legal_phone, 
+      merchant_join_time, merchant_logo_url, merchant_name, 
+      merchant_phone, merchant_address, merchant_email
+      )
+    values (#{id,jdbcType=BIGINT}, #{legalName,jdbcType=VARCHAR}, #{legalIdCard,jdbcType=VARCHAR}, 
+      #{legalHomeAddress,jdbcType=VARCHAR}, #{legalAddress,jdbcType=VARCHAR}, #{legalPhone,jdbcType=VARCHAR}, 
+      #{merchantJoinTime,jdbcType=DATE}, #{merchantLogoUrl,jdbcType=VARCHAR}, #{merchantName,jdbcType=VARCHAR}, 
+      #{merchantPhone,jdbcType=VARCHAR}, #{merchantAddress,jdbcType=VARCHAR}, #{merchantEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="Merchant" >
+    insert into t_merchant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="legalName != null" >
+        legal_name,
+      </if>
+      <if test="legalIdCard != null" >
+        legal_id_card,
+      </if>
+      <if test="legalHomeAddress != null" >
+        legal_home_address,
+      </if>
+      <if test="legalAddress != null" >
+        legal_address,
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone,
+      </if>
+      <if test="merchantJoinTime != null" >
+        merchant_join_time,
+      </if>
+      <if test="merchantLogoUrl != null" >
+        merchant_logo_url,
+      </if>
+      <if test="merchantName != null" >
+        merchant_name,
+      </if>
+      <if test="merchantPhone != null" >
+        merchant_phone,
+      </if>
+      <if test="merchantAddress != null" >
+        merchant_address,
+      </if>
+      <if test="merchantEmail != null" >
+        merchant_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="legalName != null" >
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdCard != null" >
+        #{legalIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="legalHomeAddress != null" >
+        #{legalHomeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="legalAddress != null" >
+        #{legalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantJoinTime != null" >
+        #{merchantJoinTime,jdbcType=DATE},
+      </if>
+      <if test="merchantLogoUrl != null" >
+        #{merchantLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null" >
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantPhone != null" >
+        #{merchantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAddress != null" >
+        #{merchantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantEmail != null" >
+        #{merchantEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Merchant" >
+    update t_merchant
+    <set >
+      <if test="legalName != null" >
+        legal_name = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdCard != null" >
+        legal_id_card = #{legalIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="legalHomeAddress != null" >
+        legal_home_address = #{legalHomeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="legalAddress != null" >
+        legal_address = #{legalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantJoinTime != null" >
+        merchant_join_time = #{merchantJoinTime,jdbcType=DATE},
+      </if>
+      <if test="merchantLogoUrl != null" >
+        merchant_logo_url = #{merchantLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null" >
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantPhone != null" >
+        merchant_phone = #{merchantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAddress != null" >
+        merchant_address = #{merchantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantEmail != null" >
+        merchant_email = #{merchantEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Merchant" >
+    update t_merchant
+    set legal_name = #{legalName,jdbcType=VARCHAR},
+      legal_id_card = #{legalIdCard,jdbcType=VARCHAR},
+      legal_home_address = #{legalHomeAddress,jdbcType=VARCHAR},
+      legal_address = #{legalAddress,jdbcType=VARCHAR},
+      legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      <!-- merchant_join_time = #{merchantJoinTime,jdbcType=DATE}, -->
+      merchant_logo_url = #{merchantLogoUrl,jdbcType=VARCHAR},
+      merchant_name = #{merchantName,jdbcType=VARCHAR},
+      merchant_phone = #{merchantPhone,jdbcType=VARCHAR},
+      merchant_address = #{merchantAddress,jdbcType=VARCHAR},
+      merchant_email = #{merchantEmail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="MerchantCriteria" >
+    select count(1) 
+    from t_merchant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_merchant
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="legalName != null" >
+        and legal_name = #{legalName,jdbcType=VARCHAR}
+      </if>
+      <if test="legalIdCard != null" >
+        and legal_id_card = #{legalIdCard,jdbcType=VARCHAR}
+      </if>
+      <if test="legalHomeAddress != null" >
+        and legal_home_address = #{legalHomeAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="legalAddress != null" >
+        and legal_address = #{legalAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="legalPhone != null" >
+        and legal_phone = #{legalPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="merchantJoinTime != null" >
+        and merchant_join_time = #{merchantJoinTime,jdbcType=DATE}
+      </if>
+      <if test="merchantLogoUrl != null" >
+        and merchant_logo_url = #{merchantLogoUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="merchantName != null" >
+        and merchant_name = #{merchantName,jdbcType=VARCHAR}
+      </if>
+      <if test="merchantPhone != null" >
+        and merchant_phone = #{merchantPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="merchantAddress != null" >
+        and merchant_address = #{merchantAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="merchantEmail != null" >
+        and merchant_email = #{merchantEmail,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>
