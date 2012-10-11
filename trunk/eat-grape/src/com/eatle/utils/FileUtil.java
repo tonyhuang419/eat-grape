@@ -4,6 +4,7 @@ package com.eatle.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -237,9 +238,10 @@ public class FileUtil extends FileUtils {
 	 * 
 	 * @param from
 	 * @param to
+	 * @throws IOException 
 	 * @throws Exception
 	 */
-	public static void copy(File from, File to) throws Exception {
+	public static void copy(File from, File to) throws IOException   {
 		FileChannel writeChannel = null;
 		FileChannel readChannel = null;
 		ByteBuffer buffer = ByteBuffer.allocate(CONVERT_UNIT * 10);

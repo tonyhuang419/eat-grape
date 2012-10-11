@@ -22,10 +22,10 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.RichTextString;
 
 /**
- * @corpor 公司：深讯信科
- * @author 作者：谭又中
- * @explain 释义：数据导出到Excel
- * @version 日期：2012-9-14 下午05:50:06
+ * @corpor: 公司：深讯信科
+ * @author: 作者：谭又中
+ * @explain: 释义：数据导出到Excel
+ * @version: 日期：2012-9-14 下午05:50:06
  */
 @SuppressWarnings("deprecation")
 public class ExcelUtil

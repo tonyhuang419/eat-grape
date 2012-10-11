@@ -23,10 +23,29 @@
     	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.basedata.MenuCriteria"/>
     	
     	
-    	<!-- *****************************业务数据************************************* -->
+    	<!-- *****************************基础数据************************************* -->
     	
     	<!-- 城市/区域/地段 -->
     	<typeAlias alias="District" type="com.eatle.persistent.pojo.foundation.place.District"/>
     	<typeAlias alias="DistrictCriteria" type="com.eatle.persistent.pojo.foundation.place.DistrictCriteria"/>
+    	<!-- 社区/办公楼 -->
+    	<typeAlias alias="Community" type="com.eatle.persistent.pojo.foundation.place.Community"/>
+    	<typeAlias alias="CommunityCriteria" type="com.eatle.persistent.pojo.foundation.place.CommunityCriteria"/>
+    	<!-- 学校 -->
+    	<typeAlias alias="School" type="com.eatle.persistent.pojo.foundation.place.School"/>
+    	<typeAlias alias="SchoolCriteria" type="com.eatle.persistent.pojo.foundation.place.SchoolCriteria"/>
+    	
+    	
+    	<!-- *****************************商家管理************************************* -->
+    	
+    	<!-- 商家 -->
+    	<typeAlias alias="Merchant" type="com.eatle.persistent.pojo.merchant.Merchant"/>
+    	<typeAlias alias="MerchantCriteria" type="com.eatle.persistent.pojo.merchant.MerchantCriteria"/>
+    	
+    	
+    	<!-- *****************************订单管理************************************* -->
+    	
+    	
+    	<!-- *****************************顾客管理************************************* -->
     </typeAliases>
 </configuration>    

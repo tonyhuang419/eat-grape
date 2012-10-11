@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.eatle.persistent.mapper.CommunityMapper" >
-  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.foundation.place.Community" >
+  <resultMap id="BaseResultMap" type="Community" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="pinyin_name" property="pinyinName" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
   <sql id="Base_Column_List" >
     id, name, pinyin_name, hot, district_id
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.foundation.place.CommunityCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="CommunityCriteria" >
     select
     <if test="district" >
       district
@@ -68,13 +68,13 @@
     delete from t_community
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+  <insert id="insert" parameterType="Community" >
     insert into t_community (id, name, pinyin_name, 
       hot, district_id)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pinyinName,jdbcType=VARCHAR}, 
       #{hot,jdbcType=INTEGER}, #{districtId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+  <insert id="insertSelective" parameterType="Community" >
     insert into t_community
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+  <update id="updateByPrimaryKeySelective" parameterType="Community" >
     update t_community
     <set >
       <if test="name != null" >
@@ -129,7 +129,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.foundation.place.Community" >
+  <update id="updateByPrimaryKey" parameterType="Community" >
     update t_community
     set name = #{name,jdbcType=VARCHAR},
       pinyin_name = #{pinyinName,jdbcType=VARCHAR},
@@ -137,7 +137,7 @@
       district_id = #{districtId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.foundation.place.CommunityCriteria" >
+  <select id="selectCountByCriteria" resultType="long" parameterType="CommunityCriteria" >
     select count(1) 
     from t_community
     <if test="_parameter != null" >

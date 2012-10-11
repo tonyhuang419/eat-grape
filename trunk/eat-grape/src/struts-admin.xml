@@ -48,5 +48,7 @@
 	<include file="res/struts/admin/struts-admin-system.xml"></include>
 	<!-- 基础数据 -->
 	<include file="res/struts/admin/struts-admin-foundation.xml"></include>
+	<!-- 商家管理 -->
+	<include file="res/struts/admin/struts-admin-merchant.xml"></include>
 	
 </struts>
