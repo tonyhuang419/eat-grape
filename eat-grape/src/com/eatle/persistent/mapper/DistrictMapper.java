@@ -25,5 +25,6 @@ public interface DistrictMapper
 	long selectCountByCriteria(DistrictCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<District> selectByMap(Map paramMap);
 }

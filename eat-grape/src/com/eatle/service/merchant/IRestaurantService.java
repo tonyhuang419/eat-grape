@@ -1,35 +1,33 @@
 package com.eatle.service.merchant;
 
-import com.eatle.persistent.pojo.merchant.Merchant;
-import com.eatle.persistent.pojo.merchant.MerchantCriteria;
+import com.eatle.persistent.pojo.merchant.Restaurant;
+import com.eatle.persistent.pojo.merchant.RestaurantCriteria;
 import com.eatle.utils.Pagination;
-
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public interface IMerchantService
+public interface IRestaurantService
 {
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	int add(Merchant entity);
+	int add(Restaurant entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	int delete(Merchant entity);
+	int delete(Restaurant entity);
 
 	/**
 	 * @Description:
 	 * 
 	 * @param entity
 	 */
-	int update(Merchant entity);
+	int update(Restaurant entity);
 
 	/**
 	 * @Description:
@@ -46,24 +44,17 @@ public interface IMerchantService
 	 * 
 	 * @param id
 	 */
-	Merchant findById(long id);
+	Restaurant findById(long id);
 
 	/**
 	 * @Description:
 	 * 
 	 */
-	List<Merchant> findAll();
+	List<Restaurant> findAll();
 
 	/**
 	 * @Description:
 	 * 
 	 */
-	List<Merchant> findByCriteria(MerchantCriteria criteria);
-
-	/**
-	 * @Description: 数据导出到Excel
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	LinkedHashMap<String, List> getExportData();
+	List<Restaurant> findByCriteria(RestaurantCriteria criteria);
 }

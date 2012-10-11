@@ -90,6 +90,7 @@ public class MerchantServiceImpl implements IMerchantService
 		return merchantMapper.selectByCriteria(criteria);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public LinkedHashMap<String, List> getExportData()
 	{

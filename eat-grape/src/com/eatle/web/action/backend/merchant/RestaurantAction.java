@@ -1,33 +1,24 @@
-package com.eatle.web.action.backend.foundation.place;
+package com.eatle.web.action.backend.merchant;
 
-import com.eatle.persistent.pojo.foundation.place.Community;
-import com.eatle.persistent.pojo.foundation.place.District;
-import com.eatle.persistent.pojo.foundation.place.DistrictCriteria;
-import com.eatle.persistent.pojo.foundation.place.DistrictCriteria.Criteria;
-import com.eatle.service.foundation.place.ICommunityService;
-import com.eatle.service.foundation.place.IDistrictService;
+import com.eatle.persistent.pojo.merchant.Restaurant;
+import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
-import com.eatle.utils.ReflectionUtils;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
-public class CommunityAction extends BaseAction
+public class RestaurantAction extends BaseAction
 {
 	private static final long serialVersionUID = 1L;
 
 	@Resource
-	private ICommunityService communityService;
-
-	@Resource
-	private IDistrictService districtService;
+	private IRestaurantService restaurantService;
 
 	private Pagination page;
 
-	private Community community;
+	private Restaurant restaurant;
 
 	public void setPage(Pagination page)
 	{
@@ -39,9 +30,9 @@ public class CommunityAction extends BaseAction
 		return this.page;
 	}
 
-	public void setCommunity(Community community)
+	public void setRestaurant(Restaurant restaurant)
 	{
-		this.community = community;
+		this.restaurant = restaurant;
 	}
 
 	public String showIndex()
@@ -57,19 +48,12 @@ public class CommunityAction extends BaseAction
 		{
 			pageSize = Integer.parseInt((String) params.get("numPerPage"));
 		}
-		page = communityService.findPagination(params, pageNum, pageSize);
+		page = restaurantService.findPagination(params, pageNum, pageSize);
 		return "showIndex";
 	}
 
 	public String showAdd()
 	{
-		// 查询并存入所有顶级区域
-		DistrictCriteria dc = new DistrictCriteria();
-		Criteria criteria = dc.createCriteria();
-		criteria.andParentIdIsNull();
-		List<District> topLevelDistrict = districtService.findByCriteria(dc);
-		request.setAttribute("topLevelDistrict", topLevelDistrict);
-
 		return "showAdd";
 	}
 
@@ -77,14 +61,14 @@ public class CommunityAction extends BaseAction
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (community == null)
+		if (restaurant == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
-			communityService.add(community);
+			restaurantService.add(restaurant);
 		}
 		super.writeMap(json);
 	}
@@ -94,53 +78,37 @@ public class CommunityAction extends BaseAction
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 		json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
-		if (community == null)
+		if (restaurant == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
-			communityService.delete(community);
+			restaurantService.delete(restaurant);
 		}
 		super.writeMap(json);
 	}
 
 	public String showUpdate()
 	{
-		// 社区对象
-		community = communityService.findById(community.getId());
-		// 查询并存入所有顶级区域
-		DistrictCriteria dc = new DistrictCriteria();
-		Criteria criteria = dc.createCriteria();
-		criteria.andParentIdIsNull();
-		List<District> topLevelDistrict = districtService.findByCriteria(dc);
-		request.setAttribute("topLevelDistrict", topLevelDistrict);
-
+		restaurant = restaurantService.findById(restaurant.getId());
 		return "showUpdate";
 	}
 
-	public void update() throws Exception
+	public void update() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (community == null)
+		if (restaurant == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
-			Community c = communityService.findById(community.getId());
-			ReflectionUtils.copyPorperties(c, community, new String[] { "name",
-					"pinyinName", "districtId" });
-			communityService.update(c);
+			restaurantService.update(restaurant);
 		}
 		super.writeMap(json);
-	}
-
-	public Community getCommunity()
-	{
-		return community;
 	}
 }

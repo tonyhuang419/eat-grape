@@ -12,6 +12,8 @@ import javax.annotation.Resource;
 
 public class MerchantAction extends BaseAction
 {
+	private static final long serialVersionUID = 1L;
+
 	@Resource
 	private IMerchantService merchantService;
 

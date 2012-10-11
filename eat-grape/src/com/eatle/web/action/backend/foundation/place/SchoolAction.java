@@ -17,6 +17,8 @@ import javax.annotation.Resource;
 
 public class SchoolAction extends BaseAction
 {
+	private static final long serialVersionUID = 1L;
+
 	@Resource
 	private ISchoolService schoolService;
 
@@ -46,8 +48,7 @@ public class SchoolAction extends BaseAction
 	{
 		return school;
 	}
-	
-	
+
 	public String showIndex()
 	{
 		Map<String, Object> params = super.getRequestParameters(request);
@@ -121,7 +122,7 @@ public class SchoolAction extends BaseAction
 		criteria.andParentIdIsNull();
 		List<District> topLevelDistrict = districtService.findByCriteria(dc);
 		request.setAttribute("topLevelDistrict", topLevelDistrict);
-		
+
 		return "showUpdate";
 	}
 
@@ -137,7 +138,8 @@ public class SchoolAction extends BaseAction
 		else
 		{
 			School sl = schoolService.findById(school.getId());
-			ReflectionUtils.copyPorperties(sl, school, new String[] { "name", "englishName", "districtId" });
+			ReflectionUtils.copyPorperties(sl, school, new String[] { "name",
+					"englishName", "districtId" });
 			schoolService.update(sl);
 		}
 		super.writeMap(json);

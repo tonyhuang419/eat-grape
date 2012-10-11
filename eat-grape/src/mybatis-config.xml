@@ -41,6 +41,9 @@
     	<!-- 商家 -->
     	<typeAlias alias="Merchant" type="com.eatle.persistent.pojo.merchant.Merchant"/>
     	<typeAlias alias="MerchantCriteria" type="com.eatle.persistent.pojo.merchant.MerchantCriteria"/>
+    	<!-- 餐厅 -->
+    	<typeAlias alias="Restaurant" type="com.eatle.persistent.pojo.merchant.Restaurant"/>
+    	<typeAlias alias="RestaurantCriteria" type="com.eatle.persistent.pojo.merchant.RestaurantCriteria"/>
     	
     	
     	<!-- *****************************订单管理************************************* -->

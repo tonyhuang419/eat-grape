@@ -26,6 +26,7 @@ public interface UserMapper
 	long selectCountByCriteria(UserCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<User> selectByMap(Map paramMap);
 
 	// 通过实体查询

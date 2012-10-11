@@ -26,6 +26,7 @@ public interface MenuMapper
 	long selectCountByCriteria(MenuCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<Menu> selectByMap(Map paramMap);
 
 	// 通过父级菜单ID(parentId)进行查询

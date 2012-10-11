@@ -32,6 +32,7 @@ public class PrivServiceImpl implements IPrivService
 	@Resource
 	private PrivMapper privMapper;
 	
+	@SuppressWarnings("unused")
 	private Map<String, Priv> allPrivs;
 
 	@Override
@@ -148,6 +149,7 @@ public class PrivServiceImpl implements IPrivService
 		return ptList;
 	}
 
+	@SuppressWarnings("unused")
 	private Priv findParentPriv(Priv priv, List<Priv> list)
 	{
 		for (int i = 0; i < list.size(); i++)
@@ -187,6 +189,7 @@ public class PrivServiceImpl implements IPrivService
 		return topTree;
 	}
 
+	@SuppressWarnings("unused")
 	private List<Priv> findChildPrivs(Priv priv, List<Priv> list)
 	{
 		List<Priv> temp = new ArrayList<Priv>();

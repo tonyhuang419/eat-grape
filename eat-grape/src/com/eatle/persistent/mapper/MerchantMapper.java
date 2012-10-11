@@ -25,5 +25,6 @@ public interface MerchantMapper
 	long selectCountByCriteria(MerchantCriteria example);
 
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<Merchant> selectByMap(Map paramMap);
 }
