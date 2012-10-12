@@ -22,10 +22,6 @@
 				<input type="text"  name="merchant.merchantEmail" size="42" class="textInput" value="${merchant.merchantEmail}" />
 			</p>
 			<p>
-				<label>商家Logo：</label>
-				<input type="file"  name="merchant.merchantLogoUrl" size="42" class="textInput" value="${merchant.merchantLogoUrl}" />
-			</p>
-			<p>
 				<label>法定代表人：</label>
 				<input type="text"  name="merchant.legalName" size="42" class="textInput" value="${merchant.legalName}" />
 			</p>
