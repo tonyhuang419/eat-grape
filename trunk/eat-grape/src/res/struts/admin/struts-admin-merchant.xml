@@ -16,16 +16,22 @@
 	<!-- 商家Logo上传 -->
 	<action class="com.eatle.web.action.backend.UploadAction" method="merchantLogoUpload" name="merchantLogoUpload">
 		<param name="savePath">/logo/logo_merchant</param>
+		<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
+		<param name="maxSize">1048576</param>
+		<!--
 		<interceptor-ref name="fileUpload">
 			<param name="allowedTypes">
-				image/pjpeg, image/bmp, image/gif, image/x-png,
-				image/jpeg, image/bmp, image/gif, image/png
+				image/pjpeg,image/bmp,image/gif,image/x-png,
+				image/jpeg,image/bmp,image/gif,image/png
 			</param>
 			<param name="maximumSize">1048576</param>
 		</interceptor-ref>
 		<interceptor-ref name="baseInterceptorStack" />
+		-->
+		<!--
 		<result name="success">/WEB-INF/jsp/admin/merchant/list/logoupload.jsp</result>
 		<result name="input">/WEB-INF/jsp/admin/merchant/list/logoupload.jsp</result>
+		-->
 	</action>
 	
 	<!-- 导出账号数据到Excel -->
