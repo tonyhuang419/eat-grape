@@ -1,5 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -50,11 +49,11 @@
 			<TBODY>
 				<TR>
 					<TD style="HEIGHT: 105px">
-						<IMG src="${ctx}/image/login_1.gif" border=0>
+						<IMG src="${ctx}/images/backend/login/login_1.gif" border=0>
 					</TD>
 				</TR>
 				<TR>
-					<TD background=${ctx}/image/login_2.jpg height=300>
+					<TD background=${ctx}/images/backend/login/login_2.jpg height=300>
 						<TABLE height=300 cellPadding=0 width=900 border=0>
 							<TBODY>
 								<TR>
@@ -116,9 +115,9 @@
 													<TD></TD>
 													<TD>
 														<INPUT id="loginBtn" onclick="check();" type="button"
-															style="width:104px; height:36px; border: 0px; background-image: url(${ctx}/image/login_button_1.jpg)"
-																onmouseover="mouseOver(this.id, '${ctx}/image/login_button_2.jpg')"
-																	onmouseout="mouseOut(this.id, '${ctx}/image/login_button_1.jpg')" />
+															style="width:104px; height:36px; border: 0px; background-image: url(${ctx}/images/backend/login/login_button_1.jpg)"
+																onmouseover="mouseOver(this.id, '${ctx}/images/backend/login/login_button_2.jpg')"
+																	onmouseout="mouseOut(this.id, '${ctx}/images/backend/login/login_button_1.jpg')" />
 													</TD>
 												</TR>
 											</TBODY>
@@ -131,7 +130,7 @@
 				</TR>
 				<TR>
 					<TD>
-						<IMG src="${ctx}/image/login_3.jpg" border=0>
+						<IMG src="${ctx}/images/backend/login/login_3.jpg" border=0>
 					</TD>
 				</TR>
 			</TBODY>
