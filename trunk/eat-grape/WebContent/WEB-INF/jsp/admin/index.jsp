@@ -93,7 +93,7 @@
 					</ul>
 					<div class="navTab-panel tabsPageContent layoutBox">
 						<div class="page unitBox" style="height: 100%; margin: 1px;">
-							<img src="${ctx}/image/welcome.png" alt="" width="100%" height="100%"/>
+							<img src="${ctx}/images/backend/welcome.png" alt="" width="100%" height="100%"/>
 						</div>
 						
 					</div>
