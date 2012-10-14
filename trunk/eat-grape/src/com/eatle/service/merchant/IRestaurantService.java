@@ -36,8 +36,7 @@ public interface IRestaurantService
 	 * @param currentPage 当前页
 	 * @param pageSize 每页大小
 	 */
-	Pagination findPagination(Map<String, Object> queryMap, int currentPage,
-			int pageSize);
+	Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize);
 
 	/**
 	 * @Description:

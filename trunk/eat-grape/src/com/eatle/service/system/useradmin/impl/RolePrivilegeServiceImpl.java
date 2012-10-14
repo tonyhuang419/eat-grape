@@ -35,7 +35,7 @@ public class RolePrivilegeServiceImpl implements IRolePrivilegeService
 	@Override
 	public int update(RolePrivilege entity)
 	{
-		return rolePrivilegeMapper.updateByPrimaryKey(entity);
+		return rolePrivilegeMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

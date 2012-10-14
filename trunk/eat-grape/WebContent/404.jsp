@@ -4,7 +4,9 @@
 <HTML>
 	<HEAD>
 		<title>Not Found</title>
+		<!-- 
 		<META http-equiv=refresh content="5;URL = ${ctx}/admin/index.htm">
+		 -->
 		<STYLE type=text/css>
 			INPUT {
 				FONT-SIZE: 12px

@@ -39,7 +39,7 @@ public class SchoolServiceImpl implements ISchoolService
 	@Override
 	public int update(School entity)
 	{
-		return schoolMapper.updateByPrimaryKey(entity);
+		return schoolMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

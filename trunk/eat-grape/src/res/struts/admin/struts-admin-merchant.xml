@@ -54,6 +54,17 @@
 	    <result name="showIndex">/WEB-INF/jsp/admin/merchant/restaurant/restaurant.jsp</result>
 	    <result name="showAdd">/WEB-INF/jsp/admin/merchant/restaurant/add.jsp</result>
 	    <result name="showUpdate">/WEB-INF/jsp/admin/merchant/restaurant/update.jsp</result>
+      	<result name="showDetail">/WEB-INF/jsp/admin/merchant/restaurant/detail.jsp</result>
+      	<result name="showLogoUpload">/WEB-INF/jsp/admin/merchant/restaurant/logoupload.jsp</result>
+      	<result name="showSetBusinessHours">/WEB-INF/jsp/admin/merchant/restaurant/setbusinesshours.jsp</result>
+      	<result name="showSetSendPlace">/WEB-INF/jsp/admin/merchant/restaurant/setsendplace.jsp</result>
     </action>
+    
+	<!-- 餐厅Logo上传 -->
+	<action class="com.eatle.web.action.backend.UploadAction" method="restaurantLogoUpload" name="restaurantLogoUpload">
+		<param name="savePath">/logo/logo_restaurant</param>
+		<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
+		<param name="maxSize">1048576</param>
+	</action>
   </package>
 </struts>

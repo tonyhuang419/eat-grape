@@ -9,7 +9,9 @@ import javax.annotation.Resource;
 import org.apache.struts2.ServletActionContext;
 
 import com.eatle.persistent.pojo.merchant.Merchant;
+import com.eatle.persistent.pojo.merchant.Restaurant;
 import com.eatle.service.merchant.IMerchantService;
+import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.ImageUtil;
 import com.eatle.utils.StringUtil;
@@ -18,7 +20,7 @@ import com.eatle.web.action.BaseAction;
 /**
  * @corpor: 公司：深讯信科
  * @author: 作者：谭又中
- * @explain: 释义：数据导出到Excel
+ * @explain: 释义：文件上传处理
  * @version: 日期：2012-10-11 上午09:41:33
  */
 public class UploadAction extends BaseAction
@@ -27,6 +29,9 @@ public class UploadAction extends BaseAction
 
 	@Resource
 	private IMerchantService merchantService;
+	
+	@Resource
+	private IRestaurantService restaurantService;
 
 	private Long id; 							// 标识ID
 
@@ -120,39 +125,80 @@ public class UploadAction extends BaseAction
 	 */
 	public void merchantLogoUpload() throws IOException
 	{
+		// 检查是否通过类型和大小校验
 		if(isCrossValidate)
 		{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_DIALOGID, dialogId);
-		if (logo != null)
-		{
-			for (int i = 0; i < logo.length; i++)
+			Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+			if (logo != null)
 			{
-				// 生成文件UUID名称
-				String uuidName = StringUtil.getUUIDName(logoFileName[i]);
-				// 保存文件
-				String saveName = ServletActionContext.getServletContext()
-						.getRealPath(getSavePath()) + File.separator + uuidName;
-				ImageUtil.thumbnails(logo[i], new File(saveName), 60);
-				// 更新商家LogoUrl
-				Merchant merchant = merchantService.findById(id);
-				String oldLogoPath = ServletActionContext.getServletContext()
-						.getRealPath(merchant.getMerchantLogoUrl());
-				File oldLogoFile = new File(oldLogoPath == null ? "" : oldLogoPath);
-				if (oldLogoFile.exists())
+				for (int i = 0; i < logo.length; i++)
 				{
-					oldLogoFile.delete();
+					// 生成文件UUID名称
+					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存文件
+					String saveName = ServletActionContext.getServletContext()
+							.getRealPath(getSavePath()) + File.separator + uuidName;
+					ImageUtil.thumbnails(logo[i], new File(saveName), 60);
+					// 更新商家LogoUrl
+					Merchant merchant = merchantService.findById(id);
+					String oldLogoPath = ServletActionContext.getServletContext()
+							.getRealPath(merchant.getMerchantLogoUrl());
+					File oldLogoFile = new File(oldLogoPath == null ? "" : oldLogoPath);
+					if (oldLogoFile.exists())
+					{
+						oldLogoFile.delete();
+					}
+					merchant.setMerchantLogoUrl(getSavePath() + "/" + uuidName);
+					merchantService.update(merchant);
 				}
-				merchant.setMerchantLogoUrl(getSavePath() + "/" + uuidName);
-				merchantService.update(merchant);
 			}
+			else
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "请选择要上传的文件！");
+			}
+			super.writeMap(json);
 		}
-		else
+	}
+	/**
+	 * @throws IOException
+	 * @deprecated: 餐厅Logo上传
+	 */
+	public void restaurantLogoUpload() throws IOException
+	{
+		// 检查是否通过类型和大小校验
+		if(isCrossValidate)
 		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "请选择要上传的文件！");
-		}
-		super.writeMap(json);
+			Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+			if (logo != null)
+			{
+				for (int i = 0; i < logo.length; i++)
+				{
+					// 生成文件UUID名称
+					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存文件
+					String saveName = ServletActionContext.getServletContext()
+							.getRealPath(getSavePath()) + File.separator + uuidName;
+					ImageUtil.thumbnails(logo[i], new File(saveName), 60);
+					// 更新商家LogoUrl
+					Restaurant restaurant = restaurantService.findById(id);
+					String oldLogoPath = ServletActionContext.getServletContext()
+							.getRealPath(restaurant.getLogoUrl());
+					File oldLogoFile = new File(oldLogoPath == null ? "" : oldLogoPath);
+					if (oldLogoFile.exists())
+					{
+						oldLogoFile.delete();
+					}
+					restaurant.setLogoUrl(getSavePath() + "/" + uuidName);
+					restaurantService.update(restaurant);
+				}
+			}
+			else
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "请选择要上传的文件！");
+			}
+			super.writeMap(json);
 		}
 	}
 

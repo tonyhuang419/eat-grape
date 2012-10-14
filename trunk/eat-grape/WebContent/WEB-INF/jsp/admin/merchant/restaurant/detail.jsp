@@ -16,41 +16,41 @@
 		    <table width="100%" border="0">
 		      <tr>
 		        <td height="60" align="center">
-					<img src="${ctx}/${merchant.merchantLogoUrl}" alt="" align="absmiddle"/>
-					<span class="STYLE1"> - [${merchant.merchantName}] - 详细基本信息</span></td>
+					<img src="${ctx}/${restaurant.logoUrl}" alt="" align="absmiddle"/>
+					<span class="STYLE1"> - [${restaurant.name}] - 详细基本信息</span></td>
 		      </tr>
 		      <tr>
 		        <td>
 		        	<table width="100%" border="0">
 			          <tr>
-			            <td width="20%" height="50" align="right">商家名称：</td>
-			            <td width="30%" height="50">${merchant.merchantName}</td>
-			            <td width="20%" height="50" align="right">商家电话：</td>
-			            <td width="30%" height="50">${merchant.merchantPhone}</td>
+			            <td width="20%" height="50" align="right">餐厅名称：</td>
+			            <td width="30%" height="50">${restaurant.name}</td>
+			            <td width="20%" height="50" align="right">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</td>
+			            <td width="30%" height="50">${restaurant.contactName}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">商家邮箱：</td>
-			            <td width="30%" height="50">${merchant.merchantEmail}</td>
-			            <td width="20%" height="50" align="right">商家地址：</td>
-			            <td width="30%" height="50">${merchant.merchantAddress}</td>
+			            <td width="20%" height="50" align="right">联系电话：</td>
+			            <td width="30%" height="50">${restaurant.contactPhone}</td>
+			            <td width="20%" height="50" align="right">联系邮箱：</td>
+			            <td width="30%" height="50">${restaurant.contactEmail}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">法定代表人：</td>
-			            <td width="30%" height="50">${merchant.legalName}</td>
-			            <td width="20%" height="50" align="right">加盟时间：</td>
-			            <td width="30%" height="50">${merchant.merchantJoinTime}</td>
+			            <td width="20%" height="50" align="right">联系Q Q：</td>
+			            <td width="30%" height="50">${restaurant.contactQq}</td>
+			            <td width="20%" height="50" align="right">营业时间：</td>
+			            <td width="30%" height="50">${restaurant.businessHours}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">身份证号码：</td>
-			            <td width="30%" height="50">${merchant.legalIdCard}</td>
-			            <td width="20%" height="50" align="right">家庭地址：</td>
-			            <td width="30%" height="50">${merchant.legalHomeAddress}</td>
+			            <td width="20%" height="50" align="right">起送价格： </td>
+			            <td width="30%" height="50">${restaurant.sendUpPrice} 元</td>
+			            <td width="20%" height="50" align="right">餐厅地址：</td>
+			            <td width="30%" height="50">${restaurant.address}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">法定人电话：</td>
-			            <td width="30%" height="50">${merchant.legalPhone}</td>
-			            <td width="20%" height="50" align="right">现居地址：</td>
-			            <td width="30%" height="50">${merchant.legalAddress}</td>
+			            <td width="20%" height="50" align="right">送餐说明：</td>
+			            <td width="30%" height="50">${restaurant.sendMealsDescription}</td>
+			            <td width="20%" height="50" align="right">所属商家：</td>
+			            <td width="30%" height="50">${restaurant.merchantName}</td>
 			          </tr>
 			        </table>
 		      	</td>

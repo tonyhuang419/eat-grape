@@ -10,7 +10,7 @@
 			</p>
 			<p>
 				<label>商家电话：</label>
-				<input name="merchant.merchantPhone" type="text" size="42" class="required" />
+				<input name="merchant.merchantPhone" type="text" size="42" class="required phone" />
 			</p>
 			<p>
 				<label>商家地址：</label>
@@ -18,7 +18,7 @@
 			</p>
 			<p>
 				<label>商家邮箱：</label>
-				<input type="text"  name="merchant.merchantEmail" size="42" class="textInput" >
+				<input type="text"  name="merchant.merchantEmail" size="42" class="email" >
 			</p>
 			<p>
 				<label>法定代表人：</label>
@@ -30,7 +30,7 @@
 			</p>
 			<p>
 				<label>法定人电话：</label>
-				<input type="text"  name="merchant.legalPhone" size="42" class="textInput" >
+				<input type="text"  name="merchant.legalPhone" size="42" class="phone" >
 			</p>
 			<p>
 				<label>法定人家庭地址：</label>

@@ -51,13 +51,13 @@ public class UserServiceImpl implements IUserService
 		List<User> users = userMapper.selectByCriteria(userCriteria);
 		if (users.size() < 1)
 		{
-			result = userMapper.updateByPrimaryKey(user);
+			result = userMapper.updateByPrimaryKeySelective(user);
 		}
 		else
 		{
 			if (users.get(0).getUserName().equals(oldUser.getUserName()))
 			{
-				result = userMapper.updateByPrimaryKey(user);
+				result = userMapper.updateByPrimaryKeySelective(user);
 			}
 		}
 		return result;

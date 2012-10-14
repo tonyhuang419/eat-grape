@@ -32,7 +32,7 @@ public class DistrictServiceImpl implements IDistrictService
 	@Override
 	public int update(District entity)
 	{
-		return districtMapper.updateByPrimaryKey(entity);
+		return districtMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

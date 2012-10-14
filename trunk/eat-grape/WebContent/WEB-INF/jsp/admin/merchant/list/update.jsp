@@ -11,7 +11,7 @@
 			</p>
 			<p>
 				<label>商家电话：</label>
-				<input name="merchant.merchantPhone" type="text" size="42" class="required" value="${merchant.merchantPhone}" />
+				<input name="merchant.merchantPhone" type="text" size="42" class="required phone" value="${merchant.merchantPhone}" />
 			</p>
 			<p>
 				<label>商家地址：</label>
@@ -19,7 +19,7 @@
 			</p>
 			<p>
 				<label>商家邮箱：</label>
-				<input type="text"  name="merchant.merchantEmail" size="42" class="textInput" value="${merchant.merchantEmail}" />
+				<input type="text"  name="merchant.merchantEmail" size="42" class="email" value="${merchant.merchantEmail}" />
 			</p>
 			<p>
 				<label>法定代表人：</label>
@@ -31,7 +31,7 @@
 			</p>
 			<p>
 				<label>法定人电话：</label>
-				<input type="text"  name="merchant.legalPhone" size="42" class="textInput" value="${merchant.legalPhone}" />
+				<input type="text"  name="merchant.legalPhone" size="42" class="phone" value="${merchant.legalPhone}" />
 			</p>
 			<p>
 				<label>法定人家庭地址：</label>
