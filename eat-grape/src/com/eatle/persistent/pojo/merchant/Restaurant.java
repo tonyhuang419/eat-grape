@@ -29,6 +29,9 @@ public class Restaurant
 	private String contactQq;
 
 	private Long merchantId;
+	
+	// 所属商家名称（临时字段）
+	private String merchantName;
 
 	public Long getId()
 	{
@@ -168,5 +171,15 @@ public class Restaurant
 	public void setMerchantId(Long merchantId)
 	{
 		this.merchantId = merchantId;
+	}
+
+	public String getMerchantName()
+	{
+		return merchantName;
+	}
+
+	public void setMerchantName(String merchantName)
+	{
+		this.merchantName = merchantName;
 	}
 }

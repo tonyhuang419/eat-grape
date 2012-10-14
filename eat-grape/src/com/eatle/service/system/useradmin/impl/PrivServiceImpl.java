@@ -113,13 +113,13 @@ public class PrivServiceImpl implements IPrivService
 		List<Priv> privs = privMapper.selectByCriteria(privCriteria);
 		if (privs.size() < 1)
 		{
-			result = privMapper.updateByPrimaryKey(priv);
+			result = privMapper.updateByPrimaryKeySelective(priv);
 		}
 		else
 		{
 			if(privs.get(0).getAction().equals(oldPiv.getAction()))
 			{
-				result = privMapper.updateByPrimaryKey(priv);
+				result = privMapper.updateByPrimaryKeySelective(priv);
 			}
 		}
 		return result;

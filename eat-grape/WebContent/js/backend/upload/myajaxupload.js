@@ -12,10 +12,8 @@ function ajaxFileUpload() {
 		dataType : 'json',
 		success : function(json, status) {
 			DWZ.ajaxDone(json);
-			if(json.dialogId){
-				if ("closeCurrent" == json.callbackType) {
-					$.pdialog.closeCurrent();
-				}
+			if ("closeCurrent" == json.callbackType) {
+				$.pdialog.closeCurrent();
 			}
 		},
 		error : function(data, status, e) {

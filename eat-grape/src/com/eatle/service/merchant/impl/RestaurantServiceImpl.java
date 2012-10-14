@@ -32,7 +32,7 @@ public class RestaurantServiceImpl implements IRestaurantService
 	@Override
 	public int update(Restaurant entity)
 	{
-		return restaurantMapper.updateByPrimaryKey(entity);
+		return restaurantMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override
@@ -56,13 +56,13 @@ public class RestaurantServiceImpl implements IRestaurantService
 			{
 				criteria.andAddressLike("%" + (String) queryMap.get("address") + "%");
 			}
+			if (queryMap.containsKey("contactName"))
+			{
+				criteria.andBusinessHoursLike("%" + (String) queryMap.get("contactName") + "%");
+			}
 			if (queryMap.containsKey("contactPhone"))
 			{
 				criteria.andContactPhoneLike("%" + (String) queryMap.get("contactPhone") + "%");
-			}
-			if (queryMap.containsKey("businessHours"))
-			{
-				criteria.andBusinessHoursLike("%" + (String) queryMap.get("businessHours") + "%");
 			}
 		}
 		// 设置分页参数

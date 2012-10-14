@@ -35,7 +35,7 @@ public class MerchantServiceImpl implements IMerchantService
 	@Override
 	public int update(Merchant entity)
 	{
-		return merchantMapper.updateByPrimaryKey(entity);
+		return merchantMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

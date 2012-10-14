@@ -1,6 +1,7 @@
 package com.eatle.web.action.backend.merchant;
 
 import com.eatle.persistent.pojo.merchant.Restaurant;
+import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
@@ -15,6 +16,9 @@ public class RestaurantAction extends BaseAction
 
 	@Resource
 	private IRestaurantService restaurantService;
+	
+	@Resource
+	private IMerchantService merchantService;
 
 	private Pagination page;
 
@@ -28,6 +32,11 @@ public class RestaurantAction extends BaseAction
 	public Pagination getPage()
 	{
 		return this.page;
+	}
+
+	public Restaurant getRestaurant()
+	{
+		return restaurant;
 	}
 
 	public void setRestaurant(Restaurant restaurant)
@@ -110,5 +119,58 @@ public class RestaurantAction extends BaseAction
 			restaurantService.update(restaurant);
 		}
 		super.writeMap(json);
+	}
+	
+	/**
+	 * @deprecated: 显示详细信息
+	 */
+	public String showDetail()
+	{
+		restaurant = restaurantService.findById(restaurant.getId());
+		// 设置所属商家
+		restaurant.setMerchantName(merchantService.
+				findById(restaurant.getMerchantId()).getMerchantName());
+		
+		return "showDetail";
+	}
+
+	/**
+	 * @deprecated: 显示Logo上传
+	 */
+	public String showLogoUpload()
+	{
+		return "showLogoUpload";
+	}
+	
+	/**
+	 * @deprecated: 显示营业时间设置
+	 */
+	public String showSetBusinessHours()
+	{
+		return "showSetBusinessHours";
+	}
+	
+	/**
+	 * @deprecated: 设置营业时间
+	 */
+	public String setBusinessHours()
+	{
+		return "setBusinessHours";
+	}
+	
+	/**
+	 * @deprecated: 显示送餐地点设置
+	 */
+	public String showSetSendPlace()
+	{
+		return "showSetSendPlace";
+	}
+
+	/**
+	 * @deprecated: 设置送餐地点
+	 */
+	public String setSendPlace()
+	{
+		return "setSendPlace";
 	}
 }

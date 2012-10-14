@@ -39,7 +39,7 @@ public class CommunityServiceImpl implements ICommunityService
 	@Override
 	public int update(Community entity)
 	{
-		return communityMapper.updateByPrimaryKey(entity);
+		return communityMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

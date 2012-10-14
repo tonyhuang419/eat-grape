@@ -102,13 +102,13 @@ public class RoleServiceImpl implements IRoleService
 		List<Role> roles = roleMapper.selectByCriteria(roleCriteria);
 		if (roles.size() < 1)
 		{
-			result = roleMapper.updateByPrimaryKey(role);
+			result = roleMapper.updateByPrimaryKeySelective(role);
 		}
 		else
 		{
 			if(roles.get(0).getRoleName().equals(oldRole.getRoleName()))
 			{
-				result = roleMapper.updateByPrimaryKey(role);
+				result = roleMapper.updateByPrimaryKeySelective(role);
 			}
 		}
 		return result;

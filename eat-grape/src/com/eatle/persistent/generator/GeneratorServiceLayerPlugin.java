@@ -287,7 +287,7 @@ public class GeneratorServiceLayerPlugin extends PluginAdapter
 		method.setName("update"); //$NON-NLS-1$
 		method.addParameter(new Parameter(type, "entity")); //$NON-NLS-1$
 		// "+mapperObjName+".updateByPrimaryKey(entity);
-		method.addBodyLine("return " + mapperObjName + ".updateByPrimaryKey(entity);"); //$NON-NLS-1$
+		method.addBodyLine("return " + mapperObjName + ".updateByPrimaryKeySelective(entity);"); //$NON-NLS-1$
 		method.addAnnotation("@Override");
 		topLevelClass.addMethod(method);
 		topLevelClass.addImportedTypes(importedTypes);

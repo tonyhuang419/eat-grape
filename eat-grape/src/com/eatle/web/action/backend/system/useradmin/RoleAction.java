@@ -173,7 +173,6 @@ public class RoleAction extends BaseAction
 	public void setPriv() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 		if (privsIds == "" || privsIds == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);

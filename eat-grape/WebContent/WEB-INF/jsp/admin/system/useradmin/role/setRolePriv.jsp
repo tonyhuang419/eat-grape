@@ -29,7 +29,6 @@
 		var data = {
 			"role.id" : "${role.id}",
 			"privsIds" : privsIds,
-			"navTabId" : "${navTabId}"
 		};
 		// Ajax保存确认
 		confirm2Ajax(url, msg, data, 

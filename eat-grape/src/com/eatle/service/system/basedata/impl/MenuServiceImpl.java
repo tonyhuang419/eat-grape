@@ -36,7 +36,7 @@ public class MenuServiceImpl extends MenuServiceDefaultImpl
 	@Override
 	public int update(Menu entity)
 	{
-		return menuMapper.updateByPrimaryKey(entity);
+		return menuMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

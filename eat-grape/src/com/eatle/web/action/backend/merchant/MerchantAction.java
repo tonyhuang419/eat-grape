@@ -119,12 +119,18 @@ public class MerchantAction extends BaseAction
 		super.writeMap(json);
 	}
 	
+	/**
+	 * @deprecated: 显示详细信息
+	 */
 	public String showDetail()
 	{
 		merchant = merchantService.findById(merchant.getId());
 		return "showDetail";
 	}
-	
+
+	/**
+	 * @deprecated: 显示Logo上传
+	 */
 	public String showLogoUpload()
 	{
 		return "showLogoUpload";

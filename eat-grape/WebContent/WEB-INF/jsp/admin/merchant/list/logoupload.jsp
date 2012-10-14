@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <div class="pageContent">
-	<form id="uploadForm" method="post" action="${ctx}/admin/merchant/list/merchantLogoUpload.htm?id=${merchant.id}&action=zxzhxg&dialogId=${param.dialogId}" enctype="multipart/form-data" class="pageForm required-validate" >
+	<form id="uploadForm" method="post" action="${ctx}/admin/merchant/list/merchantLogoUpload.htm?id=${merchant.id}&action=zxzhxg" enctype="multipart/form-data" class="pageForm required-validate" >
 		<div class="pageFormContent" layoutH="56" align="right">
 			<input name="id" type="hidden" value="${merchant.id}" />
 			<p>

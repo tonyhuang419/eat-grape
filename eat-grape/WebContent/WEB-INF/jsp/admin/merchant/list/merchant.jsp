@@ -85,7 +85,7 @@
 							width="700" height="400">管理餐厅</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.merchantName}-Logo设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/list/showLogoUpload.htm?merchant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							href="${ctx}/admin/merchant/list/showLogoUpload.htm?merchant.id=${item.id}&action=zdylbzs"
 							width="500" height="250">设置Logo</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.merchantName}-用户关联" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
