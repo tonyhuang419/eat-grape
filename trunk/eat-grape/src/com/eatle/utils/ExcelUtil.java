@@ -100,33 +100,39 @@ public class ExcelUtil
 				HSSFCell[] cells = getCells(contentRow, setInfo.getEndFieldIndexs()[sheetNum] - setInfo.getStartFieldIndexs()[sheetNum] + 1);
 				sheets[sheetNum].autoSizeColumn(0);	// 序号列自动调整列宽
 				int cellNum = 1;					// 去的一列序号，因此从1开始
-				for (int num = setInfo.getStartFieldIndexs()[sheetNum]; 
-					num <= setInfo.getEndFieldIndexs()[sheetNum]; num++)
+				if(fields != null)
 				{
-					fields[num].setAccessible(true);
-					try
+					for (int num = setInfo.getStartFieldIndexs()[sheetNum];
+						num <= setInfo.getEndFieldIndexs()[sheetNum]; num++)
 					{
-						sheets[sheetNum].autoSizeColumn(cellNum);	// 内容列自动调整列宽
-						if(fields[num].getType() == Boolean.class 
-								|| fields[num].getType() == boolean.class)
-							cells[cellNum].setCellValue((Boolean) fields[num].get(obj));
-						else if(fields[num].getType() == Calendar.class)
-							cells[cellNum].setCellValue((Calendar) fields[num].get(obj));
-						else if(fields[num].getType() == Date.class)
-							cells[cellNum].setCellValue((Date) fields[num].get(obj));
-						else if(fields[num].getType() == Double.class 
-								|| fields[num].getType() == double.class)
-							cells[cellNum].setCellValue((Double) fields[num].get(obj));
-						else if(fields[num].getType() == RichTextString.class)
-							cells[cellNum].setCellValue((RichTextString) fields[num].get(obj));
-						else
-							cells[cellNum].setCellValue(fields[num].get(obj).toString());
+						fields[num].setAccessible(true);
+						try
+						{
+							if(fields[num].get(obj) != null)
+							{
+								sheets[sheetNum].autoSizeColumn(cellNum, true);		// 内容列自动调整列宽
+								if(fields[num].getType() == Boolean.class 
+										|| fields[num].getType() == boolean.class)
+									cells[cellNum].setCellValue((Boolean) fields[num].get(obj));
+								else if(fields[num].getType() == Calendar.class)
+									cells[cellNum].setCellValue((Calendar) fields[num].get(obj));
+								else if(fields[num].getType() == Date.class)
+									cells[cellNum].setCellValue((Date) fields[num].get(obj));
+								else if(fields[num].getType() == Double.class 
+										|| fields[num].getType() == double.class)
+									cells[cellNum].setCellValue((Double) fields[num].get(obj));
+								else if(fields[num].getType() == RichTextString.class)
+									cells[cellNum].setCellValue((RichTextString) fields[num].get(obj));
+								else
+									cells[cellNum].setCellValue(fields[num].get(obj).toString());
+							}
+						}
+						catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+						cellNum++;
 					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
-					}
-					cellNum++;
 				}
 				rowNum++;
 			}

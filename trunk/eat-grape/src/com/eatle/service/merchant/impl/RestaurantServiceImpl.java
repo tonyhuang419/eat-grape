@@ -1,11 +1,15 @@
 package com.eatle.service.merchant.impl;
 
 import com.eatle.persistent.mapper.RestaurantMapper;
+import com.eatle.persistent.pojo.merchant.Merchant;
 import com.eatle.persistent.pojo.merchant.Restaurant;
 import com.eatle.persistent.pojo.merchant.RestaurantCriteria.Criteria;
 import com.eatle.persistent.pojo.merchant.RestaurantCriteria;
+import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -16,6 +20,9 @@ public class RestaurantServiceImpl implements IRestaurantService
 {
 	@Resource
 	private RestaurantMapper restaurantMapper;
+	
+	@Resource
+	private IMerchantService merchantService;
 
 	@Override
 	public int add(Restaurant entity)
@@ -58,7 +65,7 @@ public class RestaurantServiceImpl implements IRestaurantService
 			}
 			if (queryMap.containsKey("contactName"))
 			{
-				criteria.andBusinessHoursLike("%" + (String) queryMap.get("contactName") + "%");
+				criteria.andContactNameLike("%" + (String) queryMap.get("contactName") + "%");
 			}
 			if (queryMap.containsKey("contactPhone"))
 			{
@@ -89,5 +96,21 @@ public class RestaurantServiceImpl implements IRestaurantService
 	public List<Restaurant> findByCriteria(RestaurantCriteria criteria)
 	{
 		return restaurantMapper.selectByCriteria(criteria);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public LinkedHashMap<String, List> getExportData()
+	{
+		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
+		List<Merchant> merchants = merchantService.findAll();
+		for(Merchant m : merchants)
+		{
+			RestaurantCriteria rc = new RestaurantCriteria();
+			Criteria criteria = rc.createCriteria();
+			criteria.andMerchantIdEqualTo(m.getId());
+			map.put(m.getMerchantName(), findByCriteria(rc));
+		}
+		return map;
 	}
 }

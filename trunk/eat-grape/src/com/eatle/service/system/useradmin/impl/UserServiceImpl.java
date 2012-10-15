@@ -128,7 +128,7 @@ public class UserServiceImpl implements IUserService
 	public LinkedHashMap<String, List> getExportData()
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
-		map.put("用户数据", findAll());
+		map.put("后台用户信息", findAll());
 		return map;
 	}
 }
