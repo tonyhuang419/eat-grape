@@ -95,7 +95,7 @@ public class MerchantServiceImpl implements IMerchantService
 	public LinkedHashMap<String, List> getExportData()
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
-		map.put("商家数据", findAll());
+		map.put("加盟商家信息", findAll());
 		return map;
 	}
 }

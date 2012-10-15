@@ -6,20 +6,6 @@ public class Restaurant
 
 	private String name;
 
-	private String sendMealsSpeeding;
-
-	private String sendUpPrice;
-
-	private String sendMealsDescription;
-
-	private Short sendMealsStatus;
-
-	private String businessHours;
-
-	private String address;
-
-	private String logoUrl;
-
 	private String contactName;
 
 	private String contactPhone;
@@ -28,10 +14,23 @@ public class Restaurant
 
 	private String contactQq;
 
+	private String businessHours;
+
+	private String sendUpPrice;
+
+	private String address;
+
+	private String logoUrl;
+
+	private String sendMealsDescription;
+
+	private String sendMealsSpeeding;
+
+	private Short sendMealsStatus;
+
 	private Long merchantId;
 	
-	// 所属商家名称（临时字段）
-	private String merchantName;
+	private String merchantName;	// 所属商家名称（临时字段）
 
 	public Long getId()
 	{
