@@ -33,7 +33,7 @@
 			            <td width="20%" height="50" align="right">商&nbsp;家&nbsp;邮&nbsp;箱：</td>
 			            <td width="30%" height="50">${merchant.merchantEmail}</td>
 			            <td width="20%" height="50" align="right">商&nbsp;家&nbsp;地&nbsp;址：</td>
-			            <td width="30%" height="50">${merchant.merchantAddress}</td>
+			            <td width="30%" height="50" nowrap="nowrap">${merchant.merchantAddress}</td>
 			          </tr>
 			          <tr>
 			            <td width="20%" height="50" align="right">法定代表人：</td>
@@ -45,13 +45,13 @@
 			            <td width="20%" height="50" align="right">身份证号码：</td>
 			            <td width="30%" height="50">${merchant.legalIdCard}</td>
 			            <td width="20%" height="50" align="right">家&nbsp;庭&nbsp;地&nbsp;址：</td>
-			            <td width="30%" height="50">${merchant.legalHomeAddress}</td>
+			            <td width="30%" height="50" nowrap="nowrap">${merchant.legalHomeAddress}</td>
 			          </tr>
 			          <tr>
 			            <td width="20%" height="50" align="right">法定人电话：</td>
 			            <td width="30%" height="50">${merchant.legalPhone}</td>
 			            <td width="20%" height="50" align="right">现&nbsp;居&nbsp;地&nbsp;址：</td>
-			            <td width="30%" height="50">${merchant.legalAddress}</td>
+			            <td width="30%" height="50" nowrap="nowrap">${merchant.legalAddress}</td>
 			          </tr>
 			        </table>
 		      	</td>

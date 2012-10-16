@@ -11,14 +11,14 @@
 		<script type="text/javascript">
 			$(function(){
 				DWZ.init("${ctx}/dwz.frag.xml", {
-				//	loginUrl:"index.htm", loginTitle:"登录",	// 弹出登录对话框
-					loginUrl:"index.htm",	// 跳到登录页面
+				//	loginUrl:"${ctx}/admin/index.htm", loginTitle:"登录",	// 弹出登录对话框
+					loginUrl:"${ctx}/admin/index.htm",	// 跳到登录页面
 					statusCode:{ok:200, error:300, timeout:301, nopower:302}, //【可选】
 					pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderDirection"}, //【可选】
 					debug:false,	// 调试模式 【true|false】
 					callback:function(){
 						initEnv();
-						$("#themeList").theme({themeBase:"themes"}); // themeBase 相对于index页面的主题base路径
+						$("#themeList").theme({themeBase:"${ctx}/style/backend/themes"}); // themeBase 相对于index页面的主题base路径
 					}
 				});
 			});

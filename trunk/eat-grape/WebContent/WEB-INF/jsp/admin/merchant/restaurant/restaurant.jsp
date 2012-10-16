@@ -16,7 +16,7 @@
 
 
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${param.merchantId}&action=zxzhss" method="post">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${param.merchantId}&action=zxzhss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -74,7 +74,7 @@
 					<td>${item.contactEmail}</td>
 					<td>
 						<a title="${item.name}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/restaurant/showDetail.htm?restaurant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							href="${ctx}/admin/merchant/restaurant/showDetail.htm?restaurant.id=${item.id}&action=zdylbzs"
 							width="700" height="400">查  看</a>
 					</td>
 					<td>
@@ -83,11 +83,11 @@
 							width="500" height="250">设置Logo</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.name}-营业时间设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/restaurant/showSetBusinessHours.htm?restaurant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							href="${ctx}/admin/merchant/restaurant/showSetBusinessHours.htm?restaurant.id=${item.id}&action=zdylbzs"
 							width="500" height="250">营业时间</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.name}-送餐地点管理" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/restaurant/showSetSendPlace.htm?restaurant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							href="${ctx}/admin/merchant/restaurant/showSetSendPlace.htm?restaurant.id=${item.id}&action=zdylbzs"
 							width="700" height="400">送餐地点</a>
 					</td>
 				</tr>
