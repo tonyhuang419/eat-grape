@@ -16,7 +16,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/useradmin/priv/showIndex.htm?action=zxqxss" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/useradmin/priv/showIndex.htm?action=zxqxss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>

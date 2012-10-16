@@ -7,6 +7,9 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -147,15 +150,54 @@ public class RestaurantAction extends BaseAction
 	 */
 	public String showSetBusinessHours()
 	{
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		String businessHours = restaurantService
+			.findById(restaurant.getId()).getBusinessHours();
+		if(businessHours != null)
+		{
+			String[] strArr = businessHours.split(";");
+			for(int i = 0, len = strArr.length; i < len; i++)
+			{
+				map.put("arr" + i, strArr[i].split("-"));
+			}
+		}
+		request.setAttribute("businessHours", map);
 		return "showSetBusinessHours";
 	}
 	
 	/**
+	 * @throws IOException 
 	 * @deprecated: 设置营业时间
 	 */
-	public String setBusinessHours()
+	public void setBusinessHours() throws IOException
 	{
-		return "setBusinessHours";
+		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+		if (restaurant == null)
+		{
+			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
+		}
+		else
+		{
+			String businessHours = restaurant.getBusinessHours();
+			String[] strArr = businessHours.split(",");
+			businessHours = "";
+			for(int i = 0, len = strArr.length; i < len; i++)
+			{
+				if(i % 2 == 0)
+				{
+					businessHours += strArr[i] + "-";
+				}
+				else
+				{
+					businessHours += strArr[i] + ";";
+				}
+			}
+			businessHours = businessHours.substring(0, businessHours.length() - 1);
+			restaurant.setBusinessHours(businessHours);
+			restaurantService.update(restaurant);
+		}
+		super.writeMap(json);
 	}
 	
 	/**
@@ -167,10 +209,21 @@ public class RestaurantAction extends BaseAction
 	}
 
 	/**
+	 * @throws IOException 
 	 * @deprecated: 设置送餐地点
 	 */
-	public String setSendPlace()
+	public void setSendPlace() throws IOException
 	{
-		return "setSendPlace";
+		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+		if (restaurant == null)
+		{
+			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
+		}
+		else
+		{
+			restaurantService.update(restaurant);
+		}
+		super.writeMap(json);
 	}
 }

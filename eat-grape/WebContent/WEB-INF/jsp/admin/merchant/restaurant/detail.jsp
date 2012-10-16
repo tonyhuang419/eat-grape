@@ -44,7 +44,7 @@
 			            <td width="20%" height="50" align="right">起送价格： </td>
 			            <td width="30%" height="50">${restaurant.sendUpPrice} 元</td>
 			            <td width="20%" height="50" align="right">餐厅地址：</td>
-			            <td width="30%" height="50">${restaurant.address}</td>
+			            <td width="30%" height="50" nowrap="nowrap">${restaurant.address}</td>
 			          </tr>
 			          <tr>
 			            <td width="20%" height="50" align="right">送餐说明：</td>

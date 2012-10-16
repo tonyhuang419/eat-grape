@@ -16,7 +16,7 @@
 
 
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/list/showIndex.htm?action=zxzhss" method="post">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/list/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -47,9 +47,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/merchant/list/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="550" height="450"><span>添加商家</span></a></li>
+			<li><a class="add" href="${ctx}/admin/merchant/list/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="900" height="320"><span>添加商家</span></a></li>
 			<li><a class="delete" href="${ctx}/admin/merchant/list/delete.htm?merchant.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/merchant/list/showUpdate.htm?merchant.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="550" height="450"><span>商家修改</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/merchant/list/showUpdate.htm?merchant.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="900" height="320"><span>商家修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="${ctx}/admin/merchant/list/downXls.htm?fileName=MerchantData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
 		</ul>
@@ -76,12 +76,12 @@
 					<td>${item.legalPhone}</td>
 					<td>
 						<a title="${item.merchantName}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/list/showDetail.htm?merchant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							href="${ctx}/admin/merchant/list/showDetail.htm?merchant.id=${item.id}&action=zdylbzs"
 							width="700" height="400">查  看</a>
 					</td>
 					<td>
-						<a title="${item.merchantName}-餐厅管理" target="navTab" rel="${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${item.id}&action=zdylbzs&navTabId=${item.id}"
+						<a title="${item.merchantName}-餐厅管理" target="navTab" rel="restaurant_${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${item.id}&action=zdylbzs&navTabId=restaurant_${item.id}"
 							width="700" height="400">管理餐厅</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.merchantName}-Logo设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
@@ -89,7 +89,7 @@
 							width="500" height="250">设置Logo</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.merchantName}-用户关联" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/list/showLogoUpload.htm?merchant.id=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
+							href="${ctx}/admin/merchant/list/showLogoUpload.htm?merchant.id=${item.id}&action=zdylbzs"
 							width="500" height="250">关联用户</a>
 					</td>
 				</tr>

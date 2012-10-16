@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=city_community_area&TabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=city_community_area&navTabId=${param.navTabId}">
 	
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
@@ -15,7 +15,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=zxdyss" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=zxdyss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>

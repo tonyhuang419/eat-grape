@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/system/useradmin/priv/showSetSubPriv.htm?action=zqxlbzs">
+<form id="pagerForm" method="post" action="${ctx}/admin/system/useradmin/priv/showSetSubPriv.htm?action=zqxlbzs&dialogId=${param.dialogId}">
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
 	<input type="hidden" name="userName" value="${param.userName}" />

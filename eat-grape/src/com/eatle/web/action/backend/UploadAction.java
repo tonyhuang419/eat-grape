@@ -179,7 +179,7 @@ public class UploadAction extends BaseAction
 					// 保存文件
 					String saveName = ServletActionContext.getServletContext()
 							.getRealPath(getSavePath()) + File.separator + uuidName;
-					ImageUtil.thumbnails(logo[i], new File(saveName), 60);
+					ImageUtil.thumbnails(logo[i], new File(saveName), 80);
 					// 更新商家LogoUrl
 					Restaurant restaurant = restaurantService.findById(id);
 					String oldLogoPath = ServletActionContext.getServletContext()
