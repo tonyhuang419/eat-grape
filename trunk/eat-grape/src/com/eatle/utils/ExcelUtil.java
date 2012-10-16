@@ -2,9 +2,7 @@ package com.eatle.utils;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,7 +17,6 @@ import org.apache.poi.hssf.util.CellRangeAddress;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.RichTextString;
 
 /**
  * @corpor: 公司：深讯信科
@@ -30,15 +27,52 @@ import org.apache.poi.ss.usermodel.RichTextString;
 @SuppressWarnings("deprecation")
 public class ExcelUtil
 {
-	static HSSFWorkbook wb;
+	private static HSSFWorkbook wb;
+
+	private static CellStyle titleStyle;		// 标题行样式
+	private static Font titleFont;				// 标题行字体		
+	private static CellStyle dateStyle;			// 日期行样式
+	private static Font dateFont;				// 日期行字体
+	private static CellStyle headStyle;			// 表头行样式
+	private static Font headFont;				// 表头行字体
+	private static CellStyle contentStyle ;		// 内容行样式
+	private static Font contentFont;			// 内容行字体
 
 	/**
+	 * @deprecated: 静态初始化
+	 */
+	static {
+		wb = new HSSFWorkbook();
+		wb.createFont();
+		
+		titleFont = wb.createFont();
+		titleStyle = wb.createCellStyle();
+		dateStyle = wb.createCellStyle();
+		dateFont = wb.createFont();
+		headStyle = wb.createCellStyle();
+		headFont = wb.createFont();
+		contentStyle = wb.createCellStyle();
+		contentFont = wb.createFont();
+		
+		initTitleCellStyle();
+		initTitleFont();
+		initDateCellStyle();
+		initDateFont();
+		initHeadCellStyle();
+		initHeadFont();
+		initContentCellStyle();
+		initContentFont();
+	}
+	
+	/**
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 * @deprecated: 将Map里的集合对象数据输出Excel数据流
 	 */
 	@SuppressWarnings({ "unchecked" })
-	public static void export2Excel(ExportSetInfo setInfo) throws IOException
+	public static void export2Excel(ExportSetInfo setInfo) throws 
+		IOException, IllegalArgumentException, IllegalAccessException
 	{
-		wb = new HSSFWorkbook();
 		Set<Entry<String, List>> set = setInfo.getObjsMap().entrySet();
 		String[] sheetNames = new String[setInfo.getObjsMap().size()];
 		int sheetNameNum = 0;
@@ -53,84 +87,29 @@ public class ExcelUtil
 		{
 			// Sheet
 			List objs = entry.getValue();
-			boolean isHeadRow = true;
+			// 标题行
+			createTableTitleRow(setInfo, sheets, sheetNum);
+			// 日期行
+			createTableDateRow(setInfo, sheets, sheetNum);
+			// 表头
+			creatTableHeadRow(setInfo, sheets, sheetNum);
+			// 表体
+			String[] fieldNames = setInfo.getFieldNames();
 			int rowNum = 3;
 			for (Object obj : objs)
 			{
-				Field[] fields = setInfo.getClazz()[sheetNum].getDeclaredFields();
-				// 标题行(需合并单元格)
-				CellRangeAddress titleRange = new CellRangeAddress(0, 0, 0, 
-						setInfo.getEndFieldIndexs()[sheetNum] - setInfo.getStartFieldIndexs()[sheetNum] + 1);
-				sheets[sheetNum].addMergedRegion(titleRange);
-				HSSFRow titleRow = sheets[sheetNum].createRow(0);
-				titleRow.setHeight((short) 800);
-				HSSFCell titleCell = titleRow.createCell(0);
-				titleCell.setCellStyle(getTitleCellStyle());
-				titleCell.setCellValue(setInfo.getTitles()[sheetNum]);
-				// 日期行(需合并单元格)
-				CellRangeAddress dateRange = new CellRangeAddress(1, 1, 0, 
-						setInfo.getEndFieldIndexs()[sheetNum] - setInfo.getStartFieldIndexs()[sheetNum] + 1);
-				sheets[sheetNum].addMergedRegion(dateRange);
-				HSSFRow dateRow = sheets[sheetNum].createRow(1);
-				dateRow.setHeight((short) 350);
-				HSSFCell dateCell = dateRow.createCell(0);
-				dateCell.setCellStyle(getDateCellStyle());
-				dateCell.setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-				// 表头
-				if(isHeadRow)
-				{
-					HSSFRow headRow = sheets[sheetNum].createRow(2);
-					headRow.setHeight((short) 350);
-					// 序号列
-					HSSFCell snCell = headRow.createCell(0);
-					snCell.setCellStyle(getHeadCellStyle());
-					snCell.setCellValue("序号");
-					// 列头名称
-					for(int num = 1, len = setInfo.getHeadNames().get(sheetNum).length; num <= len; num++)
-					{
-						HSSFCell headCell = headRow.createCell(num);
-						headCell.setCellStyle(getHeadCellStyle());
-						headCell.setCellValue(setInfo.getHeadNames().get(sheetNum)[num - 1]);
-					}
-					isHeadRow = false;
-				}
-				// 表体
 				HSSFRow contentRow = sheets[sheetNum].createRow(rowNum);
 				contentRow.setHeight((short) 300);
-				HSSFCell[] cells = getCells(contentRow, setInfo.getEndFieldIndexs()[sheetNum] - setInfo.getStartFieldIndexs()[sheetNum] + 1);
-				sheets[sheetNum].autoSizeColumn(0);	// 序号列自动调整列宽
-				int cellNum = 1;					// 去的一列序号，因此从1开始
-				if(fields != null)
+				HSSFCell[] cells = getCells(contentRow, setInfo.getFieldNames().length);
+//				sheets[sheetNum].autoSizeColumn(0);	// 序号列自动调整列宽
+				int cellNum = 1;					// 去掉一列序号，因此从1开始
+				if(fieldNames != null)
 				{
-					for (int num = setInfo.getStartFieldIndexs()[sheetNum];
-						num <= setInfo.getEndFieldIndexs()[sheetNum]; num++)
+					for (int num = 0; num < fieldNames.length; num++)
 					{
-						fields[num].setAccessible(true);
-						try
-						{
-							if(fields[num].get(obj) != null)
-							{
-								sheets[sheetNum].autoSizeColumn(cellNum, true);		// 内容列自动调整列宽
-								if(fields[num].getType() == Boolean.class 
-										|| fields[num].getType() == boolean.class)
-									cells[cellNum].setCellValue((Boolean) fields[num].get(obj));
-								else if(fields[num].getType() == Calendar.class)
-									cells[cellNum].setCellValue((Calendar) fields[num].get(obj));
-								else if(fields[num].getType() == Date.class)
-									cells[cellNum].setCellValue((Date) fields[num].get(obj));
-								else if(fields[num].getType() == Double.class 
-										|| fields[num].getType() == double.class)
-									cells[cellNum].setCellValue((Double) fields[num].get(obj));
-								else if(fields[num].getType() == RichTextString.class)
-									cells[cellNum].setCellValue((RichTextString) fields[num].get(obj));
-								else
-									cells[cellNum].setCellValue(fields[num].get(obj).toString());
-							}
-						}
-						catch (Exception e)
-						{
-							e.printStackTrace();
-						}
+//						sheets[sheetNum].autoSizeColumn(cellNum, true);		// 内容列自动调整列宽
+						Object value = ReflectionUtils.invokeGetterMethod(obj, fieldNames[num]);
+						cells[cellNum].setCellValue(value == null ? "" : value.toString());
 						cellNum++;
 					}
 				}
@@ -139,6 +118,60 @@ public class ExcelUtil
 			sheetNum++;
 		}
 		wb.write(setInfo.getOut());
+	}
+
+	/**
+	 * @deprecated: 创建标题行(需合并单元格)
+	 */
+	private static void createTableTitleRow(ExportSetInfo setInfo,
+			HSSFSheet[] sheets, int sheetNum)
+	{
+		CellRangeAddress titleRange = new CellRangeAddress(0, 0, 0, 
+				setInfo.getFieldNames().length + 1);
+		sheets[sheetNum].addMergedRegion(titleRange);
+		HSSFRow titleRow = sheets[sheetNum].createRow(0);
+		titleRow.setHeight((short) 800);
+		HSSFCell titleCell = titleRow.createCell(0);
+		titleCell.setCellStyle(titleStyle);
+		titleCell.setCellValue(setInfo.getTitles()[sheetNum]);
+	}
+
+	/**
+	 * @deprecated: 创建日期行(需合并单元格)
+	 */
+	private static void createTableDateRow(ExportSetInfo setInfo,
+			HSSFSheet[] sheets, int sheetNum)
+	{
+		CellRangeAddress dateRange = new CellRangeAddress(1, 1, 0, 
+				setInfo.getFieldNames().length + 1);
+		sheets[sheetNum].addMergedRegion(dateRange);
+		HSSFRow dateRow = sheets[sheetNum].createRow(1);
+		dateRow.setHeight((short) 350);
+		HSSFCell dateCell = dateRow.createCell(0);
+		dateCell.setCellStyle(dateStyle);
+		dateCell.setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+	}
+
+	/**
+	 * @deprecated: 创建表头行(需合并单元格)
+	 */
+	private static void creatTableHeadRow(ExportSetInfo setInfo,
+			HSSFSheet[] sheets, int sheetNum)
+	{
+		// 表头
+		HSSFRow headRow = sheets[sheetNum].createRow(2);
+		headRow.setHeight((short) 350);
+		// 序号列
+		HSSFCell snCell = headRow.createCell(0);
+		snCell.setCellStyle(headStyle);
+		snCell.setCellValue("序号");
+		// 列头名称
+		for(int num = 1, len = setInfo.getHeadNames().get(sheetNum).length; num <= len; num++)
+		{
+			HSSFCell headCell = headRow.createCell(num);
+			headCell.setCellStyle(headStyle);
+			headCell.setCellValue(setInfo.getHeadNames().get(sheetNum)[num - 1]);
+		}
 	}
 
 	/**
@@ -154,7 +187,6 @@ public class ExcelUtil
 		return sheets;
 	}
 
-
 	/**
 	 * @deprecated: 创建内容行的每一列(附加一列序号)
 	 */
@@ -165,7 +197,7 @@ public class ExcelUtil
 		for (int i = 0,len = cells.length; i < len; i++)
 		{
 			cells[i] = contentRow.createCell(i);
-			cells[i].setCellStyle(getContentCellStyle());
+			cells[i].setCellStyle(contentStyle);
 		}
 		// 设置序号列值，因为出去标题行和日期行，所有-2
 		cells[0].setCellValue(contentRow.getRowNum() - 2);
@@ -174,137 +206,111 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 标题行样式
+	 * @deprecated: 初始化标题行样式
 	 */
-	private static CellStyle getTitleCellStyle()
+	private static void initTitleCellStyle()
 	{
-		CellStyle style = wb.createCellStyle();
-
-		style.setAlignment(CellStyle.ALIGN_CENTER);
-		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-		style.setFont(getTitleFont());
-		style.setFillBackgroundColor(IndexedColors.SKY_BLUE.index);
-		return style;
+		titleStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		titleStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		titleStyle.setFont(titleFont);
+		titleStyle.setFillBackgroundColor(IndexedColors.SKY_BLUE.index);
 	}
 
 	/**
-	 * @deprecated: 日期行样式
+	 * @deprecated: 初始化日期行样式
 	 */
-	private static CellStyle getDateCellStyle()
+	private static void initDateCellStyle()
 	{
-		CellStyle style = wb.createCellStyle();
-
-		style.setAlignment(CellStyle.ALIGN_CENTER_SELECTION);
-		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-		style.setFont(getDateFont());
-		style.setFillBackgroundColor(IndexedColors.SKY_BLUE.index);
-		return style;
+		dateStyle.setAlignment(CellStyle.ALIGN_CENTER_SELECTION);
+		dateStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		dateStyle.setFont(dateFont);
+		dateStyle.setFillBackgroundColor(IndexedColors.SKY_BLUE.index);
 	}
 
 	/**
-	 * @deprecated: 表头行样式
+	 * @deprecated: 初始化表头行样式
 	 */
-	private static CellStyle getHeadCellStyle()
+	private static void initHeadCellStyle()
 	{
-		CellStyle style = wb.createCellStyle();
-
-		style.setAlignment(CellStyle.ALIGN_CENTER);
-		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-		style.setFont(getHeadFont());
-		style.setFillBackgroundColor(IndexedColors.YELLOW.index);
-		style.setBorderTop(CellStyle.BORDER_MEDIUM);
-		style.setBorderBottom(CellStyle.BORDER_THIN);
-		style.setBorderLeft(CellStyle.BORDER_THIN);
-		style.setBorderRight(CellStyle.BORDER_THIN);
-		style.setTopBorderColor(IndexedColors.BLUE.index);
-		style.setBottomBorderColor(IndexedColors.BLUE.index);
-		style.setLeftBorderColor(IndexedColors.BLUE.index);
-		style.setRightBorderColor(IndexedColors.BLUE.index);
-
-		return style;
+		headStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		headStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		headStyle.setFont(headFont);
+		headStyle.setFillBackgroundColor(IndexedColors.YELLOW.index);
+		headStyle.setBorderTop(CellStyle.BORDER_MEDIUM);
+		headStyle.setBorderBottom(CellStyle.BORDER_THIN);
+		headStyle.setBorderLeft(CellStyle.BORDER_THIN);
+		headStyle.setBorderRight(CellStyle.BORDER_THIN);
+		headStyle.setTopBorderColor(IndexedColors.BLUE.index);
+		headStyle.setBottomBorderColor(IndexedColors.BLUE.index);
+		headStyle.setLeftBorderColor(IndexedColors.BLUE.index);
+		headStyle.setRightBorderColor(IndexedColors.BLUE.index);
 	}
 
 	/**
-	 * @deprecated: 内容行样式
+	 * @deprecated: 初始化内容行样式
 	 */
-	private static CellStyle getContentCellStyle()
+	private static void initContentCellStyle()
 	{
-		CellStyle style = wb.createCellStyle();
-
-		style.setAlignment(CellStyle.ALIGN_CENTER);
-		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-		style.setFont(getContentFont());
-		style.setBorderTop(CellStyle.BORDER_THIN);
-		style.setBorderBottom(CellStyle.BORDER_THIN);
-		style.setBorderLeft(CellStyle.BORDER_THIN);
-		style.setBorderRight(CellStyle.BORDER_THIN);
-		style.setTopBorderColor(IndexedColors.BLUE.index);
-		style.setBottomBorderColor(IndexedColors.BLUE.index);
-		style.setLeftBorderColor(IndexedColors.BLUE.index);
-		style.setRightBorderColor(IndexedColors.BLUE.index);
-		style.setWrapText(true);	// 字段换行
-
-		return style;
+		contentStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		contentStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		contentStyle.setFont(contentFont);
+		contentStyle.setBorderTop(CellStyle.BORDER_THIN);
+		contentStyle.setBorderBottom(CellStyle.BORDER_THIN);
+		contentStyle.setBorderLeft(CellStyle.BORDER_THIN);
+		contentStyle.setBorderRight(CellStyle.BORDER_THIN);
+		contentStyle.setTopBorderColor(IndexedColors.BLUE.index);
+		contentStyle.setBottomBorderColor(IndexedColors.BLUE.index);
+		contentStyle.setLeftBorderColor(IndexedColors.BLUE.index);
+		contentStyle.setRightBorderColor(IndexedColors.BLUE.index);
+		contentStyle.setWrapText(true);	// 字段换行
 	}
 	
 	/**
-	 * @deprecated: 标题行字体
+	 * @deprecated: 初始化标题行字体
 	 */
-	private static Font getTitleFont()
+	private static void initTitleFont()
 	{
-		Font font = wb.createFont();
-		font.setFontName("华文楷体");
-		font.setFontHeightInPoints((short) 20);
-		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
-		font.setCharSet(Font.DEFAULT_CHARSET);
-		font.setColor(IndexedColors.BLUE_GREY.index);
-		
-		return font;
+		titleFont.setFontName("华文楷体");
+		titleFont.setFontHeightInPoints((short) 20);
+		titleFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		titleFont.setCharSet(Font.DEFAULT_CHARSET);
+		titleFont.setColor(IndexedColors.BLUE_GREY.index);
 	}
 
 	/**
-	 * @deprecated: 日期行字体
+	 * @deprecated: 初始化日期行字体
 	 */
-	private static Font getDateFont()
+	private static void initDateFont()
 	{
-		Font font = wb.createFont();
-		font.setFontName("隶书");
-		font.setFontHeightInPoints((short) 10);
-		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
-		font.setCharSet(Font.DEFAULT_CHARSET);
-		font.setColor(IndexedColors.BLUE_GREY.index);
-		
-		return font;
+		dateFont.setFontName("隶书");
+		dateFont.setFontHeightInPoints((short) 10);
+		dateFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		dateFont.setCharSet(Font.DEFAULT_CHARSET);
+		dateFont.setColor(IndexedColors.BLUE_GREY.index);
 	}
 
 	/**
-	 * @deprecated: 表头行字体
+	 * @deprecated: 初始化表头行字体
 	 */
-	private static Font getHeadFont()
+	private static void initHeadFont()
 	{
-		Font font = wb.createFont();
-		font.setFontName("宋体");
-		font.setFontHeightInPoints((short) 10);
-		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
-		font.setCharSet(Font.DEFAULT_CHARSET);
-		font.setColor(IndexedColors.BLUE_GREY.index);
-		
-		return font;
+		headFont.setFontName("宋体");
+		headFont.setFontHeightInPoints((short) 10);
+		headFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		headFont.setCharSet(Font.DEFAULT_CHARSET);
+		headFont.setColor(IndexedColors.BLUE_GREY.index);
 	}
 
 	/**
-	 * @deprecated: 内容行字体
+	 * @deprecated: 初始化内容行字体
 	 */
-	private static Font getContentFont()
+	private static void initContentFont()
 	{
-		Font font = wb.createFont();
-		font.setFontName("宋体");
-		font.setFontHeightInPoints((short) 10);
-		font.setBoldweight(Font.BOLDWEIGHT_NORMAL);
-		font.setCharSet(Font.DEFAULT_CHARSET);
-		font.setColor(IndexedColors.BLUE_GREY.index);
-		
-		return font;
+		contentFont.setFontName("宋体");
+		contentFont.setFontHeightInPoints((short) 10);
+		contentFont.setBoldweight(Font.BOLDWEIGHT_NORMAL);
+		contentFont.setCharSet(Font.DEFAULT_CHARSET);
+		contentFont.setColor(IndexedColors.BLUE_GREY.index);
 	}
 	
 	
@@ -316,17 +322,12 @@ public class ExcelUtil
 	{
 		@SuppressWarnings("unchecked")
 		private LinkedHashMap<String, List> objsMap;
-
-		@SuppressWarnings("unchecked")
-		private Class[] clazz;
 		
 		private String[] titles;
 		
-		private int[] startFieldIndexs;
-		
-		private int[] endFieldIndexs;
-		
 		private List<String[]> headNames;
+		
+		private String[] fieldNames;
 		
 		private OutputStream out;
 
@@ -350,19 +351,17 @@ public class ExcelUtil
 			this.objsMap = objsMap;
 		}
 
-		@SuppressWarnings("unchecked")
-		public Class[] getClazz()
+		public String[] getFieldNames()
 		{
-			return clazz;
+			return fieldNames;
 		}
 
 		/**
-		 * @param clazz 对应每个sheet里的每行数据所表示的对象的类型
+		 * @param clazz 对应每个sheet里的每行数据的对象的属性名称
 		 */
-		@SuppressWarnings("unchecked")
-		public void setClazz(Class[] clazz)
+		public void setFieldNames(String[] fieldNames)
 		{
-			this.clazz = clazz;
+			this.fieldNames = fieldNames;
 		}
 
 		public String[] getTitles()
@@ -376,32 +375,6 @@ public class ExcelUtil
 		public void setTitles(String[] titles)
 		{
 			this.titles = titles;
-		}
-
-		public int[] getStartFieldIndexs()
-		{
-			return startFieldIndexs;
-		}
-
-		/**
-		 * @param startFieldIndexs 单个对象内需要导出的字段的起始索引[从0开始]
-		 */
-		public void setStartFieldIndexs(int[] startFieldIndexs)
-		{
-			this.startFieldIndexs = startFieldIndexs;
-		}
-
-		public int[] getEndFieldIndexs()
-		{
-			return endFieldIndexs;
-		}
-
-		/**
-		 * @param endFieldIndexs 单个对象内需要导出的字段的结束索引[从0开始]
-		 */
-		public void setEndFieldIndexs(int[] endFieldIndexs)
-		{
-			this.endFieldIndexs = endFieldIndexs;
 		}
 
 		public List<String[]> getHeadNames()

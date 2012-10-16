@@ -67,15 +67,15 @@ public class RolePrivilegeTest extends BaseTest
 		headNames.add(new String[] { "Rel", "动作指令", "菜单名称", "URL", "父级菜单" });
 		headNames.add(new String[] { "Rel", "动作指令", "菜单名称", "URL", "父级菜单" });
 
-		ExportSetInfo setInfo = new ExportSetInfo();
-		setInfo.setObjsMap(map);
-		setInfo.setClazz(new Class[] { User.class, Menu.class, Menu.class });
-		setInfo.setTitles(new String[] { "用户列表", "菜单列表1", "菜单列表2" });
-		setInfo.setStartFieldIndexs(new int[] { 2, 1, 1 });
-		setInfo.setEndFieldIndexs(new int[] { 6, 5, 5 });
-		setInfo.setHeadNames(headNames);
-		setInfo.setOut(new FileOutputStream("c:\\a.xls"));
-
-		ExcelUtil.export2Excel(setInfo);
+//		ExportSetInfo setInfo = new ExportSetInfo();
+//		setInfo.setObjsMap(map);
+//		setInfo.setClazz(new Class[] { User.class, Menu.class, Menu.class });
+//		setInfo.setTitles(new String[] { "用户列表", "菜单列表1", "菜单列表2" });
+//		setInfo.setStartFieldIndexs(new int[] { 2, 1, 1 });
+//		setInfo.setEndFieldIndexs(new int[] { 6, 5, 5 });
+//		setInfo.setHeadNames(headNames);
+//		setInfo.setOut(new FileOutputStream("c:\\a.xls"));
+//
+//		ExcelUtil.export2Excel(setInfo);
 	}
 }
