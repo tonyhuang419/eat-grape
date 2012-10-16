@@ -42,34 +42,29 @@ public class RestaurantTest extends BaseTest
 	}
 	
 	@Test
-	public void export2Excel() throws IOException
+	public void export2Excel() throws IOException, IllegalArgumentException, IllegalAccessException
 	{
 		System.out.println("a");
 		OutputStream out = new FileOutputStream(new File("c:/a.xls"));
 		
 		LinkedHashMap<String, List> objsMap = restaurantService.getExportData();
-		Class[] classes = new Class[objsMap.size()];
+		String[] fieldNames = new String[]{"name", "contactName", "contactPhone",
+				"contactEmail", "contactQq", "businessHours", "sendUpPrice",
+				"address", "sendMealsDescription", "logoUrl"};
 		String[] titles = new String[objsMap.size()];
-		int[] startFieldIndexs = new int[objsMap.size()];
-		int[] endFieldIndexs = new int[objsMap.size()];
 		List<String[]> headNames = new ArrayList<String[]>();
 		Iterator<Entry<String, List>> iterator = objsMap.entrySet().iterator();
 		for(int i = 0, len = objsMap.size(); i < len; i++)
 		{
-			classes[i] = Restaurant.class;
 			titles[i] = iterator.next().getKey() + "基本信息";
 			headNames.add(new String[] { "餐厅名称", "联系人", "联系电话", "联系邮箱", 
 					"联系QQ", "营业时间", "起送价格", "餐厅地址", "送餐说明", "餐厅Logo"});
-			startFieldIndexs[i] = 1;
-			endFieldIndexs[i] = 10;
 		}
 		
 		ExportSetInfo setInfo = new ExportSetInfo();
 		setInfo.setObjsMap(objsMap);
-		setInfo.setClazz(classes);
+		setInfo.setFieldNames(fieldNames);
 		setInfo.setTitles(titles);
-		setInfo.setStartFieldIndexs(startFieldIndexs);
-		setInfo.setEndFieldIndexs(endFieldIndexs);
 		setInfo.setHeadNames(headNames);
 		setInfo.setOut(out);
 		// 将需要导出的数据输出到baos
