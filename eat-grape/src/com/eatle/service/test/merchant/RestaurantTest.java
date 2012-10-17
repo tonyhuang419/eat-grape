@@ -1,7 +1,6 @@
 package com.eatle.service.test.merchant;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -41,6 +40,7 @@ public class RestaurantTest extends BaseTest
 		System.out.println(restaurantService.findAll().size());
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void export2Excel() throws IOException, IllegalArgumentException, IllegalAccessException
 	{
@@ -48,9 +48,7 @@ public class RestaurantTest extends BaseTest
 		OutputStream out = new FileOutputStream(new File("c:/a.xls"));
 		
 		LinkedHashMap<String, List> objsMap = restaurantService.getExportData();
-		String[] fieldNames = new String[]{"name", "contactName", "contactPhone",
-				"contactEmail", "contactQq", "businessHours", "sendUpPrice",
-				"address", "sendMealsDescription", "logoUrl"};
+		List<String[]> fieldNames = new ArrayList<String[]>();
 		String[] titles = new String[objsMap.size()];
 		List<String[]> headNames = new ArrayList<String[]>();
 		Iterator<Entry<String, List>> iterator = objsMap.entrySet().iterator();
@@ -59,6 +57,9 @@ public class RestaurantTest extends BaseTest
 			titles[i] = iterator.next().getKey() + "基本信息";
 			headNames.add(new String[] { "餐厅名称", "联系人", "联系电话", "联系邮箱", 
 					"联系QQ", "营业时间", "起送价格", "餐厅地址", "送餐说明", "餐厅Logo"});
+			fieldNames.add(new String[]{"name", "contactName", "contactPhone",
+					"contactEmail", "contactQq", "businessHours", "sendUpPrice",
+					"address", "sendMealsDescription", "logoUrl"});
 		}
 		
 		ExportSetInfo setInfo = new ExportSetInfo();
@@ -69,7 +70,5 @@ public class RestaurantTest extends BaseTest
 		setInfo.setOut(out);
 		// 将需要导出的数据输出到baos
 		ExcelUtil.export2Excel(setInfo);
-		
-		System.out.println("a");
 	}
 }

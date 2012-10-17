@@ -125,7 +125,7 @@ public class RestaurantAction extends BaseAction
 	}
 	
 	/**
-	 * @deprecated: 显示详细信息
+	 * @Description: 显示详细信息
 	 */
 	public String showDetail()
 	{
@@ -138,7 +138,7 @@ public class RestaurantAction extends BaseAction
 	}
 
 	/**
-	 * @deprecated: 显示Logo上传
+	 * @Description: 显示Logo上传
 	 */
 	public String showLogoUpload()
 	{
@@ -146,7 +146,7 @@ public class RestaurantAction extends BaseAction
 	}
 	
 	/**
-	 * @deprecated: 显示营业时间设置
+	 * @Description: 显示营业时间设置
 	 */
 	public String showSetBusinessHours()
 	{
@@ -167,7 +167,7 @@ public class RestaurantAction extends BaseAction
 	
 	/**
 	 * @throws IOException 
-	 * @deprecated: 设置营业时间
+	 * @Description: 设置营业时间
 	 */
 	public void setBusinessHours() throws IOException
 	{
@@ -201,7 +201,7 @@ public class RestaurantAction extends BaseAction
 	}
 	
 	/**
-	 * @deprecated: 显示送餐地点设置
+	 * @Description: 显示送餐地点设置
 	 */
 	public String showSetSendPlace()
 	{
@@ -210,7 +210,7 @@ public class RestaurantAction extends BaseAction
 
 	/**
 	 * @throws IOException 
-	 * @deprecated: 设置送餐地点
+	 * @Description: 设置送餐地点
 	 */
 	public void setSendPlace() throws IOException
 	{

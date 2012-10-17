@@ -28,7 +28,7 @@ public class StringUtil
 	}
 
 	/**
-	 *  @deprecated: getUUID() ：构造上传文件保存的UUID文件名
+	 *  @Description: getUUID() ：构造上传文件保存的UUID文件名
 	 * 	@param fileName ：源文件名，用于获取文件拓展名
 	 */
 	public static String getUUIDName(String fileName)

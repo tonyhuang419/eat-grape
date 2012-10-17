@@ -104,12 +104,12 @@ public class RestaurantServiceImpl implements IRestaurantService
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
 		List<Merchant> merchants = merchantService.findAll();
-		for(Merchant m : merchants)
+		for(int i = 0, len = merchants.size(); i < len; i++)
 		{
 			RestaurantCriteria rc = new RestaurantCriteria();
 			Criteria criteria = rc.createCriteria();
-			criteria.andMerchantIdEqualTo(m.getId());
-			map.put(m.getMerchantName(), findByCriteria(rc));
+			criteria.andMerchantIdEqualTo(merchants.get(i).getId());
+			map.put((i + 1) + "." + merchants.get(i).getMerchantName(), findByCriteria(rc));
 		}
 		return map;
 	}
