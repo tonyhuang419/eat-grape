@@ -1,5 +1,9 @@
 package com.eatle.persistent.pojo.foundation.place;
 
+import java.util.List;
+
+import com.eatle.persistent.pojo.merchant.Restaurant;
+
 public class Community
 {
 	private Long id;
@@ -12,18 +16,9 @@ public class Community
 
 	private Long districtId;
 
-	// 临时字段(完整区域名称)
-	private String districtName;
-
-	public String getDistrictName()
-	{
-		return districtName;
-	}
-
-	public void setDistrictName(String districtName)
-	{
-		this.districtName = districtName;
-	}
+	private String districtName;			// 临时属性(完整区域名称)
+	
+	private List<Restaurant> restaurants;	// 临时属性（餐厅集合）
 
 	public Long getId()
 	{
@@ -73,5 +68,25 @@ public class Community
 	public void setDistrictId(Long districtId)
 	{
 		this.districtId = districtId;
+	}
+
+	public String getDistrictName()
+	{
+		return districtName;
+	}
+
+	public void setDistrictName(String districtName)
+	{
+		this.districtName = districtName;
+	}
+
+	public List<Restaurant> getRestaurants()
+	{
+		return restaurants;
+	}
+
+	public void setRestaurants(List<Restaurant> restaurants)
+	{
+		this.restaurants = restaurants;
 	}
 }
