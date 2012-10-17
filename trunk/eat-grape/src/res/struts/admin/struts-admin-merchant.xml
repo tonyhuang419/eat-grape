@@ -54,7 +54,7 @@
       	<result name="showDetail">/WEB-INF/jsp/admin/merchant/restaurant/detail.jsp</result>
       	<result name="showLogoUpload">/WEB-INF/jsp/admin/merchant/restaurant/logoupload.jsp</result>
       	<result name="showSetBusinessHours">/WEB-INF/jsp/admin/merchant/restaurant/setbusinesshours.jsp</result>
-      	<result name="showSetSendPlace">/WEB-INF/jsp/admin/merchant/restaurant/setsendplace.jsp</result>
+      	<result name="showSetSendPlace">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/setsendplace.jsp</result>
     </action>
     
 	<!-- 餐厅Logo上传 -->
