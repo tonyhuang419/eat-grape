@@ -20,7 +20,7 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					地域名称：<input type="text" name="name" />
+					区域名称：<input type="text" name="name" />
 				</td>
 				<td>
 					名称拼音：<input type="text" name="pinyinName" />

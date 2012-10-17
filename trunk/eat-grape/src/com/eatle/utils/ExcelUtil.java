@@ -37,42 +37,17 @@ public class ExcelUtil
 	private static Font headFont;				// 表头行字体
 	private static CellStyle contentStyle ;		// 内容行样式
 	private static Font contentFont;			// 内容行字体
-
-	/**
-	 * @deprecated: 静态初始化
-	 */
-	static {
-		wb = new HSSFWorkbook();
-		wb.createFont();
-		
-		titleFont = wb.createFont();
-		titleStyle = wb.createCellStyle();
-		dateStyle = wb.createCellStyle();
-		dateFont = wb.createFont();
-		headStyle = wb.createCellStyle();
-		headFont = wb.createFont();
-		contentStyle = wb.createCellStyle();
-		contentFont = wb.createFont();
-		
-		initTitleCellStyle();
-		initTitleFont();
-		initDateCellStyle();
-		initDateFont();
-		initHeadCellStyle();
-		initHeadFont();
-		initContentCellStyle();
-		initContentFont();
-	}
 	
 	/**
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
-	 * @deprecated: 将Map里的集合对象数据输出Excel数据流
+	 * @Description: 将Map里的集合对象数据输出Excel数据流
 	 */
 	@SuppressWarnings({ "unchecked" })
 	public static void export2Excel(ExportSetInfo setInfo) throws 
 		IOException, IllegalArgumentException, IllegalAccessException
 	{
+		init();
 		Set<Entry<String, List>> set = setInfo.getObjsMap().entrySet();
 		String[] sheetNames = new String[setInfo.getObjsMap().size()];
 		int sheetNameNum = 0;
@@ -94,20 +69,18 @@ public class ExcelUtil
 			// 表头
 			creatTableHeadRow(setInfo, sheets, sheetNum);
 			// 表体
-			String[] fieldNames = setInfo.getFieldNames();
+			String[] fieldNames = setInfo.getFieldNames().get(sheetNum);
 			int rowNum = 3;
 			for (Object obj : objs)
 			{
 				HSSFRow contentRow = sheets[sheetNum].createRow(rowNum);
 				contentRow.setHeight((short) 300);
-				HSSFCell[] cells = getCells(contentRow, setInfo.getFieldNames().length);
-//				sheets[sheetNum].autoSizeColumn(0);	// 序号列自动调整列宽
+				HSSFCell[] cells = getCells(contentRow, setInfo.getFieldNames().get(sheetNum).length);
 				int cellNum = 1;					// 去掉一列序号，因此从1开始
 				if(fieldNames != null)
 				{
 					for (int num = 0; num < fieldNames.length; num++)
 					{
-//						sheets[sheetNum].autoSizeColumn(cellNum, true);		// 内容列自动调整列宽
 						Object value = ReflectionUtils.invokeGetterMethod(obj, fieldNames[num]);
 						cells[cellNum].setCellValue(value == null ? "" : value.toString());
 						cellNum++;
@@ -115,19 +88,59 @@ public class ExcelUtil
 				}
 				rowNum++;
 			}
+//			adjustColumnSize(sheets, sheetNum, fieldNames);	// 自动调整列宽
 			sheetNum++;
 		}
 		wb.write(setInfo.getOut());
 	}
 
 	/**
-	 * @deprecated: 创建标题行(需合并单元格)
+	 * @Description: 初始化
+	 */
+	private static void init()
+	{
+		wb = new HSSFWorkbook();
+		
+		titleFont = wb.createFont();
+		titleStyle = wb.createCellStyle();
+		dateStyle = wb.createCellStyle();
+		dateFont = wb.createFont();
+		headStyle = wb.createCellStyle();
+		headFont = wb.createFont();
+		contentStyle = wb.createCellStyle();
+		contentFont = wb.createFont();
+		
+		initTitleCellStyle();
+		initTitleFont();
+		initDateCellStyle();
+		initDateFont();
+		initHeadCellStyle();
+		initHeadFont();
+		initContentCellStyle();
+		initContentFont();
+	}
+
+	/**
+	 * @Description: 自动调整列宽
+	 */
+	@SuppressWarnings("unused")
+	private static void adjustColumnSize(HSSFSheet[] sheets, int sheetNum,
+			String[] fieldNames)
+	{
+		for(int i = 0; i < fieldNames.length + 1; i++)
+		{
+			sheets[sheetNum].autoSizeColumn(i, true);
+		}
+	}
+
+	/**
+	 * @Description: 创建标题行(需合并单元格)
 	 */
 	private static void createTableTitleRow(ExportSetInfo setInfo,
 			HSSFSheet[] sheets, int sheetNum)
 	{
 		CellRangeAddress titleRange = new CellRangeAddress(0, 0, 0, 
-				setInfo.getFieldNames().length + 1);
+				setInfo.getFieldNames().get(sheetNum).length);
 		sheets[sheetNum].addMergedRegion(titleRange);
 		HSSFRow titleRow = sheets[sheetNum].createRow(0);
 		titleRow.setHeight((short) 800);
@@ -137,13 +150,13 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 创建日期行(需合并单元格)
+	 * @Description: 创建日期行(需合并单元格)
 	 */
 	private static void createTableDateRow(ExportSetInfo setInfo,
 			HSSFSheet[] sheets, int sheetNum)
 	{
 		CellRangeAddress dateRange = new CellRangeAddress(1, 1, 0, 
-				setInfo.getFieldNames().length + 1);
+				setInfo.getFieldNames().get(sheetNum).length);
 		sheets[sheetNum].addMergedRegion(dateRange);
 		HSSFRow dateRow = sheets[sheetNum].createRow(1);
 		dateRow.setHeight((short) 350);
@@ -153,7 +166,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 创建表头行(需合并单元格)
+	 * @Description: 创建表头行(需合并单元格)
 	 */
 	private static void creatTableHeadRow(ExportSetInfo setInfo,
 			HSSFSheet[] sheets, int sheetNum)
@@ -175,7 +188,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 创建所有的Sheet
+	 * @Description: 创建所有的Sheet
 	 */
 	private static HSSFSheet[] getSheets(int num, String[] names)
 	{
@@ -188,7 +201,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 创建内容行的每一列(附加一列序号)
+	 * @Description: 创建内容行的每一列(附加一列序号)
 	 */
 	private static HSSFCell[] getCells(HSSFRow contentRow, int num)
 	{
@@ -206,7 +219,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 初始化标题行样式
+	 * @Description: 初始化标题行样式
 	 */
 	private static void initTitleCellStyle()
 	{
@@ -217,7 +230,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 初始化日期行样式
+	 * @Description: 初始化日期行样式
 	 */
 	private static void initDateCellStyle()
 	{
@@ -228,7 +241,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 初始化表头行样式
+	 * @Description: 初始化表头行样式
 	 */
 	private static void initHeadCellStyle()
 	{
@@ -247,7 +260,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 初始化内容行样式
+	 * @Description: 初始化内容行样式
 	 */
 	private static void initContentCellStyle()
 	{
@@ -266,7 +279,7 @@ public class ExcelUtil
 	}
 	
 	/**
-	 * @deprecated: 初始化标题行字体
+	 * @Description: 初始化标题行字体
 	 */
 	private static void initTitleFont()
 	{
@@ -278,7 +291,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 初始化日期行字体
+	 * @Description: 初始化日期行字体
 	 */
 	private static void initDateFont()
 	{
@@ -290,7 +303,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 初始化表头行字体
+	 * @Description: 初始化表头行字体
 	 */
 	private static void initHeadFont()
 	{
@@ -302,7 +315,7 @@ public class ExcelUtil
 	}
 
 	/**
-	 * @deprecated: 初始化内容行字体
+	 * @Description: 初始化内容行字体
 	 */
 	private static void initContentFont()
 	{
@@ -315,7 +328,7 @@ public class ExcelUtil
 	
 	
 	/**
-	 * @deprecated: 封装Excel导出的设置信息
+	 * @Description: 封装Excel导出的设置信息
 	 * @author: 谭又中
 	 */
 	public static class ExportSetInfo
@@ -327,7 +340,7 @@ public class ExcelUtil
 		
 		private List<String[]> headNames;
 		
-		private String[] fieldNames;
+		private List<String[]> fieldNames;
 		
 		private OutputStream out;
 
@@ -351,7 +364,7 @@ public class ExcelUtil
 			this.objsMap = objsMap;
 		}
 
-		public String[] getFieldNames()
+		public List<String[]> getFieldNames()
 		{
 			return fieldNames;
 		}
@@ -359,7 +372,7 @@ public class ExcelUtil
 		/**
 		 * @param clazz 对应每个sheet里的每行数据的对象的属性名称
 		 */
-		public void setFieldNames(String[] fieldNames)
+		public void setFieldNames(List<String[]> fieldNames)
 		{
 			this.fieldNames = fieldNames;
 		}

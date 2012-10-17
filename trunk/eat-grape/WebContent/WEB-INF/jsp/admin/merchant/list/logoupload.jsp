@@ -6,7 +6,7 @@
 		<div class="pageFormContent" layoutH="56" align="right">
 			<p>
 				<label>选择图片：</label>
-				<input id="logoFile" name="logo" type="file" class="textInput">
+				<input id="logoFile" name="logo" type="file" class="textInput required">
 			</p>
 		</div>
 		<div class="formBar">

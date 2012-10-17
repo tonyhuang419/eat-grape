@@ -20,7 +20,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 public class ImageUtil
 {
 	/**
-	 * @deprecated: 缩略图像
+	 * @Description: 缩略图像
 	 * @throws IOException 
 	 * @param sourceImg : 源图像File
 	 * @param targetImg : 生成路径File

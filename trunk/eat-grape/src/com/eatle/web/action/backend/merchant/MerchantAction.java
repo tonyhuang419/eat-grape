@@ -120,7 +120,7 @@ public class MerchantAction extends BaseAction
 	}
 	
 	/**
-	 * @deprecated: 显示详细信息
+	 * @Description: 显示详细信息
 	 */
 	public String showDetail()
 	{
@@ -129,7 +129,7 @@ public class MerchantAction extends BaseAction
 	}
 
 	/**
-	 * @deprecated: 显示Logo上传
+	 * @Description: 显示Logo上传
 	 */
 	public String showLogoUpload()
 	{

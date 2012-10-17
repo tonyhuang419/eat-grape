@@ -41,7 +41,7 @@ public class DownloadAction extends BaseAction
 	private String fileName;
 
 	/**
-	 * @deprecated: 账号数据导出Excel下载
+	 * @Description: 账号数据导出Excel下载
 	 */
 	public InputStream getUserExcel()
 	{
@@ -50,10 +50,12 @@ public class DownloadAction extends BaseAction
 		{
 			List<String[]> headNames = new ArrayList<String[]>();
 			headNames.add(new String[] { "用户名", "密码", "电子邮件", "类型", "角色" });
+			List<String[]> fieldNames = new ArrayList<String[]>();
+			fieldNames.add(new String[] { "userName", "pwd", "email", "type", "roleId"});
 
 			ExportSetInfo setInfo = new ExportSetInfo();
 			setInfo.setObjsMap(userService.getExportData());
-			setInfo.setFieldNames(new String[]{ "userName", "pwd", "email", "type", "roleId"});
+			setInfo.setFieldNames(fieldNames);
 			setInfo.setTitles(new String[] { "馋八戒后台用户信息" });
 			setInfo.setHeadNames(headNames);
 			setInfo.setOut(baos);
@@ -68,7 +70,7 @@ public class DownloadAction extends BaseAction
 	}
 
 	/**
-	 * @deprecated: 商家数据导出Excel下载
+	 * @Description: 商家数据导出Excel下载
 	 */
 	public InputStream getMerchantExcel()
 	{
@@ -76,20 +78,26 @@ public class DownloadAction extends BaseAction
 		try
 		{
 			List<String[]> headNames = new ArrayList<String[]>();
+			List<String[]> fieldNames = new ArrayList<String[]>();
 			headNames.add(new String[] { "商家名称", "商家电话", "商家邮箱", "商家地址",
 					"加盟时间", "商家Logo", "法定代表人", "法定人身份证号码", "法定人电话", 
 					"法定人家庭地址", "法定人现居地址" });
-
+			fieldNames.add(new String[]{"merchantName", "merchantPhone","merchantEmail",
+					"merchantAddress","merchantJoinTime", "merchantLogoUrl","legalName",
+					"legalIdCard","legalPhone","legalHomeAddress","legalAddress"});
 			ExportSetInfo setInfo = new ExportSetInfo();
 			setInfo.setObjsMap(merchantService.getExportData());
-			setInfo.setFieldNames(new String[]{"merchantName", "merchantPhone",
-					"merchantEmail", "merchantAddress","merchantJoinTime", "merchantLogoUrl",
-					"legalName", "legalIdCard", "legalPhone", "legalHomeAddress", "legalAddress"});
+			setInfo.setFieldNames(fieldNames);
 			setInfo.setTitles(new String[] { "馋八戒加盟商家信息" });
 			setInfo.setHeadNames(headNames);
 			setInfo.setOut(baos);
 			// 将需要导出的数据输出到baos
 			ExcelUtil.export2Excel(setInfo);
+			long startTime = System.currentTimeMillis();
+			// 将需要导出的数据输出到baos
+			ExcelUtil.export2Excel(setInfo);
+			long endTime = System.currentTimeMillis();
+			System.out.println((endTime - startTime) / 1000.0 + "秒");
 		}
 		catch (Exception e)
 		{
@@ -99,7 +107,7 @@ public class DownloadAction extends BaseAction
 	}
 
 	/**
-	 * @deprecated: 餐厅数据导出Excel下载
+	 * @Description: 餐厅数据导出Excel下载
 	 */
 	@SuppressWarnings("unchecked")
 	public InputStream getRestaurantExcel()
@@ -108,26 +116,31 @@ public class DownloadAction extends BaseAction
 		try
 		{
 			LinkedHashMap<String, List> objsMap = restaurantService.getExportData();
+			List<String[]> fieldNames = new ArrayList<String[]>();
 			String[] titles = new String[objsMap.size()];
 			List<String[]> headNames = new ArrayList<String[]>();
 			Iterator<Entry<String, List>> iterator = objsMap.entrySet().iterator();
 			for(int i = 0, len = objsMap.size(); i < len; i++)
 			{
-				titles[i] = iterator.next().getKey() + "加盟餐厅基本信息";
+				titles[i] = iterator.next().getKey() + "基本信息";
 				headNames.add(new String[] { "餐厅名称", "联系人", "联系电话", "联系邮箱", 
-						"联系QQ", "营业时间", "起送价格", "餐厅地址", "餐厅Logo", "送餐说明"});
+						"联系QQ", "营业时间", "起送价格", "餐厅地址", "送餐说明", "餐厅Logo"});
+				fieldNames.add(new String[]{"name", "contactName", "contactPhone",
+						"contactEmail", "contactQq", "businessHours", "sendUpPrice",
+						"address", "sendMealsDescription", "logoUrl"});
 			}
 			
 			ExportSetInfo setInfo = new ExportSetInfo();
 			setInfo.setObjsMap(objsMap);
-			setInfo.setFieldNames(new String[]{"name", "contactName", "contactPhone",
-					"contactEmail", "contactQq", "businessHours", "sendUpPrice",
-					"address", "sendMealsDescription", "logoUrl"});
+			setInfo.setFieldNames(fieldNames);
 			setInfo.setTitles(titles);
 			setInfo.setHeadNames(headNames);
 			setInfo.setOut(baos);
+			long startTime = System.currentTimeMillis();
 			// 将需要导出的数据输出到baos
 			ExcelUtil.export2Excel(setInfo);
+			long endTime = System.currentTimeMillis();
+			System.out.println((endTime - startTime) / 1000.0 + "秒");
 		}
 		catch (Exception e)
 		{

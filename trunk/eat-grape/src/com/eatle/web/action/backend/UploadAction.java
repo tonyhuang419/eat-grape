@@ -121,7 +121,7 @@ public class UploadAction extends BaseAction
 
 	/**
 	 * @throws IOException
-	 * @deprecated: 商家Logo上传
+	 * @Description: 商家Logo上传
 	 */
 	public void merchantLogoUpload() throws IOException
 	{
@@ -162,7 +162,7 @@ public class UploadAction extends BaseAction
 	}
 	/**
 	 * @throws IOException
-	 * @deprecated: 餐厅Logo上传
+	 * @Description: 餐厅Logo上传
 	 */
 	public void restaurantLogoUpload() throws IOException
 	{
@@ -204,7 +204,7 @@ public class UploadAction extends BaseAction
 
 	/**
 	 * @throws IOException
-	 * @deprecated: 手动校验文件类型和文件大小
+	 * @Description: 手动校验文件类型和文件大小
 	 */
 	public void validate()
 	{
