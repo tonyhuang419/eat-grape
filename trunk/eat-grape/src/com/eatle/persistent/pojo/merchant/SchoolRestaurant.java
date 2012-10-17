@@ -7,7 +7,7 @@ public class SchoolRestaurant
 	private Long schoolId;
 
 	private Long restaurantId;
-
+	
 	public Long getId()
 	{
 		return id;

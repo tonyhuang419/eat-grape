@@ -1,5 +1,10 @@
 package com.eatle.persistent.pojo.merchant;
 
+import java.util.List;
+
+import com.eatle.persistent.pojo.foundation.place.Community;
+import com.eatle.persistent.pojo.foundation.place.School;
+
 public class Restaurant
 {
 	private Long id;
@@ -30,7 +35,11 @@ public class Restaurant
 
 	private Long merchantId;
 	
-	private String merchantName;	// 所属商家名称（临时字段）
+	private String merchantName;			// 临时属性（所属商家名）
+	
+	private List<School> schools;			// 临时属性（学校集合）
+	
+	private List<Community> community;		// 临时属性（社区/楼宇集合）
 
 	public Long getId()
 	{
@@ -180,5 +189,25 @@ public class Restaurant
 	public void setMerchantName(String merchantName)
 	{
 		this.merchantName = merchantName;
+	}
+
+	public List<School> getSchools()
+	{
+		return schools;
+	}
+
+	public void setSchools(List<School> schools)
+	{
+		this.schools = schools;
+	}
+
+	public List<Community> getCommunity()
+	{
+		return community;
+	}
+
+	public void setCommunity(List<Community> community)
+	{
+		this.community = community;
 	}
 }
