@@ -54,7 +54,6 @@
       	<result name="showDetail">/WEB-INF/jsp/admin/merchant/restaurant/detail.jsp</result>
       	<result name="showLogoUpload">/WEB-INF/jsp/admin/merchant/restaurant/logoupload.jsp</result>
       	<result name="showSetBusinessHours">/WEB-INF/jsp/admin/merchant/restaurant/setbusinesshours.jsp</result>
-      	<result name="showSetSendPlace">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/setsendplace.jsp</result>
     </action>
     
 	<!-- 餐厅Logo上传 -->
@@ -73,5 +72,15 @@
 			<param name="bufferSize">4096</param>
 		</result>
 	</action>
+  </package>
+  
+  <!-- 餐厅送餐地点 相关-->
+  <package extends="default" name="sendplace" namespace="/admin/merchant/restaurant/sendplace">
+	<!-- 增删改查 -->
+    <action class="com.eatle.web.action.backend.merchant.SendPlaceAction" method="{1}" name="*">
+      	<result name="showIndex">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/sendplace.jsp</result>
+      	<result name="showSchoolTab">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/school.jsp</result>
+      	<result name="showCommunityTab">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/community.jsp</result>
+    </action>
   </package>
 </struts>
