@@ -7,9 +7,7 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -195,33 +193,6 @@ public class RestaurantAction extends BaseAction
 			}
 			businessHours = businessHours.substring(0, businessHours.length() - 1);
 			restaurant.setBusinessHours(businessHours);
-			restaurantService.update(restaurant);
-		}
-		super.writeMap(json);
-	}
-	
-	/**
-	 * @Description: 显示送餐地点设置
-	 */
-	public String showSetSendPlace()
-	{
-		return "showSetSendPlace";
-	}
-
-	/**
-	 * @throws IOException 
-	 * @Description: 设置送餐地点
-	 */
-	public void setSendPlace() throws IOException
-	{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		if (restaurant == null)
-		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
-		}
-		else
-		{
 			restaurantService.update(restaurant);
 		}
 		super.writeMap(json);

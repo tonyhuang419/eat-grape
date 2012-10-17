@@ -2,21 +2,5 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <div class="pageContent">
-	<div class="tabs" currentIndex="0" eventType="click">
-		<div class="tabsHeader">
-			<div class="tabsHeaderContent">
-				<ul>
-					<li><a href="${ctx}/admin/merchant/list/showLogoUpload.htm" class="j-ajax"><span>学校</span></a></li>
-					<li><a href="${ctx}/admin/merchant/list/showIndex.htm" class="j-ajax"><span>社区/楼宇</span></a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="tabsContent" style="height:400px;">
-			<div></div>
-			<div></div>
-		</div>
-		<div class="tabsFooter">
-			<div class="tabsFooterContent"></div>
-		</div>
-	</div>
+	社区楼宇
 </div>
