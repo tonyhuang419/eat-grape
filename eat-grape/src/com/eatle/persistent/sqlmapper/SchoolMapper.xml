@@ -7,6 +7,7 @@
     <result column="english_name" property="englishName" jdbcType="VARCHAR" />
     <result column="hot" property="hot" jdbcType="INTEGER" />
     <result column="district_id" property="districtId" jdbcType="BIGINT" />
+    <result column="districtName" property="districtName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

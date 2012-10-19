@@ -56,4 +56,12 @@ public interface ICommunityRestaurantService
 	 * 
 	 */
 	List<CommunityRestaurant> findByCriteria(CommunityRestaurantCriteria criteria);
+
+	/**
+	 * @Description: 根据餐厅ID获取所有送餐社区/楼宇
+	 * @param queryMap: 查询条件
+	 * @param startIndex: 起始索引
+	 * @param pageSize: 分页大小
+	 */
+	Pagination getSendCommunitiesByRestaurantId(Map<String, Object> queryMap, int currentPage, int pageSize);
 }

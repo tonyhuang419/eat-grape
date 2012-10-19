@@ -1,11 +1,14 @@
 package com.eatle.service.merchant.impl;
 
 import com.eatle.persistent.mapper.SchoolRestaurantMapper;
+import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurant;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurantCriteria.Criteria;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurantCriteria;
 import com.eatle.service.merchant.ISchoolRestaurantService;
 import com.eatle.utils.Pagination;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -36,20 +39,18 @@ public class SchoolRestaurantServiceImpl implements ISchoolRestaurantService
 	}
 
 	@Override
-	public Pagination findPagination(Map<String, Object> queryMap,
-			int currentPage, int pageSize)
+	public Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize)
 	{
 		SchoolRestaurantCriteria schoolRestaurantCriteria = new SchoolRestaurantCriteria();
 		Criteria criteria = schoolRestaurantCriteria.createCriteria();
 		// 设置搜索条件参数
-		// if(queryMap != null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
+		if (queryMap != null)
+		{
+			if (queryMap.containsKey("restaurantId"))
+			{
+				criteria.andRestaurantIdEqualTo((Long) queryMap.get("restaurantId"));
+			}
+		}
 		// 设置分页参数
 		schoolRestaurantCriteria.setPageSize(pageSize);
 		schoolRestaurantCriteria.setStartIndex((currentPage - 1) * pageSize);
@@ -71,9 +72,21 @@ public class SchoolRestaurantServiceImpl implements ISchoolRestaurantService
 	}
 
 	@Override
-	public List<SchoolRestaurant> findByCriteria(
-			SchoolRestaurantCriteria criteria)
+	public List<SchoolRestaurant> findByCriteria(SchoolRestaurantCriteria criteria)
 	{
 		return schoolRestaurantMapper.selectByCriteria(criteria);
+	}
+
+	@Override
+	public Pagination getSendSchoolsByRestaurantId(
+			Map<String, Object> queryMap, int currentPage, int pageSize)
+	{
+		queryMap.put("startIndex", (currentPage - 1) * pageSize);
+		queryMap.put("pageSize", pageSize);
+		
+		List<School> items = schoolRestaurantMapper.selectSendSchoolsByRestaurantId(queryMap);
+		int totalCount = (int) schoolRestaurantMapper.selectSendSchoolsCountByRestaurantId(queryMap);
+		
+		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
 }
