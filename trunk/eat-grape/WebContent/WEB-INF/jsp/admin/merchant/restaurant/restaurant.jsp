@@ -87,7 +87,7 @@
 							width="500" height="250">营业时间</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.name}-送餐地点管理" target="navTab" rel="${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/restaurant/sendplace/showIndex.htm?restaurant.id=${item.id}&action=zdylbzs&navTabId=sendplace_${item.id}"
+							href="${ctx}/admin/merchant/restaurant/sendplace/showIndex.htm?restaurantId=${item.id}&action=zdylbzs&navTabId=sendplace_${item.id}"
 							width="900" height="480">送餐地点</a>
 					</td>
 				</tr>

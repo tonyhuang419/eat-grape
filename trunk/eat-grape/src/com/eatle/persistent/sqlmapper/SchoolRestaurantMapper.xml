@@ -136,4 +136,41 @@
       </if>
     </where>
   </select>
+  
+  
+  <sql id="selectSendSchoolsCondition">
+  	from 
+  		t_school_restaurant a, 
+  		t_school b, 
+  		t_district c
+  	where 
+  		a.restaurant_id = #{restaurantId,jdbcType=BIGINT} 
+  	and 
+  		a.school_id = b.id 
+  	and 
+  		b.district_id = c.id 
+    <if test="schoolName != null" >
+  		and b.name like '%${schoolName}%' 
+  	</if>
+    <if test="englishName != null" >
+  		and b.english_name like '%${englishName}%' 
+  	</if>
+    <if test="districtName != null" >
+  		and c.name like '%${districtName}%' 
+  	</if>
+  	limit 
+  		#{startIndex,jdbcType=SMALLINT}, #{pageSize,jdbcType=SMALLINT}
+  </sql>
+  
+  <select id="selectSendSchoolsByRestaurantId" parameterType="Map" resultMap="com.eatle.persistent.mapper.SchoolMapper.BaseResultMap">
+  	select 
+  		b.id, b.name, b.english_name, b.hot, b.district_id, c.name districtName 
+  	<include refid="selectSendSchoolsCondition"/>
+  </select>
+  
+  <select id="selectSendSchoolsCountByRestaurantId" parameterType="Map" resultType="long">
+  	select 
+  		count(1) 
+  	<include refid="selectSendSchoolsCondition"/>
+  </select>
 </mapper>

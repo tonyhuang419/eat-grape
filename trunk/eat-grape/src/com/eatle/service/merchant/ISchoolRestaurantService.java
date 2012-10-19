@@ -56,4 +56,12 @@ public interface ISchoolRestaurantService
 	 * 
 	 */
 	List<SchoolRestaurant> findByCriteria(SchoolRestaurantCriteria criteria);
+	
+	/**
+	 * @Description: 根据餐厅ID获取所有送餐学校
+	 * @param queryMap: 查询条件
+	 * @param startIndex: 起始索引
+	 * @param pageSize: 分页大小
+	 */
+	Pagination getSendSchoolsByRestaurantId(Map<String, Object> queryMap, int currentPage, int pageSize);
 }

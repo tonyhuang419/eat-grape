@@ -1,8 +1,8 @@
 package com.eatle.service.merchant.impl;
 
 import com.eatle.persistent.mapper.CommunityRestaurantMapper;
+import com.eatle.persistent.pojo.foundation.place.Community;
 import com.eatle.persistent.pojo.merchant.CommunityRestaurant;
-import com.eatle.persistent.pojo.merchant.CommunityRestaurantCriteria.Criteria;
 import com.eatle.persistent.pojo.merchant.CommunityRestaurantCriteria;
 import com.eatle.service.merchant.ICommunityRestaurantService;
 import com.eatle.utils.Pagination;
@@ -40,7 +40,7 @@ public class CommunityRestaurantServiceImpl implements ICommunityRestaurantServi
 			int currentPage, int pageSize)
 	{
 		CommunityRestaurantCriteria communityRestaurantCriteria = new CommunityRestaurantCriteria();
-		Criteria criteria = communityRestaurantCriteria.createCriteria();
+//		Criteria criteria = communityRestaurantCriteria.createCriteria();
 		// 设置搜索条件参数
 		// if(queryMap != null){
 		// if(queryMap.containsKey("username")){
@@ -76,4 +76,16 @@ public class CommunityRestaurantServiceImpl implements ICommunityRestaurantServi
 	{
 		return communityRestaurantMapper.selectByCriteria(criteria);
 	}
+
+	@Override
+	public Pagination getSendCommunitiesByRestaurantId(
+			Map<String, Object> queryMap, int currentPage, int pageSize)
+	{
+		queryMap.put("startIndex", (currentPage - 1) * pageSize);
+		queryMap.put("pageSize", pageSize);
+		
+		List<Community> items = communityRestaurantMapper.selectSendCommunitiesByRestaurantId(queryMap);
+		int totalCount = (int) communityRestaurantMapper.selectSendCommunitiesCountByRestaurantId(queryMap);
+		
+		return new Pagination(pageSize, currentPage, totalCount, items);}
 }
