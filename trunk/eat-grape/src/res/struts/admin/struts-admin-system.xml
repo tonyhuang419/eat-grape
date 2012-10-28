@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+
+	<!-- ***************************** 权限系统管理  ***************************** -->
+
 	<!-- 账号管理 -->
 	<package extends="default" name="account" namespace="/admin/system/useradmin/account">
 		<action class="com.eatle.web.action.backend.system.useradmin.UserAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/admin/system/useradmin/account/account.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/admin/system/useradmin/account/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/admin/system/useradmin/account/update.jsp</result>
-			<!-- 
-			<result name="add" type="json">
-				<param name="ignoreHierarchy">false</param>   
-				<param name="includeProperties">resultMap.*</param>
-			</result>
-			-->
 		</action>
 		<!-- 导出账号数据到Excel -->
-		<action name="downXls" class="com.eatle.web.action.backend.DownloadAction" method="downXls">
+		<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
 			<result name="success" type="stream">
 				<param name="contentType">application/vnd.ms-excel</param>
 				<param name="inputName">userExcel</param>
@@ -32,12 +29,6 @@
 			<result name="showAdd">/WEB-INF/jsp/admin/system/useradmin/role/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/admin/system/useradmin/role/update.jsp</result>
 			<result name="showSetPriv">/WEB-INF/jsp/admin/system/useradmin/role/setRolePriv.jsp</result>
-			<!-- 
-			<result name="add" type="json">
-				<param name="ignoreHierarchy">false</param>   
-				<param name="includeProperties">resultMap.*</param>
-			</result>
-			-->
 		</action>
 	</package>
 
@@ -48,15 +39,10 @@
 			<result name="showAdd">/WEB-INF/jsp/admin/system/useradmin/priv/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/admin/system/useradmin/priv/update.jsp</result>
 			<result name="showSetSubPriv">/WEB-INF/jsp/admin/system/useradmin/priv/showSetSubPriv.jsp</result>
-			
-			<!-- 
-			<result name="add" type="json">
-				<param name="ignoreHierarchy">false</param>   
-				<param name="includeProperties">resultMap.*</param>
-			</result>
-			-->
 		</action>
 	</package>
+	
+	<!-- ***************************** 系统数据管理  ***************************** -->
 	
 	<!-- 菜单管理 -->
 	<package extends="default" name="menu" namespace="/admin/system/basedata/menu">
@@ -65,5 +51,73 @@
 			<result name="showAdd">/WEB-INF/jsp/admin/system/basedata/menu/add.jsp</result>
       		<result name="showUpdate">/WEB-INF/jsp/admin/system/basedata/menu/update.jsp</result>
     	</action>
+	</package>
+	
+	<!-- 系统信息 -->
+	<package extends="default" name="systemInfo" namespace="/admin/system/systemdata/systemInfo">
+		<action class="com.eatle.web.action.backend.system.systemdata.SystemInfoAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/systemdata/systemInfo/systemInfo.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 系统日志 -->
+	<package extends="default" name="systemLog" namespace="/admin/system/systemdata/systemLog">
+		<action class="com.eatle.web.action.backend.system.systemdata.SystemLogAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/systemdata/systemLog/systemLog.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 登陆日志 -->
+	<package extends="default" name="loginLog" namespace="/admin/system/systemdata/loginLog">
+		<action class="com.eatle.web.action.backend.system.systemdata.LoginLogAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/systemdata/loginLog/loginLog.jsp</result>
+		</action>
+	</package>
+	
+	<!-- ***************************** 前台数据管理  ***************************** -->
+	
+	<!-- 前台导航栏 -->
+	<package extends="default" name="frontMenu" namespace="/admin/system/frontdata/frontMenu">
+		<action class="com.eatle.web.action.backend.system.frontdata.FrontMenuAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/frontMenu/frontMenu.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/frontMenu/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/frontMenu/update.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 系统通知 -->
+	<package extends="default" name="systemNotice" namespace="/admin/system/frontdata/systemNotice">
+		<action class="com.eatle.web.action.backend.system.frontdata.SystemNoticeAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/systemNotice/systemNotice.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/systemNotice/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/systemNotice/update.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 前台广告 -->
+	<package extends="default" name="advert" namespace="/admin/system/frontdata/advert">
+		<action class="com.eatle.web.action.backend.system.frontdata.AdvertAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/advert/advert.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/advert/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/advert/update.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 前台友情链接 -->
+	<package extends="default" name="friendshipLink" namespace="/admin/system/frontdata/friendshipLink">
+		<action class="com.eatle.web.action.backend.system.frontdata.FriendshipLinkAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/friendshipLink/friendshipLink.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/friendshipLink/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/friendshipLink/update.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 前台客服信息 -->
+	<package extends="default" name="serviceInformation" namespace="/admin/system/frontdata/serviceInformation">
+		<action class="com.eatle.web.action.backend.system.frontdata.ServiceInformationAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/serviceInformation/serviceInformation.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/serviceInformation/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/serviceInformation/update.jsp</result>
+		</action>
 	</package>
 </struts>

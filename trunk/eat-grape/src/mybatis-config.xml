@@ -22,6 +22,26 @@
     	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.basedata.Menu"/>
     	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.basedata.MenuCriteria"/>
     	
+    	<!-- 登陆日志 -->
+    	<typeAlias alias="LoginLog" type="com.eatle.persistent.pojo.system.systemdata.LoginLog"/>
+    	<typeAlias alias="LoginLogCriteria" type="com.eatle.persistent.pojo.system.systemdata.LoginLogCriteria"/>
+    	
+    	<!-- 前台导航栏 -->
+    	<typeAlias alias="FrontMenu" type="com.eatle.persistent.pojo.system.frontdata.FrontMenu"/>
+    	<typeAlias alias="FrontMenuCriteria" type="com.eatle.persistent.pojo.system.frontdata.FrontMenuCriteria"/>
+    	<!-- 系统通知 -->
+    	<typeAlias alias="SystemNotice" type="com.eatle.persistent.pojo.system.frontdata.SystemNotice"/>
+    	<typeAlias alias="SystemNoticeCriteria" type="com.eatle.persistent.pojo.system.frontdata.SystemNoticeCriteria"/>
+    	<!-- 前台广告 -->
+    	<typeAlias alias="Advert" type="com.eatle.persistent.pojo.system.frontdata.Advert"/>
+    	<typeAlias alias="AdvertCriteria" type="com.eatle.persistent.pojo.system.frontdata.AdvertCriteria"/>
+    	<!-- 前台友情链接 -->
+    	<typeAlias alias="FriendshipLink" type="com.eatle.persistent.pojo.system.frontdata.FriendshipLink"/>
+    	<typeAlias alias="FriendshipLinkCriteria" type="com.eatle.persistent.pojo.system.frontdata.FriendshipLinkCriteria"/>
+    	<!-- 前台客服信息 -->
+    	<typeAlias alias="ServiceInformation" type="com.eatle.persistent.pojo.system.frontdata.ServiceInformation"/>
+    	<typeAlias alias="ServiceInformationCriteria" type="com.eatle.persistent.pojo.system.frontdata.ServiceInformationCriteria"/>
+    	
     	
     	<!-- *****************************基础数据************************************* -->
     	

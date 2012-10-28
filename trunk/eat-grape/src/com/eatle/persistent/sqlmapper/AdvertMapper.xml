@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.AdvertMapper" >
+  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.system.frontdata.Advert" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="pic_width" property="picWidth" jdbcType="SMALLINT" />
+    <result column="pic_height" property="picHeight" jdbcType="SMALLINT" />
+    <result column="show_text" property="showText" jdbcType="VARCHAR" />
+    <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
+    <result column="issue_time" property="issueTime" jdbcType="TIMESTAMP" />
+    <result column="alt_text" property="altText" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pic_url, pic_width, pic_height, show_text, link_url, issue_time, alt_text
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.system.frontdata.AdvertCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_advert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_advert
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_advert
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
+    insert into t_advert (id, pic_url, pic_width, 
+      pic_height, show_text, link_url, 
+      issue_time, alt_text)
+    values (#{id,jdbcType=BIGINT}, #{picUrl,jdbcType=VARCHAR}, #{picWidth,jdbcType=SMALLINT}, 
+      #{picHeight,jdbcType=SMALLINT}, #{showText,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, 
+      #{issueTime,jdbcType=TIMESTAMP}, #{altText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
+    insert into t_advert
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="picWidth != null" >
+        pic_width,
+      </if>
+      <if test="picHeight != null" >
+        pic_height,
+      </if>
+      <if test="showText != null" >
+        show_text,
+      </if>
+      <if test="linkUrl != null" >
+        link_url,
+      </if>
+      <if test="issueTime != null" >
+        issue_time,
+      </if>
+      <if test="altText != null" >
+        alt_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picWidth != null" >
+        #{picWidth,jdbcType=SMALLINT},
+      </if>
+      <if test="picHeight != null" >
+        #{picHeight,jdbcType=SMALLINT},
+      </if>
+      <if test="showText != null" >
+        #{showText,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTime != null" >
+        #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="altText != null" >
+        #{altText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
+    update t_advert
+    <set >
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picWidth != null" >
+        pic_width = #{picWidth,jdbcType=SMALLINT},
+      </if>
+      <if test="picHeight != null" >
+        pic_height = #{picHeight,jdbcType=SMALLINT},
+      </if>
+      <if test="showText != null" >
+        show_text = #{showText,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        link_url = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTime != null" >
+        issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="altText != null" >
+        alt_text = #{altText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
+    update t_advert
+    set pic_url = #{picUrl,jdbcType=VARCHAR},
+      pic_width = #{picWidth,jdbcType=SMALLINT},
+      pic_height = #{picHeight,jdbcType=SMALLINT},
+      show_text = #{showText,jdbcType=VARCHAR},
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      alt_text = #{altText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.system.frontdata.AdvertCriteria" >
+    select count(1) 
+    from t_advert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_advert
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="picUrl != null" >
+        and pic_url = #{picUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="picWidth != null" >
+        and pic_width = #{picWidth,jdbcType=SMALLINT}
+      </if>
+      <if test="picHeight != null" >
+        and pic_height = #{picHeight,jdbcType=SMALLINT}
+      </if>
+      <if test="showText != null" >
+        and show_text = #{showText,jdbcType=VARCHAR}
+      </if>
+      <if test="linkUrl != null" >
+        and link_url = #{linkUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="issueTime != null" >
+        and issue_time = #{issueTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="altText != null" >
+        and alt_text = #{altText,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>
