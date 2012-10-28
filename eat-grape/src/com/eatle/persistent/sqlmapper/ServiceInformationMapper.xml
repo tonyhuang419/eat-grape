@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.ServiceInformationMapper" >
+  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.system.frontdata.ServiceInformation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="serve_mobile" property="serveMobile" jdbcType="VARCHAR" />
+    <result column="serve_tel" property="serveTel" jdbcType="VARCHAR" />
+    <result column="serve_qq" property="serveQq" jdbcType="VARCHAR" />
+    <result column="serve_email" property="serveEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, serve_mobile, serve_tel, serve_qq, serve_email
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.system.frontdata.ServiceInformationCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_service_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_service_information
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_service_information
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.eatle.persistent.pojo.system.frontdata.ServiceInformation" >
+    insert into t_service_information (id, serve_mobile, serve_tel, 
+      serve_qq, serve_email)
+    values (#{id,jdbcType=BIGINT}, #{serveMobile,jdbcType=VARCHAR}, #{serveTel,jdbcType=VARCHAR}, 
+      #{serveQq,jdbcType=VARCHAR}, #{serveEmail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.system.frontdata.ServiceInformation" >
+    insert into t_service_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serveMobile != null" >
+        serve_mobile,
+      </if>
+      <if test="serveTel != null" >
+        serve_tel,
+      </if>
+      <if test="serveQq != null" >
+        serve_qq,
+      </if>
+      <if test="serveEmail != null" >
+        serve_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serveMobile != null" >
+        #{serveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="serveTel != null" >
+        #{serveTel,jdbcType=VARCHAR},
+      </if>
+      <if test="serveQq != null" >
+        #{serveQq,jdbcType=VARCHAR},
+      </if>
+      <if test="serveEmail != null" >
+        #{serveEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.system.frontdata.ServiceInformation" >
+    update t_service_information
+    <set >
+      <if test="serveMobile != null" >
+        serve_mobile = #{serveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="serveTel != null" >
+        serve_tel = #{serveTel,jdbcType=VARCHAR},
+      </if>
+      <if test="serveQq != null" >
+        serve_qq = #{serveQq,jdbcType=VARCHAR},
+      </if>
+      <if test="serveEmail != null" >
+        serve_email = #{serveEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.system.frontdata.ServiceInformation" >
+    update t_service_information
+    set serve_mobile = #{serveMobile,jdbcType=VARCHAR},
+      serve_tel = #{serveTel,jdbcType=VARCHAR},
+      serve_qq = #{serveQq,jdbcType=VARCHAR},
+      serve_email = #{serveEmail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.system.frontdata.ServiceInformationCriteria" >
+    select count(1) 
+    from t_service_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_service_information
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="serveMobile != null" >
+        and serve_mobile = #{serveMobile,jdbcType=VARCHAR}
+      </if>
+      <if test="serveTel != null" >
+        and serve_tel = #{serveTel,jdbcType=VARCHAR}
+      </if>
+      <if test="serveQq != null" >
+        and serve_qq = #{serveQq,jdbcType=VARCHAR}
+      </if>
+      <if test="serveEmail != null" >
+        and serve_email = #{serveEmail,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

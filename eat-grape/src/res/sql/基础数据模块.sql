@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS `t_convert_goods`;
 CREATE TABLE `t_convert_goods` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
-  `describe` varchar(200) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
   `pic_url` varchar(200) DEFAULT NULL,
   `total` int(11) DEFAULT NULL,
   `surplus` int(11) DEFAULT NULL,

@@ -71,7 +71,7 @@
     </action>
   </package>
   
-  <!-- 系统数据字典 -->
+  <!-- 积分商城管理 -->
   <package extends="default" name="convertGoods" namespace="/admin/foundation/scoreshop/convertGoods">
     <action class="com.eatle.web.action.backend.foundation.scoreshop.ConvertGoodsAction" method="{1}" name="*">
       <result name="showIndex">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/convertGoods.jsp</result>

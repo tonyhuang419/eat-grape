@@ -6,7 +6,7 @@ public class ConvertGoods
 
 	private String name;
 
-	private String describe;
+	private String description;
 
 	private String picUrl;
 
@@ -36,14 +36,14 @@ public class ConvertGoods
 		this.name = name;
 	}
 
-	public String getDescribe()
+	public String getDescription()
 	{
-		return describe;
+		return description;
 	}
 
-	public void setDescribe(String describe)
+	public void setDescription(String description)
 	{
-		this.describe = describe;
+		this.description = description;
 	}
 
 	public String getPicUrl()
