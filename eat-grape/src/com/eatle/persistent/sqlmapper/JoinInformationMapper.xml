@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.JoinInformationMapper" >
+  <resultMap id="BaseResultMap" type="JoinInformation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_addr" property="shopAddr" jdbcType="VARCHAR" />
+    <result column="link_man" property="linkMan" jdbcType="VARCHAR" />
+    <result column="link_tel" property="linkTel" jdbcType="VARCHAR" />
+    <result column="link_email" property="linkEmail" jdbcType="VARCHAR" />
+    <result column="link_qq" property="linkQq" jdbcType="VARCHAR" />
+    <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="JoinInformation" extends="BaseResultMap" >
+    <result column="send_place" property="sendPlace" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_name, shop_addr, link_man, link_tel, link_email, link_qq, sub_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    send_place
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="JoinInformationCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_join_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="JoinInformationCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_join_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_join_information
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_join_information
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="JoinInformation" >
+    insert into t_join_information (id, shop_name, shop_addr, 
+      link_man, link_tel, link_email, 
+      link_qq, sub_time, send_place
+      )
+    values (#{id,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{shopAddr,jdbcType=VARCHAR}, 
+      #{linkMan,jdbcType=VARCHAR}, #{linkTel,jdbcType=VARCHAR}, #{linkEmail,jdbcType=VARCHAR}, 
+      #{linkQq,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{sendPlace,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="JoinInformation" >
+    insert into t_join_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="shopAddr != null" >
+        shop_addr,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="linkTel != null" >
+        link_tel,
+      </if>
+      <if test="linkEmail != null" >
+        link_email,
+      </if>
+      <if test="linkQq != null" >
+        link_qq,
+      </if>
+      <if test="subTime != null" >
+        sub_time,
+      </if>
+      <if test="sendPlace != null" >
+        send_place,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddr != null" >
+        #{shopAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTel != null" >
+        #{linkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkQq != null" >
+        #{linkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="subTime != null" >
+        #{subTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendPlace != null" >
+        #{sendPlace,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="JoinInformation" >
+    update t_join_information
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddr != null" >
+        shop_addr = #{shopAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTel != null" >
+        link_tel = #{linkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        link_email = #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkQq != null" >
+        link_qq = #{linkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="subTime != null" >
+        sub_time = #{subTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendPlace != null" >
+        send_place = #{sendPlace,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="JoinInformation" >
+    update t_join_information
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_addr = #{shopAddr,jdbcType=VARCHAR},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_tel = #{linkTel,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      link_qq = #{linkQq,jdbcType=VARCHAR},
+      sub_time = #{subTime,jdbcType=TIMESTAMP},
+      send_place = #{sendPlace,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="JoinInformation" >
+    update t_join_information
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_addr = #{shopAddr,jdbcType=VARCHAR},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_tel = #{linkTel,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      link_qq = #{linkQq,jdbcType=VARCHAR},
+      sub_time = #{subTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="JoinInformationCriteria" >
+    select count(1) 
+    from t_join_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_join_information
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="shopName != null" >
+        and shop_name = #{shopName,jdbcType=VARCHAR}
+      </if>
+      <if test="shopAddr != null" >
+        and shop_addr = #{shopAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="linkMan != null" >
+        and link_man = #{linkMan,jdbcType=VARCHAR}
+      </if>
+      <if test="linkTel != null" >
+        and link_tel = #{linkTel,jdbcType=VARCHAR}
+      </if>
+      <if test="linkEmail != null" >
+        and link_email = #{linkEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="linkQq != null" >
+        and link_qq = #{linkQq,jdbcType=VARCHAR}
+      </if>
+      <if test="subTime != null" >
+        and sub_time = #{subTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sendPlace != null" >
+        and send_place = #{sendPlace,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

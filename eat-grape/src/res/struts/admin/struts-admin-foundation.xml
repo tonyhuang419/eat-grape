@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+  <!-- 区域/学校/社区 -->
   <package extends="default" name="district" namespace="/admin/foundation/place/district">
-    <action name="*" class="com.eatle.web.action.backend.foundation.place.DistrictAction" method="{1}">
+    <action class="com.eatle.web.action.backend.foundation.place.DistrictAction" method="{1}" name="*">
 		<result name="showIndex">/WEB-INF/jsp/admin/foundation/place/district/district.jsp</result>
 		<result name="showAdd">/WEB-INF/jsp/admin/foundation/place/district/add.jsp</result>
 		<result name="showUpdate">/WEB-INF/jsp/admin/foundation/place/district/update.jsp</result>
@@ -17,10 +18,72 @@
     </action>
   </package>
   <package extends="default" name="community" namespace="/admin/foundation/place/community">
-    <action  name="*" class="com.eatle.web.action.backend.foundation.place.CommunityAction" method="{1}">
+    <action class="com.eatle.web.action.backend.foundation.place.CommunityAction" method="{1}" name="*">
       <result name="showIndex">/WEB-INF/jsp/admin/foundation/place/community/community.jsp</result>
       <result name="showAdd">/WEB-INF/jsp/admin/foundation/place/community/add.jsp</result>
       <result name="showUpdate">/WEB-INF/jsp/admin/foundation/place/community/update.jsp</result>
+    </action>
+  </package>
+  
+  <!-- 业务发展数据 -->
+  <package extends="default" name="joinInformation" namespace="/admin/foundation/business/joinInformation">
+    <action class="com.eatle.web.action.backend.foundation.business.JoinInformationAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/business/joinInformation/joinInformation.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/business/joinInformation/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/business/joinInformation/update.jsp</result>
+    </action>
+  </package>
+  <package extends="default" name="recommendMerchant" namespace="/admin/foundation/business/recommendMerchant">
+    <action class="com.eatle.web.action.backend.foundation.business.RecommendMerchantAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/business/recommendMerchant/recommendMerchant.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/business/recommendMerchant/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/business/recommendMerchant/update.jsp</result>
+    </action>
+  </package>
+  <package extends="default" name="feedback" namespace="/admin/foundation/business/feedback">
+    <action class="com.eatle.web.action.backend.foundation.business.FeedbackAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/business/feedback/feedback.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/business/feedback/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/business/feedback/update.jsp</result>
+    </action>
+  </package>
+  
+  <!-- 系统数据字典 -->
+  <package extends="default" name="shopType" namespace="/admin/foundation/dictionary/shopType">
+    <action class="com.eatle.web.action.backend.foundation.dictionary.ShopTypeAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/dictionary/shopType/shopType.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/dictionary/shopType/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/dictionary/shopType/update.jsp</result>
+    </action>
+  </package>
+  <package extends="default" name="sendRemark" namespace="/admin/foundation/dictionary/sendRemark">
+    <action class="com.eatle.web.action.backend.foundation.dictionary.SendRemarkAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/dictionary/sendRemark/sendRemark.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/dictionary/sendRemark/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/dictionary/sendRemark/update.jsp</result>
+    </action>
+  </package>
+  <package extends="default" name="menuFeature" namespace="/admin/foundation/dictionary/menuFeature">
+    <action class="com.eatle.web.action.backend.foundation.dictionary.MenuFeatureAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/dictionary/menuFeature/menuFeature.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/dictionary/menuFeature/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/dictionary/menuFeature/update.jsp</result>
+    </action>
+  </package>
+  
+  <!-- 系统数据字典 -->
+  <package extends="default" name="convertGoods" namespace="/admin/foundation/scoreshop/convertGoods">
+    <action class="com.eatle.web.action.backend.foundation.scoreshop.ConvertGoodsAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/convertGoods.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/update.jsp</result>
+    </action>
+  </package>
+  <package extends="default" name="convertRecords" namespace="/admin/foundation/scoreshop/convertRecords">
+    <action class="com.eatle.web.action.backend.foundation.scoreshop.ConvertRecordsAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/foundation/scoreshop/convertRecords/convertRecords.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/admin/foundation/scoreshop/convertRecords/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/admin/foundation/scoreshop/convertRecords/update.jsp</result>
     </action>
   </package>
 </struts>

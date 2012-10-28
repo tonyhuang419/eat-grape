@@ -35,6 +35,33 @@
     	<typeAlias alias="School" type="com.eatle.persistent.pojo.foundation.place.School"/>
     	<typeAlias alias="SchoolCriteria" type="com.eatle.persistent.pojo.foundation.place.SchoolCriteria"/>
     	
+    	<!-- 加盟信息 -->
+    	<typeAlias alias="JoinInformation" type="com.eatle.persistent.pojo.foundation.business.JoinInformation"/>
+    	<typeAlias alias="JoinInformationCriteria" type="com.eatle.persistent.pojo.foundation.business.JoinInformationCriteria"/>
+    	<!-- 顾客推荐信息 -->
+    	<typeAlias alias="RecommendMerchant" type="com.eatle.persistent.pojo.foundation.business.RecommendMerchant"/>
+    	<typeAlias alias="RecommendMerchantCriteria" type="com.eatle.persistent.pojo.foundation.business.RecommendMerchantCriteria"/>
+    	<!-- 顾客推荐信息 -->
+    	<typeAlias alias="Feedback" type="com.eatle.persistent.pojo.foundation.business.Feedback"/>
+    	<typeAlias alias="FeedbackCriteria" type="com.eatle.persistent.pojo.foundation.business.FeedbackCriteria"/>
+    	
+    	<!-- 商店主营类型字典 -->
+    	<typeAlias alias="ShopType" type="com.eatle.persistent.pojo.foundation.dictionary.ShopType"/>
+    	<typeAlias alias="ShopTypeCriteria" type="com.eatle.persistent.pojo.foundation.dictionary.ShopTypeCriteria"/>
+    	<!-- 送餐备注短语字典 -->
+    	<typeAlias alias="SendRemark" type="com.eatle.persistent.pojo.foundation.dictionary.SendRemark"/>
+    	<typeAlias alias="SendRemarkCriteria" type="com.eatle.persistent.pojo.foundation.dictionary.SendRemarkCriteria"/>
+    	<!-- 菜品特性描述字典 -->
+    	<typeAlias alias="MenuFeature" type="com.eatle.persistent.pojo.foundation.dictionary.MenuFeature"/>
+    	<typeAlias alias="MenuFeatureCriteria" type="com.eatle.persistent.pojo.foundation.dictionary.MenuFeatureCriteria"/>
+    	
+    	<!-- 库存兑换物品 -->
+    	<typeAlias alias="ConvertGoods" type="com.eatle.persistent.pojo.foundation.scoreshop.ConvertGoods"/>
+    	<typeAlias alias="ConvertGoodsCriteria" type="com.eatle.persistent.pojo.foundation.scoreshop.ConvertGoodsCriteria"/>
+    	<!-- 库存兑换物品 -->
+    	<typeAlias alias="ConvertRecords" type="com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecords"/>
+    	<typeAlias alias="ConvertRecordsCriteria" type="com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecordsCriteria"/>
+    	
     	
     	<!-- *****************************商家管理************************************* -->
     	

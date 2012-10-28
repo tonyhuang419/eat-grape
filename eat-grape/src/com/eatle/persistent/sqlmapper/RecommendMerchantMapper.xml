@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.RecommendMerchantMapper" >
+  <resultMap id="BaseResultMap" type="RecommendMerchant" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_tel" property="shopTel" jdbcType="VARCHAR" />
+    <result column="shop_addr" property="shopAddr" jdbcType="VARCHAR" />
+    <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_name, shop_tel, shop_addr, sub_time, customer_id
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="RecommendMerchantCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_recommend_merchant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_recommend_merchant
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_recommend_merchant
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="RecommendMerchant" >
+    insert into t_recommend_merchant (id, shop_name, shop_tel, 
+      shop_addr, sub_time, customer_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, 
+      #{shopAddr,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{customerId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="RecommendMerchant" >
+    insert into t_recommend_merchant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="shopTel != null" >
+        shop_tel,
+      </if>
+      <if test="shopAddr != null" >
+        shop_addr,
+      </if>
+      <if test="subTime != null" >
+        sub_time,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopTel != null" >
+        #{shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddr != null" >
+        #{shopAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="subTime != null" >
+        #{subTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="RecommendMerchant" >
+    update t_recommend_merchant
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopTel != null" >
+        shop_tel = #{shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddr != null" >
+        shop_addr = #{shopAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="subTime != null" >
+        sub_time = #{subTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="RecommendMerchant" >
+    update t_recommend_merchant
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_tel = #{shopTel,jdbcType=VARCHAR},
+      shop_addr = #{shopAddr,jdbcType=VARCHAR},
+      sub_time = #{subTime,jdbcType=TIMESTAMP},
+      customer_id = #{customerId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="RecommendMerchantCriteria" >
+    select count(1) 
+    from t_recommend_merchant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_recommend_merchant
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="shopName != null" >
+        and shop_name = #{shopName,jdbcType=VARCHAR}
+      </if>
+      <if test="shopTel != null" >
+        and shop_tel = #{shopTel,jdbcType=VARCHAR}
+      </if>
+      <if test="shopAddr != null" >
+        and shop_addr = #{shopAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="subTime != null" >
+        and sub_time = #{subTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="customerId != null" >
+        and customer_id = #{customerId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+</mapper>
