@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.ConvertRecordsMapper" >
+  <resultMap id="BaseResultMap" type="ConvertRecords" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="convert_count" property="convertCount" jdbcType="INTEGER" />
+    <result column="convert_time" property="convertTime" jdbcType="TIMESTAMP" />
+    <result column="cost_score" property="costScore" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goods_id, convert_count, convert_time, cost_score, customer_id
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="ConvertRecordsCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_convert_records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_convert_records
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_convert_records
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="ConvertRecords" >
+    insert into t_convert_records (id, goods_id, convert_count, 
+      convert_time, cost_score, customer_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{convertCount,jdbcType=INTEGER}, 
+      #{convertTime,jdbcType=TIMESTAMP}, #{costScore,jdbcType=INTEGER}, #{customerId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ConvertRecords" >
+    insert into t_convert_records
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="convertCount != null" >
+        convert_count,
+      </if>
+      <if test="convertTime != null" >
+        convert_time,
+      </if>
+      <if test="costScore != null" >
+        cost_score,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="convertCount != null" >
+        #{convertCount,jdbcType=INTEGER},
+      </if>
+      <if test="convertTime != null" >
+        #{convertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costScore != null" >
+        #{costScore,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ConvertRecords" >
+    update t_convert_records
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="convertCount != null" >
+        convert_count = #{convertCount,jdbcType=INTEGER},
+      </if>
+      <if test="convertTime != null" >
+        convert_time = #{convertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costScore != null" >
+        cost_score = #{costScore,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ConvertRecords" >
+    update t_convert_records
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      convert_count = #{convertCount,jdbcType=INTEGER},
+      convert_time = #{convertTime,jdbcType=TIMESTAMP},
+      cost_score = #{costScore,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="ConvertRecordsCriteria" >
+    select count(1) 
+    from t_convert_records
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_convert_records
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="goodsId != null" >
+        and goods_id = #{goodsId,jdbcType=BIGINT}
+      </if>
+      <if test="convertCount != null" >
+        and convert_count = #{convertCount,jdbcType=INTEGER}
+      </if>
+      <if test="convertTime != null" >
+        and convert_time = #{convertTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="costScore != null" >
+        and cost_score = #{costScore,jdbcType=INTEGER}
+      </if>
+      <if test="customerId != null" >
+        and customer_id = #{customerId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+</mapper>
