@@ -18,10 +18,10 @@
     	<!-- 角色权限关联 -->
     	<typeAlias alias="RolePrivilege" type="com.eatle.persistent.pojo.system.useradmin.RolePrivilege"/>
     	<typeAlias alias="RolePrivilegeCriteria" type="com.eatle.persistent.pojo.system.useradmin.RolePrivilegeCriteria"/>
-    	<!-- 系统菜单 -->
-    	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.basedata.Menu"/>
-    	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.basedata.MenuCriteria"/>
     	
+    	<!-- 系统菜单 -->
+    	<typeAlias alias="Menu" type="com.eatle.persistent.pojo.system.systemdata.Menu"/>
+    	<typeAlias alias="MenuCriteria" type="com.eatle.persistent.pojo.system.systemdata.MenuCriteria"/>
     	<!-- 登陆日志 -->
     	<typeAlias alias="LoginLog" type="com.eatle.persistent.pojo.system.systemdata.LoginLog"/>
     	<typeAlias alias="LoginLogCriteria" type="com.eatle.persistent.pojo.system.systemdata.LoginLogCriteria"/>

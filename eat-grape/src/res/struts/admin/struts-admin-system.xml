@@ -44,12 +44,12 @@
 	
 	<!-- ***************************** 系统数据管理  ***************************** -->
 	
-	<!-- 菜单管理 -->
-	<package extends="default" name="menu" namespace="/admin/system/basedata/menu">
-		<action class="com.eatle.web.action.backend.system.basedata.MenuAction" method="{1}" name="*">
-			<result name="showIndex">/WEB-INF/jsp/admin/system/basedata/menu/menu.jsp</result>
-			<result name="showAdd">/WEB-INF/jsp/admin/system/basedata/menu/add.jsp</result>
-      		<result name="showUpdate">/WEB-INF/jsp/admin/system/basedata/menu/update.jsp</result>
+	<!-- 系统菜单 -->
+	<package extends="default" name="menu" namespace="/admin/system/systemdata/menu">
+		<action class="com.eatle.web.action.backend.system.systemdata.MenuAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/systemdata/menu/menu.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/systemdata/menu/add.jsp</result>
+      		<result name="showUpdate">/WEB-INF/jsp/admin/system/systemdata/menu/update.jsp</result>
     	</action>
 	</package>
 	

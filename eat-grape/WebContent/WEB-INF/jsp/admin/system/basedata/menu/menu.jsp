@@ -13,7 +13,7 @@
     	bindings : {
     		// 新增菜单
 			newMenu : function(t){
-				var url = "${ctx}/admin/system/basedata/menu/showAdd.htm?menu.parentId=" + t.attr("id") + "&action=tjgnzs&navTabId=${navTabId}";
+				var url = "${ctx}/admin/system/systemdata/menu/showAdd.htm?menu.parentId=" + t.attr("id") + "&action=tjgnzs&navTabId=${navTabId}";
 				var dlgId = "dialog_menu_" + t.attr("id");
 				var title = t.text() + " - 菜单添加";
 				var options = {
@@ -25,7 +25,7 @@
             },
     		// 修改菜单
 			updateMenu : function(t){
-				var url = "${ctx}/admin/system/basedata/menu/showUpdate.htm?menu.id=" + t.attr("id") + "&action=xggnzs&navTabId=${navTabId}";
+				var url = "${ctx}/admin/system/systemdata/menu/showUpdate.htm?menu.id=" + t.attr("id") + "&action=xggnzs&navTabId=${navTabId}";
 				var dlgId = "dialog_menu_" + t.attr("id");
 				var title = t.text() + " - 菜单修改";
 				var options = {
@@ -44,7 +44,7 @@
             	}
             	else
 	            {
-	            	var url = "${ctx}/admin/system/basedata/menu/delete.htm";
+	            	var url = "${ctx}/admin/system/systemdata/menu/delete.htm";
 					var msg = "您确认删除这 - " + checkBoxs.length + " - 项菜单吗？";
 					var delMenuIds = "";	// 需删除的菜单ID集合
 					for(var i = 0; i < checkBoxs.length; i++)
