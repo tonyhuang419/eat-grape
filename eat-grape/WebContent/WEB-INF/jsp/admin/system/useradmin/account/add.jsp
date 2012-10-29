@@ -19,8 +19,9 @@
 			<p>
 				<label>用户类型：</label>
 				<select name="user.type" class="required combox">
+					<option value="0">管理员</option>
 					<option value="1">个人</option>
-					<option value="2" selected>公司</option>
+					<option value="2">公司</option>
 				</select>
 			</p>
 			<p>

@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 <form id="pagerForm" method="post" action="${ctx}/admin/system/useradmin/account/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="asc" />
@@ -10,6 +10,8 @@
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
 	<input type="hidden" name="userName" value="${param.userName}" />
 	<input type="hidden" name="email" value="${param.email}" />
+	<input type="hidden" name="type" value="${param.type}" />
+	<input type="hidden" name="roleId" value="${param.roleId}" />
 </form>
 
 
@@ -27,6 +29,7 @@
 				<td>
 					<select class="combox" name="type">
 						<option value="">用户类型</option>
+						<option value="0">管理员</option>
 						<option value="1">个人</option>
 						<option value="2">公司</option>
 					</select>
@@ -78,7 +81,8 @@
 					<td>${item.pwd}</td>
 					<td>${item.email}</td>
 					<td>
-						<s:if test="#item.type == 1">个人</s:if>
+						<s:if test="#item.type == 0">管理员</s:if>
+						<s:elseif test="#item.type == 1">个人</s:elseif>
 						<s:elseif test="#item.type == 2">公司</s:elseif>
 					</td>
 					<td>

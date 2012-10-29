@@ -324,61 +324,61 @@ public class LoginLogCriteria
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdEqualTo(Integer value)
+		public Criteria andIdentifyIdEqualTo(Long value)
 		{
 			addCriterion("identify_id =", value, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdNotEqualTo(Integer value)
+		public Criteria andIdentifyIdNotEqualTo(Long value)
 		{
 			addCriterion("identify_id <>", value, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdGreaterThan(Integer value)
+		public Criteria andIdentifyIdGreaterThan(Long value)
 		{
 			addCriterion("identify_id >", value, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdGreaterThanOrEqualTo(Integer value)
+		public Criteria andIdentifyIdGreaterThanOrEqualTo(Long value)
 		{
 			addCriterion("identify_id >=", value, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdLessThan(Integer value)
+		public Criteria andIdentifyIdLessThan(Long value)
 		{
 			addCriterion("identify_id <", value, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdLessThanOrEqualTo(Integer value)
+		public Criteria andIdentifyIdLessThanOrEqualTo(Long value)
 		{
 			addCriterion("identify_id <=", value, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdIn(List<Integer> values)
+		public Criteria andIdentifyIdIn(List<Long> values)
 		{
 			addCriterion("identify_id in", values, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdNotIn(List<Integer> values)
+		public Criteria andIdentifyIdNotIn(List<Long> values)
 		{
 			addCriterion("identify_id not in", values, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdBetween(Integer value1, Integer value2)
+		public Criteria andIdentifyIdBetween(Long value1, Long value2)
 		{
 			addCriterion("identify_id between", value1, value2, "identifyId");
 			return (Criteria) this;
 		}
 
-		public Criteria andIdentifyIdNotBetween(Integer value1, Integer value2)
+		public Criteria andIdentifyIdNotBetween(Long value1, Long value2)
 		{
 			addCriterion("identify_id not between", value1, value2,
 					"identifyId");

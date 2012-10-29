@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 <form id="pagerForm" method="post" action="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${param.merchantId}&action=account_mgr&navTabId=${param.navTabId}">
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="asc" />
@@ -13,8 +13,6 @@
 	<input type="hidden" name="contactName" value="${param.contactName}" />
 	<input type="hidden" name="contactPhone" value="${param.contactPhone}" />
 </form>
-
-
 <div class="pageHeader">
 	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${param.merchantId}&action=zxzhss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">

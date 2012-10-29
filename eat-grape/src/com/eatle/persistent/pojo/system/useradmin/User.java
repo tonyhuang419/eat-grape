@@ -15,7 +15,7 @@ public class User implements Serializable
 
 	private String email;
 
-	private Byte type;
+	private Short type;
 
 	private Long roleId;
 	
@@ -62,12 +62,12 @@ public class User implements Serializable
 		this.email = email;
 	}
 
-	public Byte getType()
+	public Short getType()
 	{
 		return type;
 	}
 
-	public void setType(Byte type)
+	public void setType(Short type)
 	{
 		this.type = type;
 	}

@@ -6,7 +6,7 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="SMALLINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -73,7 +73,7 @@
     insert into t_user (id, user_name, pwd, 
       email, type, role_id)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{roleId,jdbcType=BIGINT})
+      #{email,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, #{roleId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="User" >
     insert into t_user
@@ -111,7 +111,7 @@
         #{email,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=TINYINT},
+        #{type,jdbcType=SMALLINT},
       </if>
       <if test="roleId != null" >
         #{roleId,jdbcType=BIGINT},
@@ -131,7 +131,7 @@
         email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=TINYINT},
+        type = #{type,jdbcType=SMALLINT},
       </if>
       <if test="roleId != null" >
         role_id = #{roleId,jdbcType=BIGINT},
@@ -144,7 +144,7 @@
     set user_name = #{userName,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      type = #{type,jdbcType=TINYINT},
+      type = #{type,jdbcType=SMALLINT},
       role_id = #{roleId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -171,7 +171,7 @@
         and email = #{email,jdbcType=VARCHAR}
       </if>
       <if test="type != null" >
-        and type = #{type,jdbcType=TINYINT}
+        and type = #{type,jdbcType=SMALLINT}
       </if>
       <if test="roleId != null" >
         and role_id = #{roleId,jdbcType=BIGINT}

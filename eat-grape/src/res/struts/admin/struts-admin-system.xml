@@ -72,6 +72,15 @@
 		<action class="com.eatle.web.action.backend.system.systemdata.LoginLogAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/admin/system/systemdata/loginLog/loginLog.jsp</result>
 		</action>
+		<!-- 导出日志数据到Excel -->
+		<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">loginLogExcel</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
 	</package>
 	
 	<!-- ***************************** 前台数据管理  ***************************** -->

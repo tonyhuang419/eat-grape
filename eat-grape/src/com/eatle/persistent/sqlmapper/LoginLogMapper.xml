@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="LoginLog" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="identify_type" property="identifyType" jdbcType="SMALLINT" />
-    <result column="identify_id" property="identifyId" jdbcType="INTEGER" />
+    <result column="identify_id" property="identifyId" jdbcType="BIGINT" />
     <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
     <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -71,7 +71,7 @@
   <insert id="insert" parameterType="LoginLog" >
     insert into t_login_log (id, identify_type, identify_id, 
       login_ip, login_time)
-    values (#{id,jdbcType=BIGINT}, #{identifyType,jdbcType=SMALLINT}, #{identifyId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{identifyType,jdbcType=SMALLINT}, #{identifyId,jdbcType=BIGINT}, 
       #{loginIp,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="LoginLog" >
@@ -101,7 +101,7 @@
         #{identifyType,jdbcType=SMALLINT},
       </if>
       <if test="identifyId != null" >
-        #{identifyId,jdbcType=INTEGER},
+        #{identifyId,jdbcType=BIGINT},
       </if>
       <if test="loginIp != null" >
         #{loginIp,jdbcType=VARCHAR},
@@ -118,7 +118,7 @@
         identify_type = #{identifyType,jdbcType=SMALLINT},
       </if>
       <if test="identifyId != null" >
-        identify_id = #{identifyId,jdbcType=INTEGER},
+        identify_id = #{identifyId,jdbcType=BIGINT},
       </if>
       <if test="loginIp != null" >
         login_ip = #{loginIp,jdbcType=VARCHAR},
@@ -132,7 +132,7 @@
   <update id="updateByPrimaryKey" parameterType="LoginLog" >
     update t_login_log
     set identify_type = #{identifyType,jdbcType=SMALLINT},
-      identify_id = #{identifyId,jdbcType=INTEGER},
+      identify_id = #{identifyId,jdbcType=BIGINT},
       login_ip = #{loginIp,jdbcType=VARCHAR},
       login_time = #{loginTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
@@ -154,7 +154,7 @@
         and identify_type = #{identifyType,jdbcType=SMALLINT}
       </if>
       <if test="identifyId != null" >
-        and identify_id = #{identifyId,jdbcType=INTEGER}
+        and identify_id = #{identifyId,jdbcType=BIGINT}
       </if>
       <if test="loginIp != null" >
         and login_ip = #{loginIp,jdbcType=VARCHAR}

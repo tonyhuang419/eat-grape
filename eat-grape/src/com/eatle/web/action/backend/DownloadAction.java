@@ -14,6 +14,7 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
+import com.eatle.service.system.systemdata.ILoginLogService;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.ExcelUtil;
 import com.eatle.utils.ExcelUtil.ExportSetInfo;
@@ -21,7 +22,7 @@ import com.eatle.web.action.BaseAction;
 
 /** @corpor  公司：深讯信科
  *  @author  作者：谭又中
- *  @explain 释义：登陆验证
+ *  @explain 释义：Excel导出下载
  *  @version 日期：2012-9-12 下午12:50:00 
  */
 public class DownloadAction extends BaseAction
@@ -36,6 +37,9 @@ public class DownloadAction extends BaseAction
 
 	@Resource
 	private IRestaurantService restaurantService;
+	
+	@Resource
+	private ILoginLogService loginLogService;
 
 	// 下载文件名
 	private String fileName;
@@ -141,6 +145,35 @@ public class DownloadAction extends BaseAction
 			ExcelUtil.export2Excel(setInfo);
 			long endTime = System.currentTimeMillis();
 			System.out.println((endTime - startTime) / 1000.0 + "秒");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	/**
+	 * @Description: 登陆日志数据导出Excel下载
+	 */
+	public InputStream getLoginLogExcel()
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try
+		{
+			List<String[]> headNames = new ArrayList<String[]>();
+			headNames.add(new String[] { "用户名", "身份类型", "登陆IP", "登录时间" });
+			List<String[]> fieldNames = new ArrayList<String[]>();
+			fieldNames.add(new String[] { "userName", "identifyTypeStr", "loginIp", "loginTimeStr" });
+
+			ExportSetInfo setInfo = new ExportSetInfo();
+			setInfo.setObjsMap(loginLogService.getExportData());
+			setInfo.setFieldNames(fieldNames);
+			setInfo.setTitles(new String[] { "馋八戒用户登陆日志信息" });
+			setInfo.setHeadNames(headNames);
+			setInfo.setOut(baos);
+			// 将需要导出的数据输出到baos
+			ExcelUtil.export2Excel(setInfo);
 		}
 		catch (Exception e)
 		{

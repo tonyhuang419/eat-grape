@@ -82,7 +82,7 @@ public class UserServiceImpl implements IUserService
 			}
 			if (queryMap.containsKey("type"))
 			{
-				criteria.andTypeEqualTo(new Byte((String) queryMap.get("type")));
+				criteria.andTypeEqualTo(Short.parseShort((String) queryMap.get("type")));
 			}
 			if (queryMap.containsKey("roleId"))
 			{
