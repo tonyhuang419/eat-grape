@@ -150,4 +150,14 @@
       </if>
     </where>
   </select>
+  
+  
+  <select id="findByParentId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+  		id, name, url, parent_id 
+  	from 
+  		t_front_menu 
+  	where 
+  		parent_id = #{parentId, jdbcType=BIGINT}
+  </select>
 </mapper>

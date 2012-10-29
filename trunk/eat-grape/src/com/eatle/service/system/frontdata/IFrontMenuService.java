@@ -56,4 +56,22 @@ public interface IFrontMenuService
 	 * 
 	 */
 	List<FrontMenu> findByCriteria(FrontMenuCriteria criteria);
+
+	/**
+	 * @Description: 根据父菜单id（parent_id）查找
+	 * 
+	 */
+	List<FrontMenu> findByParentId(Long parentId);
+
+	/**
+	 * @Description: 查找所有根菜单
+	 * 
+	 */
+	List<FrontMenu> findRootMenu();
+
+	/**
+	 * @Description: 查找所有菜单(菜单管理树形展示)
+	 * 
+	 */
+	String findAllFrontMenu();
 }
