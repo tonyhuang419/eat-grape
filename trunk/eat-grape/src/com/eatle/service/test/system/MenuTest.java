@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.eatle.persistent.pojo.system.basedata.Menu;
-import com.eatle.persistent.pojo.system.basedata.MenuCriteria;
-import com.eatle.service.system.basedata.IMenuService;
+import com.eatle.persistent.pojo.system.systemdata.Menu;
+import com.eatle.persistent.pojo.system.systemdata.MenuCriteria;
+import com.eatle.service.system.systemdata.IMenuService;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.test.BaseTest;
 
