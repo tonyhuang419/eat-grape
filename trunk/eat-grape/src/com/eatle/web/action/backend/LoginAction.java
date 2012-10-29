@@ -1,8 +1,13 @@
 package com.eatle.web.action.backend; 
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
+import com.eatle.common.Constants;
+import com.eatle.persistent.pojo.system.systemdata.LoginLog;
 import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.service.system.systemdata.ILoginLogService;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.web.action.BaseAction;
@@ -18,13 +23,36 @@ public class LoginAction extends BaseAction
 
     @Resource
     private IUserService userService;
-    
+
     @Resource
     private IRolePrivilegeService rolePrivilegeService;
+    
+    @Resource
+    private ILoginLogService loginLogService;
 
 	private User user;
 
 	private String verifycode_c;
+
+	public User getUser()
+	{
+		return user;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+	
+	public String getVerifycode_c()
+	{
+		return verifycode_c;
+	}
+
+	public void setVerifycode_c(String verifycodeC)
+	{
+		verifycode_c = verifycodeC;
+	}
 
     /**
      * 
@@ -62,7 +90,9 @@ public class LoginAction extends BaseAction
 					user.setAllPrivs(rolePrivilegeService
 							.findPrivsByRoleId(user.getRoleId()));
 					session.put("user", user);
-					
+					// 登陆日志
+					writeLoginLog(user);
+					// 验证结果
 					resultMap.put("res", "1");
 				}
 				else
@@ -91,45 +121,23 @@ public class LoginAction extends BaseAction
 		return INPUT;
 	}
 
-    
-	public IUserService getUserService()
+    /**
+     * 
+     * @Description: 写入登陆日志
+     */
+	private void writeLoginLog(User user)
 	{
-		return userService;
-	}
-
-	public void setUserService(IUserService userService)
-	{
-		this.userService = userService;
-	}
-
-    public IRolePrivilegeService getRolePrivilegeService()
-	{
-		return rolePrivilegeService;
-	}
-
-	public void setRolePrivilegeService(IRolePrivilegeService rolePrivilegeService)
-	{
-		this.rolePrivilegeService = rolePrivilegeService;
-	}
-	
-	public User getUser()
-	{
-		return user;
-	}
-
-	public void setUser(User user)
-	{
-		this.user = user;
-	}
-	
-	public String getVerifycode_c()
-	{
-		return verifycode_c;
-	}
-
-	public void setVerifycode_c(String verifycodeC)
-	{
-		verifycode_c = verifycodeC;
+		LoginLog loginLog = new LoginLog();
+		
+		if(Constants.USERTYPE_ADMINISTRATOR == user.getType())
+			loginLog.setIdentifyType(Constants.IDENTIFY_ADMINISTRATOR);
+		else
+			loginLog.setIdentifyType(Constants.IDENTIFY_MERCHANT);
+		loginLog.setIdentifyId(user.getId());
+		loginLog.setLoginIp(request.getRemoteAddr());
+		loginLog.setLoginTime(new Date());
+		
+		loginLogService.add(loginLog);
 	}
 }
  

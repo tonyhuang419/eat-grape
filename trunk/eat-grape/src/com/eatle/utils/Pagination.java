@@ -13,17 +13,17 @@ import java.util.List;
  */
 public class Pagination
 {
-	public static final int PAGESIZE = 15; // 每页默认条数
+	public static final int PAGESIZE = 15; 		// 每页默认条数
 
-	public static final int CURRENTPAGE = 1;
+	public static final int CURRENTPAGE = 1;	// 默认当前页码
 
-	private int pageSize = PAGESIZE; // 每页记录数
+	private int pageSize = PAGESIZE; 			// 每页记录数
 
-	private int currentPage = CURRENTPAGE; // 当前页号
+	private int currentPage = CURRENTPAGE; 		// 当前页号
 
-	private int totalCount; // 总记录数
+	private int totalCount; 					// 总记录数
 
-	private List<?> items; // 记录对象列表
+	private List<?> items; 						// 记录对象列表
 
 	public Pagination()
 	{

@@ -6,6 +6,7 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -35,7 +36,7 @@ public class SystemLogAction extends BaseAction
 		this.loginLog = loginLog;
 	}
 
-	public String showIndex()
+	public String showIndex() throws ParseException
 	{
 		Map<String, Object> params = super.getRequestParameters(request);
 		int pageNum = Pagination.CURRENTPAGE;

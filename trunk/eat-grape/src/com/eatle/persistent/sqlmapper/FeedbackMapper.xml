@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="identify_type" property="identifyType" jdbcType="SMALLINT" />
-    <result column="identify_id" property="identifyId" jdbcType="INTEGER" />
+    <result column="identify_id" property="identifyId" jdbcType="BIGINT" />
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="Feedback" extends="BaseResultMap" >
@@ -101,7 +101,7 @@
       identify_id, sub_time, content
       )
     values (#{id,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{identifyType,jdbcType=SMALLINT}, 
-      #{identifyId,jdbcType=INTEGER}, #{subTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      #{identifyId,jdbcType=BIGINT}, #{subTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="Feedback" >
@@ -137,7 +137,7 @@
         #{identifyType,jdbcType=SMALLINT},
       </if>
       <if test="identifyId != null" >
-        #{identifyId,jdbcType=INTEGER},
+        #{identifyId,jdbcType=BIGINT},
       </if>
       <if test="subTime != null" >
         #{subTime,jdbcType=TIMESTAMP},
@@ -157,7 +157,7 @@
         identify_type = #{identifyType,jdbcType=SMALLINT},
       </if>
       <if test="identifyId != null" >
-        identify_id = #{identifyId,jdbcType=INTEGER},
+        identify_id = #{identifyId,jdbcType=BIGINT},
       </if>
       <if test="subTime != null" >
         sub_time = #{subTime,jdbcType=TIMESTAMP},
@@ -172,7 +172,7 @@
     update t_feedback
     set email = #{email,jdbcType=VARCHAR},
       identify_type = #{identifyType,jdbcType=SMALLINT},
-      identify_id = #{identifyId,jdbcType=INTEGER},
+      identify_id = #{identifyId,jdbcType=BIGINT},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
@@ -181,7 +181,7 @@
     update t_feedback
     set email = #{email,jdbcType=VARCHAR},
       identify_type = #{identifyType,jdbcType=SMALLINT},
-      identify_id = #{identifyId,jdbcType=INTEGER},
+      identify_id = #{identifyId,jdbcType=BIGINT},
       sub_time = #{subTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -205,7 +205,7 @@
         and identify_type = #{identifyType,jdbcType=SMALLINT}
       </if>
       <if test="identifyId != null" >
-        and identify_id = #{identifyId,jdbcType=INTEGER}
+        and identify_id = #{identifyId,jdbcType=BIGINT}
       </if>
       <if test="subTime != null" >
         and sub_time = #{subTime,jdbcType=TIMESTAMP}

@@ -20,6 +20,7 @@
 			<p>
 				<label>用户类型：</label>
 				<select name="user.type" class="required combox">
+					<option value="0" <s:if test="user.type == 0">selected</s:if> >管理员</option>
 					<option value="1" <s:if test="user.type == 1">selected</s:if> >个人</option>
 					<option value="2" <s:if test="user.type == 2">selected</s:if> >公司</option>
 				</select>

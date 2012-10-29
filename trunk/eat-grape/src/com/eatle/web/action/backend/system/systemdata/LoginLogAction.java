@@ -6,6 +6,7 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -35,7 +36,7 @@ public class LoginLogAction extends BaseAction
 		this.loginLog = loginLog;
 	}
 
-	public String showIndex()
+	public String showIndex() throws ParseException
 	{
 		Map<String, Object> params = super.getRequestParameters(request);
 		int pageNum = Pagination.CURRENTPAGE;
@@ -52,27 +53,6 @@ public class LoginLogAction extends BaseAction
 		return "showIndex";
 	}
 
-	public String showAdd()
-	{
-		return "showAdd";
-	}
-
-	public void add() throws IOException
-	{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (loginLog == null)
-		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
-		}
-		else
-		{
-			loginLogService.add(loginLog);
-		}
-		super.writeMap(json);
-	}
-
 	public void delete() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
@@ -86,28 +66,6 @@ public class LoginLogAction extends BaseAction
 		else
 		{
 			loginLogService.delete(loginLog);
-		}
-		super.writeMap(json);
-	}
-
-	public String showUpdate()
-	{
-		loginLog = loginLogService.findById(loginLog.getId());
-		return "showUpdate";
-	}
-
-	public void update() throws IOException
-	{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (loginLog == null)
-		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
-		}
-		else
-		{
-			loginLogService.update(loginLog);
 		}
 		super.writeMap(json);
 	}

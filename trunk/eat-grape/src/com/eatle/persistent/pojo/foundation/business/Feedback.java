@@ -10,7 +10,7 @@ public class Feedback
 
 	private Short identifyType;
 
-	private Integer identifyId;
+	private Long identifyId;
 
 	private Date subTime;
 
@@ -46,12 +46,12 @@ public class Feedback
 		this.identifyType = identifyType;
 	}
 
-	public Integer getIdentifyId()
+	public Long getIdentifyId()
 	{
 		return identifyId;
 	}
 
-	public void setIdentifyId(Integer identifyId)
+	public void setIdentifyId(Long identifyId)
 	{
 		this.identifyId = identifyId;
 	}

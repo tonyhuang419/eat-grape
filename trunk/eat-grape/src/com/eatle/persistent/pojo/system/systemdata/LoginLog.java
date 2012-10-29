@@ -8,11 +8,20 @@ public class LoginLog
 
 	private Short identifyType;
 
-	private Integer identifyId;
+	private Long identifyId;
 
 	private String loginIp;
 
 	private Date loginTime;
+
+	// 临时属性(登陆的用户名)
+	private String userName;
+
+	// 临时属性(登陆的身份类型字符串)
+	private String identifyTypeStr;
+
+	// 临时属性(登陆的时间字符串)
+	private String loginTimeStr;
 
 	public Long getId()
 	{
@@ -34,12 +43,12 @@ public class LoginLog
 		this.identifyType = identifyType;
 	}
 
-	public Integer getIdentifyId()
+	public Long getIdentifyId()
 	{
 		return identifyId;
 	}
 
-	public void setIdentifyId(Integer identifyId)
+	public void setIdentifyId(Long identifyId)
 	{
 		this.identifyId = identifyId;
 	}
@@ -62,5 +71,35 @@ public class LoginLog
 	public void setLoginTime(Date loginTime)
 	{
 		this.loginTime = loginTime;
+	}
+
+	public String getUserName()
+	{
+		return userName;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
+
+	public String getIdentifyTypeStr()
+	{
+		return identifyTypeStr;
+	}
+
+	public void setIdentifyTypeStr(String identifyTypeStr)
+	{
+		this.identifyTypeStr = identifyTypeStr;
+	}
+
+	public String getLoginTimeStr()
+	{
+		return loginTimeStr;
+	}
+
+	public void setLoginTimeStr(String loginTimeStr)
+	{
+		this.loginTimeStr = loginTimeStr;
 	}
 }
