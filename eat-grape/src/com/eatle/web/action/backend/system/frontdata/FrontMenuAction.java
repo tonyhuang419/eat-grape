@@ -3,31 +3,31 @@ package com.eatle.web.action.backend.system.frontdata;
 import com.eatle.persistent.pojo.system.frontdata.FrontMenu;
 import com.eatle.service.system.frontdata.IFrontMenuService;
 import com.eatle.utils.DwzAjaxJsonUtil;
-import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
+
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
 public class FrontMenuAction extends BaseAction
 {
-	private static final long serialVersionUID = 3878155348709604675L;
+	private static final long serialVersionUID = -1598345728676407818L;
 
 	@Resource
 	private IFrontMenuService frontMenuService;
 
-	private Pagination page;
-
 	private FrontMenu frontMenu;
 
-	public void setPage(Pagination page)
-	{
-		this.page = page;
-	}
+	private List<FrontMenu> allFrontMenu; 	// 所有菜单对象
 
-	public Pagination getPage()
+	private String allMenuHtml; 		// 所有菜单树形HTML
+
+	private String delMenuIds; 			// 需要删除的菜单的id集合
+
+	public FrontMenu getFrontMenu()
 	{
-		return this.page;
+		return frontMenu;
 	}
 
 	public void setFrontMenu(FrontMenu frontMenu)
@@ -35,25 +35,45 @@ public class FrontMenuAction extends BaseAction
 		this.frontMenu = frontMenu;
 	}
 
+	public List<FrontMenu> getAllFrontMenu()
+	{
+		return allFrontMenu;
+	}
+
+	public void setAllFrontMenu(List<FrontMenu> allFrontMenu)
+	{
+		this.allFrontMenu = allFrontMenu;
+	}
+
+	public String getAllMenuHtml()
+	{
+		return allMenuHtml;
+	}
+
+	public void setAllMenuHtml(String allMenuHtml)
+	{
+		this.allMenuHtml = allMenuHtml;
+	}
+
+	public String getDelMenuIds()
+	{
+		return delMenuIds;
+	}
+
+	public void setDelMenuIds(String delMenuIds)
+	{
+		this.delMenuIds = delMenuIds;
+	}
+
 	public String showIndex()
 	{
-		Map<String, Object> params = super.getRequestParameters(request);
-		int pageNum = Pagination.CURRENTPAGE;
-		int pageSize = Pagination.PAGESIZE;
-		if (params.containsKey("pageNum"))
-		{
-			pageNum = Integer.parseInt((String) params.get("pageNum"));
-		}
-		if (params.containsKey("numPerPage"))
-		{
-			pageSize = Integer.parseInt((String) params.get("numPerPage"));
-		}
-		page = frontMenuService.findPagination(params, pageNum, pageSize);
+		allMenuHtml = frontMenuService.findAllFrontMenu();
 		return "showIndex";
 	}
 
 	public String showAdd()
 	{
+		allFrontMenu = frontMenuService.findAll();
 		return "showAdd";
 	}
 
@@ -64,7 +84,6 @@ public class FrontMenuAction extends BaseAction
 		if (frontMenu == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
@@ -73,19 +92,24 @@ public class FrontMenuAction extends BaseAction
 		super.writeMap(json);
 	}
 
+	// 批量删除菜单
 	public void delete() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 		json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
-		if (frontMenu == null)
+		if (delMenuIds == "" || delMenuIds == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
-			frontMenuService.delete(frontMenu);
+			for (String id : delMenuIds.split(","))
+			{
+				FrontMenu m = new FrontMenu();
+				m.setId(Long.parseLong(id));
+				frontMenuService.delete(m);
+			}
 		}
 		super.writeMap(json);
 	}
@@ -93,6 +117,7 @@ public class FrontMenuAction extends BaseAction
 	public String showUpdate()
 	{
 		frontMenu = frontMenuService.findById(frontMenu.getId());
+		allFrontMenu = frontMenuService.findAll();
 		return "showUpdate";
 	}
 
@@ -103,7 +128,6 @@ public class FrontMenuAction extends BaseAction
 		if (frontMenu == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{

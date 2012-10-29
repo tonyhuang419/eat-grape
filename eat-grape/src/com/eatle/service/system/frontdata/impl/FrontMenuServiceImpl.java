@@ -2,7 +2,6 @@ package com.eatle.service.system.frontdata.impl;
 
 import com.eatle.persistent.mapper.FrontMenuMapper;
 import com.eatle.persistent.pojo.system.frontdata.FrontMenu;
-import com.eatle.persistent.pojo.system.frontdata.FrontMenuCriteria.Criteria;
 import com.eatle.persistent.pojo.system.frontdata.FrontMenuCriteria;
 import com.eatle.service.system.frontdata.IFrontMenuService;
 import com.eatle.utils.Pagination;
@@ -39,22 +38,12 @@ public class FrontMenuServiceImpl implements IFrontMenuService
 	public Pagination findPagination(Map<String, Object> queryMap,
 			int currentPage, int pageSize)
 	{
-		FrontMenuCriteria frontMenuCriteria = new FrontMenuCriteria();
-		Criteria criteria = frontMenuCriteria.createCriteria();
-		// 设置搜索条件参数
-		// if(queryMap != null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
+		FrontMenuCriteria menuCriteria = new FrontMenuCriteria();
 		// 设置分页参数
-		frontMenuCriteria.setPageSize(pageSize);
-		frontMenuCriteria.setStartIndex((currentPage - 1) * pageSize);
-		List<FrontMenu> items = frontMenuMapper.selectByCriteria(frontMenuCriteria);
-		int totalCount = (int) frontMenuMapper.selectCountByCriteria(frontMenuCriteria);
+		menuCriteria.setPageSize(pageSize);
+		menuCriteria.setStartIndex((currentPage - 1) * pageSize);
+		List<FrontMenu> items = frontMenuMapper.selectByCriteria(menuCriteria);
+		int totalCount = (int) frontMenuMapper.selectCountByCriteria(menuCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
 
@@ -74,5 +63,45 @@ public class FrontMenuServiceImpl implements IFrontMenuService
 	public List<FrontMenu> findByCriteria(FrontMenuCriteria criteria)
 	{
 		return frontMenuMapper.selectByCriteria(criteria);
+	}
+
+	@Override
+	public List<FrontMenu> findByParentId(Long parentId)
+	{
+		return frontMenuMapper.findByParentId(parentId);
+	}
+	
+	@Override
+	public List<FrontMenu> findRootMenu()
+	{
+		return findByParentId(0L);
+	}
+
+	@Override
+	public String findAllFrontMenu()
+	{
+		StringBuffer allMenuBuffer = new StringBuffer();
+		findChildMenu(findRootMenu(), allMenuBuffer);
+		return allMenuBuffer.toString();
+	}
+	
+	public void findChildMenu(List<FrontMenu> parentMenu, StringBuffer allMenuBuffer)
+	{
+		for(FrontMenu menu : parentMenu)
+		{
+			List<FrontMenu> childMenu = findByParentId(menu.getId());
+			if(childMenu.size() > 0)
+			{
+				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"menu\" " +
+						"tname=\"check_menu\" tvalue=\"" + menu.getId() + "\">" + menu.getName() + "</a>\n<ul>\n");
+				findChildMenu(childMenu, allMenuBuffer);
+			}
+			else
+			{
+				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"menu\" " +
+						"tname=\"check_menu\" tvalue=\"" + menu.getId() + "\">" + menu.getName() + "</a></li>\n");
+			}
+		}
+		allMenuBuffer.append("</ul>\n</li>\n");
 	}
 }
