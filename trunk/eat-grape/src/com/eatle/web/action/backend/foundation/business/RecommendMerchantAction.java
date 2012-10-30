@@ -93,7 +93,8 @@ public class RecommendMerchantAction extends BaseAction
 
 	public String showUpdate()
 	{
-		recommendMerchant = recommendMerchantService.findById(recommendMerchant.getId());
+		recommendMerchant = recommendMerchantService.findById(recommendMerchant
+				.getId());
 		return "showUpdate";
 	}
 

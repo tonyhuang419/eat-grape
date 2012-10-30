@@ -16,6 +16,10 @@ public class RecommendMerchant
 
 	private Long customerId;
 
+	private Short handleStatus;
+
+	private String handleRemark;
+
 	public Long getId()
 	{
 		return id;
@@ -74,5 +78,25 @@ public class RecommendMerchant
 	public void setCustomerId(Long customerId)
 	{
 		this.customerId = customerId;
+	}
+
+	public Short getHandleStatus()
+	{
+		return handleStatus;
+	}
+
+	public void setHandleStatus(Short handleStatus)
+	{
+		this.handleStatus = handleStatus;
+	}
+
+	public String getHandleRemark()
+	{
+		return handleRemark;
+	}
+
+	public void setHandleRemark(String handleRemark)
+	{
+		this.handleRemark = handleRemark;
 	}
 }

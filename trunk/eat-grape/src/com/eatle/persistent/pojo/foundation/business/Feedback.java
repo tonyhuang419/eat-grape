@@ -14,6 +14,10 @@ public class Feedback
 
 	private Date subTime;
 
+	private Short handleStatus;
+
+	private String handleRemark;
+
 	private String content;
 
 	public Long getId()
@@ -64,6 +68,26 @@ public class Feedback
 	public void setSubTime(Date subTime)
 	{
 		this.subTime = subTime;
+	}
+
+	public Short getHandleStatus()
+	{
+		return handleStatus;
+	}
+
+	public void setHandleStatus(Short handleStatus)
+	{
+		this.handleStatus = handleStatus;
+	}
+
+	public String getHandleRemark()
+	{
+		return handleRemark;
+	}
+
+	public void setHandleRemark(String handleRemark)
+	{
+		this.handleRemark = handleRemark;
 	}
 
 	public String getContent()

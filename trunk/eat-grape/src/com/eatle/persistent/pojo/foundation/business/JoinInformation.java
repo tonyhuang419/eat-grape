@@ -20,6 +20,10 @@ public class JoinInformation
 
 	private Date subTime;
 
+	private Short auditStatus;
+
+	private String auditRemark;
+
 	private String sendPlace;
 
 	public Long getId()
@@ -100,6 +104,26 @@ public class JoinInformation
 	public void setSubTime(Date subTime)
 	{
 		this.subTime = subTime;
+	}
+
+	public Short getAuditStatus()
+	{
+		return auditStatus;
+	}
+
+	public void setAuditStatus(Short auditStatus)
+	{
+		this.auditStatus = auditStatus;
+	}
+
+	public String getAuditRemark()
+	{
+		return auditRemark;
+	}
+
+	public void setAuditRemark(String auditRemark)
+	{
+		this.auditRemark = auditRemark;
 	}
 
 	public String getSendPlace()

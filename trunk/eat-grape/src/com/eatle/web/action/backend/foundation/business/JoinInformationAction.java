@@ -92,7 +92,8 @@ public class JoinInformationAction extends BaseAction
 
 	public String showUpdate()
 	{
-		joinInformation = joinInformationService.findById(joinInformation.getId());
+		joinInformation = joinInformationService.findById(joinInformation
+				.getId());
 		return "showUpdate";
 	}
 

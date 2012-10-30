@@ -13,7 +13,8 @@ public interface JoinInformationMapper
 
 	int insertSelective(JoinInformation record);
 
-	List<JoinInformation> selectByExampleWithBLOBs(JoinInformationCriteria example);
+	List<JoinInformation> selectByExampleWithBLOBs(
+			JoinInformationCriteria example);
 
 	List<JoinInformation> selectByCriteria(JoinInformationCriteria example);
 
