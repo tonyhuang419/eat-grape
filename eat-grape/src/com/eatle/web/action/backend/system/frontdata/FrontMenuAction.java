@@ -21,9 +21,9 @@ public class FrontMenuAction extends BaseAction
 
 	private List<FrontMenu> allFrontMenu; 	// 所有菜单对象
 
-	private String allMenuHtml; 		// 所有菜单树形HTML
+	private String allMenuHtml; 			// 所有菜单树形HTML
 
-	private String delMenuIds; 			// 需要删除的菜单的id集合
+	private String delMenuIds; 				// 需要删除的菜单的id集合
 
 	public FrontMenu getFrontMenu()
 	{
@@ -84,6 +84,7 @@ public class FrontMenuAction extends BaseAction
 		if (frontMenu == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
@@ -101,6 +102,7 @@ public class FrontMenuAction extends BaseAction
 		if (delMenuIds == "" || delMenuIds == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
@@ -128,6 +130,7 @@ public class FrontMenuAction extends BaseAction
 		if (frontMenu == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{

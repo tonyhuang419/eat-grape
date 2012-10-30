@@ -8,7 +8,6 @@ import com.eatle.persistent.pojo.merchant.SchoolRestaurantCriteria;
 import com.eatle.service.merchant.ISchoolRestaurantService;
 import com.eatle.utils.Pagination;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;

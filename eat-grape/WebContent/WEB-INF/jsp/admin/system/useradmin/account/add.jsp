@@ -6,15 +6,15 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>用户名称：</label>
-				<input name="user.userName" class="required" type="text" size="30" alt="请输入用户名称"/>
+				<input name="user.userName" class="required" type="text" size="35" alt="请输入用户名称"/>
 			</p>
 			<p>
 				<label>密码：</label>
-				<input name="user.pwd" class="required" type="text" size="30"  alt="请输入密码"/>
+				<input name="user.pwd" class="required" type="text" size="35" alt="请输入密码"/>
 			</p>
 			<p>
 				<label>邮箱：</label>
-				<input type="text"  value="" name="user.email" class="textInput" alt="请输入邮箱">
+				<input type="text" value="" name="user.email" size="35" alt="请输入邮箱">
 			</p>
 			<p>
 				<label>用户类型：</label>
