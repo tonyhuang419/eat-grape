@@ -8,19 +8,19 @@
 			<input name="priv.pid" type="hidden" value="${priv.pid}" />
 			<p>
 				<label>权限名称：</label>
-				<input name="priv.privName" class="required" type="text" size="30" value="${priv.privName}"  alt="请输入权限名称"/>
+				<input name="priv.privName" class="required" type="text" size="35" value="${priv.privName}" alt="请输入权限名称"/>
 			</p>
 			<p>
 				<label>菜单名称：</label>
-				<input name="priv.meueName"  type="text" size="30"  value="${priv.meueName}" alt="请输入菜单名称"/>
+				<input name="priv.meueName" type="text" size="35" value="${priv.meueName}" alt="请输入菜单名称"/>
 			</p>
 			<p>
 				<label>动作标识：</label>
-				<input name="priv.action"  type="text" size="30" value="${priv.action}"  alt="请输入动作标识"/>
+				<input name="priv.action" type="text" size="35" value="${priv.action}" alt="请输入动作标识"/>
 			</p>
 			<p>
 				<label>描述：</label>
-				<input type="text"   name="priv.description" value="${priv.description}" class="textInput">
+				<input type="text" size="35" name="priv.description" size="35" value="${priv.description}">
 			</p>
 			<p>
 				<label>是否显示：</label>

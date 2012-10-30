@@ -17,19 +17,18 @@
 	}
 </script>
 
-
 <div class="pageContent">
 	<form method="post" action="${ctx}/admin/foundation/place/district/add.htm?navTabId=${navTabId}&action=zxdytj&dialogId=${dialogId}" class="pageForm required-validate"
 			 onsubmit="return validateCallback(this, <s:if test="#attr.dialogId != \"\"">refreshDialogAjaxDone</s:if><s:else>dialogAjaxDone</s:else>);">
 		<div class="pageFormContent" layoutH="56">
-			<input type="hidden"  name="district.parentId" value="${param.pid}">
+			<input type="hidden" name="district.parentId" value="${param.pid}">
 			<p>
 				<label>区域名称：</label>
-				<input name="district.name" class="required" type="text" size="30"  alt="请输入区域名称"/>
+				<input name="district.name" class="required" type="text" size="35" alt="请输入区域名称"/>
 			</p>
 			<p>
 				<label>名称拼音：</label>
-				<input name="district.pinyinName"  type="text" size="30"  alt="请输入名称拼音"/>
+				<input name="district.pinyinName" type="text" size="35" alt="请输入名称拼音"/>
 			</p>
 		</div>
 		<div class="formBar">

@@ -7,11 +7,11 @@
 			<input name="role.id" type="hidden" value="${role.id}" />
 			<p>
 				<label>角色名称：</label>
-				<input name="role.roleName" class="required" type="text" size="30" value="${role.roleName}" alt="请输入角色名称"/>
+				<input name="role.roleName" class="required" type="text" size="35" value="${role.roleName}" alt="请输入角色名称"/>
 			</p>
 			<p>
 				<label>描述：</label>
-				<input type="text"  value="${role.description}" name="role.description" size="30" value="${role.description}" class="textInput">
+				<input type="text" value="${role.description}" name="role.description" size="35" value="${role.description}" class="textInput">
 			</p>
 		</div>
 		<div class="formBar">

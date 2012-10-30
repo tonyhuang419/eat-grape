@@ -107,6 +107,7 @@ public class MenuAction extends BaseAction
 		if (menu == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
@@ -124,6 +125,7 @@ public class MenuAction extends BaseAction
 		if (delMenuIds == "" || delMenuIds == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
@@ -151,6 +153,7 @@ public class MenuAction extends BaseAction
 		if (menu == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{

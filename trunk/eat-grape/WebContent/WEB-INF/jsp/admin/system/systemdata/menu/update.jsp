@@ -7,11 +7,11 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>Rel标识：</label>
-				<input name="menu.rel" class="required" type="text" maxlength="20" value="${menu.rel}" alt="请输入Rel标识"/>
+				<input name="menu.rel" class="required" type="text" maxlength="20" size="35" value="${menu.rel}" alt="请输入Rel标识"/>
 			</p>
 			<p>
 				<label>菜单名称：</label>
-				<input name="menu.menuName" class="required" type="text" maxlength="20" value="${menu.menuName}" alt="请输入菜单名称"/>
+				<input name="menu.menuName" class="required" type="text" maxlength="20" size="35" value="${menu.menuName}" alt="请输入菜单名称"/>
 			</p>
 			<p>
 				<label>链接URL：</label>
@@ -19,7 +19,7 @@
 			</p>
 			<p>
 				<label>动作标识：</label>
-				<input name="menu.action" type="text" maxlength="100" value="${menu.action}" class="text">
+				<input name="menu.action" type="text" maxlength="100" size="35" value="${menu.action}" class="text">
 			</p>
 			<p>
 				<label>父级菜单：</label>

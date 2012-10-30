@@ -7,11 +7,11 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>社区名称：</label>
-				<input name="community.name" class="required" type="text" size="30"  alt="请输入社区名称"/>
+				<input name="community.name" class="required" type="text" size="35" alt="请输入社区名称"/>
 			</p>
 			<p>
 				<label>名称拼音：</label>
-				<input name="community.pinyinName"  type="text" size="30"  alt="请输入名称拼音"/>
+				<input name="community.pinyinName" type="text" size="35" alt="请输入名称拼音"/>
 			</p>
 				<label>所属区域：</label>
 				<select class="combox" id="w_combox_province" ref="w_combox_city" refUrl="${ctx}/admin/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">

@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
-<div class="accordion" style="margin: 5px 5px 0px 5px;" layoutH="10">
+<div id="0" class="frontMenu accordion" style="margin: 5px 5px 0px 5px;" layoutH="10">
 	<ul class="tree treeFolder treeCheck expand">
 		${allMenuHtml}
 	</ul>
@@ -9,13 +9,13 @@
 
 <script type="text/javascript">
 	// 右键管理菜单
-	$(".menu").contextMenu('funcMgrCM', {
+	$(".frontMenu").contextMenu('funcMgrCM', {
     	bindings : {
     		// 新增菜单
-			newMenu : function(t){
+			newMenu : function(t) {
 				var url = "${ctx}/admin/system/frontdata/frontMenu/showAdd.htm?frontMenu.parentId=" + t.attr("id") + "&action=tjgnzs&navTabId=${navTabId}";
 				var dlgId = "dialog_frontMenu_" + t.attr("id");
-				var title = t.text() + " - 菜单添加";
+				var title = t.attr("id") == 0 ? "根菜单添加" : t.text() + " - 菜单添加";
 				var options = {
 					mask : true,
 					width :520,
@@ -24,31 +24,29 @@
             	$.pdialog.open(url, dlgId, title, options);
             },
     		// 修改菜单
-			updateMenu : function(t){
-				var url = "${ctx}/admin/system/frontdata/frontMenu/showUpdate.htm?frontMenu.id=" + t.attr("id") + "&action=xggnzs&navTabId=${navTabId}";
-				var dlgId = "dialog_frontMenu_" + t.attr("id");
-				var title = t.text() + " - 菜单修改";
-				var options = {
-					mask : true, 
-					width :520,
-					height : 250
-				};
-            	$.pdialog.open(url, dlgId, title, options);
+			updateMenu : function(t) {
+				if(t.attr("id") != 0) {
+					var url = "${ctx}/admin/system/frontdata/frontMenu/showUpdate.htm?frontMenu.id=" + t.attr("id") + "&action=xggnzs&navTabId=${navTabId}";
+					var dlgId = "dialog_frontMenu_" + t.attr("id");
+					var title = t.text() + " - 菜单修改";
+					var options = {
+						mask : true, 
+						width :520,
+						height : 250
+					};
+	            	$.pdialog.open(url, dlgId, title, options);
+	            }
             },
             // 删除菜单(支持多项)
-			deleteMenu : function(t){
-            	var checkBoxs = $("input:checked");
-            	if(checkBoxs.length == 0)
-            	{
+			deleteMenu : function(t) {
+            	var checkBoxs = $("input[name='check_frontMenu']:checked");
+            	if(checkBoxs.length == 0) {
             		alertErr("请勾选需要删除的菜单！");
-            	}
-            	else
-	            {
+            	} else {
 	            	var url = "${ctx}/admin/system/frontdata/frontMenu/delete.htm";
 					var msg = "您确认删除这 - " + checkBoxs.length + " - 项菜单吗？";
 					var delMenuIds = "";	// 需删除的菜单ID集合
-					for(var i = 0; i < checkBoxs.length; i++)
-					{
+					for(var i = 0; i < checkBoxs.length; i++) {
 						delMenuIds += checkBoxs[i].value + ",";
 					}
 					delMenuIds = delMenuIds.substring(0, delMenuIds.length - 1);
@@ -61,8 +59,7 @@
 	            	confirm2Ajax(url, msg, data, 
 	            		function(json){
 		            		DWZ.ajaxDone(json);
-		            		if(json.statusCode == DWZ.statusCode.ok)
-		            		{
+		            		if(json.statusCode == DWZ.statusCode.ok) {
 								navTab.reloadFlag("${navTabId}");
 		            		}
 	            		}, "json"
@@ -70,7 +67,7 @@
             	}
             },
             // 刷新菜单树
-			freshMenu : function(t){
+			freshMenu : function(t) {
 				navTab.reloadFlag("${navTabId}");
             }
       	}

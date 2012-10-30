@@ -92,14 +92,14 @@ public class FrontMenuServiceImpl implements IFrontMenuService
 			List<FrontMenu> childMenu = findByParentId(menu.getId());
 			if(childMenu.size() > 0)
 			{
-				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"menu\" " +
-						"tname=\"check_menu\" tvalue=\"" + menu.getId() + "\">" + menu.getName() + "</a>\n<ul>\n");
+				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"frontMenu\" " +
+					"tname=\"check_frontMenu\" tvalue=\"" + menu.getId() + "\">" + menu.getName() + "</a>\n<ul>\n");
 				findChildMenu(childMenu, allMenuBuffer);
 			}
 			else
 			{
-				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"menu\" " +
-						"tname=\"check_menu\" tvalue=\"" + menu.getId() + "\">" + menu.getName() + "</a></li>\n");
+				allMenuBuffer.append("<li><a id=\"" + menu.getId() + "\" class=\"frontMenu\" " +
+					"tname=\"check_frontMenu\" tvalue=\"" + menu.getId() + "\">" + menu.getName() + "</a></li>\n");
 			}
 		}
 		allMenuBuffer.append("</ul>\n</li>\n");

@@ -17,7 +17,7 @@ public class FrontMenuTest extends BaseTest{
 	@Test
 	public void test()
 	{
-//		System.out.println(frontMenuService.findAllFrontMenu());
-		System.out.println(frontMenuService.findAll().size());
+		System.out.println(frontMenuService.findAllFrontMenu());
+//		System.out.println(frontMenuService.findAll().size());
 	}
 }

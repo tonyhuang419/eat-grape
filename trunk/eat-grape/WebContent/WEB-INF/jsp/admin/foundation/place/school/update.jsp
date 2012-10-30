@@ -7,11 +7,11 @@
 			<input name="school.id" type="hidden" value="${school.id}" />
 			<p>
 				<label>学校名称：</label>
-				<input name="school.name" class="required" type="text" size="30"  value="${school.name}" alt="请输入学校名称"/>
+				<input name="school.name" class="required" type="text" size="35" value="${school.name}" alt="请输入学校名称"/>
 			</p>
 			<p>
 				<label>英文名称：</label>
-				<input name="school.englishName"  type="text" size="30"   value="${school.englishName}" alt="请输入英文名称" />
+				<input name="school.englishName" type="text" size="35" value="${school.englishName}" alt="请输入英文名称" />
 			</p>
 				<label>所属区域：</label>
 				<select class="combox" id="w_combox_province" ref="w_combox_city" refUrl="${ctx}/admin/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">

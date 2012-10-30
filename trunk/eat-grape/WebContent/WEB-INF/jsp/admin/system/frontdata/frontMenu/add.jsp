@@ -6,19 +6,19 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>菜单名称：</label>
-				<input name="menu.menuName" class="required" type="text" maxlength="20"  alt="请输入菜单名称"/>
+				<input name="frontMenu.name" class="required" type="text" maxlength="20" size="35" alt="请输入菜单名称"/>
 			</p>
 			<p>
 				<label>链接URL：</label>
-				<input name="menu.url" type="text" maxlength="100" size="35"/>
+				<input name="frontMenu.url" type="text" maxlength="100" size="35"/>
 			</p>
 			<p>
 				<label>父级菜单：</label>
-				<select name="menu.parentId" class="required combox">
+				<select name="frontMenu.parentId" class="required combox">
 					<option value="0">顶级菜单</option>
-					<s:iterator value="#request.allMenu" var="m">
-						<option value="<s:property value="#m.id"/>" <s:if test="#m.id == #request.menu.parentId">selected</s:if>>
-							<s:property value="#m.menuName"/>
+					<s:iterator value="#request.allFrontMenu" var="m">
+						<option value="<s:property value="#m.id"/>" <s:if test="#m.id == #request.frontMenu.parentId">selected</s:if>>
+							<s:property value="#m.name"/>
 						</option>
 					</s:iterator>
 				</select>

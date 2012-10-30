@@ -6,11 +6,11 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>角色名称：</label>
-				<input name="role.roleName" class="required" type="text" size="30" alt="请输入角色名称"/>
+				<input name="role.roleName" class="required" type="text" size="35" alt="请输入角色名称"/>
 			</p>
 			<p>
 				<label>描述：</label>
-				<input type="text"  value="" name="role.description" size="30" class="textInput">
+				<input type="text" value="" name="role.description" size="35" class="textInput">
 			</p>
 		</div>
 		<div class="formBar">
