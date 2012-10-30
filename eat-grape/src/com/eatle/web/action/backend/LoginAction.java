@@ -129,10 +129,10 @@ public class LoginAction extends BaseAction
 	{
 		LoginLog loginLog = new LoginLog();
 		
-		if(Constants.USERTYPE_ADMINISTRATOR == user.getType())
-			loginLog.setIdentifyType(Constants.IDENTIFY_ADMINISTRATOR);
+		if(Constants.UserType.USERTYPE_ADMINISTRATOR == user.getType())
+			loginLog.setIdentifyType(Constants.Identity.IDENTITY_ADMINISTRATOR);
 		else
-			loginLog.setIdentifyType(Constants.IDENTIFY_MERCHANT);
+			loginLog.setIdentifyType(Constants.Identity.IDENTITY_MERCHANT);
 		loginLog.setIdentifyId(user.getId());
 		loginLog.setLoginIp(request.getRemoteAddr());
 		loginLog.setLoginTime(new Date());
