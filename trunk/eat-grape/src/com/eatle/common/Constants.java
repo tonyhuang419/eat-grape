@@ -23,33 +23,71 @@ public class Constants
 	}
 
 	/**
-	 * @Description: 管理员用户类型标识
+	 * @Description: 用户类型标识
+	 * @Author: 谭又中
+	 * @Since: 2012-10-30
 	 */
-	public static final short USERTYPE_ADMINISTRATOR = 0;
+	public static class UserType
+	{
+		/**
+		 * @Description: 管理员用户类型标识
+		 */
+		public static final short USERTYPE_ADMINISTRATOR = 0;
+		
+		/**
+		 * @Description: 个人用户类型标识
+		 */
+		public static final short USERTYPE_PERSONAL = 1;
+		
+		/**
+		 * @Description: 公司用户类型标识
+		 */
+		public static final short USERTYPE_COMPANY = 2;
+	}
 	
 	/**
-	 * @Description: 个人用户类型标识
+	 * @Description: 身份标识
+	 * @Author: 谭又中
+	 * @Since: 2012-10-30
 	 */
-	public static final short USERTYPE_PERSONAL = 1;
-	
-	/**
-	 * @Description: 公司用户类型标识
-	 */
-	public static final short USERTYPE_COMPANY = 2;
-	
-	
-	/**
-	 * @Description: 管理员身份标识
-	 */
-	public static final short IDENTIFY_ADMINISTRATOR = 0;
+	public static class Identity
+	{
+		/**
+		 * @Description: 管理员身份标识
+		 */
+		public static final short IDENTITY_ADMINISTRATOR = 0;
 
-	/**
-	 * @Description: 商家身份标识
-	 */
-	public static final short IDENTIFY_MERCHANT = 1;
+		/**
+		 * @Description: 商家身份标识
+		 */
+		public static final short IDENTITY_MERCHANT = 1;
+		
+		/**
+		 * @Description: 顾客身份标识
+		 */
+		public static final short IDENTITY_CUSTOMER = 2;
+	}
 	
 	/**
-	 * @Description: 顾客身份标识
+	 * @Description: 业务操作状态
+	 * @Author: 谭又中
+	 * @Since: 2012-10-30
 	 */
-	public static final short IDENTIFY_CUSTOMER = 2;
+	public static class Status
+	{
+		/**
+		 * @Description: 待操作
+		 */
+		public static final short STATUS_WAIT = 0;
+
+		/**
+		 * @Description: 已查看
+		 */
+		public static final short STATUS_VIEWED = 1;
+		
+		/**
+		 * @Description: 已完成
+		 */
+		public static final short STATUS_COMPLETED = 2;
+	}
 }

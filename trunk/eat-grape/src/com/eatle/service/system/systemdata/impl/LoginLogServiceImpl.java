@@ -133,11 +133,11 @@ public class LoginLogServiceImpl implements ILoginLogService
 		for(LoginLog loginLog : loginLogs)
 		{
 			loginLog.setUserName(userMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getUserName());
-			if(loginLog.getIdentifyType() == Constants.IDENTIFY_ADMINISTRATOR)
+			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
 			{
 				loginLog.setIdentifyTypeStr("管理员");
 			}
-			else if(loginLog.getIdentifyType() == Constants.IDENTIFY_CUSTOMER)
+			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
 			{
 				loginLog.setIdentifyTypeStr("顾客");
 			}
