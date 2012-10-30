@@ -8,6 +8,8 @@
     <result column="shop_addr" property="shopAddr" jdbcType="VARCHAR" />
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
     <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="handle_status" property="handleStatus" jdbcType="SMALLINT" />
+    <result column="handle_remark" property="handleRemark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -39,7 +41,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, shop_name, shop_tel, shop_addr, sub_time, customer_id
+    id, shop_name, shop_tel, shop_addr, sub_time, customer_id, handle_status, handle_remark
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="RecommendMerchantCriteria" >
     select
@@ -71,11 +73,11 @@
   </delete>
   <insert id="insert" parameterType="RecommendMerchant" >
     insert into t_recommend_merchant (id, shop_name, shop_tel, 
-      shop_addr, sub_time, customer_id
-      )
+      shop_addr, sub_time, customer_id, 
+      handle_status, handle_remark)
     values (#{id,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, 
-      #{shopAddr,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{customerId,jdbcType=BIGINT}
-      )
+      #{shopAddr,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{customerId,jdbcType=BIGINT}, 
+      #{handleStatus,jdbcType=SMALLINT}, #{handleRemark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="RecommendMerchant" >
     insert into t_recommend_merchant
@@ -98,6 +100,12 @@
       <if test="customerId != null" >
         customer_id,
       </if>
+      <if test="handleStatus != null" >
+        handle_status,
+      </if>
+      <if test="handleRemark != null" >
+        handle_remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -117,6 +125,12 @@
       </if>
       <if test="customerId != null" >
         #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="handleStatus != null" >
+        #{handleStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="handleRemark != null" >
+        #{handleRemark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -138,6 +152,12 @@
       <if test="customerId != null" >
         customer_id = #{customerId,jdbcType=BIGINT},
       </if>
+      <if test="handleStatus != null" >
+        handle_status = #{handleStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="handleRemark != null" >
+        handle_remark = #{handleRemark,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -147,7 +167,9 @@
       shop_tel = #{shopTel,jdbcType=VARCHAR},
       shop_addr = #{shopAddr,jdbcType=VARCHAR},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
-      customer_id = #{customerId,jdbcType=BIGINT}
+      customer_id = #{customerId,jdbcType=BIGINT},
+      handle_status = #{handleStatus,jdbcType=SMALLINT},
+      handle_remark = #{handleRemark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectCountByCriteria" resultType="long" parameterType="RecommendMerchantCriteria" >
@@ -177,6 +199,12 @@
       </if>
       <if test="customerId != null" >
         and customer_id = #{customerId,jdbcType=BIGINT}
+      </if>
+      <if test="handleStatus != null" >
+        and handle_status = #{handleStatus,jdbcType=SMALLINT}
+      </if>
+      <if test="handleRemark != null" >
+        and handle_remark = #{handleRemark,jdbcType=VARCHAR}
       </if>
     </where>
   </select>

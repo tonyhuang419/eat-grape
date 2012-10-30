@@ -540,6 +540,166 @@ public class FeedbackCriteria
 			addCriterion("sub_time not between", value1, value2, "subTime");
 			return (Criteria) this;
 		}
+
+		public Criteria andHandleStatusIsNull()
+		{
+			addCriterion("handle_status is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusIsNotNull()
+		{
+			addCriterion("handle_status is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusEqualTo(Short value)
+		{
+			addCriterion("handle_status =", value, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusNotEqualTo(Short value)
+		{
+			addCriterion("handle_status <>", value, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusGreaterThan(Short value)
+		{
+			addCriterion("handle_status >", value, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusGreaterThanOrEqualTo(Short value)
+		{
+			addCriterion("handle_status >=", value, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusLessThan(Short value)
+		{
+			addCriterion("handle_status <", value, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusLessThanOrEqualTo(Short value)
+		{
+			addCriterion("handle_status <=", value, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusIn(List<Short> values)
+		{
+			addCriterion("handle_status in", values, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusNotIn(List<Short> values)
+		{
+			addCriterion("handle_status not in", values, "handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusBetween(Short value1, Short value2)
+		{
+			addCriterion("handle_status between", value1, value2,
+					"handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleStatusNotBetween(Short value1, Short value2)
+		{
+			addCriterion("handle_status not between", value1, value2,
+					"handleStatus");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkIsNull()
+		{
+			addCriterion("handle_remark is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkIsNotNull()
+		{
+			addCriterion("handle_remark is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkEqualTo(String value)
+		{
+			addCriterion("handle_remark =", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkNotEqualTo(String value)
+		{
+			addCriterion("handle_remark <>", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkGreaterThan(String value)
+		{
+			addCriterion("handle_remark >", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkGreaterThanOrEqualTo(String value)
+		{
+			addCriterion("handle_remark >=", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkLessThan(String value)
+		{
+			addCriterion("handle_remark <", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkLessThanOrEqualTo(String value)
+		{
+			addCriterion("handle_remark <=", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkLike(String value)
+		{
+			addCriterion("handle_remark like", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkNotLike(String value)
+		{
+			addCriterion("handle_remark not like", value, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkIn(List<String> values)
+		{
+			addCriterion("handle_remark in", values, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkNotIn(List<String> values)
+		{
+			addCriterion("handle_remark not in", values, "handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkBetween(String value1, String value2)
+		{
+			addCriterion("handle_remark between", value1, value2,
+					"handleRemark");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleRemarkNotBetween(String value1, String value2)
+		{
+			addCriterion("handle_remark not between", value1, value2,
+					"handleRemark");
+			return (Criteria) this;
+		}
 	}
 
 	public static class Criteria extends GeneratedCriteria

@@ -7,6 +7,8 @@
     <result column="identify_type" property="identifyType" jdbcType="SMALLINT" />
     <result column="identify_id" property="identifyId" jdbcType="BIGINT" />
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+    <result column="handle_status" property="handleStatus" jdbcType="SMALLINT" />
+    <result column="handle_remark" property="handleRemark" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="Feedback" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
@@ -41,7 +43,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, email, identify_type, identify_id, sub_time
+    id, email, identify_type, identify_id, sub_time, handle_status, handle_remark
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -98,11 +100,11 @@
   </delete>
   <insert id="insert" parameterType="Feedback" >
     insert into t_feedback (id, email, identify_type, 
-      identify_id, sub_time, content
-      )
+      identify_id, sub_time, handle_status, 
+      handle_remark, content)
     values (#{id,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{identifyType,jdbcType=SMALLINT}, 
-      #{identifyId,jdbcType=BIGINT}, #{subTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{identifyId,jdbcType=BIGINT}, #{subTime,jdbcType=TIMESTAMP}, #{handleStatus,jdbcType=SMALLINT}, 
+      #{handleRemark,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="Feedback" >
     insert into t_feedback
@@ -121,6 +123,12 @@
       </if>
       <if test="subTime != null" >
         sub_time,
+      </if>
+      <if test="handleStatus != null" >
+        handle_status,
+      </if>
+      <if test="handleRemark != null" >
+        handle_remark,
       </if>
       <if test="content != null" >
         content,
@@ -142,6 +150,12 @@
       <if test="subTime != null" >
         #{subTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="handleStatus != null" >
+        #{handleStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="handleRemark != null" >
+        #{handleRemark,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -162,6 +176,12 @@
       <if test="subTime != null" >
         sub_time = #{subTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="handleStatus != null" >
+        handle_status = #{handleStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="handleRemark != null" >
+        handle_remark = #{handleRemark,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -174,6 +194,8 @@
       identify_type = #{identifyType,jdbcType=SMALLINT},
       identify_id = #{identifyId,jdbcType=BIGINT},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
+      handle_status = #{handleStatus,jdbcType=SMALLINT},
+      handle_remark = #{handleRemark,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -182,7 +204,9 @@
     set email = #{email,jdbcType=VARCHAR},
       identify_type = #{identifyType,jdbcType=SMALLINT},
       identify_id = #{identifyId,jdbcType=BIGINT},
-      sub_time = #{subTime,jdbcType=TIMESTAMP}
+      sub_time = #{subTime,jdbcType=TIMESTAMP},
+      handle_status = #{handleStatus,jdbcType=SMALLINT},
+      handle_remark = #{handleRemark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectCountByCriteria" resultType="long" parameterType="FeedbackCriteria" >
@@ -209,6 +233,12 @@
       </if>
       <if test="subTime != null" >
         and sub_time = #{subTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="handleStatus != null" >
+        and handle_status = #{handleStatus,jdbcType=SMALLINT}
+      </if>
+      <if test="handleRemark != null" >
+        and handle_remark = #{handleRemark,jdbcType=VARCHAR}
       </if>
       <if test="content != null" >
         and content = #{content,jdbcType=LONGVARCHAR}

@@ -24,7 +24,7 @@ public interface RecommendMerchantMapper
 	// 统计总的记录数
 	long selectCountByCriteria(RecommendMerchantCriteria example);
 
-	@SuppressWarnings("unchecked")
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<RecommendMerchant> selectByMap(Map paramMap);
 }

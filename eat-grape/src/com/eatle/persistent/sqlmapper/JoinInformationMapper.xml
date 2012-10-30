@@ -10,6 +10,8 @@
     <result column="link_email" property="linkEmail" jdbcType="VARCHAR" />
     <result column="link_qq" property="linkQq" jdbcType="VARCHAR" />
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+    <result column="audit_status" property="auditStatus" jdbcType="SMALLINT" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="JoinInformation" extends="BaseResultMap" >
     <result column="send_place" property="sendPlace" jdbcType="LONGVARCHAR" />
@@ -44,7 +46,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, shop_name, shop_addr, link_man, link_tel, link_email, link_qq, sub_time
+    id, shop_name, shop_addr, link_man, link_tel, link_email, link_qq, sub_time, audit_status, 
+    audit_remark
   </sql>
   <sql id="Blob_Column_List" >
     send_place
@@ -102,12 +105,12 @@
   <insert id="insert" parameterType="JoinInformation" >
     insert into t_join_information (id, shop_name, shop_addr, 
       link_man, link_tel, link_email, 
-      link_qq, sub_time, send_place
-      )
+      link_qq, sub_time, audit_status, 
+      audit_remark, send_place)
     values (#{id,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{shopAddr,jdbcType=VARCHAR}, 
       #{linkMan,jdbcType=VARCHAR}, #{linkTel,jdbcType=VARCHAR}, #{linkEmail,jdbcType=VARCHAR}, 
-      #{linkQq,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{sendPlace,jdbcType=LONGVARCHAR}
-      )
+      #{linkQq,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{auditStatus,jdbcType=SMALLINT}, 
+      #{auditRemark,jdbcType=VARCHAR}, #{sendPlace,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="JoinInformation" >
     insert into t_join_information
@@ -135,6 +138,12 @@
       </if>
       <if test="subTime != null" >
         sub_time,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
       </if>
       <if test="sendPlace != null" >
         send_place,
@@ -165,6 +174,12 @@
       <if test="subTime != null" >
         #{subTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
       <if test="sendPlace != null" >
         #{sendPlace,jdbcType=LONGVARCHAR},
       </if>
@@ -194,6 +209,12 @@
       <if test="subTime != null" >
         sub_time = #{subTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      </if>
       <if test="sendPlace != null" >
         send_place = #{sendPlace,jdbcType=LONGVARCHAR},
       </if>
@@ -209,6 +230,8 @@
       link_email = #{linkEmail,jdbcType=VARCHAR},
       link_qq = #{linkQq,jdbcType=VARCHAR},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
+      audit_status = #{auditStatus,jdbcType=SMALLINT},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR},
       send_place = #{sendPlace,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -220,7 +243,9 @@
       link_tel = #{linkTel,jdbcType=VARCHAR},
       link_email = #{linkEmail,jdbcType=VARCHAR},
       link_qq = #{linkQq,jdbcType=VARCHAR},
-      sub_time = #{subTime,jdbcType=TIMESTAMP}
+      sub_time = #{subTime,jdbcType=TIMESTAMP},
+      audit_status = #{auditStatus,jdbcType=SMALLINT},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectCountByCriteria" resultType="long" parameterType="JoinInformationCriteria" >
@@ -256,6 +281,12 @@
       </if>
       <if test="subTime != null" >
         and sub_time = #{subTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="auditStatus != null" >
+        and audit_status = #{auditStatus,jdbcType=SMALLINT}
+      </if>
+      <if test="auditRemark != null" >
+        and audit_remark = #{auditRemark,jdbcType=VARCHAR}
       </if>
       <if test="sendPlace != null" >
         and send_place = #{sendPlace,jdbcType=LONGVARCHAR}
