@@ -55,7 +55,7 @@ public class DownloadAction extends BaseAction
 			List<String[]> headNames = new ArrayList<String[]>();
 			headNames.add(new String[] { "用户名", "密码", "电子邮件", "类型", "角色" });
 			List<String[]> fieldNames = new ArrayList<String[]>();
-			fieldNames.add(new String[] { "userName", "pwd", "email", "type", "roleId"});
+			fieldNames.add(new String[] { "userName", "pwd", "email", "typeStr", "roleStr"});
 
 			ExportSetInfo setInfo = new ExportSetInfo();
 			setInfo.setObjsMap(userService.getExportData());

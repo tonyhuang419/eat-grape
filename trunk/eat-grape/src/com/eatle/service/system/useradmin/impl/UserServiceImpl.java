@@ -1,12 +1,16 @@
 package com.eatle.service.system.useradmin.impl;
 
+import com.eatle.common.Constants;
+import com.eatle.persistent.mapper.RoleMapper;
 import com.eatle.persistent.mapper.UserMapper;
+import com.eatle.persistent.pojo.system.useradmin.Role;
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.persistent.pojo.system.useradmin.UserCriteria;
 import com.eatle.persistent.pojo.system.useradmin.UserCriteria.Criteria;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.Pagination;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +23,9 @@ public class UserServiceImpl implements IUserService
 {
 	@Resource
 	private UserMapper userMapper;
+	
+	@Resource
+	private RoleMapper roleMapper;
 
 	@Override
 	public int add(User entity)
@@ -92,10 +99,20 @@ public class UserServiceImpl implements IUserService
 		// 设置分页参数
 		userCriteria.setPageSize(pageSize);
 		userCriteria.setStartIndex((currentPage - 1) * pageSize);
-
-		List<User> items = userMapper.selectByCriteria(userCriteria);
+		
+		List<User> users = userMapper.selectByCriteria(userCriteria);
+		List<User> items = new ArrayList<User>();
+		for(User user : users)
+		{
+			if(user.getType() == Constants.UserType.USERTYPE_ADMINISTRATOR)
+				user.setTypeStr(Constants.UserType.USERTYPE_ADMINISTRATOR_HTML);
+			if(user.getType() == Constants.UserType.USERTYPE_PERSONAL)
+				user.setTypeStr(Constants.UserType.USERTYPE_PERSONAL_HTML);
+			if(user.getType() == Constants.UserType.USERTYPE_COMPANY)
+				user.setTypeStr(Constants.UserType.USERTYPE_COMPANY_HTML);
+			items.add(user);
+		}
 		int totalCount = (int) userMapper.selectCountByCriteria(userCriteria);
-
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
 
@@ -128,7 +145,29 @@ public class UserServiceImpl implements IUserService
 	public LinkedHashMap<String, List> getExportData()
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
-		map.put("后台用户信息", findAll());
+		List<Role> roles = roleMapper.selectByCriteria(null);
+		List<User> dataList = new ArrayList<User>();
+		for(User user : findAll())
+		{
+			if(user.getType() == Constants.UserType.USERTYPE_ADMINISTRATOR)
+				user.setTypeStr(Constants.UserType.USERTYPE_ADMINISTRATOR_STR);
+			if(user.getType() == Constants.UserType.USERTYPE_PERSONAL)
+				user.setTypeStr(Constants.UserType.USERTYPE_PERSONAL_STR);
+			if(user.getType() == Constants.UserType.USERTYPE_COMPANY)
+				user.setTypeStr(Constants.UserType.USERTYPE_COMPANY_STR);
+			
+			for(Role role : roles)
+			{
+				if(user.getRoleId() == role.getId())
+				{
+					user.setRoleStr(role.getRoleName());
+					break;
+				}
+			}
+			
+			dataList.add(user);
+		}
+		map.put("后台用户信息", dataList);
 		return map;
 	}
 }

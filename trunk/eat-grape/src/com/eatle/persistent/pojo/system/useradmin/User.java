@@ -19,8 +19,14 @@ public class User implements Serializable
 
 	private Long roleId;
 	
-	// 拥有的权限集合
+	// 临时属性（拥有的权限集合）
 	private Map<String, Priv> allPrivs;
+
+	// 临时属性（用户类型字符串）
+	private String typeStr;
+	
+	// 临时属性（角色字符串）
+	private String roleStr;
 
 	public Long getId()
 	{
@@ -90,6 +96,26 @@ public class User implements Serializable
 	public void setAllPrivs(Map<String, Priv> allPrivs)
 	{
 		this.allPrivs = allPrivs;
+	}
+	
+	public String getTypeStr()
+	{
+		return typeStr;
+	}
+
+	public void setTypeStr(String typeStr)
+	{
+		this.typeStr = typeStr;
+	}
+
+	public String getRoleStr()
+	{
+		return roleStr;
+	}
+
+	public void setRoleStr(String roleStr)
+	{
+		this.roleStr = roleStr;
 	}
 
 	@Override

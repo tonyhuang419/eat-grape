@@ -3,6 +3,8 @@ package com.eatle.service.foundation.business;
 import com.eatle.persistent.pojo.foundation.business.JoinInformation;
 import com.eatle.persistent.pojo.foundation.business.JoinInformationCriteria;
 import com.eatle.utils.Pagination;
+
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +37,10 @@ public interface IJoinInformationService
 	 * @param queryMap 查询参数
 	 * @param currentPage 当前页
 	 * @param pageSize 每页大小
+	 * @throws ParseException 
 	 */
-	Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize);
+	Pagination findPagination(Map<String, Object> queryMap, 
+			int currentPage, int pageSize) throws ParseException;
 
 	/**
 	 * @Description:

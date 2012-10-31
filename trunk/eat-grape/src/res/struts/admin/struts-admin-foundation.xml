@@ -31,6 +31,8 @@
       <result name="showIndex">/WEB-INF/jsp/admin/foundation/business/joinInformation/joinInformation.jsp</result>
       <result name="showAdd">/WEB-INF/jsp/admin/foundation/business/joinInformation/add.jsp</result>
       <result name="showUpdate">/WEB-INF/jsp/admin/foundation/business/joinInformation/update.jsp</result>
+      <result name="showDetail">/WEB-INF/jsp/admin/foundation/business/joinInformation/detail.jsp</result>
+      <result name="showAudit">/WEB-INF/jsp/admin/foundation/business/joinInformation/audit.jsp</result>
     </action>
   </package>
   <package extends="default" name="recommendMerchant" namespace="/admin/foundation/business/recommendMerchant">

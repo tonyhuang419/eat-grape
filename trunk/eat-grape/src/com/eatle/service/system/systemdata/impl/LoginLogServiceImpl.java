@@ -3,16 +3,12 @@ package com.eatle.service.system.systemdata.impl;
 import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.LoginLogMapper;
 import com.eatle.persistent.mapper.UserMapper;
-import com.eatle.persistent.pojo.merchant.Merchant;
-import com.eatle.persistent.pojo.merchant.RestaurantCriteria;
 import com.eatle.persistent.pojo.system.systemdata.LoginLog;
 import com.eatle.persistent.pojo.system.systemdata.LoginLogCriteria.Criteria;
 import com.eatle.persistent.pojo.system.systemdata.LoginLogCriteria;
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.system.systemdata.ILoginLogService;
 import com.eatle.utils.Pagination;
-
-import freemarker.template.SimpleDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -99,6 +95,12 @@ public class LoginLogServiceImpl implements ILoginLogService
 		{
 			loginLog.setUserName(userMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getUserName());
 			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
+			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_ADMINISTRATOR_HTML);
+			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
+			else
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
 			items.add(loginLog);
 		}
 		int totalCount = (int) loginLogMapper.selectCountByCriteria(loginLogCriteria);
@@ -135,15 +137,15 @@ public class LoginLogServiceImpl implements ILoginLogService
 			loginLog.setUserName(userMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getUserName());
 			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
 			{
-				loginLog.setIdentifyTypeStr("管理员");
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_ADMINISTRATOR_STR);
 			}
 			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
 			{
-				loginLog.setIdentifyTypeStr("顾客");
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_STR);
 			}
 			else
 			{
-				loginLog.setIdentifyTypeStr("商家");
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_STR);
 			}
 			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
 			

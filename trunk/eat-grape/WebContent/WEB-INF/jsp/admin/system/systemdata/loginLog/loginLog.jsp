@@ -52,7 +52,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="delete" href="${ctx}/admin/system/systemdata/loginLog/delete.htm?loginLog.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/system/systemdata/loginLog/delete.htm?loginLog.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除日志</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="${ctx}/admin/system/systemdata/loginLog/downXls.htm?fileName=LoginLogData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出日志</span></a></li>
 		</ul>
@@ -70,11 +70,7 @@
 			<s:iterator value="page.items" var="item">
 				<tr target="sid_user" rel="${item.id}" align="center">
 					<td>${item.userName}</td>
-					<td>
-						<s:if test="#item.identifyType == 0">管理员</s:if>
-						<s:elseif test="#item.identifyType == 1">商家</s:elseif>
-						<s:elseif test="#item.identifyType == 2">顾客</s:elseif>
-					</td>
+					<td>${item.identifyTypeStr}</td>
 					<td>${item.loginIp}</td>
 					<td>${item.loginTimeStr}</td>
 				</tr>

@@ -59,7 +59,7 @@
 		<ul class="toolBar">
 			<li><a class="add" href="${ctx}/admin/system/useradmin/account/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加账号</span></a></li>
 			<li><a class="delete" href="${ctx}/admin/system/useradmin/account/delete.htm?user.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/useradmin/account/showUpdate.htm?user.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/useradmin/account/showUpdate.htm?user.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改账号</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="${ctx}/admin/system/useradmin/account/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
 		</ul>
@@ -80,11 +80,7 @@
 					<td>${item.userName}</td>
 					<td>${item.pwd}</td>
 					<td>${item.email}</td>
-					<td>
-						<s:if test="#item.type == 0">管理员</s:if>
-						<s:elseif test="#item.type == 1">个人</s:elseif>
-						<s:elseif test="#item.type == 2">公司</s:elseif>
-					</td>
+					<td>${item.typeStr}</td>
 					<td>
 						<s:iterator value="#request.allRole" var="r">
 							<s:if test="#item.roleId == #r.id">${r.roleName}</s:if>

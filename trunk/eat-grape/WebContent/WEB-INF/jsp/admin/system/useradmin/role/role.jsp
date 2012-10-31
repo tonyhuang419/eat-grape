@@ -37,7 +37,7 @@
 		<ul class="toolBar">
 			<li><a class="add" href="${ctx}/admin/system/useradmin/role/showAdd.htm?action=tjjszs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加角色</span></a></li>
 			<li><a class="delete" href="${ctx}/admin/system/useradmin/role/delete.htm?role.id={sid}&action=zxjssc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/useradmin/role/showUpdate.htm?role.id={sid}&action=xgjszs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/useradmin/role/showUpdate.htm?role.id={sid}&action=xgjszs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改角色</span></a></li>
 		</ul>
 	</div>
 	<table class="table"  layoutH="117">
