@@ -45,7 +45,7 @@
 		<ul class="toolBar">
 			<li><a class="add" href="${ctx}/admin/system/useradmin/priv/showAdd.htm?action=tjqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加权限</span></a></li>
 			<li><a class="delete" href="${ctx}/admin/system/useradmin/priv/delete.htm?priv.id={sid}&action=zxqxsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/useradmin/priv/showUpdate.htm?priv.id={sid}&action=xgqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/useradmin/priv/showUpdate.htm?priv.id={sid}&action=xgqxzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改权限</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">

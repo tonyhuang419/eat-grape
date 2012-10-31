@@ -26,6 +26,12 @@ public class JoinInformation
 
 	private String sendPlace;
 
+	// 临时属性（申请时间字符串）
+	private String subTimeStr;
+
+	// 临时属性（审核状态字符串）
+	private String auditStatusStr;
+
 	public Long getId()
 	{
 		return id;
@@ -134,5 +140,25 @@ public class JoinInformation
 	public void setSendPlace(String sendPlace)
 	{
 		this.sendPlace = sendPlace;
+	}
+
+	public String getSubTimeStr()
+	{
+		return subTimeStr;
+	}
+
+	public void setSubTimeStr(String subTimeStr)
+	{
+		this.subTimeStr = subTimeStr;
+	}
+
+	public String getAuditStatusStr()
+	{
+		return auditStatusStr;
+	}
+
+	public void setAuditStatusStr(String auditStatusStr)
+	{
+		this.auditStatusStr = auditStatusStr;
 	}
 }
