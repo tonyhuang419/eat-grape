@@ -16,45 +16,44 @@
 		    <table width="100%" border="0">
 		      <tr>
 		        <td height="60" align="center">
-					<span class="STYLE1">[${joinInformation.shopName}] - 加盟审核详细信息</span>
-				</td>
+					<span class="STYLE1">[${recommendMerchant.shopName}] - 加盟审核详细信息</span></td>
 		      </tr>
 		      <tr>
 		        <td>
 		        	<table width="100%" border="0">
 			          <tr>
 			            <td width="20%" height="50" align="right">餐厅名称：</td>
-			            <td width="30%" height="50">${joinInformation.shopName}</td>
+			            <td width="30%" height="50">${recommendMerchant.shopName}</td>
 			            <td width="20%" height="50" align="right">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</td>
-			            <td width="30%" height="50">${joinInformation.linkMan}</td>
+			            <td width="30%" height="50">${recommendMerchant.linkMan}</td>
 			          </tr>
 			          <tr>
 			            <td width="20%" height="50" align="right">联系电话：</td>
-			            <td width="30%" height="50">${joinInformation.linkTel}</td>
+			            <td width="30%" height="50">${recommendMerchant.linkTel}</td>
 			            <td width="20%" height="50" align="right">联系邮箱：</td>
-			            <td width="30%" height="50">${joinInformation.linkEmail}</td>
+			            <td width="30%" height="50">${recommendMerchant.linkEmail}</td>
 			          </tr>
 			          <tr>
 			            <td width="20%" height="50" align="right">联系Q Q：</td>
-			            <td width="30%" height="50">${joinInformation.linkQq}</td>
+			            <td width="30%" height="50">${recommendMerchant.linkQq}</td>
 			            <td width="20%" height="50" align="right">申请时间：</td>
-			            <td width="30%" height="50">${joinInformation.subTimeStr}</td>
+			            <td width="30%" height="50">${recommendMerchant.subTimeStr}</td>
 			          </tr>
 			          <tr>
 			            <td width="20%" height="50" align="right">餐厅地址：</td>
-			            <td width="30%" height="50">${joinInformation.shopAddr}</td>
+			            <td height="30%" height="50">${recommendMerchant.shopAddr}</td>
 			            <td width="20%" height="50" align="right">送餐地点：</td>
-			            <td width="30%" height="50">${joinInformation.sendPlace}</td>
+			            <td height="30%" height="50">${recommendMerchant.sendPlace}</td>
 		              </tr>
 					  <tr>
 			            <td width="20%" height="50" align="right">审核状态：</td>
-			            <td width="30%" height="50">${joinInformation.auditStatusStr}</td>
+			            <td width="30%" height="50">${recommendMerchant.handleStatusStr}</td>
 			            <td width="20%" height="50" align="right">审核时间：</td>
-			            <td width="30%" height="50">${joinInformation.auditTimeStr}</td>
+			            <td width="30%" height="50">${recommendMerchant.handleTimeStr}</td>
 			          </tr>
 					  <tr>
 			            <td width="20%" height="50" align="right">审核备注：</td>
-			            <td width="80%" height="50" colspan="3">${joinInformation.auditRemark}</td>
+			            <td width="80%" height="50" colspan="3">${recommendMerchant.handleRemark}</td>
 			          </tr>
 			        </table>
 		      	</td>

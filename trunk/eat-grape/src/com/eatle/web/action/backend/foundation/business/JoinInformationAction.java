@@ -108,7 +108,7 @@ public class JoinInformationAction extends BaseAction
 		}
 		else
 		{
-			joinInformation.setAuditStatus(Constants.Status.STATUS_COMPLETED);
+			joinInformation.setAuditStatus(Constants.Status.STATUS_AUDITED);
 			joinInformation.setAuditTime(new Date());
 			joinInformationService.update(joinInformation);
 		}

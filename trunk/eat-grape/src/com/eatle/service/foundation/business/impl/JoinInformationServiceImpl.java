@@ -98,8 +98,8 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
 			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
 				info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_HTML);
-			if(info.getAuditStatus() == Constants.Status.STATUS_COMPLETED)
-				info.setAuditStatusStr(Constants.Status.STATUS_COMPLETED_HTML);
+			if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
+				info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_HTML);
 			items.add(info);
 		}
 		int totalCount = (int) joinInformationMapper.selectCountByCriteria(joinInformationCriteria);
@@ -119,8 +119,8 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 			info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
 		if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
 			info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_HTML);
-		if(info.getAuditStatus() == Constants.Status.STATUS_COMPLETED)
-			info.setAuditStatusStr(Constants.Status.STATUS_COMPLETED_HTML);
+		if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
+			info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_HTML);
 		
 		return info;
 	}
@@ -153,8 +153,8 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_STR);
 			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
 				info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_STR);
-			if(info.getAuditStatus() == Constants.Status.STATUS_COMPLETED)
-				info.setAuditStatusStr(Constants.Status.STATUS_COMPLETED_STR);
+			if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
+				info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_STR);
 			dataList.add(info);
 		}
 		map.put("加盟审核信息", dataList);

@@ -3,6 +3,8 @@ package com.eatle.service.foundation.business;
 import com.eatle.persistent.pojo.foundation.business.Feedback;
 import com.eatle.persistent.pojo.foundation.business.FeedbackCriteria;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,4 +58,11 @@ public interface IFeedbackService
 	 * 
 	 */
 	List<Feedback> findByCriteria(FeedbackCriteria criteria);
+
+	/**
+	 * @Description: 数据导出到Excel
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	LinkedHashMap<String, List> getExportData();
 }

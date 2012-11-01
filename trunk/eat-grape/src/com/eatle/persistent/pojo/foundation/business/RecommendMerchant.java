@@ -22,6 +22,18 @@ public class RecommendMerchant
 
 	private String handleRemark;
 
+	// 临时属性（推荐人）
+	private String customerStr;
+
+	// 临时属性（申请时间字符串）
+	private String subTimeStr;
+
+	// 临时属性（处理状态字符串）
+	private String handleStatusStr;
+
+	// 临时属性（处理时间字符串）
+	private String handleTimeStr;
+
 	public Long getId()
 	{
 		return id;
@@ -110,5 +122,45 @@ public class RecommendMerchant
 	public void setHandleRemark(String handleRemark)
 	{
 		this.handleRemark = handleRemark;
+	}
+
+	public String getSubTimeStr()
+	{
+		return subTimeStr;
+	}
+
+	public void setSubTimeStr(String subTimeStr)
+	{
+		this.subTimeStr = subTimeStr;
+	}
+
+	public String getHandleStatusStr()
+	{
+		return handleStatusStr;
+	}
+
+	public void setHandleStatusStr(String handleStatusStr)
+	{
+		this.handleStatusStr = handleStatusStr;
+	}
+
+	public String getHandleTimeStr()
+	{
+		return handleTimeStr;
+	}
+
+	public void setHandleTimeStr(String handleTimeStr)
+	{
+		this.handleTimeStr = handleTimeStr;
+	}
+
+	public String getCustomerStr()
+	{
+		return customerStr;
+	}
+
+	public void setCustomerStr(String customerStr)
+	{
+		this.customerStr = customerStr;
 	}
 }

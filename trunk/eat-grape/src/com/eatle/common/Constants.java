@@ -109,10 +109,17 @@ public class Constants
 		public static final String STATUS_VIEWED_HTML = "<font color='#48A8E2'>已查看</font>";
 		
 		/**
-		 * @Description: 已完成
+		 * @Description: 已审核
 		 */
-		public static final short STATUS_COMPLETED = 2;
-		public static final String STATUS_COMPLETED_STR = "已审核";
-		public static final String STATUS_COMPLETED_HTML = "<font color='#1979E0'>已审核</font>";
+		public static final short STATUS_AUDITED = 2;
+		public static final String STATUS_AUDITED_STR = "已审核";
+		public static final String STATUS_AUDITED_HTML = "<font color='#1979E0'>已审核</font>";
+		
+		/**
+		 * @Description: 已处理
+		 */
+		public static final short STATUS_HANDLED = 2;
+		public static final String STATUS_HANDLED_STR = "已处理";
+		public static final String STATUS_HANDLED_HTML = "<font color='#1979E0'>已处理</font>";
 	}
 }

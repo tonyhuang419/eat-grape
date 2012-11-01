@@ -9,6 +9,7 @@
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
 	<input type="hidden" name="shopName" value="${param.shopName}" />
+	<input type="hidden" name="linkMan" value="${param.linkMan}" />
 	<input type="hidden" name="startTime" value="${param.startTime}" />
 	<input type="hidden" name="endTime" value="${param.endTime}" />
 	<input type="hidden" name="auditStatus" value="${param.auditStatus}" />

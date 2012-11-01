@@ -22,6 +22,21 @@ public class Feedback
 
 	private String content;
 
+	// 临时属性（身份类型字符串）
+	private String identifyTypeStr;
+
+	// 临时属性（反馈建议人）
+	private String identifyStr;
+
+	// 临时属性（申请时间字符串）
+	private String subTimeStr;
+
+	// 临时属性（处理状态字符串）
+	private String handleStatusStr;
+
+	// 临时属性（处理时间字符串）
+	private String handleTimeStr;
+
 	public Long getId()
 	{
 		return id;
@@ -110,5 +125,55 @@ public class Feedback
 	public void setContent(String content)
 	{
 		this.content = content;
+	}
+
+	public String getIdentifyTypeStr()
+	{
+		return identifyTypeStr;
+	}
+
+	public void setIdentifyTypeStr(String identifyTypeStr)
+	{
+		this.identifyTypeStr = identifyTypeStr;
+	}
+
+	public String getIdentifyStr()
+	{
+		return identifyStr;
+	}
+
+	public void setIdentifyStr(String identifyStr)
+	{
+		this.identifyStr = identifyStr;
+	}
+
+	public String getSubTimeStr()
+	{
+		return subTimeStr;
+	}
+
+	public void setSubTimeStr(String subTimeStr)
+	{
+		this.subTimeStr = subTimeStr;
+	}
+
+	public String getHandleStatusStr()
+	{
+		return handleStatusStr;
+	}
+
+	public void setHandleStatusStr(String handleStatusStr)
+	{
+		this.handleStatusStr = handleStatusStr;
+	}
+
+	public String getHandleTimeStr()
+	{
+		return handleTimeStr;
+	}
+
+	public void setHandleTimeStr(String handleTimeStr)
+	{
+		this.handleTimeStr = handleTimeStr;
 	}
 }
