@@ -6,6 +6,8 @@ import com.eatle.persistent.pojo.foundation.business.FeedbackCriteria.Criteria;
 import com.eatle.persistent.pojo.foundation.business.FeedbackCriteria;
 import com.eatle.service.foundation.business.IFeedbackService;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -74,5 +76,11 @@ public class FeedbackServiceImpl implements IFeedbackService
 	public List<Feedback> findByCriteria(FeedbackCriteria criteria)
 	{
 		return feedbackMapper.selectByCriteria(criteria);
+	}
+
+	@Override
+	public LinkedHashMap<String, List> getExportData()
+	{
+		return null;
 	}
 }

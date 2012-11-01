@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 
 import com.eatle.service.foundation.business.IJoinInformationService;
+import com.eatle.service.foundation.business.IRecommendMerchantService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.service.system.systemdata.ILoginLogService;
@@ -45,6 +46,9 @@ public class DownloadAction extends BaseAction
 	
 	@Resource
 	private IJoinInformationService joinInformationService;
+	
+	@Resource
+	private IRecommendMerchantService recommendMerchantService;
 
 	// 下载文件名
 	private String fileName;
@@ -197,6 +201,36 @@ public class DownloadAction extends BaseAction
 		setInfo.setObjsMap(joinInformationService.getExportData());
 		setInfo.setFieldNames(fieldNames);
 		setInfo.setTitles(new String[] { "馋八戒商家加盟审核信息" });
+		setInfo.setHeadNames(headNames);
+		setInfo.setOut(baos);
+		
+		// 将需要导出的数据输出到baos
+		ExcelUtil.export2Excel(setInfo);
+		
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	/**
+	 * @throws IllegalAccessException 
+	 * @throws IOException 
+	 * @throws IllegalArgumentException 
+	 * @Description: 加盟审核信息导出Excel下载
+	 */
+	public InputStream getRecommendMerchantExcel() throws 
+		IllegalArgumentException, IOException, IllegalAccessException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		List<String[]> headNames = new ArrayList<String[]>();
+		headNames.add(new String[] { "餐厅名称", "餐厅电话", "餐厅地址", 
+				"推荐人", "推荐时间", "处理状态", "处理时间", "处理备注" });
+		List<String[]> fieldNames = new ArrayList<String[]>();
+		fieldNames.add(new String[] { "shopName", "shopTel", "shopAddr", "customerStr", 
+				"subTimeStr", "handleStatusStr", "handleTimeStr", "handleRemark"}); 
+
+		ExportSetInfo setInfo = new ExportSetInfo();
+		setInfo.setObjsMap(recommendMerchantService.getExportData());
+		setInfo.setFieldNames(fieldNames);
+		setInfo.setTitles(new String[] { "馋八戒顾客推荐商家信息" });
 		setInfo.setHeadNames(headNames);
 		setInfo.setOut(baos);
 		
