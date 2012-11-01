@@ -8,6 +8,7 @@ import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -108,6 +109,7 @@ public class JoinInformationAction extends BaseAction
 		else
 		{
 			joinInformation.setAuditStatus(Constants.Status.STATUS_COMPLETED);
+			joinInformation.setAuditTime(new Date());
 			joinInformationService.update(joinInformation);
 		}
 		super.writeMap(json);

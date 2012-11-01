@@ -887,6 +887,78 @@ public class JoinInformationCriteria
 			return (Criteria) this;
 		}
 
+		public Criteria andAuditTimeIsNull()
+		{
+			addCriterion("audit_time is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeIsNotNull()
+		{
+			addCriterion("audit_time is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeEqualTo(Date value)
+		{
+			addCriterion("audit_time =", value, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeNotEqualTo(Date value)
+		{
+			addCriterion("audit_time <>", value, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeGreaterThan(Date value)
+		{
+			addCriterion("audit_time >", value, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeGreaterThanOrEqualTo(Date value)
+		{
+			addCriterion("audit_time >=", value, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeLessThan(Date value)
+		{
+			addCriterion("audit_time <", value, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeLessThanOrEqualTo(Date value)
+		{
+			addCriterion("audit_time <=", value, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeIn(List<Date> values)
+		{
+			addCriterion("audit_time in", values, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeNotIn(List<Date> values)
+		{
+			addCriterion("audit_time not in", values, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeBetween(Date value1, Date value2)
+		{
+			addCriterion("audit_time between", value1, value2, "auditTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andAuditTimeNotBetween(Date value1, Date value2)
+		{
+			addCriterion("audit_time not between", value1, value2, "auditTime");
+			return (Criteria) this;
+		}
+
 		public Criteria andAuditRemarkIsNull()
 		{
 			addCriterion("audit_remark is null");

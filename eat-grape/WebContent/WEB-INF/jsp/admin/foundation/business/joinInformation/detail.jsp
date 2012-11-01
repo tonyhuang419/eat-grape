@@ -48,8 +48,12 @@
 					  <tr>
 			            <td width="20%" height="50" align="right">审核状态：</td>
 			            <td width="30%" height="50">${joinInformation.auditStatusStr}</td>
+			            <td width="20%" height="50" align="right">审核时间：</td>
+			            <td width="30%" height="50">${joinInformation.auditTimeStr}</td>
+			          </tr>
+					  <tr>
 			            <td width="20%" height="50" align="right">审核备注：</td>
-			            <td width="30%" height="50">${joinInformation.auditRemark}</td>
+			            <td width="80%" height="50" colspan="3">${joinInformation.auditRemark}</td>
 			          </tr>
 			        </table>
 		      	</td>

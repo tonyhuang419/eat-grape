@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -89,7 +90,10 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 		List<JoinInformation> items = new ArrayList<JoinInformation>();
 		for(JoinInformation info : joinInformations)
 		{
-			info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
+			if(info.getSubTime() != null)
+				info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
+			if(info.getAuditTime() != null)
+				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
 			if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
 				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
 			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
@@ -106,9 +110,11 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 	public JoinInformation findById(long id)
 	{
 		JoinInformation info = joinInformationMapper.selectByPrimaryKey(id);
-		
-		info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
-		
+
+		if(info.getSubTime() != null)
+			info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
+		if(info.getAuditTime() != null)
+			info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
 		if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
 			info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
 		if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
@@ -129,5 +135,29 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 	public List<JoinInformation> findByCriteria(JoinInformationCriteria criteria)
 	{
 		return joinInformationMapper.selectByCriteria(criteria);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public LinkedHashMap<String, List> getExportData()
+	{
+		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
+		List<JoinInformation> dataList = new ArrayList<JoinInformation>();
+		for(JoinInformation info : findAll())
+		{
+			if(info.getSubTime() != null)
+				info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
+			if(info.getAuditTime() != null)
+				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
+			if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
+				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_STR);
+			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
+				info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_STR);
+			if(info.getAuditStatus() == Constants.Status.STATUS_COMPLETED)
+				info.setAuditStatusStr(Constants.Status.STATUS_COMPLETED_STR);
+			dataList.add(info);
+		}
+		map.put("加盟审核信息", dataList);
+		return map;
 	}
 }

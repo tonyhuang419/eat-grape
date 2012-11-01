@@ -709,6 +709,79 @@ public class RecommendMerchantCriteria
 			return (Criteria) this;
 		}
 
+		public Criteria andHandleTimeIsNull()
+		{
+			addCriterion("handle_time is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeIsNotNull()
+		{
+			addCriterion("handle_time is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeEqualTo(Date value)
+		{
+			addCriterion("handle_time =", value, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeNotEqualTo(Date value)
+		{
+			addCriterion("handle_time <>", value, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeGreaterThan(Date value)
+		{
+			addCriterion("handle_time >", value, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeGreaterThanOrEqualTo(Date value)
+		{
+			addCriterion("handle_time >=", value, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeLessThan(Date value)
+		{
+			addCriterion("handle_time <", value, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeLessThanOrEqualTo(Date value)
+		{
+			addCriterion("handle_time <=", value, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeIn(List<Date> values)
+		{
+			addCriterion("handle_time in", values, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeNotIn(List<Date> values)
+		{
+			addCriterion("handle_time not in", values, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeBetween(Date value1, Date value2)
+		{
+			addCriterion("handle_time between", value1, value2, "handleTime");
+			return (Criteria) this;
+		}
+
+		public Criteria andHandleTimeNotBetween(Date value1, Date value2)
+		{
+			addCriterion("handle_time not between", value1, value2,
+					"handleTime");
+			return (Criteria) this;
+		}
+
 		public Criteria andHandleRemarkIsNull()
 		{
 			addCriterion("handle_remark is null");

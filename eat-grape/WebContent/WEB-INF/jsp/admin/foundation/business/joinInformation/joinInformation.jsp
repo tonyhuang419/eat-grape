@@ -82,7 +82,7 @@
 					<td>
 						<a title="${item.shopName}-加盟审核详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/foundation/business/joinInformation/showDetail.htm?joinInformation.id=${item.id}&action=zdylbzs"
-							width="700" height="400">
+							width="700" height="440">
 							查  看
 						</a>&nbsp;&nbsp;&nbsp;
 						<a class="delete" target="ajaxTodo" title="确定要删除吗？"
@@ -91,8 +91,8 @@
 						</a>&nbsp;&nbsp;&nbsp;
 						<s:if test="#item.auditStatus != 2">
 							<a title="${item.shopName}-加盟审核" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-								href="${ctx}/admin/foundation/business/joinInformation/showAudit.htm?id=${item.id}&action=zdylbzs"
-								width="700" height="280">
+								href="${ctx}/admin/foundation/business/joinInformation/showAudit.htm?id=${item.id}&action=zdylbzs&navTabId=${param.navTabId}"
+								width="600" height="280">
 								审  核
 							</a>
 						</s:if>

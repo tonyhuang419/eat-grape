@@ -8,6 +8,7 @@
     <result column="identify_id" property="identifyId" jdbcType="BIGINT" />
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
     <result column="handle_status" property="handleStatus" jdbcType="SMALLINT" />
+    <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
     <result column="handle_remark" property="handleRemark" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="Feedback" extends="BaseResultMap" >
@@ -43,7 +44,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, email, identify_type, identify_id, sub_time, handle_status, handle_remark
+    id, email, identify_type, identify_id, sub_time, handle_status, handle_time, handle_remark
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -101,10 +102,12 @@
   <insert id="insert" parameterType="Feedback" >
     insert into t_feedback (id, email, identify_type, 
       identify_id, sub_time, handle_status, 
-      handle_remark, content)
+      handle_time, handle_remark, content
+      )
     values (#{id,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{identifyType,jdbcType=SMALLINT}, 
       #{identifyId,jdbcType=BIGINT}, #{subTime,jdbcType=TIMESTAMP}, #{handleStatus,jdbcType=SMALLINT}, 
-      #{handleRemark,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+      #{handleTime,jdbcType=TIMESTAMP}, #{handleRemark,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="Feedback" >
     insert into t_feedback
@@ -126,6 +129,9 @@
       </if>
       <if test="handleStatus != null" >
         handle_status,
+      </if>
+      <if test="handleTime != null" >
+        handle_time,
       </if>
       <if test="handleRemark != null" >
         handle_remark,
@@ -153,6 +159,9 @@
       <if test="handleStatus != null" >
         #{handleStatus,jdbcType=SMALLINT},
       </if>
+      <if test="handleTime != null" >
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="handleRemark != null" >
         #{handleRemark,jdbcType=VARCHAR},
       </if>
@@ -179,6 +188,9 @@
       <if test="handleStatus != null" >
         handle_status = #{handleStatus,jdbcType=SMALLINT},
       </if>
+      <if test="handleTime != null" >
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="handleRemark != null" >
         handle_remark = #{handleRemark,jdbcType=VARCHAR},
       </if>
@@ -195,6 +207,7 @@
       identify_id = #{identifyId,jdbcType=BIGINT},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
       handle_status = #{handleStatus,jdbcType=SMALLINT},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP},
       handle_remark = #{handleRemark,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
@@ -206,6 +219,7 @@
       identify_id = #{identifyId,jdbcType=BIGINT},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
       handle_status = #{handleStatus,jdbcType=SMALLINT},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP},
       handle_remark = #{handleRemark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -236,6 +250,9 @@
       </if>
       <if test="handleStatus != null" >
         and handle_status = #{handleStatus,jdbcType=SMALLINT}
+      </if>
+      <if test="handleTime != null" >
+        and handle_time = #{handleTime,jdbcType=TIMESTAMP}
       </if>
       <if test="handleRemark != null" >
         and handle_remark = #{handleRemark,jdbcType=VARCHAR}

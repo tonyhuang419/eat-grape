@@ -34,6 +34,14 @@
       <result name="showDetail">/WEB-INF/jsp/admin/foundation/business/joinInformation/detail.jsp</result>
       <result name="showAudit">/WEB-INF/jsp/admin/foundation/business/joinInformation/audit.jsp</result>
     </action>
+	<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">joinInformationExcel</param>
+			<param name="contentDisposition">attachment;filename=${fileName}</param>
+			<param name="bufferSize">4096</param>
+		</result>
+	</action>
   </package>
   <package extends="default" name="recommendMerchant" namespace="/admin/foundation/business/recommendMerchant">
     <action class="com.eatle.web.action.backend.foundation.business.RecommendMerchantAction" method="{1}" name="*">
