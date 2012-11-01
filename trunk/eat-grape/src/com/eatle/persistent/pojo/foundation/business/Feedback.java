@@ -28,7 +28,7 @@ public class Feedback
 	// 临时属性（反馈建议人）
 	private String identifyStr;
 
-	// 临时属性（申请时间字符串）
+	// 临时属性（反馈时间字符串）
 	private String subTimeStr;
 
 	// 临时属性（处理状态字符串）

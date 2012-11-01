@@ -4,6 +4,7 @@ import com.eatle.persistent.pojo.foundation.business.Feedback;
 import com.eatle.persistent.pojo.foundation.business.FeedbackCriteria;
 import com.eatle.utils.Pagination;
 
+import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,8 @@ public interface IFeedbackService
 	 * @param currentPage 当前页
 	 * @param pageSize 每页大小
 	 */
-	Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize);
+	Pagination findPagination(Map<String, Object> queryMap, 
+			int currentPage, int pageSize) throws ParseException;
 
 	/**
 	 * @Description:
