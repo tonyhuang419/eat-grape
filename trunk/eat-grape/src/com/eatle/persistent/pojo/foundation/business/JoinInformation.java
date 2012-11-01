@@ -22,6 +22,8 @@ public class JoinInformation
 
 	private Short auditStatus;
 
+	private Date auditTime;
+
 	private String auditRemark;
 
 	private String sendPlace;
@@ -31,6 +33,9 @@ public class JoinInformation
 
 	// 临时属性（审核状态字符串）
 	private String auditStatusStr;
+
+	// 临时属性（审核时间字符串）
+	private String auditTimeStr;
 
 	public Long getId()
 	{
@@ -122,6 +127,16 @@ public class JoinInformation
 		this.auditStatus = auditStatus;
 	}
 
+	public Date getAuditTime()
+	{
+		return auditTime;
+	}
+
+	public void setAuditTime(Date auditTime)
+	{
+		this.auditTime = auditTime;
+	}
+
 	public String getAuditRemark()
 	{
 		return auditRemark;
@@ -160,5 +175,15 @@ public class JoinInformation
 	public void setAuditStatusStr(String auditStatusStr)
 	{
 		this.auditStatusStr = auditStatusStr;
+	}
+
+	public String getAuditTimeStr()
+	{
+		return auditTimeStr;
+	}
+
+	public void setAuditTimeStr(String auditTimeStr)
+	{
+		this.auditTimeStr = auditTimeStr;
 	}
 }

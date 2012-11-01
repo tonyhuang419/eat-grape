@@ -3,11 +3,11 @@
 
 <div class="pageContent">
 	<form method="post" action="${ctx}/admin/foundation/business/joinInformation/audit.htm?action=zxzhxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
-		<div class="pageFormContent" layoutH="56" align="right">
+		<div class="pageFormContent" layoutH="56">
 			<input name="joinInformation.id" type="hidden" value="${param.id}" />
 			<dl class="nowrap">
-				<dt>审核备注：</dt>
-				<dd><textarea cols="80" rows="5" name="joinInformation.auditRemark"></textarea></dd>
+				<dt style="height: 30px;">审核备注：</dt>
+				<dd><textarea cols="90" rows="7" name="joinInformation.auditRemark"></textarea></dd>
 			</dl>
 		</div>
 		<div class="formBar">

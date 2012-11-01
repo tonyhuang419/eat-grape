@@ -11,6 +11,7 @@
     <result column="link_qq" property="linkQq" jdbcType="VARCHAR" />
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
     <result column="audit_status" property="auditStatus" jdbcType="SMALLINT" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
     <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="JoinInformation" extends="BaseResultMap" >
@@ -47,7 +48,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, shop_name, shop_addr, link_man, link_tel, link_email, link_qq, sub_time, audit_status, 
-    audit_remark
+    audit_time, audit_remark
   </sql>
   <sql id="Blob_Column_List" >
     send_place
@@ -106,11 +107,13 @@
     insert into t_join_information (id, shop_name, shop_addr, 
       link_man, link_tel, link_email, 
       link_qq, sub_time, audit_status, 
-      audit_remark, send_place)
+      audit_time, audit_remark, send_place
+      )
     values (#{id,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{shopAddr,jdbcType=VARCHAR}, 
       #{linkMan,jdbcType=VARCHAR}, #{linkTel,jdbcType=VARCHAR}, #{linkEmail,jdbcType=VARCHAR}, 
       #{linkQq,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{auditStatus,jdbcType=SMALLINT}, 
-      #{auditRemark,jdbcType=VARCHAR}, #{sendPlace,jdbcType=LONGVARCHAR})
+      #{auditTime,jdbcType=TIMESTAMP}, #{auditRemark,jdbcType=VARCHAR}, #{sendPlace,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="JoinInformation" >
     insert into t_join_information
@@ -141,6 +144,9 @@
       </if>
       <if test="auditStatus != null" >
         audit_status,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
       </if>
       <if test="auditRemark != null" >
         audit_remark,
@@ -177,6 +183,9 @@
       <if test="auditStatus != null" >
         #{auditStatus,jdbcType=SMALLINT},
       </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="auditRemark != null" >
         #{auditRemark,jdbcType=VARCHAR},
       </if>
@@ -212,6 +221,9 @@
       <if test="auditStatus != null" >
         audit_status = #{auditStatus,jdbcType=SMALLINT},
       </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="auditRemark != null" >
         audit_remark = #{auditRemark,jdbcType=VARCHAR},
       </if>
@@ -231,6 +243,7 @@
       link_qq = #{linkQq,jdbcType=VARCHAR},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
       audit_status = #{auditStatus,jdbcType=SMALLINT},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
       audit_remark = #{auditRemark,jdbcType=VARCHAR},
       send_place = #{sendPlace,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
@@ -245,6 +258,7 @@
       link_qq = #{linkQq,jdbcType=VARCHAR},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
       audit_status = #{auditStatus,jdbcType=SMALLINT},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
       audit_remark = #{auditRemark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -284,6 +298,9 @@
       </if>
       <if test="auditStatus != null" >
         and audit_status = #{auditStatus,jdbcType=SMALLINT}
+      </if>
+      <if test="auditTime != null" >
+        and audit_time = #{auditTime,jdbcType=TIMESTAMP}
       </if>
       <if test="auditRemark != null" >
         and audit_remark = #{auditRemark,jdbcType=VARCHAR}

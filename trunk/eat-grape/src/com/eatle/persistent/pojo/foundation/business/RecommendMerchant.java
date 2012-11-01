@@ -18,6 +18,8 @@ public class RecommendMerchant
 
 	private Short handleStatus;
 
+	private Date handleTime;
+
 	private String handleRemark;
 
 	public Long getId()
@@ -88,6 +90,16 @@ public class RecommendMerchant
 	public void setHandleStatus(Short handleStatus)
 	{
 		this.handleStatus = handleStatus;
+	}
+
+	public Date getHandleTime()
+	{
+		return handleTime;
+	}
+
+	public void setHandleTime(Date handleTime)
+	{
+		this.handleTime = handleTime;
 	}
 
 	public String getHandleRemark()

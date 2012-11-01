@@ -5,6 +5,7 @@ import com.eatle.persistent.pojo.foundation.business.JoinInformationCriteria;
 import com.eatle.utils.Pagination;
 
 import java.text.ParseException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,4 +61,11 @@ public interface IJoinInformationService
 	 * 
 	 */
 	List<JoinInformation> findByCriteria(JoinInformationCriteria criteria);
+
+	/**
+	 * @Description: 数据导出到Excel
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	LinkedHashMap<String, List> getExportData();
 }

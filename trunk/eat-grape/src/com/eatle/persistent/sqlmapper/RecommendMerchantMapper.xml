@@ -9,6 +9,7 @@
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
     <result column="customer_id" property="customerId" jdbcType="BIGINT" />
     <result column="handle_status" property="handleStatus" jdbcType="SMALLINT" />
+    <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
     <result column="handle_remark" property="handleRemark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -41,7 +42,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, shop_name, shop_tel, shop_addr, sub_time, customer_id, handle_status, handle_remark
+    id, shop_name, shop_tel, shop_addr, sub_time, customer_id, handle_status, handle_time, 
+    handle_remark
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="RecommendMerchantCriteria" >
     select
@@ -74,10 +76,12 @@
   <insert id="insert" parameterType="RecommendMerchant" >
     insert into t_recommend_merchant (id, shop_name, shop_tel, 
       shop_addr, sub_time, customer_id, 
-      handle_status, handle_remark)
+      handle_status, handle_time, handle_remark
+      )
     values (#{id,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, 
       #{shopAddr,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{customerId,jdbcType=BIGINT}, 
-      #{handleStatus,jdbcType=SMALLINT}, #{handleRemark,jdbcType=VARCHAR})
+      #{handleStatus,jdbcType=SMALLINT}, #{handleTime,jdbcType=TIMESTAMP}, #{handleRemark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="RecommendMerchant" >
     insert into t_recommend_merchant
@@ -102,6 +106,9 @@
       </if>
       <if test="handleStatus != null" >
         handle_status,
+      </if>
+      <if test="handleTime != null" >
+        handle_time,
       </if>
       <if test="handleRemark != null" >
         handle_remark,
@@ -129,6 +136,9 @@
       <if test="handleStatus != null" >
         #{handleStatus,jdbcType=SMALLINT},
       </if>
+      <if test="handleTime != null" >
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="handleRemark != null" >
         #{handleRemark,jdbcType=VARCHAR},
       </if>
@@ -155,6 +165,9 @@
       <if test="handleStatus != null" >
         handle_status = #{handleStatus,jdbcType=SMALLINT},
       </if>
+      <if test="handleTime != null" >
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="handleRemark != null" >
         handle_remark = #{handleRemark,jdbcType=VARCHAR},
       </if>
@@ -169,6 +182,7 @@
       sub_time = #{subTime,jdbcType=TIMESTAMP},
       customer_id = #{customerId,jdbcType=BIGINT},
       handle_status = #{handleStatus,jdbcType=SMALLINT},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP},
       handle_remark = #{handleRemark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -202,6 +216,9 @@
       </if>
       <if test="handleStatus != null" >
         and handle_status = #{handleStatus,jdbcType=SMALLINT}
+      </if>
+      <if test="handleTime != null" >
+        and handle_time = #{handleTime,jdbcType=TIMESTAMP}
       </if>
       <if test="handleRemark != null" >
         and handle_remark = #{handleRemark,jdbcType=VARCHAR}
