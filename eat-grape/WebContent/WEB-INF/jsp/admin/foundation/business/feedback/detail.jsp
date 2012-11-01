@@ -16,44 +16,37 @@
 		    <table width="100%" border="0">
 		      <tr>
 		        <td height="60" align="center">
-					<span class="STYLE1">[${recommendMerchant.shopName}] - 加盟审核详细信息</span></td>
+					<span class="STYLE1">反馈建议详细信息</span>
+				</td>
 		      </tr>
 		      <tr>
 		        <td>
 		        	<table width="100%" border="0">
 			          <tr>
-			            <td width="20%" height="50" align="right">餐厅名称：</td>
-			            <td width="30%" height="50">${recommendMerchant.shopName}</td>
-			            <td width="20%" height="50" align="right">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</td>
-			            <td width="30%" height="50">${recommendMerchant.linkMan}</td>
+			            <td width="20%" height="50" align="right">反馈用户：</td>
+			            <td width="30%" height="50">${feedback.identifyStr}</td>
+			            <td width="20%" height="50" align="right">身份类型：</td>
+			            <td width="30%" height="50">${feedback.identifyTypeStr}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">联系电话：</td>
-			            <td width="30%" height="50">${recommendMerchant.linkTel}</td>
 			            <td width="20%" height="50" align="right">联系邮箱：</td>
-			            <td width="30%" height="50">${recommendMerchant.linkEmail}</td>
-			          </tr>
+			            <td width="30%" height="50">${feedback.email}</td>
+			            <td width="20%" height="50" align="right">反馈时间：</td>
+			            <td width="30%" height="50">${feedback.subTimeStr}</td>
+		              </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">联系Q Q：</td>
-			            <td width="30%" height="50">${recommendMerchant.linkQq}</td>
-			            <td width="20%" height="50" align="right">申请时间：</td>
-			            <td width="30%" height="50">${recommendMerchant.subTimeStr}</td>
-			          </tr>
-			          <tr>
-			            <td width="20%" height="50" align="right">餐厅地址：</td>
-			            <td height="30%" height="50">${recommendMerchant.shopAddr}</td>
-			            <td width="20%" height="50" align="right">送餐地点：</td>
-			            <td height="30%" height="50">${recommendMerchant.sendPlace}</td>
+			            <td width="20%" height="50" align="right">反馈内容：</td>
+			            <td width="80%" height="50" colspan="3">${feedback.content}</td>
 		              </tr>
 					  <tr>
-			            <td width="20%" height="50" align="right">审核状态：</td>
-			            <td width="30%" height="50">${recommendMerchant.handleStatusStr}</td>
-			            <td width="20%" height="50" align="right">审核时间：</td>
-			            <td width="30%" height="50">${recommendMerchant.handleTimeStr}</td>
+			            <td width="20%" height="50" align="right">处理状态：</td>
+			            <td width="30%" height="50">${feedback.handleStatusStr}</td>
+			            <td width="20%" height="50" align="right">处理时间：</td>
+			            <td width="30%" height="50">${feedback.handleTimeStr}</td>
 			          </tr>
 					  <tr>
-			            <td width="20%" height="50" align="right">审核备注：</td>
-			            <td width="80%" height="50" colspan="3">${recommendMerchant.handleRemark}</td>
+			            <td width="20%" height="50" align="right">处理备注：</td>
+			            <td width="80%" height="50" colspan="3">${feedback.handleRemark}</td>
 			          </tr>
 			        </table>
 		      	</td>

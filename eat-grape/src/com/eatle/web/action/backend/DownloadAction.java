@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 
+import com.eatle.service.foundation.business.IFeedbackService;
 import com.eatle.service.foundation.business.IJoinInformationService;
 import com.eatle.service.foundation.business.IRecommendMerchantService;
 import com.eatle.service.merchant.IMerchantService;
@@ -46,9 +47,12 @@ public class DownloadAction extends BaseAction
 	
 	@Resource
 	private IJoinInformationService joinInformationService;
-	
+
 	@Resource
 	private IRecommendMerchantService recommendMerchantService;
+
+	@Resource
+	private IFeedbackService feedbackService;
 
 	// 下载文件名
 	private String fileName;
@@ -214,7 +218,7 @@ public class DownloadAction extends BaseAction
 	 * @throws IllegalAccessException 
 	 * @throws IOException 
 	 * @throws IllegalArgumentException 
-	 * @Description: 加盟审核信息导出Excel下载
+	 * @Description: 顾客推荐商家信息导出Excel下载
 	 */
 	public InputStream getRecommendMerchantExcel() throws 
 		IllegalArgumentException, IOException, IllegalAccessException
@@ -231,6 +235,36 @@ public class DownloadAction extends BaseAction
 		setInfo.setObjsMap(recommendMerchantService.getExportData());
 		setInfo.setFieldNames(fieldNames);
 		setInfo.setTitles(new String[] { "馋八戒顾客推荐商家信息" });
+		setInfo.setHeadNames(headNames);
+		setInfo.setOut(baos);
+		
+		// 将需要导出的数据输出到baos
+		ExcelUtil.export2Excel(setInfo);
+		
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	/**
+	 * @throws IllegalAccessException 
+	 * @throws IOException 
+	 * @throws IllegalArgumentException 
+	 * @Description: 反馈建议信息导出Excel下载
+	 */
+	public InputStream getFeedbackExcel() throws 
+		IllegalArgumentException, IOException, IllegalAccessException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		List<String[]> headNames = new ArrayList<String[]>();
+		headNames.add(new String[] { "反馈人", "身份类型", "联系邮箱", 
+				"反馈时间", "反馈内容", "处理状态", "处理时间", "处理备注" });
+		List<String[]> fieldNames = new ArrayList<String[]>();
+		fieldNames.add(new String[] { "identifyStr", "identifyTypeStr", "email", 
+				"subTimeStr", "content", "handleStatusStr", "handleTimeStr", "handleRemark"}); 
+
+		ExportSetInfo setInfo = new ExportSetInfo();
+		setInfo.setObjsMap(feedbackService.getExportData());
+		setInfo.setFieldNames(fieldNames);
+		setInfo.setTitles(new String[] { "馋八戒用户反馈建议信息" });
 		setInfo.setHeadNames(headNames);
 		setInfo.setOut(baos);
 		

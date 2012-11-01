@@ -62,6 +62,14 @@
       <result name="showDetail">/WEB-INF/jsp/admin/foundation/business/feedback/detail.jsp</result>
       <result name="showHandle">/WEB-INF/jsp/admin/foundation/business/feedback/handle.jsp</result>
     </action>
+	<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">feedbackExcel</param>
+			<param name="contentDisposition">attachment;filename=${fileName}</param>
+			<param name="bufferSize">4096</param>
+		</result>
+	</action>
   </package>
   
   <!-- 系统数据字典 -->
