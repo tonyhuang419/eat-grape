@@ -13,7 +13,7 @@
 		<img class="png" src="${ctx}/images/common/404/404.png" />
 		<img class="png msg" src="${ctx}/images/common/404/404_msg.png" />
 		<p>
-			<a href="/">
+			<a href="${ctx}/admin/index.htm">
 				<img class="png" src="${ctx}/images/common/404/404_to_index.png" />
 			</a>
 		</p>
