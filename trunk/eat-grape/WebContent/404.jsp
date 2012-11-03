@@ -1,6 +1,29 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Not Found</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/style/common/404/404.css" media="screen" />
+</head>
+<body>
+	<div id="container">
+		<img class="png" src="${ctx}/images/common/404/404.png" />
+		<img class="png msg" src="${ctx}/images/common/404/404_msg.png" />
+		<p>
+			<a href="/">
+				<img class="png" src="${ctx}/images/common/404/404_to_index.png" />
+			</a>
+		</p>
+	</div>
+	<div id="cloud" class="png"></div>
+	<pre style="DISPLAY: none"></pre>
+</body>
+</html>
+
+<%--
 <HTML>
 	<HEAD>
 		<title>Not Found</title>
@@ -43,7 +66,7 @@
 					<TD vAlign=top height=270>
 						<DIV align=center>
 							<BR>
-							<IMG height=211 src="${ctx}/images/404/error.gif" width=329>
+							<IMG height=211 src="${ctx}/images/common/404/error.gif" width=329>
 							<BR>
 							<BR>
 							<TABLE cellSpacing=0 cellPadding=0 width="80%" border=0>
@@ -53,7 +76,7 @@
 											<BR/>
 											<FONT class=p2>
 												<FONT color=#ff0000>
-													<IMG height=13 src="${ctx}/images/404/emessage.gif" width=12/>&nbsp;无法访问本页的原因是：
+													<IMG height=13 src="${ctx}/images/common/404/emessage.gif" width=12/>&nbsp;无法访问本页的原因是：
 												</FONT>
 												<FONT color=#000000>
 													您所请求的页面不存在!
@@ -76,9 +99,9 @@
 									<TBODY>
 										<TR>
 											<TD width=6>
-												<IMG height=26 src="${ctx}/images/404/left.gif" width=7>
+												<IMG height=26 src="${ctx}/images/common/404/left.gif" width=7>
 											</TD>
-											<TD background=${ctx}/images/404/bg.gif>
+											<TD background=${ctx}/images/common/404/bg.gif>
 												<DIV align=center>
 													<FONT class=p6>
 														<A href="${ctx}/admin/index.htm">返回首页</A>
@@ -90,7 +113,7 @@
 												</DIV>
 											</TD>
 											<TD width=7>
-												<IMG src="${ctx}/images/404/right.gif" width="7" height="26">
+												<IMG src="${ctx}/images/common/404/right.gif" width="7" height="26">
 											</TD>
 										</TR>
 									</TBODY>
@@ -106,3 +129,4 @@
 		</P>
 	</BODY>
 </HTML>
+--%>
