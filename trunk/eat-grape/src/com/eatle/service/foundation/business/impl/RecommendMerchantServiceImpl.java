@@ -183,12 +183,12 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 			if(rm.getIdentifyType() == Constants.Identity.IDENTITY_MERCHANT)
 			{
 				rm.setIdentifyStr(merchantMapper.selectByPrimaryKey(rm.getIdentifyId()).getMerchantName());
-				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
+				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_STR);
 			}
 			else
 			{
 				rm.setIdentifyStr(customerMapper.selectByPrimaryKey(rm.getIdentifyId()).getLoginEmail());
-				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
+				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_STR);
 			}
 			// 推荐时间
 			if(rm.getSubTime() != null)
