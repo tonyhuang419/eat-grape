@@ -61,6 +61,7 @@
 				<th width="250">餐厅名称</th>
 				<th width="180">餐厅电话</th>
 				<th width="120">推荐人</th>
+				<th width="100">身份类型</th>
 				<th width="200">推荐时间</th>
 				<th width="100">处理状态</th>
 				<th width="250">操作</th>
@@ -71,7 +72,8 @@
 				<tr target="sid" rel="<s:property value="#item.id" />" align="center">
 					<td>${item.shopName}</td>
 					<td>${item.shopTel}</td>
-					<td>${item.customerStr}</td>
+					<td>${item.identifyStr}</td>
+					<td>${item.identifyTypeStr}</td>
 					<td>${item.subTimeStr}</td>
 					<td>${item.handleStatusStr}</td>
 					<td>

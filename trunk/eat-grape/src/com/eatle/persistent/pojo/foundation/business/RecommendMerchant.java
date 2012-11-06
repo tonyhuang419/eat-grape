@@ -14,7 +14,9 @@ public class RecommendMerchant
 
 	private Date subTime;
 
-	private Long customerId;
+	private Short identifyType;
+
+	private Long identifyId;
 
 	private Short handleStatus;
 
@@ -22,8 +24,11 @@ public class RecommendMerchant
 
 	private String handleRemark;
 
-	// 临时属性（推荐人）
-	private String customerStr;
+	// 临时属性（推荐人身份类型）
+	private String identifyTypeStr;
+
+	// 临时属性（反馈建议人）
+	private String identifyStr;
 
 	// 临时属性（申请时间字符串）
 	private String subTimeStr;
@@ -84,14 +89,24 @@ public class RecommendMerchant
 		this.subTime = subTime;
 	}
 
-	public Long getCustomerId()
+	public Short getIdentifyType()
 	{
-		return customerId;
+		return identifyType;
 	}
 
-	public void setCustomerId(Long customerId)
+	public void setIdentifyType(Short identifyType)
 	{
-		this.customerId = customerId;
+		this.identifyType = identifyType;
+	}
+
+	public Long getIdentifyId()
+	{
+		return identifyId;
+	}
+
+	public void setIdentifyId(Long identifyId)
+	{
+		this.identifyId = identifyId;
 	}
 
 	public Short getHandleStatus()
@@ -124,6 +139,16 @@ public class RecommendMerchant
 		this.handleRemark = handleRemark;
 	}
 
+	public String getIdentifyTypeStr()
+	{
+		return identifyTypeStr;
+	}
+
+	public void setIdentifyTypeStr(String identifyTypeStr)
+	{
+		this.identifyTypeStr = identifyTypeStr;
+	}
+
 	public String getSubTimeStr()
 	{
 		return subTimeStr;
@@ -154,13 +179,13 @@ public class RecommendMerchant
 		this.handleTimeStr = handleTimeStr;
 	}
 
-	public String getCustomerStr()
+	public String getIdentifyStr()
 	{
-		return customerStr;
+		return identifyStr;
 	}
 
-	public void setCustomerStr(String customerStr)
+	public void setIdentifyStr(String identifyStr)
 	{
-		this.customerStr = customerStr;
+		this.identifyStr = identifyStr;
 	}
 }

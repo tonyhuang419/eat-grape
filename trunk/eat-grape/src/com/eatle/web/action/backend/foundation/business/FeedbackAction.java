@@ -88,6 +88,11 @@ public class FeedbackAction extends BaseAction
 	public String showDetail()
 	{
 		feedback = feedbackService.findById(feedback.getId());
+		if(feedback.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
+		{
+			feedback.setHandleStatus(Constants.Status.STATUS_VIEWED);
+			feedbackService.update(feedback);
+		}
 		return "showDetail";
 	}
 

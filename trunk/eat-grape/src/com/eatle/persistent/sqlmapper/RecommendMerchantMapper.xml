@@ -7,7 +7,8 @@
     <result column="shop_tel" property="shopTel" jdbcType="VARCHAR" />
     <result column="shop_addr" property="shopAddr" jdbcType="VARCHAR" />
     <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
-    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="identify_type" property="identifyType" jdbcType="SMALLINT" />
+    <result column="identify_id" property="identifyId" jdbcType="BIGINT" />
     <result column="handle_status" property="handleStatus" jdbcType="SMALLINT" />
     <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
     <result column="handle_remark" property="handleRemark" jdbcType="VARCHAR" />
@@ -42,8 +43,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, shop_name, shop_tel, shop_addr, sub_time, customer_id, handle_status, handle_time, 
-    handle_remark
+    id, shop_name, shop_tel, shop_addr, sub_time, identify_type, identify_id, handle_status, 
+    handle_time, handle_remark
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="RecommendMerchantCriteria" >
     select
@@ -75,13 +76,13 @@
   </delete>
   <insert id="insert" parameterType="RecommendMerchant" >
     insert into t_recommend_merchant (id, shop_name, shop_tel, 
-      shop_addr, sub_time, customer_id, 
-      handle_status, handle_time, handle_remark
-      )
+      shop_addr, sub_time, identify_type, 
+      identify_id, handle_status, handle_time, 
+      handle_remark)
     values (#{id,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, 
-      #{shopAddr,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{customerId,jdbcType=BIGINT}, 
-      #{handleStatus,jdbcType=SMALLINT}, #{handleTime,jdbcType=TIMESTAMP}, #{handleRemark,jdbcType=VARCHAR}
-      )
+      #{shopAddr,jdbcType=VARCHAR}, #{subTime,jdbcType=TIMESTAMP}, #{identifyType,jdbcType=SMALLINT}, 
+      #{identifyId,jdbcType=BIGINT}, #{handleStatus,jdbcType=SMALLINT}, #{handleTime,jdbcType=TIMESTAMP}, 
+      #{handleRemark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="RecommendMerchant" >
     insert into t_recommend_merchant
@@ -101,8 +102,11 @@
       <if test="subTime != null" >
         sub_time,
       </if>
-      <if test="customerId != null" >
-        customer_id,
+      <if test="identifyType != null" >
+        identify_type,
+      </if>
+      <if test="identifyId != null" >
+        identify_id,
       </if>
       <if test="handleStatus != null" >
         handle_status,
@@ -130,8 +134,11 @@
       <if test="subTime != null" >
         #{subTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="customerId != null" >
-        #{customerId,jdbcType=BIGINT},
+      <if test="identifyType != null" >
+        #{identifyType,jdbcType=SMALLINT},
+      </if>
+      <if test="identifyId != null" >
+        #{identifyId,jdbcType=BIGINT},
       </if>
       <if test="handleStatus != null" >
         #{handleStatus,jdbcType=SMALLINT},
@@ -159,8 +166,11 @@
       <if test="subTime != null" >
         sub_time = #{subTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="customerId != null" >
-        customer_id = #{customerId,jdbcType=BIGINT},
+      <if test="identifyType != null" >
+        identify_type = #{identifyType,jdbcType=SMALLINT},
+      </if>
+      <if test="identifyId != null" >
+        identify_id = #{identifyId,jdbcType=BIGINT},
       </if>
       <if test="handleStatus != null" >
         handle_status = #{handleStatus,jdbcType=SMALLINT},
@@ -180,7 +190,8 @@
       shop_tel = #{shopTel,jdbcType=VARCHAR},
       shop_addr = #{shopAddr,jdbcType=VARCHAR},
       sub_time = #{subTime,jdbcType=TIMESTAMP},
-      customer_id = #{customerId,jdbcType=BIGINT},
+      identify_type = #{identifyType,jdbcType=SMALLINT},
+      identify_id = #{identifyId,jdbcType=BIGINT},
       handle_status = #{handleStatus,jdbcType=SMALLINT},
       handle_time = #{handleTime,jdbcType=TIMESTAMP},
       handle_remark = #{handleRemark,jdbcType=VARCHAR}
@@ -211,8 +222,11 @@
       <if test="subTime != null" >
         and sub_time = #{subTime,jdbcType=TIMESTAMP}
       </if>
-      <if test="customerId != null" >
-        and customer_id = #{customerId,jdbcType=BIGINT}
+      <if test="identifyType != null" >
+        and identify_type = #{identifyType,jdbcType=SMALLINT}
+      </if>
+      <if test="identifyId != null" >
+        and identify_id = #{identifyId,jdbcType=BIGINT}
       </if>
       <if test="handleStatus != null" >
         and handle_status = #{handleStatus,jdbcType=SMALLINT}

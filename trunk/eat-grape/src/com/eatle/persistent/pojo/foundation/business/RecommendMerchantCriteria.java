@@ -562,76 +562,150 @@ public class RecommendMerchantCriteria
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdIsNull()
+		public Criteria andIdentifyTypeIsNull()
 		{
-			addCriterion("customer_id is null");
+			addCriterion("identify_type is null");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdIsNotNull()
+		public Criteria andIdentifyTypeIsNotNull()
 		{
-			addCriterion("customer_id is not null");
+			addCriterion("identify_type is not null");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdEqualTo(Long value)
+		public Criteria andIdentifyTypeEqualTo(Short value)
 		{
-			addCriterion("customer_id =", value, "customerId");
+			addCriterion("identify_type =", value, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdNotEqualTo(Long value)
+		public Criteria andIdentifyTypeNotEqualTo(Short value)
 		{
-			addCriterion("customer_id <>", value, "customerId");
+			addCriterion("identify_type <>", value, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdGreaterThan(Long value)
+		public Criteria andIdentifyTypeGreaterThan(Short value)
 		{
-			addCriterion("customer_id >", value, "customerId");
+			addCriterion("identify_type >", value, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdGreaterThanOrEqualTo(Long value)
+		public Criteria andIdentifyTypeGreaterThanOrEqualTo(Short value)
 		{
-			addCriterion("customer_id >=", value, "customerId");
+			addCriterion("identify_type >=", value, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdLessThan(Long value)
+		public Criteria andIdentifyTypeLessThan(Short value)
 		{
-			addCriterion("customer_id <", value, "customerId");
+			addCriterion("identify_type <", value, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdLessThanOrEqualTo(Long value)
+		public Criteria andIdentifyTypeLessThanOrEqualTo(Short value)
 		{
-			addCriterion("customer_id <=", value, "customerId");
+			addCriterion("identify_type <=", value, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdIn(List<Long> values)
+		public Criteria andIdentifyTypeIn(List<Short> values)
 		{
-			addCriterion("customer_id in", values, "customerId");
+			addCriterion("identify_type in", values, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdNotIn(List<Long> values)
+		public Criteria andIdentifyTypeNotIn(List<Short> values)
 		{
-			addCriterion("customer_id not in", values, "customerId");
+			addCriterion("identify_type not in", values, "identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdBetween(Long value1, Long value2)
+		public Criteria andIdentifyTypeBetween(Short value1, Short value2)
 		{
-			addCriterion("customer_id between", value1, value2, "customerId");
+			addCriterion("identify_type between", value1, value2,
+					"identifyType");
 			return (Criteria) this;
 		}
 
-		public Criteria andCustomerIdNotBetween(Long value1, Long value2)
+		public Criteria andIdentifyTypeNotBetween(Short value1, Short value2)
 		{
-			addCriterion("customer_id not between", value1, value2,
-					"customerId");
+			addCriterion("identify_type not between", value1, value2,
+					"identifyType");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdIsNull()
+		{
+			addCriterion("identify_id is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdIsNotNull()
+		{
+			addCriterion("identify_id is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdEqualTo(Long value)
+		{
+			addCriterion("identify_id =", value, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdNotEqualTo(Long value)
+		{
+			addCriterion("identify_id <>", value, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdGreaterThan(Long value)
+		{
+			addCriterion("identify_id >", value, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdGreaterThanOrEqualTo(Long value)
+		{
+			addCriterion("identify_id >=", value, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdLessThan(Long value)
+		{
+			addCriterion("identify_id <", value, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdLessThanOrEqualTo(Long value)
+		{
+			addCriterion("identify_id <=", value, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdIn(List<Long> values)
+		{
+			addCriterion("identify_id in", values, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdNotIn(List<Long> values)
+		{
+			addCriterion("identify_id not in", values, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdBetween(Long value1, Long value2)
+		{
+			addCriterion("identify_id between", value1, value2, "identifyId");
+			return (Criteria) this;
+		}
+
+		public Criteria andIdentifyIdNotBetween(Long value1, Long value2)
+		{
+			addCriterion("identify_id not between", value1, value2,
+					"identifyId");
 			return (Criteria) this;
 		}
 
