@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="Customer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="login_email" property="loginEmail" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
+    <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="SMALLINT" />
+    <result column="visitor_uuid" property="visitorUuid" jdbcType="VARCHAR" />
+    <result column="relative_qq" property="relativeQq" jdbcType="VARCHAR" />
+    <result column="relative_sina" property="relativeSina" jdbcType="VARCHAR" />
+    <result column="relative_rrw" property="relativeRrw" jdbcType="VARCHAR" />
+    <result column="community_id" property="communityId" jdbcType="BIGINT" />
+    <result column="school_id" property="schoolId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, login_email, nick_name, password, true_name, register_time, last_login_time, 
+    last_login_ip, register_ip, score, mobile_phone, customer_type, visitor_uuid, relative_qq, 
+    relative_sina, relative_rrw, community_id, school_id
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="CustomerCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="Customer" >
+    insert into t_customer (id, login_email, nick_name, 
+      password, true_name, register_time, 
+      last_login_time, last_login_ip, register_ip, 
+      score, mobile_phone, customer_type, 
+      visitor_uuid, relative_qq, relative_sina, 
+      relative_rrw, community_id, school_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{loginEmail,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, #{registerIp,jdbcType=VARCHAR}, 
+      #{score,jdbcType=INTEGER}, #{mobilePhone,jdbcType=VARCHAR}, #{customerType,jdbcType=SMALLINT}, 
+      #{visitorUuid,jdbcType=VARCHAR}, #{relativeQq,jdbcType=VARCHAR}, #{relativeSina,jdbcType=VARCHAR}, 
+      #{relativeRrw,jdbcType=VARCHAR}, #{communityId,jdbcType=BIGINT}, #{schoolId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="Customer" >
+    insert into t_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginEmail != null" >
+        login_email,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip,
+      </if>
+      <if test="registerIp != null" >
+        register_ip,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="customerType != null" >
+        customer_type,
+      </if>
+      <if test="visitorUuid != null" >
+        visitor_uuid,
+      </if>
+      <if test="relativeQq != null" >
+        relative_qq,
+      </if>
+      <if test="relativeSina != null" >
+        relative_sina,
+      </if>
+      <if test="relativeRrw != null" >
+        relative_rrw,
+      </if>
+      <if test="communityId != null" >
+        community_id,
+      </if>
+      <if test="schoolId != null" >
+        school_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loginEmail != null" >
+        #{loginEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="registerIp != null" >
+        #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=SMALLINT},
+      </if>
+      <if test="visitorUuid != null" >
+        #{visitorUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeQq != null" >
+        #{relativeQq,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeSina != null" >
+        #{relativeSina,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeRrw != null" >
+        #{relativeRrw,jdbcType=VARCHAR},
+      </if>
+      <if test="communityId != null" >
+        #{communityId,jdbcType=BIGINT},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Customer" >
+    update t_customer
+    <set >
+      <if test="loginEmail != null" >
+        login_email = #{loginEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="registerIp != null" >
+        register_ip = #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        customer_type = #{customerType,jdbcType=SMALLINT},
+      </if>
+      <if test="visitorUuid != null" >
+        visitor_uuid = #{visitorUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeQq != null" >
+        relative_qq = #{relativeQq,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeSina != null" >
+        relative_sina = #{relativeSina,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeRrw != null" >
+        relative_rrw = #{relativeRrw,jdbcType=VARCHAR},
+      </if>
+      <if test="communityId != null" >
+        community_id = #{communityId,jdbcType=BIGINT},
+      </if>
+      <if test="schoolId != null" >
+        school_id = #{schoolId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Customer" >
+    update t_customer
+    set login_email = #{loginEmail,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      register_ip = #{registerIp,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=SMALLINT},
+      visitor_uuid = #{visitorUuid,jdbcType=VARCHAR},
+      relative_qq = #{relativeQq,jdbcType=VARCHAR},
+      relative_sina = #{relativeSina,jdbcType=VARCHAR},
+      relative_rrw = #{relativeRrw,jdbcType=VARCHAR},
+      community_id = #{communityId,jdbcType=BIGINT},
+      school_id = #{schoolId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="CustomerCriteria" >
+    select count(1) 
+    from t_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_customer
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="loginEmail != null" >
+        and login_email = #{loginEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="nickName != null" >
+        and nick_name = #{nickName,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" >
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="trueName != null" >
+        and true_name = #{trueName,jdbcType=VARCHAR}
+      </if>
+      <if test="registerTime != null" >
+        and register_time = #{registerTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="lastLoginTime != null" >
+        and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="lastLoginIp != null" >
+        and last_login_ip = #{lastLoginIp,jdbcType=VARCHAR}
+      </if>
+      <if test="registerIp != null" >
+        and register_ip = #{registerIp,jdbcType=VARCHAR}
+      </if>
+      <if test="score != null" >
+        and score = #{score,jdbcType=INTEGER}
+      </if>
+      <if test="mobilePhone != null" >
+        and mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="customerType != null" >
+        and customer_type = #{customerType,jdbcType=SMALLINT}
+      </if>
+      <if test="visitorUuid != null" >
+        and visitor_uuid = #{visitorUuid,jdbcType=VARCHAR}
+      </if>
+      <if test="relativeQq != null" >
+        and relative_qq = #{relativeQq,jdbcType=VARCHAR}
+      </if>
+      <if test="relativeSina != null" >
+        and relative_sina = #{relativeSina,jdbcType=VARCHAR}
+      </if>
+      <if test="relativeRrw != null" >
+        and relative_rrw = #{relativeRrw,jdbcType=VARCHAR}
+      </if>
+      <if test="communityId != null" >
+        and community_id = #{communityId,jdbcType=BIGINT}
+      </if>
+      <if test="schoolId != null" >
+        and school_id = #{schoolId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+</mapper>

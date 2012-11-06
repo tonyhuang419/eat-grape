@@ -101,7 +101,11 @@
     	
     	<!-- *****************************订单管理************************************* -->
     	
-    	
     	<!-- *****************************顾客管理************************************* -->
+    	
+    	<!-- 顾客 -->
+    	<typeAlias alias="Customer" type="com.eatle.persistent.pojo.customer.Customer"/>
+    	<typeAlias alias="CustomerCriteria" type="com.eatle.persistent.pojo.customer.CustomerCriteria"/>
+    	
     </typeAliases>
-</configuration>    
+</configuration>  
