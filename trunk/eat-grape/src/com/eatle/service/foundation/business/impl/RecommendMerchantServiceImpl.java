@@ -1,6 +1,7 @@
 package com.eatle.service.foundation.business.impl;
 
 import com.eatle.common.Constants;
+import com.eatle.persistent.mapper.CustomerMapper;
 import com.eatle.persistent.mapper.RecommendMerchantMapper;
 import com.eatle.persistent.pojo.foundation.business.RecommendMerchant;
 import com.eatle.persistent.pojo.foundation.business.RecommendMerchantCriteria.Criteria;
@@ -23,6 +24,9 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 {
 	@Resource
 	private RecommendMerchantMapper recommendMerchantMapper;
+	
+	@Resource
+	private CustomerMapper customerMapper;
 
 	@Override
 	public int add(RecommendMerchant entity)
@@ -57,11 +61,6 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 				{
 					criteria.andShopNameLike("%" + (String) queryMap.get("shopName") + "%");
 				}
-				if (queryMap.containsKey("referrer"))
-				{
-//					Long customerId = XXX (String) queryMap.get("referrer");
-//					criteria.andCustomerIdEqualTo(customerId);
-				}
 				if (queryMap.containsKey("startTime"))
 				{
 					if(queryMap.containsKey("endTime"))
@@ -91,18 +90,23 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 		List<RecommendMerchant> items = new ArrayList<RecommendMerchant>();
 		for(RecommendMerchant rm : recommendMerchants)
 		{
+			// 推荐人
 			if(rm.getCustomerId() != null)
-				rm.setCustomerStr("推荐人需要查Customer表");
+				rm.setCustomerStr(customerMapper.selectByPrimaryKey(rm.getCustomerId()).getLoginEmail());
+			// 推荐时间
 			if(rm.getSubTime() != null)
 				rm.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getSubTime()));
-			if(rm.getHandleTime() != null)
-				rm.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getHandleTime()));
+			// 处理状态
 			if(rm.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
 				rm.setHandleStatusStr(Constants.Status.STATUS_WAIT_HANDLE_HTML);
 			if(rm.getHandleStatus() == Constants.Status.STATUS_VIEWED)
 				rm.setHandleStatusStr(Constants.Status.STATUS_VIEWED_HTML);
 			if(rm.getHandleStatus() == Constants.Status.STATUS_HANDLED)
 				rm.setHandleStatusStr(Constants.Status.STATUS_HANDLED_HTML);
+			// 处理时间
+			if(rm.getHandleTime() != null)
+				rm.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getHandleTime()));
+			
 			items.add(rm);
 		}
 		int totalCount = (int) recommendMerchantMapper.selectCountByCriteria(recommendMerchantCriteria);
@@ -114,18 +118,22 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 	{
 		RecommendMerchant rm = recommendMerchantMapper.selectByPrimaryKey(id);
 
+		// 推荐人
 		if(rm.getCustomerId() != null)
-			rm.setCustomerStr("推荐人需要查Customer表");
+			rm.setCustomerStr(customerMapper.selectByPrimaryKey(rm.getCustomerId()).getLoginEmail());
+		// 推荐时间
 		if(rm.getSubTime() != null)
 			rm.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getSubTime()));
-		if(rm.getHandleTime() != null)
-			rm.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getHandleTime()));
+		// 处理状态
 		if(rm.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
 			rm.setHandleStatusStr(Constants.Status.STATUS_WAIT_HANDLE_HTML);
 		if(rm.getHandleStatus() == Constants.Status.STATUS_VIEWED)
 			rm.setHandleStatusStr(Constants.Status.STATUS_VIEWED_HTML);
 		if(rm.getHandleStatus() == Constants.Status.STATUS_HANDLED)
 			rm.setHandleStatusStr(Constants.Status.STATUS_HANDLED_HTML);
+		// 处理时间
+		if(rm.getHandleTime() != null)
+			rm.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getHandleTime()));
 		
 		return rm;
 	}
@@ -151,18 +159,23 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 		List<RecommendMerchant> dataList = new ArrayList<RecommendMerchant>();
 		for(RecommendMerchant rm : findAll())
 		{
+			// 推荐人
 			if(rm.getCustomerId() != null)
-				rm.setCustomerStr("推荐人需要查Customer表");
+				rm.setCustomerStr(customerMapper.selectByPrimaryKey(rm.getCustomerId()).getLoginEmail());
+			// 推荐时间
 			if(rm.getSubTime() != null)
 				rm.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getSubTime()));
-			if(rm.getHandleTime() != null)
-				rm.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getHandleTime()));
+			// 处理状态
 			if(rm.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
 				rm.setHandleStatusStr(Constants.Status.STATUS_WAIT_HANDLE_STR);
 			if(rm.getHandleStatus() == Constants.Status.STATUS_VIEWED)
 				rm.setHandleStatusStr(Constants.Status.STATUS_VIEWED_STR);
 			if(rm.getHandleStatus() == Constants.Status.STATUS_HANDLED)
 				rm.setHandleStatusStr(Constants.Status.STATUS_HANDLED_STR);
+			// 处理时间
+			if(rm.getHandleTime() != null)
+				rm.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getHandleTime()));
+			
 			dataList.add(rm);
 		}
 		map.put("顾客推荐信息", dataList);

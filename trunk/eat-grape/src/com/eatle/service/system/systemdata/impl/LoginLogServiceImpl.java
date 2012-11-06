@@ -1,6 +1,7 @@
 package com.eatle.service.system.systemdata.impl;
 
 import com.eatle.common.Constants;
+import com.eatle.persistent.mapper.CustomerMapper;
 import com.eatle.persistent.mapper.LoginLogMapper;
 import com.eatle.persistent.mapper.UserMapper;
 import com.eatle.persistent.pojo.system.systemdata.LoginLog;
@@ -25,9 +26,12 @@ public class LoginLogServiceImpl implements ILoginLogService
 {
 	@Resource
 	private LoginLogMapper loginLogMapper;
-	
+
 	@Resource
 	private UserMapper userMapper;
+	
+	@Resource
+	private CustomerMapper customerMapper;
 
 	@Override
 	public int add(LoginLog entity)
@@ -93,14 +97,21 @@ public class LoginLogServiceImpl implements ILoginLogService
 		List<LoginLog> loginLogs = loginLogMapper.selectByCriteria(loginLogCriteria);
 		for(LoginLog loginLog : loginLogs)
 		{
-			loginLog.setUserName(userMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getUserName());
-			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
+			// 登陆用户名
+			if(loginLog.getIdentifyType() != Constants.Identity.IDENTITY_CUSTOMER)
+				loginLog.setUserName(userMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getUserName());
+			else
+				loginLog.setUserName(customerMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getLoginEmail());
+			// 登陆身份类型
 			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
 				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_ADMINISTRATOR_HTML);
 			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
 				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
 			else
 				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
+			// 登陆时间
+			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
+			
 			items.add(loginLog);
 		}
 		int totalCount = (int) loginLogMapper.selectCountByCriteria(loginLogCriteria);
@@ -134,19 +145,19 @@ public class LoginLogServiceImpl implements ILoginLogService
 		List<LoginLog> dataList = new ArrayList<LoginLog>();
 		for(LoginLog loginLog : loginLogs)
 		{
-			loginLog.setUserName(userMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getUserName());
-			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
-			{
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_ADMINISTRATOR_STR);
-			}
-			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
-			{
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_STR);
-			}
+			// 登陆用户名
+			if(loginLog.getIdentifyType() != Constants.Identity.IDENTITY_CUSTOMER)
+				loginLog.setUserName(userMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getUserName());
 			else
-			{
+				loginLog.setUserName(customerMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getLoginEmail());
+			// 登陆身份类型
+			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_ADMINISTRATOR_STR);
+			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
+				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_STR);
+			else
 				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_STR);
-			}
+			// 登陆时间
 			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
 			
 			dataList.add(loginLog);

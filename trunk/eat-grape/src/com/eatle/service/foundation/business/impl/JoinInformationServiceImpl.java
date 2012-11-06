@@ -90,16 +90,20 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 		List<JoinInformation> items = new ArrayList<JoinInformation>();
 		for(JoinInformation info : joinInformations)
 		{
+			// 申请时间
 			if(info.getSubTime() != null)
 				info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
-			if(info.getAuditTime() != null)
-				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
+			// 审核状态
 			if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
 				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
 			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
 				info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_HTML);
 			if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
 				info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_HTML);
+			// 审核时间
+			if(info.getAuditTime() != null)
+				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
+			
 			items.add(info);
 		}
 		int totalCount = (int) joinInformationMapper.selectCountByCriteria(joinInformationCriteria);
@@ -111,16 +115,19 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 	{
 		JoinInformation info = joinInformationMapper.selectByPrimaryKey(id);
 
+		// 申请时间
 		if(info.getSubTime() != null)
 			info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
-		if(info.getAuditTime() != null)
-			info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
+		// 审核状态
 		if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
 			info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
 		if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
 			info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_HTML);
 		if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
 			info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_HTML);
+		// 审核时间
+		if(info.getAuditTime() != null)
+			info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
 		
 		return info;
 	}
@@ -145,16 +152,20 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 		List<JoinInformation> dataList = new ArrayList<JoinInformation>();
 		for(JoinInformation info : findAll())
 		{
+			// 申请时间
 			if(info.getSubTime() != null)
 				info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
-			if(info.getAuditTime() != null)
-				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
+			// 审核状态
 			if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
 				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_STR);
 			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
 				info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_STR);
 			if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
 				info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_STR);
+			// 审核时间
+			if(info.getAuditTime() != null)
+				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
+			
 			dataList.add(info);
 		}
 		map.put("加盟审核信息", dataList);
