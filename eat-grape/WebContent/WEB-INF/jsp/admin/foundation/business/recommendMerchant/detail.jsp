@@ -16,7 +16,7 @@
 		    <table width="100%" border="0">
 		      <tr>
 		        <td height="60" align="center">
-					<span class="STYLE1">[${recommendMerchant.shopName}] - 推荐商家详细信息</span>
+					<span class="STYLE1">[${recommendMerchant.shopName}] - 用户推荐详细信息</span>
 				</td>
 		      </tr>
 		      <tr>
