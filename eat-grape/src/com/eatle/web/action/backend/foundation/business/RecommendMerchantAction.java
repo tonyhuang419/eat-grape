@@ -83,6 +83,11 @@ public class RecommendMerchantAction extends BaseAction
 	public String showDetail()
 	{
 		recommendMerchant = recommendMerchantService.findById(recommendMerchant.getId());
+		if(recommendMerchant.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
+		{
+			recommendMerchant.setHandleStatus(Constants.Status.STATUS_VIEWED);
+			recommendMerchantService.update(recommendMerchant);
+		}
 		return "showDetail";
 	}
 

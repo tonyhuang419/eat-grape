@@ -2,6 +2,7 @@ package com.eatle.service.foundation.business.impl;
 
 import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.CustomerMapper;
+import com.eatle.persistent.mapper.MerchantMapper;
 import com.eatle.persistent.mapper.RecommendMerchantMapper;
 import com.eatle.persistent.pojo.foundation.business.RecommendMerchant;
 import com.eatle.persistent.pojo.foundation.business.RecommendMerchantCriteria.Criteria;
@@ -24,6 +25,9 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 {
 	@Resource
 	private RecommendMerchantMapper recommendMerchantMapper;
+	
+	@Resource
+	private MerchantMapper merchantMapper;
 	
 	@Resource
 	private CustomerMapper customerMapper;
@@ -91,8 +95,16 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 		for(RecommendMerchant rm : recommendMerchants)
 		{
 			// 推荐人
-			if(rm.getCustomerId() != null)
-				rm.setCustomerStr(customerMapper.selectByPrimaryKey(rm.getCustomerId()).getLoginEmail());
+			if(rm.getIdentifyType() == Constants.Identity.IDENTITY_MERCHANT)
+			{
+				rm.setIdentifyStr(merchantMapper.selectByPrimaryKey(rm.getIdentifyId()).getMerchantName());
+				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
+			}
+			else
+			{
+				rm.setIdentifyStr(customerMapper.selectByPrimaryKey(rm.getIdentifyId()).getLoginEmail());
+				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
+			}
 			// 推荐时间
 			if(rm.getSubTime() != null)
 				rm.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getSubTime()));
@@ -119,8 +131,16 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 		RecommendMerchant rm = recommendMerchantMapper.selectByPrimaryKey(id);
 
 		// 推荐人
-		if(rm.getCustomerId() != null)
-			rm.setCustomerStr(customerMapper.selectByPrimaryKey(rm.getCustomerId()).getLoginEmail());
+		if(rm.getIdentifyType() == Constants.Identity.IDENTITY_MERCHANT)
+		{
+			rm.setIdentifyStr(merchantMapper.selectByPrimaryKey(rm.getIdentifyId()).getMerchantName());
+			rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
+		}
+		else
+		{
+			rm.setIdentifyStr(customerMapper.selectByPrimaryKey(rm.getIdentifyId()).getLoginEmail());
+			rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
+		}
 		// 推荐时间
 		if(rm.getSubTime() != null)
 			rm.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getSubTime()));
@@ -160,8 +180,16 @@ public class RecommendMerchantServiceImpl implements IRecommendMerchantService
 		for(RecommendMerchant rm : findAll())
 		{
 			// 推荐人
-			if(rm.getCustomerId() != null)
-				rm.setCustomerStr(customerMapper.selectByPrimaryKey(rm.getCustomerId()).getLoginEmail());
+			if(rm.getIdentifyType() == Constants.Identity.IDENTITY_MERCHANT)
+			{
+				rm.setIdentifyStr(merchantMapper.selectByPrimaryKey(rm.getIdentifyId()).getMerchantName());
+				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
+			}
+			else
+			{
+				rm.setIdentifyStr(customerMapper.selectByPrimaryKey(rm.getIdentifyId()).getLoginEmail());
+				rm.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
+			}
 			// 推荐时间
 			if(rm.getSubTime() != null)
 				rm.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rm.getSubTime()));

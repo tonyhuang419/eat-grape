@@ -30,11 +30,13 @@
 			          </tr>
 			          <tr>
 			            <td width="20%" height="50" align="right">餐厅地址：</td>
-			            <td width="80%" height="50" colspan="3">${recommendMerchant.shopAddr}</td>
+			            <td width="30%" height="50">${recommendMerchant.shopAddr}</td>
+			            <td width="20%" height="50" align="right">推荐用户：</td>
+			            <td width="30%" height="50">${recommendMerchant.identifyStr}</td>
 		              </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">推荐顾客：</td>
-			            <td width="30%" height="50">${recommendMerchant.customerStr}</td>
+			            <td width="20%" height="50" align="right">身份类型：</td>
+			            <td width="30%" height="50">${recommendMerchant.identifyTypeStr}</td>
 			            <td width="20%" height="50" align="right">推荐时间：</td>
 			            <td width="30%" height="50">${recommendMerchant.subTimeStr}</td>
 			          </tr>

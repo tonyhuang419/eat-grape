@@ -83,6 +83,11 @@ public class JoinInformationAction extends BaseAction
 	public String showDetail()
 	{
 		joinInformation = joinInformationService.findById(joinInformation.getId());
+		if(joinInformation.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
+		{
+			joinInformation.setAuditStatus(Constants.Status.STATUS_VIEWED);
+			joinInformationService.update(joinInformation);
+		}
 		return "showDetail";
 	}
 
