@@ -218,7 +218,7 @@ public class DownloadAction extends BaseAction
 	 * @throws IllegalAccessException 
 	 * @throws IOException 
 	 * @throws IllegalArgumentException 
-	 * @Description: 顾客推荐商家信息导出Excel下载
+	 * @Description: 用户推荐商家信息导出Excel下载
 	 */
 	public InputStream getRecommendMerchantExcel() throws 
 		IllegalArgumentException, IOException, IllegalAccessException
@@ -226,15 +226,15 @@ public class DownloadAction extends BaseAction
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		List<String[]> headNames = new ArrayList<String[]>();
 		headNames.add(new String[] { "餐厅名称", "餐厅电话", "餐厅地址", 
-				"推荐人", "推荐时间", "处理状态", "处理时间", "处理备注" });
+				"推荐用户", "身份类型", "推荐时间", "处理状态", "处理时间", "处理备注" });
 		List<String[]> fieldNames = new ArrayList<String[]>();
-		fieldNames.add(new String[] { "shopName", "shopTel", "shopAddr", "customerStr", 
-				"subTimeStr", "handleStatusStr", "handleTimeStr", "handleRemark"}); 
+		fieldNames.add(new String[] { "shopName", "shopTel", "shopAddr", "identifyStr", 
+				"identifyTypeStr", "subTimeStr", "handleStatusStr", "handleTimeStr", "handleRemark"}); 
 
 		ExportSetInfo setInfo = new ExportSetInfo();
 		setInfo.setObjsMap(recommendMerchantService.getExportData());
 		setInfo.setFieldNames(fieldNames);
-		setInfo.setTitles(new String[] { "馋八戒顾客推荐商家信息" });
+		setInfo.setTitles(new String[] { "馋八戒用户推荐商家信息" });
 		setInfo.setHeadNames(headNames);
 		setInfo.setOut(baos);
 		
