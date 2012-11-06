@@ -42,14 +42,13 @@ public class SendRemarkServiceImpl implements ISendRemarkService
 		SendRemarkCriteria sendRemarkCriteria = new SendRemarkCriteria();
 		Criteria criteria = sendRemarkCriteria.createCriteria();
 		// 设置搜索条件参数
-		// if(queryMap != null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
+		if (queryMap != null)
+		{
+			if (queryMap.containsKey("word"))
+			{
+				criteria.andWordLike("%" + (String) queryMap.get("word") + "%");
+			}
+		}
 		// 设置分页参数
 		sendRemarkCriteria.setPageSize(pageSize);
 		sendRemarkCriteria.setStartIndex((currentPage - 1) * pageSize);

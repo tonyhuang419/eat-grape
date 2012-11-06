@@ -30,6 +30,11 @@ public class MenuFeatureAction extends BaseAction
 		return this.page;
 	}
 
+	public MenuFeature getMenuFeature()
+	{
+		return menuFeature;
+	}
+
 	public void setMenuFeature(MenuFeature menuFeature)
 	{
 		this.menuFeature = menuFeature;
@@ -110,5 +115,13 @@ public class MenuFeatureAction extends BaseAction
 			menuFeatureService.update(menuFeature);
 		}
 		super.writeMap(json);
+	}
+	
+	/**
+	 * @Description: 显示图标上传
+	 */
+	public String showIconUpload()
+	{
+		return "showIconUpload";
 	}
 }

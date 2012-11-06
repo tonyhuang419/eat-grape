@@ -42,14 +42,13 @@ public class ShopTypeServiceImpl implements IShopTypeService
 		ShopTypeCriteria shopTypeCriteria = new ShopTypeCriteria();
 		Criteria criteria = shopTypeCriteria.createCriteria();
 		// 设置搜索条件参数
-		// if(queryMap != null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
+		if (queryMap != null)
+		{
+			if (queryMap.containsKey("typeName"))
+			{
+				criteria.andTypeNameLike("%" + (String) queryMap.get("typeName") + "%");
+			}
+		}
 		// 设置分页参数
 		shopTypeCriteria.setPageSize(pageSize);
 		shopTypeCriteria.setStartIndex((currentPage - 1) * pageSize);
