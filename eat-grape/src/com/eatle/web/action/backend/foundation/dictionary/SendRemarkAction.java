@@ -35,6 +35,11 @@ public class SendRemarkAction extends BaseAction
 		this.sendRemark = sendRemark;
 	}
 
+	public SendRemark getSendRemark()
+	{
+		return sendRemark;
+	}
+
 	public String showIndex()
 	{
 		Map<String, Object> params = super.getRequestParameters(request);

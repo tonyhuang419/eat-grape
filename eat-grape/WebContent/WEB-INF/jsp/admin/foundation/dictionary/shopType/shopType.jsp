@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=city_community_area&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/foundation/dictionary/shopType/showIndex.htm?action=city_community_area&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -8,20 +8,16 @@
 	
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="name" value="${param.name}" />
-	<input type="hidden" name="pinyinName" value="${param.pinyinName}" />
+	<input type="hidden" name="typeName" value="${param.typeName}" />
 </form>
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=zxdyss&navTabId=${param.navTabId}" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/foundation/dictionary/shopType/showIndex.htm?action=zxdyss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					社区名称：<input type="text" name="name" />
-				</td>
-				<td>
-					名称拼音：<input type="text" name="pinyinName" />
+					类型名称：<input type="text" name="typeName" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -38,26 +34,26 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/foundation/place/community/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加社区</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/foundation/place/community/delete.htm?community.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/foundation/place/community/showUpdate.htm?community.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>社区修改</span></a></li>
+			<li><a class="add" href="${ctx}/admin/foundation/dictionary/shopType/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加类型</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/foundation/dictionary/shopType/delete.htm?shopType.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/foundation/dictionary/shopType/showUpdate.htm?shopType.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>类型修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="180">社区名称</th>
-				<th width="300">英文名称</th>
-				<th width="250">所属区域</th>
+				<th width="180">类型名称</th>
+				<th width="120">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="<s:property value="#item.id" />"  align="center">
-					<td><s:property value="#item.name" /></td>
-					<td><s:property value="#item.pinyinName" /></td>
+					<td>${item.typeName}</td>
 					<td>
-						<s:property value="#item.districtName" />
+						<a class="delete" href="${ctx}/admin/foundation/dictionary/shopType/delete.htm?shopType.id=${item.id}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？">
+							<span>删  除</span>
+						</a>
 					</td>
 				</tr>
 			</s:iterator>

@@ -92,7 +92,14 @@
       <result name="showIndex">/WEB-INF/jsp/admin/foundation/dictionary/menuFeature/menuFeature.jsp</result>
       <result name="showAdd">/WEB-INF/jsp/admin/foundation/dictionary/menuFeature/add.jsp</result>
       <result name="showUpdate">/WEB-INF/jsp/admin/foundation/dictionary/menuFeature/update.jsp</result>
+      <result name="showIconUpload">/WEB-INF/jsp/admin/foundation/dictionary/menuFeature/iconupload.jsp</result>
     </action>
+	<!-- 特性图标上传 -->
+	<action class="com.eatle.web.action.backend.UploadAction" method="menuFeatureIconUpload" name="menuFeatureIconUpload">
+		<param name="savePath">/menu_feature_icon</param>
+		<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
+		<param name="maxSize">1048576</param>
+	</action>
   </package>
   
   <!-- 积分商城管理 -->

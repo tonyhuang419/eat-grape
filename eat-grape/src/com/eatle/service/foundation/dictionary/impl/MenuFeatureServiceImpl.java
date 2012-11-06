@@ -42,14 +42,13 @@ public class MenuFeatureServiceImpl implements IMenuFeatureService
 		MenuFeatureCriteria menuFeatureCriteria = new MenuFeatureCriteria();
 		Criteria criteria = menuFeatureCriteria.createCriteria();
 		// 设置搜索条件参数
-		// if(queryMap != null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
+		if (queryMap != null)
+		{
+			if (queryMap.containsKey("feature"))
+			{
+				criteria.andFeatureLike("%" + (String) queryMap.get("feature") + "%");
+			}
+		}
 		// 设置分页参数
 		menuFeatureCriteria.setPageSize(pageSize);
 		menuFeatureCriteria.setStartIndex((currentPage - 1) * pageSize);

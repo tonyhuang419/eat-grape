@@ -35,6 +35,11 @@ public class ShopTypeAction extends BaseAction
 		this.shopType = shopType;
 	}
 
+	public ShopType getShopType()
+	{
+		return shopType;
+	}
+
 	public String showIndex()
 	{
 		Map<String, Object> params = super.getRequestParameters(request);
