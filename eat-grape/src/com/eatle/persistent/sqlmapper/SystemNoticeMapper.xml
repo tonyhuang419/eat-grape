@@ -4,12 +4,10 @@
   <resultMap id="BaseResultMap" type="SystemNotice" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
     <result column="target" property="target" jdbcType="SMALLINT" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="SystemNotice" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -41,31 +39,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, user_id, send_time, target
+    id, title, content, user_id, send_time, target
   </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="SystemNoticeCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    'false' as QUERYID,
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from t_system_notice
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-    <if test="pageSize > 0" >
-      limit ${startIndex},${pageSize}
-    </if>
-  </select>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="SystemNoticeCriteria" >
     select
     <if test="distinct" >
@@ -84,11 +59,9 @@
       limit ${startIndex},${pageSize}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from t_system_notice
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -97,11 +70,11 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="SystemNotice" >
-    insert into t_system_notice (id, title, user_id, 
-      send_time, target, content
+    insert into t_system_notice (id, title, content, 
+      user_id, send_time, target
       )
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
-      #{sendTime,jdbcType=TIMESTAMP}, #{target,jdbcType=SMALLINT}, #{content,jdbcType=LONGVARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=BIGINT}, #{sendTime,jdbcType=TIMESTAMP}, #{target,jdbcType=SMALLINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="SystemNotice" >
@@ -113,6 +86,9 @@
       <if test="title != null" >
         title,
       </if>
+      <if test="content != null" >
+        content,
+      </if>
       <if test="userId != null" >
         user_id,
       </if>
@@ -122,9 +98,6 @@
       <if test="target != null" >
         target,
       </if>
-      <if test="content != null" >
-        content,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -132,6 +105,9 @@
       </if>
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
@@ -142,9 +118,6 @@
       <if test="target != null" >
         #{target,jdbcType=SMALLINT},
       </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="SystemNotice" >
@@ -152,6 +125,9 @@
     <set >
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=BIGINT},
@@ -162,24 +138,13 @@
       <if test="target != null" >
         target = #{target,jdbcType=SMALLINT},
       </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="SystemNotice" >
-    update t_system_notice
-    set title = #{title,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT},
-      send_time = #{sendTime,jdbcType=TIMESTAMP},
-      target = #{target,jdbcType=SMALLINT},
-      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="SystemNotice" >
     update t_system_notice
     set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=BIGINT},
       send_time = #{sendTime,jdbcType=TIMESTAMP},
       target = #{target,jdbcType=SMALLINT}
@@ -201,6 +166,9 @@
       <if test="title != null" >
         and title = #{title,jdbcType=VARCHAR}
       </if>
+      <if test="content != null" >
+        and content = #{content,jdbcType=VARCHAR}
+      </if>
       <if test="userId != null" >
         and user_id = #{userId,jdbcType=BIGINT}
       </if>
@@ -209,9 +177,6 @@
       </if>
       <if test="target != null" >
         and target = #{target,jdbcType=SMALLINT}
-      </if>
-      <if test="content != null" >
-        and content = #{content,jdbcType=LONGVARCHAR}
       </if>
     </where>
   </select>

@@ -81,6 +81,28 @@ public class Constants
 	}
 	
 	/**
+	 * @Description: 前/后台用户标识
+	 * @Author: 谭又中
+	 * @Since: 2012-11-13
+	 */
+	public static class UserIdentity
+	{
+		/**
+		 * @Description: 后台商家标识
+		 */
+		public static final short USERIDENTITY_MERCHANT = 0;
+		public static final String USERIDENTITY_MERCHANT_STR = "后台商家";
+		public static final String USERIDENTITY_MERCHANT_HTML = "<font color='#1979E0'>后台商家</font>";
+		
+		/**
+		 * @Description: 前台顾客标识
+		 */
+		public static final short USERIDENTITY_CUSTOMER = 1;
+		public static final String USERIDENTITY_CUSTOMER_STR = "前台顾客";
+		public static final String USERIDENTITY_CUSTOMER_HTML = "<font color='#48A8E2'>前台顾客</font>";
+	}
+	
+	/**
 	 * @Description: 业务操作状态
 	 * @Author: 谭又中
 	 * @Since: 2012-10-30

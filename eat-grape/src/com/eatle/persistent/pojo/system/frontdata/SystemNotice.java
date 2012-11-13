@@ -8,13 +8,22 @@ public class SystemNotice
 
 	private String title;
 
+	private String content;
+
 	private Long userId;
 
 	private Date sendTime;
 
 	private Short target;
 
-	private String content;
+	// 临时属性（公告人字符串）
+	private String userStr;
+
+	// 临时属性（处理时间字符串）
+	private String sendTimeStr;
+
+	// 临时属性（公告对象字符串）
+	private String targetStr;
 
 	public Long getId()
 	{
@@ -34,6 +43,16 @@ public class SystemNotice
 	public void setTitle(String title)
 	{
 		this.title = title;
+	}
+
+	public String getContent()
+	{
+		return content;
+	}
+
+	public void setContent(String content)
+	{
+		this.content = content;
 	}
 
 	public Long getUserId()
@@ -66,13 +85,33 @@ public class SystemNotice
 		this.target = target;
 	}
 
-	public String getContent()
+	public String getSendTimeStr()
 	{
-		return content;
+		return sendTimeStr;
 	}
 
-	public void setContent(String content)
+	public void setSendTimeStr(String sendTimeStr)
 	{
-		this.content = content;
+		this.sendTimeStr = sendTimeStr;
+	}
+
+	public String getTargetStr()
+	{
+		return targetStr;
+	}
+
+	public void setTargetStr(String targetStr)
+	{
+		this.targetStr = targetStr;
+	}
+
+	public String getUserStr()
+	{
+		return userStr;
+	}
+
+	public void setUserStr(String userStr)
+	{
+		this.userStr = userStr;
 	}
 }

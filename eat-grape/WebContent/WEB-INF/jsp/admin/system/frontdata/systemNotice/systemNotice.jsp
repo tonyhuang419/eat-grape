@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/system/useradmin/account/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/system/frontdata/systemNotice/showIndex.htm?action=city_community_area&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -8,35 +8,35 @@
 	
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="userName" value="${param.userName}" />
-	<input type="hidden" name="email" value="${param.email}" />
+	<input type="hidden" name="title" value="${param.title}" />
+	<input type="hidden" name="content" value="${param.content}" />
+	<input type="hidden" name="startTime" value="${param.startTime}" />
+	<input type="hidden" name="endTime" value="${param.endTime}" />
+	<input type="hidden" name="target" value="${param.target}" />
 </form>
 
-
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/useradmin/account/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/frontdata/systemNotice/showIndex.htm?action=zxdyss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					用户名：<input type="text" name="userName" />
+					标题：<input type="text" name="title" />
 				</td>
 				<td>
-					邮箱：<input type="text" name="email" />
+					内容：<input type="text" name="content" />
 				</td>
 				<td>
-					<select class="combox" name="type">
-						<option value="">用户类型</option>
-						<option value="1">个人</option>
-						<option value="2">公司</option>
-					</select>
+					起始时间：<input type="text" name="startTime" class="date" format="yyyy-MM-dd HH:mm:ss" readonly="readonly" />
 				</td>
 				<td>
-					<select class="combox" name="roleId">
-						<option value="">角色类型</option>
-						<s:iterator value="#request.allRole" var="r">
-							<option value="${r.id}">${r.roleName}</option>
-						</s:iterator>
+					结束时间：<input type="text" name="endTime" class="date" format="yyyy-MM-dd HH:mm:ss" readonly="readonly" />
+				</td>
+				<td>
+					<select class="combox" name="target">
+						<option value="">公告对象</option>
+						<option value="0">后台商家</option>
+						<option value="1">前台顾客</option>
 					</select>
 				</td>
 				<td>
@@ -54,41 +54,32 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/system/useradmin/account/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加账号</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/system/useradmin/account/delete.htm?user.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/useradmin/account/showUpdate.htm?user.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/system/useradmin/account/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
+			<li><a class="add" href="${ctx}/admin/system/frontdata/systemNotice/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>发布公告</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/system/frontdata/systemNotice/delete.htm?systemNotice.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除信息</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/frontdata/systemNotice/showUpdate.htm?systemNotice.id={sid}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>公告更新</span></a></li>
+			<li><a class="icon" href="${ctx}/admin/system/frontdata/systemNotice/downXls.htm?fileName=SystemNotice.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些公告吗?"><span>导出公告</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="180">用户名</th>
-				<th width="180">密码</th>
-				<th width="200">邮箱</th>
-				<th width="120">用户类型</th>
-				<th width="120">角色类型</th>
+				<th width="200">公告标题</th>
+				<th width="350">公告内容</th>
+				<th width="100">公告人</th>
+				<th width="150">公告时间</th>
+				<th width="100">公告对象</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
-				<tr target="sid_user" rel="${item.id}" align="center">
-					<td>${item.userName}</td>
-					<td>${item.pwd}</td>
-					<td>${item.email}</td>
-					<td>
-						<s:if test="#item.type == 1">个人</s:if>
-						<s:elseif test="#item.type == 2">公司</s:elseif>
-					</td>
-					<td>
-						<s:iterator value="#request.allRole" var="r">
-							<s:if test="#item.roleId == #r.id">${r.roleName}</s:if>
-						</s:iterator>
-					</td>
+				<tr target="sid" rel="<s:property value="#item.id" />" align="center">
+					<td>${item.title}</td>
+					<td>${item.content}</td>
+					<td>${item.userStr}</td>
+					<td>${item.sendTimeStr}</td>
+					<td>${item.targetStr}</td>
 				</tr>
 			</s:iterator>
-			
 		</tbody>
 	</table>
 	<div class="panelBar" layoutH="0">
