@@ -94,12 +94,21 @@
 		</action>
 	</package>
 	
-	<!-- 系统通知 -->
+	<!-- 系统公告 -->
 	<package extends="default" name="systemNotice" namespace="/admin/system/frontdata/systemNotice">
 		<action class="com.eatle.web.action.backend.system.frontdata.SystemNoticeAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/systemNotice/systemNotice.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/systemNotice/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/systemNotice/update.jsp</result>
+		</action>
+		<!-- 导出公告数据到Excel -->
+		<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">systemNoticeExcel</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
 		</action>
 	</package>
 	

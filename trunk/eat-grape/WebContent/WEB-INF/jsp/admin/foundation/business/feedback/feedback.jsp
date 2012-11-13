@@ -56,7 +56,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="delete" href="${ctx}/admin/foundation/business/feedback/delete.htm?feedback.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除信息</span></a></li>
-			<li><a class="icon" href="${ctx}/admin/foundation/business/feedback/downXls.htm?fileName=feedback.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出信息</span></a></li>
+			<li><a class="icon" href="${ctx}/admin/foundation/business/feedback/downXls.htm?fileName=Feedback.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出信息</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">

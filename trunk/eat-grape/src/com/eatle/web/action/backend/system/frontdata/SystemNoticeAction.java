@@ -1,11 +1,14 @@
 package com.eatle.web.action.backend.system.frontdata;
 
 import com.eatle.persistent.pojo.system.frontdata.SystemNotice;
+import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.system.frontdata.ISystemNoticeService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -30,12 +33,17 @@ public class SystemNoticeAction extends BaseAction
 		return this.page;
 	}
 
+	public SystemNotice getSystemNotice()
+	{
+		return systemNotice;
+	}
+
 	public void setSystemNotice(SystemNotice systemNotice)
 	{
 		this.systemNotice = systemNotice;
 	}
 
-	public String showIndex()
+	public String showIndex() throws ParseException
 	{
 		Map<String, Object> params = super.getRequestParameters(request);
 		int pageNum = Pagination.CURRENTPAGE;
@@ -68,6 +76,8 @@ public class SystemNoticeAction extends BaseAction
 		}
 		else
 		{
+			systemNotice.setUserId(((User) session.get("user")).getId());
+			systemNotice.setSendTime(new Date());
 			systemNoticeService.add(systemNotice);
 		}
 		super.writeMap(json);
