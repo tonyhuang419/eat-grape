@@ -35,6 +35,9 @@
     	<!-- 前台广告 -->
     	<typeAlias alias="Advert" type="com.eatle.persistent.pojo.system.frontdata.Advert"/>
     	<typeAlias alias="AdvertCriteria" type="com.eatle.persistent.pojo.system.frontdata.AdvertCriteria"/>
+    	<!-- 前台广告 位-->
+    	<typeAlias alias="AdvertPosition" type="com.eatle.persistent.pojo.system.frontdata.AdvertPosition"/>
+    	<typeAlias alias="AdvertPositionCriteria" type="com.eatle.persistent.pojo.system.frontdata.AdvertPositionCriteria"/>
     	<!-- 前台友情链接 -->
     	<typeAlias alias="FriendshipLink" type="com.eatle.persistent.pojo.system.frontdata.FriendshipLink"/>
     	<typeAlias alias="FriendshipLinkCriteria" type="com.eatle.persistent.pojo.system.frontdata.FriendshipLinkCriteria"/>

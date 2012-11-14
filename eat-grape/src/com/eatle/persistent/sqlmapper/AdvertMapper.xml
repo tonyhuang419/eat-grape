@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.eatle.persistent.mapper.AdvertMapper" >
-  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.system.frontdata.Advert" >
+  <resultMap id="BaseResultMap" type="Advert" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
-    <result column="pic_width" property="picWidth" jdbcType="SMALLINT" />
-    <result column="pic_height" property="picHeight" jdbcType="SMALLINT" />
-    <result column="show_text" property="showText" jdbcType="VARCHAR" />
-    <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
+    <result column="advert_type" property="advertType" jdbcType="SMALLINT" />
+    <result column="advert_name" property="advertName" jdbcType="VARCHAR" />
+    <result column="advert_link" property="advertLink" jdbcType="VARCHAR" />
+    <result column="advert_enabled" property="advertEnabled" jdbcType="SMALLINT" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="click_count" property="clickCount" jdbcType="INTEGER" />
+    <result column="link_man" property="linkMan" jdbcType="VARCHAR" />
+    <result column="link_email" property="linkEmail" jdbcType="VARCHAR" />
+    <result column="link_phone" property="linkPhone" jdbcType="VARCHAR" />
     <result column="issue_time" property="issueTime" jdbcType="TIMESTAMP" />
-    <result column="alt_text" property="altText" jdbcType="VARCHAR" />
+    <result column="advert_position_id" property="advertPositionId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="Advert" extends="BaseResultMap" >
+    <result column="advert_code" property="advertCode" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -41,9 +49,33 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, pic_url, pic_width, pic_height, show_text, link_url, issue_time, alt_text
+    id, advert_type, advert_name, advert_link, advert_enabled, start_time, end_time, 
+    click_count, link_man, link_email, link_phone, issue_time, advert_position_id
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.system.frontdata.AdvertCriteria" >
+  <sql id="Blob_Column_List" >
+    advert_code
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="AdvertCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_advert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="AdvertCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -61,9 +93,11 @@
       limit ${startIndex},${pageSize}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from t_advert
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -71,108 +105,188 @@
     delete from t_advert
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
-    insert into t_advert (id, pic_url, pic_width, 
-      pic_height, show_text, link_url, 
-      issue_time, alt_text)
-    values (#{id,jdbcType=BIGINT}, #{picUrl,jdbcType=VARCHAR}, #{picWidth,jdbcType=SMALLINT}, 
-      #{picHeight,jdbcType=SMALLINT}, #{showText,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, 
-      #{issueTime,jdbcType=TIMESTAMP}, #{altText,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="Advert" >
+    insert into t_advert (id, advert_type, advert_name, 
+      advert_link, advert_enabled, start_time, 
+      end_time, click_count, link_man, 
+      link_email, link_phone, issue_time, 
+      advert_position_id, advert_code)
+    values (#{id,jdbcType=BIGINT}, #{advertType,jdbcType=SMALLINT}, #{advertName,jdbcType=VARCHAR}, 
+      #{advertLink,jdbcType=VARCHAR}, #{advertEnabled,jdbcType=SMALLINT}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{clickCount,jdbcType=INTEGER}, #{linkMan,jdbcType=VARCHAR}, 
+      #{linkEmail,jdbcType=VARCHAR}, #{linkPhone,jdbcType=VARCHAR}, #{issueTime,jdbcType=TIMESTAMP}, 
+      #{advertPositionId,jdbcType=BIGINT}, #{advertCode,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
+  <insert id="insertSelective" parameterType="Advert" >
     insert into t_advert
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="picUrl != null" >
-        pic_url,
+      <if test="advertType != null" >
+        advert_type,
       </if>
-      <if test="picWidth != null" >
-        pic_width,
+      <if test="advertName != null" >
+        advert_name,
       </if>
-      <if test="picHeight != null" >
-        pic_height,
+      <if test="advertLink != null" >
+        advert_link,
       </if>
-      <if test="showText != null" >
-        show_text,
+      <if test="advertEnabled != null" >
+        advert_enabled,
       </if>
-      <if test="linkUrl != null" >
-        link_url,
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="clickCount != null" >
+        click_count,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="linkEmail != null" >
+        link_email,
+      </if>
+      <if test="linkPhone != null" >
+        link_phone,
       </if>
       <if test="issueTime != null" >
         issue_time,
       </if>
-      <if test="altText != null" >
-        alt_text,
+      <if test="advertPositionId != null" >
+        advert_position_id,
+      </if>
+      <if test="advertCode != null" >
+        advert_code,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="picUrl != null" >
-        #{picUrl,jdbcType=VARCHAR},
+      <if test="advertType != null" >
+        #{advertType,jdbcType=SMALLINT},
       </if>
-      <if test="picWidth != null" >
-        #{picWidth,jdbcType=SMALLINT},
+      <if test="advertName != null" >
+        #{advertName,jdbcType=VARCHAR},
       </if>
-      <if test="picHeight != null" >
-        #{picHeight,jdbcType=SMALLINT},
+      <if test="advertLink != null" >
+        #{advertLink,jdbcType=VARCHAR},
       </if>
-      <if test="showText != null" >
-        #{showText,jdbcType=VARCHAR},
+      <if test="advertEnabled != null" >
+        #{advertEnabled,jdbcType=SMALLINT},
       </if>
-      <if test="linkUrl != null" >
-        #{linkUrl,jdbcType=VARCHAR},
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null" >
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        #{linkPhone,jdbcType=VARCHAR},
       </if>
       <if test="issueTime != null" >
         #{issueTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="altText != null" >
-        #{altText,jdbcType=VARCHAR},
+      <if test="advertPositionId != null" >
+        #{advertPositionId,jdbcType=BIGINT},
+      </if>
+      <if test="advertCode != null" >
+        #{advertCode,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
+  <update id="updateByPrimaryKeySelective" parameterType="Advert" >
     update t_advert
     <set >
-      <if test="picUrl != null" >
-        pic_url = #{picUrl,jdbcType=VARCHAR},
+      <if test="advertType != null" >
+        advert_type = #{advertType,jdbcType=SMALLINT},
       </if>
-      <if test="picWidth != null" >
-        pic_width = #{picWidth,jdbcType=SMALLINT},
+      <if test="advertName != null" >
+        advert_name = #{advertName,jdbcType=VARCHAR},
       </if>
-      <if test="picHeight != null" >
-        pic_height = #{picHeight,jdbcType=SMALLINT},
+      <if test="advertLink != null" >
+        advert_link = #{advertLink,jdbcType=VARCHAR},
       </if>
-      <if test="showText != null" >
-        show_text = #{showText,jdbcType=VARCHAR},
+      <if test="advertEnabled != null" >
+        advert_enabled = #{advertEnabled,jdbcType=SMALLINT},
       </if>
-      <if test="linkUrl != null" >
-        link_url = #{linkUrl,jdbcType=VARCHAR},
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickCount != null" >
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="linkMan != null" >
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        link_email = #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
       </if>
       <if test="issueTime != null" >
         issue_time = #{issueTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="altText != null" >
-        alt_text = #{altText,jdbcType=VARCHAR},
+      <if test="advertPositionId != null" >
+        advert_position_id = #{advertPositionId,jdbcType=BIGINT},
+      </if>
+      <if test="advertCode != null" >
+        advert_code = #{advertCode,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.system.frontdata.Advert" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="Advert" >
     update t_advert
-    set pic_url = #{picUrl,jdbcType=VARCHAR},
-      pic_width = #{picWidth,jdbcType=SMALLINT},
-      pic_height = #{picHeight,jdbcType=SMALLINT},
-      show_text = #{showText,jdbcType=VARCHAR},
-      link_url = #{linkUrl,jdbcType=VARCHAR},
+    set advert_type = #{advertType,jdbcType=SMALLINT},
+      advert_name = #{advertName,jdbcType=VARCHAR},
+      advert_link = #{advertLink,jdbcType=VARCHAR},
+      advert_enabled = #{advertEnabled,jdbcType=SMALLINT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
       issue_time = #{issueTime,jdbcType=TIMESTAMP},
-      alt_text = #{altText,jdbcType=VARCHAR}
+      advert_position_id = #{advertPositionId,jdbcType=BIGINT},
+      advert_code = #{advertCode,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.system.frontdata.AdvertCriteria" >
+  <update id="updateByPrimaryKey" parameterType="Advert" >
+    update t_advert
+    set advert_type = #{advertType,jdbcType=SMALLINT},
+      advert_name = #{advertName,jdbcType=VARCHAR},
+      advert_link = #{advertLink,jdbcType=VARCHAR},
+      advert_enabled = #{advertEnabled,jdbcType=SMALLINT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      advert_position_id = #{advertPositionId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="AdvertCriteria" >
     select count(1) 
     from t_advert
     <if test="_parameter != null" >
@@ -185,26 +299,44 @@
       <if test="id != null" >
         and id = #{id,jdbcType=BIGINT}
       </if>
-      <if test="picUrl != null" >
-        and pic_url = #{picUrl,jdbcType=VARCHAR}
+      <if test="advertType != null" >
+        and advert_type = #{advertType,jdbcType=SMALLINT}
       </if>
-      <if test="picWidth != null" >
-        and pic_width = #{picWidth,jdbcType=SMALLINT}
+      <if test="advertName != null" >
+        and advert_name = #{advertName,jdbcType=VARCHAR}
       </if>
-      <if test="picHeight != null" >
-        and pic_height = #{picHeight,jdbcType=SMALLINT}
+      <if test="advertLink != null" >
+        and advert_link = #{advertLink,jdbcType=VARCHAR}
       </if>
-      <if test="showText != null" >
-        and show_text = #{showText,jdbcType=VARCHAR}
+      <if test="advertEnabled != null" >
+        and advert_enabled = #{advertEnabled,jdbcType=SMALLINT}
       </if>
-      <if test="linkUrl != null" >
-        and link_url = #{linkUrl,jdbcType=VARCHAR}
+      <if test="startTime != null" >
+        and start_time = #{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null" >
+        and end_time = #{endTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="clickCount != null" >
+        and click_count = #{clickCount,jdbcType=INTEGER}
+      </if>
+      <if test="linkMan != null" >
+        and link_man = #{linkMan,jdbcType=VARCHAR}
+      </if>
+      <if test="linkEmail != null" >
+        and link_email = #{linkEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="linkPhone != null" >
+        and link_phone = #{linkPhone,jdbcType=VARCHAR}
       </if>
       <if test="issueTime != null" >
         and issue_time = #{issueTime,jdbcType=TIMESTAMP}
       </if>
-      <if test="altText != null" >
-        and alt_text = #{altText,jdbcType=VARCHAR}
+      <if test="advertPositionId != null" >
+        and advert_position_id = #{advertPositionId,jdbcType=BIGINT}
+      </if>
+      <if test="advertCode != null" >
+        and advert_code = #{advertCode,jdbcType=LONGVARCHAR}
       </if>
     </where>
   </select>

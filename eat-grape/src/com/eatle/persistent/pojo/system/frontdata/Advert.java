@@ -6,19 +6,31 @@ public class Advert
 {
 	private Long id;
 
-	private String picUrl;
+	private Short advertType;
 
-	private Short picWidth;
+	private String advertName;
 
-	private Short picHeight;
+	private String advertLink;
 
-	private String showText;
+	private Short advertEnabled;
 
-	private String linkUrl;
+	private Date startTime;
+
+	private Date endTime;
+
+	private Integer clickCount;
+
+	private String linkMan;
+
+	private String linkEmail;
+
+	private String linkPhone;
 
 	private Date issueTime;
 
-	private String altText;
+	private Long advertPositionId;
+
+	private String advertCode;
 
 	public Long getId()
 	{
@@ -30,54 +42,104 @@ public class Advert
 		this.id = id;
 	}
 
-	public String getPicUrl()
+	public Short getAdvertType()
 	{
-		return picUrl;
+		return advertType;
 	}
 
-	public void setPicUrl(String picUrl)
+	public void setAdvertType(Short advertType)
 	{
-		this.picUrl = picUrl;
+		this.advertType = advertType;
 	}
 
-	public Short getPicWidth()
+	public String getAdvertName()
 	{
-		return picWidth;
+		return advertName;
 	}
 
-	public void setPicWidth(Short picWidth)
+	public void setAdvertName(String advertName)
 	{
-		this.picWidth = picWidth;
+		this.advertName = advertName;
 	}
 
-	public Short getPicHeight()
+	public String getAdvertLink()
 	{
-		return picHeight;
+		return advertLink;
 	}
 
-	public void setPicHeight(Short picHeight)
+	public void setAdvertLink(String advertLink)
 	{
-		this.picHeight = picHeight;
+		this.advertLink = advertLink;
 	}
 
-	public String getShowText()
+	public Short getAdvertEnabled()
 	{
-		return showText;
+		return advertEnabled;
 	}
 
-	public void setShowText(String showText)
+	public void setAdvertEnabled(Short advertEnabled)
 	{
-		this.showText = showText;
+		this.advertEnabled = advertEnabled;
 	}
 
-	public String getLinkUrl()
+	public Date getStartTime()
 	{
-		return linkUrl;
+		return startTime;
 	}
 
-	public void setLinkUrl(String linkUrl)
+	public void setStartTime(Date startTime)
 	{
-		this.linkUrl = linkUrl;
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime()
+	{
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime)
+	{
+		this.endTime = endTime;
+	}
+
+	public Integer getClickCount()
+	{
+		return clickCount;
+	}
+
+	public void setClickCount(Integer clickCount)
+	{
+		this.clickCount = clickCount;
+	}
+
+	public String getLinkMan()
+	{
+		return linkMan;
+	}
+
+	public void setLinkMan(String linkMan)
+	{
+		this.linkMan = linkMan;
+	}
+
+	public String getLinkEmail()
+	{
+		return linkEmail;
+	}
+
+	public void setLinkEmail(String linkEmail)
+	{
+		this.linkEmail = linkEmail;
+	}
+
+	public String getLinkPhone()
+	{
+		return linkPhone;
+	}
+
+	public void setLinkPhone(String linkPhone)
+	{
+		this.linkPhone = linkPhone;
 	}
 
 	public Date getIssueTime()
@@ -90,13 +152,23 @@ public class Advert
 		this.issueTime = issueTime;
 	}
 
-	public String getAltText()
+	public Long getAdvertPositionId()
 	{
-		return altText;
+		return advertPositionId;
 	}
 
-	public void setAltText(String altText)
+	public void setAdvertPositionId(Long advertPositionId)
 	{
-		this.altText = altText;
+		this.advertPositionId = advertPositionId;
+	}
+
+	public String getAdvertCode()
+	{
+		return advertCode;
+	}
+
+	public void setAdvertCode(String advertCode)
+	{
+		this.advertCode = advertCode;
 	}
 }

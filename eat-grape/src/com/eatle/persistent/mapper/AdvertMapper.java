@@ -13,18 +13,22 @@ public interface AdvertMapper
 
 	int insertSelective(Advert record);
 
+	List<Advert> selectByExampleWithBLOBs(AdvertCriteria example);
+
 	List<Advert> selectByCriteria(AdvertCriteria example);
 
 	Advert selectByPrimaryKey(Long id);
 
 	int updateByPrimaryKeySelective(Advert record);
 
+	int updateByPrimaryKeyWithBLOBs(Advert record);
+
 	int updateByPrimaryKey(Advert record);
 
 	// 统计总的记录数
 	long selectCountByCriteria(AdvertCriteria example);
 
-	@SuppressWarnings("unchecked")
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<Advert> selectByMap(Map paramMap);
 }
