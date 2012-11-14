@@ -24,7 +24,7 @@ public interface FriendshipLinkMapper
 	// 统计总的记录数
 	long selectCountByCriteria(FriendshipLinkCriteria example);
 
-	@SuppressWarnings("unchecked")
 	// 通过map参数进行查询
+	@SuppressWarnings("unchecked")
 	List<FriendshipLink> selectByMap(Map paramMap);
 }

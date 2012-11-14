@@ -18,6 +18,7 @@ import com.eatle.service.foundation.business.IJoinInformationService;
 import com.eatle.service.foundation.business.IRecommendMerchantService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
+import com.eatle.service.system.frontdata.IFriendshipLinkService;
 import com.eatle.service.system.frontdata.ISystemNoticeService;
 import com.eatle.service.system.systemdata.ILoginLogService;
 import com.eatle.service.system.useradmin.IUserService;
@@ -57,6 +58,9 @@ public class DownloadAction extends BaseAction
 
 	@Resource
 	private ISystemNoticeService systemNoticeService;
+
+	@Resource
+	private IFriendshipLinkService friendshipLinkService;
 
 	// 下载文件名
 	private String fileName;
@@ -297,6 +301,34 @@ public class DownloadAction extends BaseAction
 		setInfo.setObjsMap(systemNoticeService.getExportData());
 		setInfo.setFieldNames(fieldNames);
 		setInfo.setTitles(new String[] { "馋八戒系统公告信息" });
+		setInfo.setHeadNames(headNames);
+		setInfo.setOut(baos);
+		
+		// 将需要导出的数据输出到baos
+		ExcelUtil.export2Excel(setInfo);
+		
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	/**
+	 * @throws IllegalAccessException 
+	 * @throws IOException 
+	 * @throws IllegalArgumentException 
+	 * @Description: 友情链接信息导出Excel下载
+	 */
+	public InputStream getFriendshipLinkExcel() throws 
+		IllegalArgumentException, IOException, IllegalAccessException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		List<String[]> headNames = new ArrayList<String[]>();
+		headNames.add(new String[] { "连接名称", "链接地址", "链接Logo", "排序编号", "展示首页" });
+		List<String[]> fieldNames = new ArrayList<String[]>();
+		fieldNames.add(new String[] { "linkName", "linkUrl", "logoUrl", "sortOrder", "isDisplayStr" }); 
+
+		ExportSetInfo setInfo = new ExportSetInfo();
+		setInfo.setObjsMap(friendshipLinkService.getExportData());
+		setInfo.setFieldNames(fieldNames);
+		setInfo.setTitles(new String[] { "馋八戒友情链接信息" });
 		setInfo.setHeadNames(headNames);
 		setInfo.setOut(baos);
 		

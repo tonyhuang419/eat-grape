@@ -404,6 +404,234 @@ public class FriendshipLinkCriteria
 			addCriterion("link_url not between", value1, value2, "linkUrl");
 			return (Criteria) this;
 		}
+
+		public Criteria andLogoUrlIsNull()
+		{
+			addCriterion("logo_url is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlIsNotNull()
+		{
+			addCriterion("logo_url is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlEqualTo(String value)
+		{
+			addCriterion("logo_url =", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlNotEqualTo(String value)
+		{
+			addCriterion("logo_url <>", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlGreaterThan(String value)
+		{
+			addCriterion("logo_url >", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlGreaterThanOrEqualTo(String value)
+		{
+			addCriterion("logo_url >=", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlLessThan(String value)
+		{
+			addCriterion("logo_url <", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlLessThanOrEqualTo(String value)
+		{
+			addCriterion("logo_url <=", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlLike(String value)
+		{
+			addCriterion("logo_url like", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlNotLike(String value)
+		{
+			addCriterion("logo_url not like", value, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlIn(List<String> values)
+		{
+			addCriterion("logo_url in", values, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlNotIn(List<String> values)
+		{
+			addCriterion("logo_url not in", values, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlBetween(String value1, String value2)
+		{
+			addCriterion("logo_url between", value1, value2, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andLogoUrlNotBetween(String value1, String value2)
+		{
+			addCriterion("logo_url not between", value1, value2, "logoUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderIsNull()
+		{
+			addCriterion("sort_order is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderIsNotNull()
+		{
+			addCriterion("sort_order is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderEqualTo(Short value)
+		{
+			addCriterion("sort_order =", value, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderNotEqualTo(Short value)
+		{
+			addCriterion("sort_order <>", value, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderGreaterThan(Short value)
+		{
+			addCriterion("sort_order >", value, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderGreaterThanOrEqualTo(Short value)
+		{
+			addCriterion("sort_order >=", value, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderLessThan(Short value)
+		{
+			addCriterion("sort_order <", value, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderLessThanOrEqualTo(Short value)
+		{
+			addCriterion("sort_order <=", value, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderIn(List<Short> values)
+		{
+			addCriterion("sort_order in", values, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderNotIn(List<Short> values)
+		{
+			addCriterion("sort_order not in", values, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderBetween(Short value1, Short value2)
+		{
+			addCriterion("sort_order between", value1, value2, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andSortOrderNotBetween(Short value1, Short value2)
+		{
+			addCriterion("sort_order not between", value1, value2, "sortOrder");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayIsNull()
+		{
+			addCriterion("is_display is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayIsNotNull()
+		{
+			addCriterion("is_display is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayEqualTo(Short value)
+		{
+			addCriterion("is_display =", value, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayNotEqualTo(Short value)
+		{
+			addCriterion("is_display <>", value, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayGreaterThan(Short value)
+		{
+			addCriterion("is_display >", value, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayGreaterThanOrEqualTo(Short value)
+		{
+			addCriterion("is_display >=", value, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayLessThan(Short value)
+		{
+			addCriterion("is_display <", value, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayLessThanOrEqualTo(Short value)
+		{
+			addCriterion("is_display <=", value, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayIn(List<Short> values)
+		{
+			addCriterion("is_display in", values, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayNotIn(List<Short> values)
+		{
+			addCriterion("is_display not in", values, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayBetween(Short value1, Short value2)
+		{
+			addCriterion("is_display between", value1, value2, "isDisplay");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsDisplayNotBetween(Short value1, Short value2)
+		{
+			addCriterion("is_display not between", value1, value2, "isDisplay");
+			return (Criteria) this;
+		}
 	}
 
 	public static class Criteria extends GeneratedCriteria

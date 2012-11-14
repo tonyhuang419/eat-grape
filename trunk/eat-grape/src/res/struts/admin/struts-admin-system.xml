@@ -135,6 +135,22 @@
 			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/friendshipLink/friendshipLink.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/friendshipLink/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/friendshipLink/update.jsp</result>
+      	<result name="showLogoUpload">/WEB-INF/jsp/admin/system/frontdata/friendshipLink/logoupload.jsp</result>
+		</action>
+		<!-- 友情链接Logo上传 -->
+		<action class="com.eatle.web.action.backend.UploadAction" method="friendshipLinkLogoUpload" name="friendshipLinkLogoUpload">
+			<param name="savePath">/logo/logo_friendlink</param>
+			<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
+			<param name="maxSize">1048576</param>
+		</action>
+		<!-- 导出友情链接数据到Excel -->
+		<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">friendshipLinkExcel</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
 		</action>
 	</package>
 	

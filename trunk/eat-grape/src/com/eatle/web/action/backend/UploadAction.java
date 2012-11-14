@@ -11,9 +11,11 @@ import org.apache.struts2.ServletActionContext;
 import com.eatle.persistent.pojo.foundation.dictionary.MenuFeature;
 import com.eatle.persistent.pojo.merchant.Merchant;
 import com.eatle.persistent.pojo.merchant.Restaurant;
+import com.eatle.persistent.pojo.system.frontdata.FriendshipLink;
 import com.eatle.service.foundation.dictionary.IMenuFeatureService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
+import com.eatle.service.system.frontdata.IFriendshipLinkService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.ImageUtil;
 import com.eatle.utils.StringUtil;
@@ -37,6 +39,9 @@ public class UploadAction extends BaseAction
 	
 	@Resource
 	private IMenuFeatureService menuFeatureService;
+	
+	@Resource
+	private IFriendshipLinkService friendshipLinkService;
 
 	private Long id; 							// 标识ID
 
@@ -240,6 +245,49 @@ public class UploadAction extends BaseAction
 					menuFeature.setImageUrl(getSavePath() + "/" + uuidName);
 					menuFeatureService.update(menuFeature);
 				}
+			}
+			else
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "请选择要上传的文件！");
+			}
+			super.writeMap(json);
+		}
+	}
+
+	/**
+	 * @throws IOException
+	 * @Description: 友情链接Logo上传
+	 */
+	public void friendshipLinkLogoUpload() throws IOException
+	{
+		// 检查是否通过类型和大小校验
+		if(isCrossValidate)
+		{
+			Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+			if (logo != null)
+			{
+				for (int i = 0; i < logo.length; i++)
+				{
+					// 生成文件UUID名称
+					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存文件
+					String saveName = ServletActionContext.getServletContext()
+							.getRealPath(getSavePath()) + File.separator + uuidName;
+					ImageUtil.thumbnails(logo[i], new File(saveName), 20);
+					// 更新特性IconUrl
+					FriendshipLink friendshipLink = friendshipLinkService.findById(id);
+					String oldLogoPath = ServletActionContext.getServletContext()
+							.getRealPath(friendshipLink.getLogoUrl());
+					File oldLogoFile = new File(oldLogoPath == null ? "" : oldLogoPath);
+					if (oldLogoFile.exists())
+					{
+						oldLogoFile.delete();
+					}
+					friendshipLink.setLogoUrl(getSavePath() + "/" + uuidName);
+					friendshipLinkService.update(friendshipLink);
+				}
+				json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 			}
 			else
 			{
