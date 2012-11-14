@@ -54,7 +54,8 @@ public class AdvertServiceImpl implements IAdvertService
 		advertCriteria.setPageSize(pageSize);
 		advertCriteria.setStartIndex((currentPage - 1) * pageSize);
 		List<Advert> items = advertMapper.selectByCriteria(advertCriteria);
-		int totalCount = (int) advertMapper.selectCountByCriteria(advertCriteria);
+		int totalCount = (int) advertMapper
+				.selectCountByCriteria(advertCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
 

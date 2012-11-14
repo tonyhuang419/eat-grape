@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
 	<!-- ***************************** 权限系统管理  ***************************** -->
 
 	<!-- 账号管理 -->
@@ -118,6 +117,15 @@
 			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/advert/advert.jsp</result>
 			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/advert/add.jsp</result>
 			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/advert/update.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 前台广告位 -->
+	<package extends="default" name="advertPosition" namespace="/admin/system/frontdata/advertPosition">
+		<action class="com.eatle.web.action.backend.system.frontdata.AdvertPositionAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/advertPosition/advertPosition.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/advertPosition/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/advertPosition/update.jsp</result>
 		</action>
 	</package>
 	

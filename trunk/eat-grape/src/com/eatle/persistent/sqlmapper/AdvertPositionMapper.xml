@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eatle.persistent.mapper.AdvertPositionMapper" >
+  <resultMap id="BaseResultMap" type="AdvertPosition" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="position_width" property="positionWidth" jdbcType="SMALLINT" />
+    <result column="position_height" property="positionHeight" jdbcType="SMALLINT" />
+    <result column="position_description" property="positionDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="AdvertPosition" extends="BaseResultMap" >
+    <result column="position_style" property="positionStyle" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, position_name, position_width, position_height, position_description
+  </sql>
+  <sql id="Blob_Column_List" >
+    position_style
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="AdvertPositionCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_advert_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="AdvertPositionCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_advert_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize > 0" >
+      limit ${startIndex},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_advert_position
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_advert_position
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="AdvertPosition" >
+    insert into t_advert_position (id, position_name, position_width, 
+      position_height, position_description, position_style
+      )
+    values (#{id,jdbcType=BIGINT}, #{positionName,jdbcType=VARCHAR}, #{positionWidth,jdbcType=SMALLINT}, 
+      #{positionHeight,jdbcType=SMALLINT}, #{positionDescription,jdbcType=VARCHAR}, #{positionStyle,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="AdvertPosition" >
+    insert into t_advert_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="positionWidth != null" >
+        position_width,
+      </if>
+      <if test="positionHeight != null" >
+        position_height,
+      </if>
+      <if test="positionDescription != null" >
+        position_description,
+      </if>
+      <if test="positionStyle != null" >
+        position_style,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionWidth != null" >
+        #{positionWidth,jdbcType=SMALLINT},
+      </if>
+      <if test="positionHeight != null" >
+        #{positionHeight,jdbcType=SMALLINT},
+      </if>
+      <if test="positionDescription != null" >
+        #{positionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="positionStyle != null" >
+        #{positionStyle,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="AdvertPosition" >
+    update t_advert_position
+    <set >
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionWidth != null" >
+        position_width = #{positionWidth,jdbcType=SMALLINT},
+      </if>
+      <if test="positionHeight != null" >
+        position_height = #{positionHeight,jdbcType=SMALLINT},
+      </if>
+      <if test="positionDescription != null" >
+        position_description = #{positionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="positionStyle != null" >
+        position_style = #{positionStyle,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="AdvertPosition" >
+    update t_advert_position
+    set position_name = #{positionName,jdbcType=VARCHAR},
+      position_width = #{positionWidth,jdbcType=SMALLINT},
+      position_height = #{positionHeight,jdbcType=SMALLINT},
+      position_description = #{positionDescription,jdbcType=VARCHAR},
+      position_style = #{positionStyle,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="AdvertPosition" >
+    update t_advert_position
+    set position_name = #{positionName,jdbcType=VARCHAR},
+      position_width = #{positionWidth,jdbcType=SMALLINT},
+      position_height = #{positionHeight,jdbcType=SMALLINT},
+      position_description = #{positionDescription,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCountByCriteria" resultType="long" parameterType="AdvertPositionCriteria" >
+    select count(1) 
+    from t_advert_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" parameterType="Map" >
+    select * from t_advert_position
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="positionName != null" >
+        and position_name = #{positionName,jdbcType=VARCHAR}
+      </if>
+      <if test="positionWidth != null" >
+        and position_width = #{positionWidth,jdbcType=SMALLINT}
+      </if>
+      <if test="positionHeight != null" >
+        and position_height = #{positionHeight,jdbcType=SMALLINT}
+      </if>
+      <if test="positionDescription != null" >
+        and position_description = #{positionDescription,jdbcType=VARCHAR}
+      </if>
+      <if test="positionStyle != null" >
+        and position_style = #{positionStyle,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>
