@@ -16,7 +16,7 @@
 		    <table width="100%" border="0">
 		      <tr>
 		        <td height="60" align="center">
-					<img src="${ctx}${merchant.merchantLogoUrl}" alt="" align="absmiddle"/>
+					<img src="${ctx}${merchant.merchantLogoUrl}" alt="${merchant.merchantName}" align="absmiddle"/>
 					<span class="STYLE1"> - [${merchant.merchantName}] - 详细基本信息</span>
 				</td>
 		      </tr>

@@ -5,6 +5,9 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="link_name" property="linkName" jdbcType="VARCHAR" />
     <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="sort_order" property="sortOrder" jdbcType="SMALLINT" />
+    <result column="is_display" property="isDisplay" jdbcType="SMALLINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -36,7 +39,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, link_name, link_url
+    id, link_name, link_url, logo_url, sort_order, is_display
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="FriendshipLinkCriteria" >
     select
@@ -67,9 +70,11 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="FriendshipLink" >
-    insert into t_friendship_link (id, link_name, link_url
+    insert into t_friendship_link (id, link_name, link_url, 
+      logo_url, sort_order, is_display
       )
-    values (#{id,jdbcType=BIGINT}, #{linkName,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{linkName,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{sortOrder,jdbcType=SMALLINT}, #{isDisplay,jdbcType=SMALLINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="FriendshipLink" >
@@ -84,6 +89,15 @@
       <if test="linkUrl != null" >
         link_url,
       </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="isDisplay != null" >
+        is_display,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -94,6 +108,15 @@
       </if>
       <if test="linkUrl != null" >
         #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=SMALLINT},
+      </if>
+      <if test="isDisplay != null" >
+        #{isDisplay,jdbcType=SMALLINT},
       </if>
     </trim>
   </insert>
@@ -106,13 +129,25 @@
       <if test="linkUrl != null" >
         link_url = #{linkUrl,jdbcType=VARCHAR},
       </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder,jdbcType=SMALLINT},
+      </if>
+      <if test="isDisplay != null" >
+        is_display = #{isDisplay,jdbcType=SMALLINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="FriendshipLink" >
     update t_friendship_link
     set link_name = #{linkName,jdbcType=VARCHAR},
-      link_url = #{linkUrl,jdbcType=VARCHAR}
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=SMALLINT},
+      is_display = #{isDisplay,jdbcType=SMALLINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectCountByCriteria" resultType="long" parameterType="FriendshipLinkCriteria" >
@@ -133,6 +168,15 @@
       </if>
       <if test="linkUrl != null" >
         and link_url = #{linkUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="logoUrl != null" >
+        and logo_url = #{logoUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="sortOrder != null" >
+        and sort_order = #{sortOrder,jdbcType=SMALLINT}
+      </if>
+      <if test="isDisplay != null" >
+        and is_display = #{isDisplay,jdbcType=SMALLINT}
       </if>
     </where>
   </select>

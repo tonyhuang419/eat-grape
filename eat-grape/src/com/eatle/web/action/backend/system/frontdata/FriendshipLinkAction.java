@@ -30,6 +30,11 @@ public class FriendshipLinkAction extends BaseAction
 		return this.page;
 	}
 
+	public FriendshipLink getFriendshipLink()
+	{
+		return friendshipLink;
+	}
+
 	public void setFriendshipLink(FriendshipLink friendshipLink)
 	{
 		this.friendshipLink = friendshipLink;
@@ -110,5 +115,13 @@ public class FriendshipLinkAction extends BaseAction
 			friendshipLinkService.update(friendshipLink);
 		}
 		super.writeMap(json);
+	}
+
+	/**
+	 * @Description: 显示Logo上传
+	 */
+	public String showLogoUpload()
+	{
+		return "showLogoUpload";
 	}
 }

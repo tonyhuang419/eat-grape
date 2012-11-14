@@ -3,6 +3,8 @@ package com.eatle.service.system.frontdata;
 import com.eatle.persistent.pojo.system.frontdata.FriendshipLink;
 import com.eatle.persistent.pojo.system.frontdata.FriendshipLinkCriteria;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,4 +58,11 @@ public interface IFriendshipLinkService
 	 * 
 	 */
 	List<FriendshipLink> findByCriteria(FriendshipLinkCriteria criteria);
+
+	/**
+	 * @Description: 数据导出到Excel
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	LinkedHashMap<String, List> getExportData();
 }

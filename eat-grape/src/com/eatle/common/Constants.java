@@ -144,4 +144,26 @@ public class Constants
 		public static final String STATUS_HANDLED_STR = "已处理";
 		public static final String STATUS_HANDLED_HTML = "<font color='#1979E0'>已处理</font>";
 	}
+
+	/**
+	 * @Description: 友情链接是否展示首页
+	 * @Author: 谭又中
+	 * @Since: 2012-11-14
+	 */
+	public static class FriendLink
+	{
+		/**
+		 * @Description: 已审核
+		 */
+		public static final short FRIENDLINK_YES = 0;
+		public static final String FRIENDLINK_YES_STR = "是";
+		public static final String FRIENDLINK_YES_HTML = "<font color='#1979E0'>是</font>";
+		
+		/**
+		 * @Description: 已处理
+		 */
+		public static final short FRIENDLINK_NO = 1;
+		public static final String FRIENDLINK_NO_STR = "否";
+		public static final String FRIENDLINK_NO_HTML = "<font color='#48A8E2'>否</font>";
+	}
 }
