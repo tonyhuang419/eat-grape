@@ -2,34 +2,23 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <div class="pageContent">
-	<form method="post" action="${ctx}/admin/system/useradmin/account/add.htm?action=zxzhtj&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<form method="post" action="${ctx}/admin/system/frontdata/serviceInformation/add.htm?action=zxzhtj&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
 			<p>
-				<label>用户名称：</label>
-				<input name="user.userName" class="required" type="text" size="30" alt="请输入用户名称"/>
+				<label>QQ：</label>
+				<input type="text" name="serviceInformation.serveQq" class="required digits" alt="请输入QQ">
 			</p>
 			<p>
-				<label>密码：</label>
-				<input name="user.pwd" class="required" type="text" size="30"  alt="请输入密码"/>
+				<label>电话：</label>
+				<input name="serviceInformation.serveTel" class="required phone" type="text" size="30"  alt="请输入电话号码"/>
 			</p>
 			<p>
-				<label>邮箱：</label>
-				<input type="text"  value="" name="user.email" class="textInput" alt="请输入邮箱">
+				<label>手机：</label>
+				<input name="serviceInformation.serveMobile" class="phone" type="text" size="30" alt="请输入手机号码"/>
 			</p>
 			<p>
-				<label>用户类型：</label>
-				<select name="user.type" class="required combox">
-					<option value="1">个人</option>
-					<option value="2" selected>公司</option>
-				</select>
-			</p>
-			<p>
-				<label>角色类型：</label>
-				<select name="user.roleId" class="required combox">
-					<s:iterator value="#request.allRole" var="r">
-						<option value="${r.id}">${r.roleName}</option>
-					</s:iterator>
-				</select>
+				<label>E-mail：</label>
+				<input type="text" name="serviceInformation.serveEmail" class="email" alt="请输入邮箱">
 			</p>
 		</div>
 		<div class="formBar">

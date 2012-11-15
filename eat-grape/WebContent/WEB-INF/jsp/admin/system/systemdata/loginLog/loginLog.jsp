@@ -70,7 +70,7 @@
 			<s:iterator value="page.items" var="item">
 				<tr target="sid_user" rel="${item.id}" align="center">
 					<td>${item.userName}</td>
-					<td>${item.identifyTypeStr}</td>
+					<td>${item.identifyTypeStr}&nbsp;</td>
 					<td>${item.loginIp}</td>
 					<td>${item.loginTimeStr}</td>
 				</tr>

@@ -66,11 +66,12 @@
 				<tr target="sid" rel="${item.id}" align="center">
 					<td>${item.linkName}</td>
 					<td>${item.linkUrl}</td>
-					<td><img src="${ctx}${item.logoUrl}" alt="${item.linkName}" align="absmiddle"/></td>
+					<td style="padding-top: 4px;">
+						<img src="${ctx}${item.logoUrl}" alt="${item.linkName}" align="absmiddle"/>
+					</td>
 					<td>${item.sortOrder}</td>
-					<td>${item.isDisplayStr}</td>
+					<td>${item.isDisplayStr}&nbsp;</td>
 					<td>
-						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.linkName}-友情链接Logo设置" target="dialog" rel="dialog_fl_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/system/frontdata/friendshipLink/showLogoUpload.htm?friendshipLink.id=${item.id}&action=zdylbzs&navTabId=${param.navTabId}"
 							width="500" height="250">设置Logo</a>

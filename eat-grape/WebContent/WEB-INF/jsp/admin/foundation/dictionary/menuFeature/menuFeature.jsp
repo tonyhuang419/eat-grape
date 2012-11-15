@@ -52,7 +52,9 @@
 				<tr target="sid" rel="<s:property value="#item.id" />" align="center">
 					<td>${item.feature}</td>
 					<s:if test="#item.imageUrl != null">
-						<td><img src="${ctx}${item.imageUrl}" alt="${item.feature}" align="absmiddle"></td>
+						<td style="padding-top: 4px;">
+							<img src="${ctx}${item.imageUrl}" alt="${item.feature}" align="absmiddle">
+						</td>
 					</s:if>
 					<s:else>
 						<td>未设置</td>

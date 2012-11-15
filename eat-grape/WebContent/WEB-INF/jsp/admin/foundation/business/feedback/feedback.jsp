@@ -74,10 +74,10 @@
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="<s:property value="#item.id" />" align="center">
 					<td>${item.identifyStr}</td>
-					<td>${item.identifyTypeStr}</td>
+					<td>${item.identifyTypeStr}&nbsp;</td>
 					<td>${item.email}</td>
 					<td>${item.subTimeStr}</td>
-					<td>${item.handleStatusStr}</td>
+					<td>${item.handleStatusStr}&nbsp;</td>
 					<td>
 						<a title="反馈建议详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/foundation/business/feedback/showDetail.htm?feedback.id=${item.id}&action=zdylbzs"
