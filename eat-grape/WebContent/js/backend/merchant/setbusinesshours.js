@@ -30,16 +30,16 @@ $("document").ready(function() {
 			}
 		});
 		if(businessHours.length > 0 && (businessHours.length % 2) == 0) {
-			$.ajax({
-				type: "POST",
-				url: $("#setBusinessHoursForm").attr("action"),
-				data: "restaurant.businessHours=" + businessHours,
-				success: function(json){
+			$.ajax( {
+				type : "POST",
+				url : $("#setBusinessHoursForm").attr("action"),
+				data : "restaurant.businessHours=" + businessHours,
+				dataType : 'json',
+				success : function(json) {
 					DWZ.ajaxDone(json);
-					//if ("closeCurrent" == json.callbackType) {
-						//alertSuc("操作成功！");
-						//$.pdialog.closeCurrent();
-					//}
+					if ("closeCurrent" == json.callbackType) {
+						$.pdialog.closeCurrent();
+					}
 				}
 			});
 		} else {

@@ -2,7 +2,8 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <div class="pageContent">
-	<form method="post" action="${ctx}/admin/foundation/place/district/update.htm?action=zxdyxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<form method="post" action="${ctx}/admin/foundation/place/district/update.htm?action=zxdyxg&navTabId=${param.navTabId}&dialogId=${dialogId}" class="pageForm required-validate" 
+			onsubmit="return validateCallback(this, <s:if test="#attr.dialogId != \"\"">refreshDialogAjaxDone</s:if><s:else>dialogAjaxDone</s:else>);">
 		<div class="pageFormContent" layoutH="56">
 			<input name="district.id" type="hidden" value="${district.id}" />
 			<input name="district.parentId" type="hidden" value="${district.parentId}" />

@@ -1,7 +1,6 @@
 /* 消息提示框 */
-function showMsg(msg, time)
-{
-	art.dialog({
+function showMsg(msg, time) {
+	art.dialog( {
 		title : "温馨提示",
 		content : msg,
 		left : '50%',
@@ -10,8 +9,17 @@ function showMsg(msg, time)
 		time : time,
 	    drag : false,
 	    fixed : true,
-		close : function(){
+		close : function() {
 			art.dialog.close();
 		}
 	}).lock();
+}
+
+/* 在对话框中的Ajax删除(删除后要手动刷新Dialog) */
+function delAjaxInDialog(url, dialogId, msg) {
+	confirm2Ajax(url, msg, null, function(json) {
+		DWZ.ajaxDone(json);
+		// 刷新Dialog
+		$.pdialog.reloadDialog(json.dialogId);
+	}, "json");
 }

@@ -91,6 +91,7 @@ public class PrivAction extends BaseAction
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
+		json.put(DwzAjaxJsonUtil.KEY_DIALOGID, dialogId);
 		json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
 		if (priv == null)
 		{
@@ -106,7 +107,6 @@ public class PrivAction extends BaseAction
 			}
 		}
 		super.writeMap(json);
-
 	}
 
 	public String showUpdate()
@@ -123,6 +123,7 @@ public class PrivAction extends BaseAction
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
+		json.put(DwzAjaxJsonUtil.KEY_DIALOGID, dialogId);
 		if (priv == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);

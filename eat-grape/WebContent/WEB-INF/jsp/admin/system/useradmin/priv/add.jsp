@@ -1,21 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<script type="text/javascript">
-	function refreshDialogAjaxDone(json){
-		DWZ.ajaxDone(json);
-		if(json.statusCode == DWZ.statusCode.ok){
-			if(json.dialogId){
-				if("closeCurrent" == json.callbackType){
-					$.pdialog.closeCurrent();
-				}
-				// 刷新dialogId指定的dialog，url：刷新时可重新指定加载数据的url, data：为加载数据时所需的参数。
-				var dialogId = json.dialogId;
-				var pid = json.pid;
-				$.pdialog.reload("${ctx}/admin/system/useradmin/priv/showSetSubPriv.htm?pid=" + pid + "&action=zqxlbzs&dialogId=" + dialogId, {}, dialogId);
-			}
-		}
-	}
-</script>
 
 <div class="pageContent">
 	<form method="post" action="${ctx}/admin/system/useradmin/priv/add.htm?navTabId=${navTabId}&action=zxqxtj&dialogId=${dialogId}" class="pageForm required-validate"
