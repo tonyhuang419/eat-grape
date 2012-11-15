@@ -79,7 +79,7 @@
 					<td>${item.linkTel}</td>
 					<td>${item.linkQq}</td>
 					<td>${item.subTimeStr}</td>
-					<td>${item.auditStatusStr}</td>
+					<td>${item.auditStatusStr}&nbsp;</td>
 					<td>
 						<a title="${item.shopName}-加盟审核详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/foundation/business/joinInformation/showDetail.htm?joinInformation.id=${item.id}&action=zdylbzs"

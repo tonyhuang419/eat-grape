@@ -80,7 +80,7 @@
 					<td>${item.userName}</td>
 					<td>${item.pwd}</td>
 					<td>${item.email}</td>
-					<td>${item.typeStr}</td>
+					<td>${item.typeStr}&nbsp;</td>
 					<td>
 						<s:iterator value="#request.allRole" var="r">
 							<s:if test="#item.roleId == #r.id">${r.roleName}</s:if>

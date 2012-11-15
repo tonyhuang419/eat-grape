@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/system/useradmin/account/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/system/frontdata/serviceInformation/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -8,36 +8,29 @@
 	
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="userName" value="${param.userName}" />
+	<input type="hidden" name="mobile" value="${param.mobile}" />
+	<input type="hidden" name="tel" value="${param.tel}" />
+	<input type="hidden" name="qq" value="${param.qq}" />
 	<input type="hidden" name="email" value="${param.email}" />
 </form>
 
 
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/useradmin/account/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/frontdata/serviceInformation/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					用户名：<input type="text" name="userName" />
+					手机：<input type="text" name="mobile" />
 				</td>
 				<td>
-					邮箱：<input type="text" name="email" />
+					电话：<input type="text" name="tel" />
 				</td>
 				<td>
-					<select class="combox" name="type">
-						<option value="">用户类型</option>
-						<option value="1">个人</option>
-						<option value="2">公司</option>
-					</select>
+					QQ：<input type="text" name="qq" />
 				</td>
 				<td>
-					<select class="combox" name="roleId">
-						<option value="">角色类型</option>
-						<s:iterator value="#request.allRole" var="r">
-							<option value="${r.id}">${r.roleName}</option>
-						</s:iterator>
-					</select>
+					E-mail：<input type="text" name="email" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -54,38 +47,27 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/system/useradmin/account/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加账号</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/system/useradmin/account/delete.htm?user.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/useradmin/account/showUpdate.htm?user.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/system/useradmin/account/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
+			<li><a class="add" href="${ctx}/admin/system/frontdata/serviceInformation/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加客服</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/system/frontdata/serviceInformation/delete.htm?serviceInformation.id={sid}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/frontdata/serviceInformation/showUpdate.htm?serviceInformation.id={sid}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改客服</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="180">用户名</th>
-				<th width="180">密码</th>
-				<th width="200">邮箱</th>
-				<th width="120">用户类型</th>
-				<th width="120">角色类型</th>
+				<th width="150">手机</th>
+				<th width="150">电话</th>
+				<th width="150">QQ</th>
+				<th width="250">电子邮件</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
-				<tr target="sid_user" rel="${item.id}" align="center">
-					<td>${item.userName}</td>
-					<td>${item.pwd}</td>
-					<td>${item.email}</td>
-					<td>
-						<s:if test="#item.type == 1">个人</s:if>
-						<s:elseif test="#item.type == 2">公司</s:elseif>
-					</td>
-					<td>
-						<s:iterator value="#request.allRole" var="r">
-							<s:if test="#item.roleId == #r.id">${r.roleName}</s:if>
-						</s:iterator>
-					</td>
+				<tr target="sid" rel="${item.id}" align="center">
+					<td>${item.serveMobile}</td>
+					<td>${item.serveTel}</td>
+					<td>${item.serveQq}</td>
+					<td>${item.serveEmail}</td>
 				</tr>
 			</s:iterator>
 			

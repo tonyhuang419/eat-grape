@@ -30,6 +30,11 @@ public class ServiceInformationAction extends BaseAction
 		return this.page;
 	}
 
+	public ServiceInformation getServiceInformation()
+	{
+		return serviceInformation;
+	}
+
 	public void setServiceInformation(ServiceInformation serviceInformation)
 	{
 		this.serviceInformation = serviceInformation;

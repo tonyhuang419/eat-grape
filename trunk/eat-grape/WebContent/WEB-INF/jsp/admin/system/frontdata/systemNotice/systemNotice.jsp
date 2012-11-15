@@ -77,7 +77,7 @@
 					<td>${item.content}</td>
 					<td>${item.userStr}</td>
 					<td>${item.sendTimeStr}</td>
-					<td>${item.targetStr}</td>
+					<td>${item.targetStr}&nbsp;</td>
 				</tr>
 			</s:iterator>
 		</tbody>

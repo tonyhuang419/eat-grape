@@ -73,9 +73,9 @@
 					<td>${item.shopName}</td>
 					<td>${item.shopTel}</td>
 					<td>${item.identifyStr}</td>
-					<td>${item.identifyTypeStr}</td>
+					<td>${item.identifyTypeStr}&nbsp;</td>
 					<td>${item.subTimeStr}</td>
-					<td>${item.handleStatusStr}</td>
+					<td>${item.handleStatusStr}&nbsp;</td>
 					<td>
 						<a title="${item.shopName}-推荐商家详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/foundation/business/recommendMerchant/showDetail.htm?recommendMerchant.id=${item.id}&action=zdylbzs"
