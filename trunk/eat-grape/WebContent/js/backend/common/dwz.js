@@ -41,3 +41,17 @@ function alertInfo(msg)
 {
 	alertMsg.info(msg);
 }
+
+// 刷新对话框
+function refreshDialogAjaxDone(json){
+	DWZ.ajaxDone(json);
+	if(json.statusCode == DWZ.statusCode.ok){
+		if(json.dialogId){
+			if("closeCurrent" == json.callbackType){
+				$.pdialog.closeCurrent();
+			}
+			// 刷新dialogId指定的Dialog
+			$.pdialog.reloadDialog(json.dialogId);
+		}
+	}
+}

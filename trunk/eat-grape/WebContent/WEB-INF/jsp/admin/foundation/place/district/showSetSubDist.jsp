@@ -10,9 +10,8 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/foundation/place/district/showAdd.htm?pid=${param.pid}&action=tjdyzs&dialogId=${param.dialogId}" target="dialog"  mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>添加区域</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/foundation/place/district/delete.htm?district.id={sid}&action=zxdysc&dialogId=${param.dialogId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/foundation/place/district/showUpdate.htm?district.id={sid}&action=xgdyzs&dialogId=${param.dialogId}" target="dialog"  mask="true"><span>区域修改</span></a></li>
+			<li><a class="add" href="${ctx}/admin/foundation/place/district/showAdd.htm?pid=${param.pid}&action=tjdyzs&dialogId=${param.dialogId}" target="dialog" mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>添加区域</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/foundation/place/district/showUpdate.htm?district.id={sid}&action=xgdyzs&dialogId=${param.dialogId}" target="dialog" mask="true" rel="${param.dialogId}_add" width="520" height="250"><span>区域修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="50">
@@ -32,6 +31,10 @@
 						<a title="${item.name}-设置子区域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/foundation/place/district/showSetSubDist.htm?pid=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
 							width="800" height="480">设置子区域</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="javascript: delAjaxInDialog('${ctx}/admin/foundation/place/district/delete.htm?district.id=${item.id}&action=zxdysc&dialogId=${param.dialogId}', '${param.dialogId}', '确定要删除吗?')">
+							删 除
+						</a>
 					</td>
 				</tr>
 			</s:iterator>

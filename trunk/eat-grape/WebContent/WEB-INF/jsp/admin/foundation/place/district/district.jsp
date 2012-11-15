@@ -57,7 +57,7 @@
 					<td><s:property value="#item.name" /></td>
 					<td><s:property value="#item.pinyinName" /></td>
 					<td>
-						<a title="${item.name}-设置子区域" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+						<a title="${item.name}-设置子区域" target="dialog" rel="dialog_dist_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/foundation/place/district/showSetSubDist.htm?pid=${item.id}&action=zdylbzs&dialogId=dialog_${item.id}"
 							width="800" height="480">设置子区域</a>
 					</td>
