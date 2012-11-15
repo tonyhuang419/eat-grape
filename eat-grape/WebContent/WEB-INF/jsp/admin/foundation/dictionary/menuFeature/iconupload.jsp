@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <div class="pageContent">
-	<form id="uploadForm" method="post" action="${ctx}/admin/foundation/dictionary/menuFeature/menuFeatureIconUpload.htm?id=${menuFeature.id}&action=zxzhxg" enctype="multipart/form-data" class="pageForm required-validate" >
+	<form id="uploadForm" method="post" action="${ctx}/admin/foundation/dictionary/menuFeature/menuFeatureIconUpload.htm?id=${menuFeature.id}&action=zxzhxg&navTabId=${param.navTabId}" enctype="multipart/form-data" class="pageForm required-validate" >
 		<div class="pageFormContent" layoutH="56" align="right">
 			<p>
 				<label>选择图片：</label>

@@ -8,8 +8,8 @@ function ajaxFileUpload() {
 	$.ajaxFileUpload( {
 		url : $("#uploadForm").attr("action"),
 		secureuri : false,
-		fileElementId : 'logoFile',
-		dataType : 'json',
+		fileElementId : "logoFile",
+		dataType : "json",
 		success : function(json, status) {
 			DWZ.ajaxDone(json);
 			if ("closeCurrent" == json.callbackType) {

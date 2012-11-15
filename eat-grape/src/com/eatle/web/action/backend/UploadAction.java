@@ -245,6 +245,7 @@ public class UploadAction extends BaseAction
 					menuFeature.setImageUrl(getSavePath() + "/" + uuidName);
 					menuFeatureService.update(menuFeature);
 				}
+				json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 			}
 			else
 			{
