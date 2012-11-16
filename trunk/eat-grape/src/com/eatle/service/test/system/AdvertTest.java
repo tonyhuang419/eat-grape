@@ -46,4 +46,11 @@ public class AdvertTest extends BaseTest{
 		
 		advertService.update(ad);
 	}
+	
+	@Test
+	public void query()
+	{
+		Advert ad = advertService.findById(1L);
+		System.out.println(ad.getAdvertCode());
+	}
 }

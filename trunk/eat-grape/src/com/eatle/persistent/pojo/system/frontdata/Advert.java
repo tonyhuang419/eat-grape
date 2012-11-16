@@ -32,6 +32,24 @@ public class Advert
 
 	private String advertCode;
 
+	// 临时属性（广告类型字符串）
+	private String advertTypeStr;
+
+	// 临时属性（广告状态字符串）
+	private String advertEnabledStr;
+
+	// 临时属性（开始时间字符串）
+	private String startTimeStr;
+
+	// 临时属性（结束时间字符串）
+	private String endTimeStr;
+
+	// 临时属性（发布时间字符串）
+	private String issueTimeStr;
+
+	// 临时属性（广告位）
+	private AdvertPosition advertPosition;
+
 	public Long getId()
 	{
 		return id;
@@ -170,5 +188,65 @@ public class Advert
 	public void setAdvertCode(String advertCode)
 	{
 		this.advertCode = advertCode;
+	}
+
+	public String getAdvertTypeStr()
+	{
+		return advertTypeStr;
+	}
+
+	public void setAdvertTypeStr(String advertTypeStr)
+	{
+		this.advertTypeStr = advertTypeStr;
+	}
+
+	public String getStartTimeStr()
+	{
+		return startTimeStr;
+	}
+
+	public void setStartTimeStr(String startTimeStr)
+	{
+		this.startTimeStr = startTimeStr;
+	}
+
+	public String getEndTimeStr()
+	{
+		return endTimeStr;
+	}
+
+	public void setEndTimeStr(String endTimeStr)
+	{
+		this.endTimeStr = endTimeStr;
+	}
+
+	public String getIssueTimeStr()
+	{
+		return issueTimeStr;
+	}
+
+	public void setIssueTimeStr(String issueTimeStr)
+	{
+		this.issueTimeStr = issueTimeStr;
+	}
+
+	public String getAdvertEnabledStr()
+	{
+		return advertEnabledStr;
+	}
+
+	public void setAdvertEnabledStr(String advertEnabledStr)
+	{
+		this.advertEnabledStr = advertEnabledStr;
+	}
+
+	public AdvertPosition getAdvertPosition()
+	{
+		return advertPosition;
+	}
+
+	public void setAdvertPosition(AdvertPosition advertPosition)
+	{
+		this.advertPosition = advertPosition;
 	}
 }

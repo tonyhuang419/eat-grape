@@ -81,9 +81,8 @@
 							width="700" height="400">查  看</a>
 					</td>
 					<td>
-						<a title="${item.merchantName}-餐厅管理" target="navTab" rel="restaurant_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${item.id}&action=zdylbzs&navTabId=restaurant_${item.id}"
-							width="700" height="400">管理餐厅</a>
+						<a title="${item.merchantName}-餐厅管理" target="navTab" rel="restaurant_${item.id}" 
+							href="${ctx}/admin/merchant/restaurant/showIndex.htm?merchantId=${item.id}&action=zdylbzs&navTabId=restaurant_${item.id}">管理餐厅</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<a title="${item.merchantName}-Logo设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/merchant/list/showLogoUpload.htm?merchant.id=${item.id}&action=zdylbzs"

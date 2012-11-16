@@ -48,8 +48,6 @@
 			<li><a class="add" href="${ctx}/admin/merchant/restaurant/showAdd.htm?merchantId=${param.merchantId}&action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="900" height="320"><span>添加餐厅</span></a></li>
 			<li><a class="delete" href="${ctx}/admin/merchant/restaurant/delete.htm?restaurant.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="${ctx}/admin/merchant/restaurant/showUpdate.htm?restaurant.id={sid_user}&merchantId=${param.merchantId}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="900" height="320"><span>餐厅修改</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/merchant/restaurant/downXls.htm?fileName=RestaurantData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
