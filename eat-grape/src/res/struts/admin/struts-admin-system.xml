@@ -121,11 +121,12 @@
 	</package>
 	
 	<!-- 前台广告位 -->
-	<package extends="default" name="advertPosition" namespace="/admin/system/frontdata/advertPosition">
+	<package extends="default" name="advertPosition" namespace="/admin/system/frontdata/advert/advertPosition">
 		<action class="com.eatle.web.action.backend.system.frontdata.AdvertPositionAction" method="{1}" name="*">
-			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/advertPosition/advertPosition.jsp</result>
-			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/advertPosition/add.jsp</result>
-			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/advertPosition/update.jsp</result>
+			<result name="showIndex">/WEB-INF/jsp/admin/system/frontdata/advert/advertPosition/advertPosition.jsp</result>
+			<result name="showAdd">/WEB-INF/jsp/admin/system/frontdata/advert/advertPosition/add.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/system/frontdata/advert/advertPosition/update.jsp</result>
+      		<result name="showDetail">/WEB-INF/jsp/admin/system/frontdata/advert/advertPosition/detail.jsp</result>
 		</action>
 	</package>
 	

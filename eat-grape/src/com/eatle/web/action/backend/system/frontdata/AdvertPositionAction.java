@@ -30,6 +30,11 @@ public class AdvertPositionAction extends BaseAction
 		return this.page;
 	}
 
+	public AdvertPosition getAdvertPosition()
+	{
+		return advertPosition;
+	}
+
 	public void setAdvertPosition(AdvertPosition advertPosition)
 	{
 		this.advertPosition = advertPosition;
@@ -110,5 +115,14 @@ public class AdvertPositionAction extends BaseAction
 			advertPositionService.update(advertPosition);
 		}
 		super.writeMap(json);
+	}
+	
+	/**
+	 * @Description: 显示详细信息
+	 */
+	public String showDetail()
+	{
+		advertPosition = advertPositionService.findById(advertPosition.getId());
+		return "showDetail";
 	}
 }

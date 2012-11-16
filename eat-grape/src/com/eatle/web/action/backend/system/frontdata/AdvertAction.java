@@ -30,6 +30,11 @@ public class AdvertAction extends BaseAction
 		return this.page;
 	}
 
+	public Advert getAdvert()
+	{
+		return advert;
+	}
+
 	public void setAdvert(Advert advert)
 	{
 		this.advert = advert;

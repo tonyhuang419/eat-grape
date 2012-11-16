@@ -133,7 +133,8 @@ public class GeneratorActionLayerPlugin extends PluginAdapter
 		// setter getter
 		addSetPageMethod(topLevelClass, introspectedTable);
 		addGetPageMethod(topLevelClass, introspectedTable);
-
+		addGetBaseRecordMethod(topLevelClass, introspectedTable, 
+				recordFullType, serviceInterfaceFullName);
 		addSetBaseRecordMethod(topLevelClass, introspectedTable,
 				recordFullType, recordLowerFullType);
 
@@ -141,7 +142,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter
 		addShowIndexMethod(topLevelClass, introspectedTable);
 		addShowAddMethod(topLevelClass, introspectedTable);
 		addAddMethod(topLevelClass, introspectedTable);
-		;
 		addDeleteMethod(topLevelClass, introspectedTable);
 		addShowUpdateMethod(topLevelClass, introspectedTable);
 		addUpdateMethod(topLevelClass, introspectedTable);
@@ -161,7 +161,6 @@ public class GeneratorActionLayerPlugin extends PluginAdapter
 	 * @param recordLowerFullType
 	 * @param recordLowerFullType2
 	 */
-	@SuppressWarnings("unused")
 	private void addGetBaseRecordMethod(TopLevelClass topLevelClass,
 			IntrospectedTable introspectedTable, String recordFullType,
 			String recordLowerFullType)

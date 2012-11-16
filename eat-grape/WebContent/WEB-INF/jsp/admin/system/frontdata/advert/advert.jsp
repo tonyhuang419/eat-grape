@@ -61,7 +61,7 @@
 			<li><a class="delete" href="${ctx}/admin/system/frontdata/advert/delete.htm?advert.id={sid}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="${ctx}/admin/system/frontdata/advert/showUpdate.htm?advert.id={sid}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>更新广告</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/system/frontdata/advertPosition/showIndex.htm?action=zdylbzs&navTabId=advert_position_mgr" target="navTab" rel="advert_position_mgr"><span>广告位管理</span></a></li>
+			<li><a class="icon" href="${ctx}/admin/system/frontdata/advert/advertPosition/showIndex.htm?action=zdylbzs&navTabId=advert_position_mgr" target="navTab" rel="advert_position_mgr"><span>广告位管理</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">

@@ -96,7 +96,7 @@ public class AdvertServiceImpl implements IAdvertService
 	public List<Advert> findAll()
 	{
 		List<Advert> items = new ArrayList<Advert>();
-		List<Advert> adverts = advertMapper.selectByCriteria(null);
+		List<Advert> adverts = advertMapper.selectByExampleWithBLOBs(null);
 		for(Advert ad : adverts)
 		{
 			items.add(handleAdvert(ad));
@@ -108,7 +108,7 @@ public class AdvertServiceImpl implements IAdvertService
 	public List<Advert> findByCriteria(AdvertCriteria criteria)
 	{
 		List<Advert> items = new ArrayList<Advert>();
-		List<Advert> adverts = advertMapper.selectByCriteria(criteria);
+		List<Advert> adverts = advertMapper.selectByExampleWithBLOBs(criteria);
 		for(Advert ad : adverts)
 		{
 			items.add(handleAdvert(ad));
