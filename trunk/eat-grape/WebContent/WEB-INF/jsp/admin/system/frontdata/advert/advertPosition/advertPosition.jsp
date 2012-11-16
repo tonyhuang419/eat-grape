@@ -9,38 +9,16 @@
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
 	<input type="hidden" name="name" value="${param.name}" />
-	<input type="hidden" name="linkMan" value="${param.linkMan}" />
-	<input type="hidden" name="type" value="${param.type}" />
-	<input type="hidden" name="enabled" value="${param.enabled}" />
 </form>
 
 
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/frontdata/advert/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/frontdata/advert/advertPosition/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					广告名称：<input type="text" name="name" />
-				</td>
-				<td>
-					联系人：<input type="text" name="linkMan" />
-				</td>
-				<td>
-					<select class="combox" name="type">
-						<option value="">广告类型</option>
-						<option value="0">图片</option>
-						<option value="1">Flash</option>
-						<option value="2">代码</option>
-						<option value="3">文字</option>
-					</select>
-				</td>
-				<td>
-					<select class="combox" name="enabled">
-						<option value="">广告状态</option>
-						<option value="0">开启</option>
-						<option value="1">关闭</option>
-					</select>
+					名称：<input type="text" name="name" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -57,37 +35,33 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/system/frontdata/advert/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加账号</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/system/frontdata/advert/delete.htm?advert.id={sid}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/frontdata/advert/showUpdate.htm?advert.id={sid}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/system/frontdata/advert/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="navTab"><span>广告位管理</span></a></li>
+			<li><a class="add" href="${ctx}/admin/system/frontdata/advert/advertPosition/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="720" height="320"><span>添加广告位</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/system/frontdata/advert/advertPosition/delete.htm?advertPosition.id={sid}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/frontdata/advert/advertPosition/showUpdate.htm?advertPosition.id={sid}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="720" height="320"><span>更新广告位</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="180">广告名称</th>
-				<th width="180">广告类型</th>
-				<th width="200">广告链接</th>
-				<th width="120">广告联系人</th>
-				<th width="120">点击量</th>
-				<th width="120">发布时间</th>
-				<th width="120">广告位</th>
-				<th width="120">状态</th>
+				<th width="200">名称</th>
+				<th width="100">宽度</th>
+				<th width="100">高度</th>
+				<th width="250">描述</th>
+				<th width="250">详细信息</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="${item.id}" align="center">
-					<td>${item.advertName}</td>
-					<td>${item.advertTypeStr}</td>
-					<td>${item.advertLink}</td>
-					<td>${item.linkMan}</td>
-					<td>${item.clickCount}</td>
-					<td>${item.issueTimeStr}</td>
-					<td>${item.advertPosition}</td>
-					<td>${item.advertEnabled}</td>
+					<td>${item.positionName}</td>
+					<td>${item.positionWidth}</td>
+					<td>${item.positionHeight}</td>
+					<td>${item.positionDescription}</td>
+					<td>
+						<a title="${item.positionName}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/system/frontdata/advert/advertPosition/showDetail.htm?advertPosition.id=${item.id}&action=zdylbzs"
+							width="720" height="480">查  看</a>
+					</td>
 				</tr>
 			</s:iterator>
 			
