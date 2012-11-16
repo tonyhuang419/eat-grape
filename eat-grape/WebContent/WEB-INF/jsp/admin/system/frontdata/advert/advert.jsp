@@ -57,37 +57,37 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/system/frontdata/advert/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加账号</span></a></li>
+			<li><a class="add" href="${ctx}/admin/system/frontdata/advert/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>发布广告</span></a></li>
 			<li><a class="delete" href="${ctx}/admin/system/frontdata/advert/delete.htm?advert.id={sid}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/frontdata/advert/showUpdate.htm?advert.id={sid}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/frontdata/advert/showUpdate.htm?advert.id={sid}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>更新广告</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/system/frontdata/advert/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="navTab"><span>广告位管理</span></a></li>
+			<li><a class="icon" href="${ctx}/admin/system/frontdata/advertPosition/showIndex.htm?action=zdylbzs&navTabId=advert_position_mgr" target="navTab" rel="advert_position_mgr"><span>广告位管理</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
 				<th width="180">广告名称</th>
-				<th width="180">广告类型</th>
-				<th width="200">广告链接</th>
-				<th width="120">广告联系人</th>
-				<th width="120">点击量</th>
-				<th width="120">发布时间</th>
+				<th width="80">广告类型</th>
+				<th width="280">广告链接</th>
+				<th width="100">广告联系人</th>
+				<th width="100">点击量</th>
+				<th width="180">发布时间</th>
 				<th width="120">广告位</th>
-				<th width="120">状态</th>
+				<th width="80">状态</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="${item.id}" align="center">
 					<td>${item.advertName}</td>
-					<td>${item.advertTypeStr}</td>
+					<td>${item.advertTypeStr}&nbsp;</td>
 					<td>${item.advertLink}</td>
 					<td>${item.linkMan}</td>
 					<td>${item.clickCount}</td>
 					<td>${item.issueTimeStr}</td>
-					<td>${item.advertPosition}</td>
-					<td>${item.advertEnabled}</td>
+					<td>${item.advertPosition.positionName}</td>
+					<td>${item.advertEnabledStr}&nbsp;</td>
 				</tr>
 			</s:iterator>
 			
