@@ -139,7 +139,6 @@
 		</action>
 		<!-- 友情链接Logo上传 -->
 		<action class="com.eatle.web.action.backend.UploadAction" method="friendshipLinkLogoUpload" name="friendshipLinkLogoUpload">
-			<param name="savePath">/logo/logo_friendlink</param>
 			<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
 			<param name="maxSize">1048576</param>
 		</action>
