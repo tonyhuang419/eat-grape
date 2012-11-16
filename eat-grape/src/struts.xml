@@ -25,10 +25,9 @@
 	
 		
 	<!-- 前台相关配置 -->
-	<include file="struts-front.xml"></include>
+	<include file="res/struts/struts-front.xml"></include>
 	
 	<!-- 后台管理配置 -->
-	<include file="struts-admin.xml"></include>
-	
+	<include file="res/struts/struts-admin.xml"></include>
 	
 </struts>
