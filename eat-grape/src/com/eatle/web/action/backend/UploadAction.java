@@ -286,7 +286,7 @@ public class UploadAction extends BaseAction
 					// 保存文件
 					String saveName = ServletActionContext.getServletContext()
 							.getRealPath(path) + File.separator + uuidName;
-					ImageUtil.thumbnails(logo[i], new File(saveName), 20);
+					ImageUtil.thumbnails(logo[i], new File(saveName), 25);
 					// 更新特性IconUrl
 					FriendshipLink friendshipLink = friendshipLinkService.findById(id);
 					String oldLogoPath = ServletActionContext.getServletContext()

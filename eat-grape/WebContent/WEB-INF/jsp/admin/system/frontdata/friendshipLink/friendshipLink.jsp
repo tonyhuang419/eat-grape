@@ -66,8 +66,8 @@
 				<tr target="sid" rel="${item.id}" align="center">
 					<td>${item.linkName}</td>
 					<td>${item.linkUrl}</td>
-					<td style="padding-top: 4px;">
-						<img src="${ctx}${item.logoUrl}" alt="${item.linkName}" align="absmiddle"/>
+					<td style="padding: 4px;">
+						<img src="${ctx}${item.logoUrl}" alt="${item.linkName}" align="absmiddle"/>&nbsp;
 					</td>
 					<td>${item.sortOrder}</td>
 					<td>${item.isDisplayStr}&nbsp;</td>
