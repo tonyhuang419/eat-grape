@@ -1,5 +1,7 @@
 package com.eatle.common;
 
+import com.eatle.utils.ConfigurationRead;
+
 /**
  * @Title: 通用常量类
  * @Description:
@@ -9,9 +11,12 @@ package com.eatle.common;
  */
 public class Constants
 {
-	public static final String COLOR_LEVEL_1 = "#E13CD8";
-	public static final String COLOR_LEVEL_2 = "#1979E0";
-	public static final String COLOR_LEVEL_3 = "#48A8E2";
+	public static final ConfigurationRead config = ConfigurationRead.getInstance();
+	
+	public static final String COLOR_LEVEL_1 = config.getConfigItem("color.level.1");
+	public static final String COLOR_LEVEL_2 = config.getConfigItem("color.level.2");
+	public static final String COLOR_LEVEL_3 = config.getConfigItem("color.level.3");
+	public static final String COLOR_LEVEL_4 = config.getConfigItem("color.level.4");
 	
 	/**
 	 * @Title: 通用类
@@ -203,7 +208,7 @@ public class Constants
 		 */
 		public static final short ADVERT_TYPE_TEXT = 3;
 		public static final String ADVERT_TYPE_TEXT_STR = "文字";
-		public static final String ADVERT_TYPE_TEXT_HTML = "<font color='" + COLOR_LEVEL_3 + "'>文字</font>";
+		public static final String ADVERT_TYPE_TEXT_HTML = "<font color='" + COLOR_LEVEL_4 + "'>文字</font>";
 	}
 
 	/**

@@ -16,6 +16,7 @@ import com.eatle.service.foundation.dictionary.IMenuFeatureService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.service.system.frontdata.IFriendshipLinkService;
+import com.eatle.utils.ConfigurationRead;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.ImageUtil;
 import com.eatle.utils.StringUtil;
@@ -42,6 +43,8 @@ public class UploadAction extends BaseAction
 	
 	@Resource
 	private IFriendshipLinkService friendshipLinkService;
+	
+	private ConfigurationRead config = ConfigurationRead.getInstance();
 
 	private Long id; 							// 标识ID
 
@@ -51,7 +54,7 @@ public class UploadAction extends BaseAction
 
 	private String[] logoContentType; 			// 封装上传文件类型
 
-	private String savePath; 					// 保存路径(struts.xml中配置)
+//	private String savePath; 					// 保存路径(struts.xml中配置)
 
 	private long maxSize; 						// 允许的文件大小(struts.xml中配置)
 
@@ -99,15 +102,15 @@ public class UploadAction extends BaseAction
 		this.logoContentType = logoContentType;
 	}
 
-	public String getSavePath()
-	{
-		return savePath;
-	}
-
-	public void setSavePath(String savePath)
-	{
-		this.savePath = savePath;
-	}
+//	public String getSavePath()
+//	{
+//		return savePath;
+//	}
+//
+//	public void setSavePath(String savePath)
+//	{
+//		this.savePath = savePath;
+//	}
 
 	public long getMaxSize()
 	{
@@ -145,9 +148,11 @@ public class UploadAction extends BaseAction
 				{
 					// 生成文件UUID名称
 					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存路径
+					String path = config.getConfigItem("merchant.logo");
 					// 保存文件
 					String saveName = ServletActionContext.getServletContext()
-							.getRealPath(getSavePath()) + File.separator + uuidName;
+							.getRealPath(path) + File.separator + uuidName;
 					ImageUtil.thumbnails(logo[i], new File(saveName), 70);
 					// 更新商家LogoUrl
 					Merchant merchant = merchantService.findById(id);
@@ -158,7 +163,7 @@ public class UploadAction extends BaseAction
 					{
 						oldLogoFile.delete();
 					}
-					merchant.setMerchantLogoUrl(getSavePath() + "/" + uuidName);
+					merchant.setMerchantLogoUrl(path + "/" + uuidName);
 					merchantService.update(merchant);
 				}
 			}
@@ -187,9 +192,11 @@ public class UploadAction extends BaseAction
 				{
 					// 生成文件UUID名称
 					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存路径
+					String path = config.getConfigItem("restaurant.logo");
 					// 保存文件
 					String saveName = ServletActionContext.getServletContext()
-							.getRealPath(getSavePath()) + File.separator + uuidName;
+							.getRealPath(path) + File.separator + uuidName;
 					ImageUtil.thumbnails(logo[i], new File(saveName), 70);
 					// 更新商家LogoUrl
 					Restaurant restaurant = restaurantService.findById(id);
@@ -200,7 +207,7 @@ public class UploadAction extends BaseAction
 					{
 						oldLogoFile.delete();
 					}
-					restaurant.setLogoUrl(getSavePath() + "/" + uuidName);
+					restaurant.setLogoUrl(path + "/" + uuidName);
 					restaurantService.update(restaurant);
 				}
 			}
@@ -229,9 +236,11 @@ public class UploadAction extends BaseAction
 				{
 					// 生成文件UUID名称
 					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存路径
+					String path = config.getConfigItem("menu.feature.icon");
 					// 保存文件
 					String saveName = ServletActionContext.getServletContext()
-							.getRealPath(getSavePath()) + File.separator + uuidName;
+							.getRealPath(path) + File.separator + uuidName;
 					ImageUtil.thumbnails(logo[i], new File(saveName), 20);
 					// 更新特性IconUrl
 					MenuFeature menuFeature = menuFeatureService.findById(id);
@@ -242,7 +251,7 @@ public class UploadAction extends BaseAction
 					{
 						oldLogoFile.delete();
 					}
-					menuFeature.setImageUrl(getSavePath() + "/" + uuidName);
+					menuFeature.setImageUrl(path + "/" + uuidName);
 					menuFeatureService.update(menuFeature);
 				}
 				json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
@@ -272,9 +281,11 @@ public class UploadAction extends BaseAction
 				{
 					// 生成文件UUID名称
 					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存路径
+					String path = config.getConfigItem("friendship.link.logo");
 					// 保存文件
 					String saveName = ServletActionContext.getServletContext()
-							.getRealPath(getSavePath()) + File.separator + uuidName;
+							.getRealPath(path) + File.separator + uuidName;
 					ImageUtil.thumbnails(logo[i], new File(saveName), 20);
 					// 更新特性IconUrl
 					FriendshipLink friendshipLink = friendshipLinkService.findById(id);
@@ -285,7 +296,7 @@ public class UploadAction extends BaseAction
 					{
 						oldLogoFile.delete();
 					}
-					friendshipLink.setLogoUrl(getSavePath() + "/" + uuidName);
+					friendshipLink.setLogoUrl(path + "/" + uuidName);
 					friendshipLinkService.update(friendshipLink);
 				}
 				json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);

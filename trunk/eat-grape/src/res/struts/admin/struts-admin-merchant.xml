@@ -15,7 +15,6 @@
     
 	<!-- 商家Logo上传 -->
 	<action class="com.eatle.web.action.backend.UploadAction" method="merchantLogoUpload" name="merchantLogoUpload">
-		<param name="savePath">/logo/logo_merchant</param>
 		<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
 		<param name="maxSize">1048576</param>
 		<!--
@@ -58,7 +57,6 @@
     
 	<!-- 餐厅Logo上传 -->
 	<action class="com.eatle.web.action.backend.UploadAction" method="restaurantLogoUpload" name="restaurantLogoUpload">
-		<param name="savePath">/logo/logo_restaurant</param>
 		<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
 		<param name="maxSize">1048576</param>
 	</action>
