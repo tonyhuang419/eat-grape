@@ -33,7 +33,7 @@
 		<plugin type="com.eatle.persistent.generator.GeneratorStrutsXmlPlugin" />-->
 		
 		<commentGenerator>
-			<property name="suppressAllComments" value="true" />
+			<property name="suppressAllComments" value="true" />								<!-- 不生成注释 -->
 		</commentGenerator>
 		
 		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userId}" password="${password}"/>
@@ -59,6 +59,6 @@
 			enableDeleteByExample="false" enableSelectByExample="true"
 			selectByExampleQueryId="false">
 		</table>
-
 	</context>
+	
 </generatorConfiguration>
