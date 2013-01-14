@@ -10,17 +10,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @explain 释义：
  * @version 日期：2012-9-21 下午04:04:50
  */
-public class BaseTest {
+public class BaseTest
+{
 
-	protected static  ApplicationContext ctx;
-	
+	protected static ApplicationContext ctx;
+
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		
-		 ctx = new ClassPathXmlApplicationContext(
-				new String[] {"beans-myibatis.xml"});
+	public static void setUpBeforeClass() throws Exception
+	{
+
+		ctx = new ClassPathXmlApplicationContext(
+				new String[] { "beans-myibatis.xml" });
 	}
-	
+
 	public static void main(String[] args)
 	{
 		try
@@ -32,6 +34,6 @@ public class BaseTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("ApplicationContext对象："+ctx);
+		System.out.println("ApplicationContext对象：" + ctx);
 	}
 }
