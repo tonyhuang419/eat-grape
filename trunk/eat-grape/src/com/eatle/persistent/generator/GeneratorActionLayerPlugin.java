@@ -134,7 +134,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter
 		addSetPageMethod(topLevelClass, introspectedTable);
 		addGetPageMethod(topLevelClass, introspectedTable);
 		addGetBaseRecordMethod(topLevelClass, introspectedTable, 
-				recordFullType, serviceInterfaceFullName);
+				recordFullType, recordLowerFullType);
 		addSetBaseRecordMethod(topLevelClass, introspectedTable,
 				recordFullType, recordLowerFullType);
 
