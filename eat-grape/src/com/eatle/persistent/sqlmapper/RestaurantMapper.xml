@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.eatle.persistent.mapper.RestaurantMapper" >
-  <resultMap id="BaseResultMap" type="Restaurant" >
+  <resultMap id="BaseResultMap" type="com.eatle.persistent.pojo.merchant.Restaurant" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="send_meals_speeding" property="sendMealsSpeeding" jdbcType="VARCHAR" />
@@ -15,6 +15,7 @@
     <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
     <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
     <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
+    <result column="shop_type" property="shopType" jdbcType="VARCHAR" />
     <result column="merchant_id" property="merchantId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -49,9 +50,9 @@
   <sql id="Base_Column_List" >
     id, name, send_meals_speeding, send_up_price, send_meals_description, send_meals_status, 
     business_hours, address, logo_url, contact_name, contact_phone, contact_email, contact_qq, 
-    merchant_id
+    shop_type, merchant_id
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="RestaurantCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.eatle.persistent.pojo.merchant.RestaurantCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -79,19 +80,21 @@
     delete from t_restaurant
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="Restaurant" >
+  <insert id="insert" parameterType="com.eatle.persistent.pojo.merchant.Restaurant" >
     insert into t_restaurant (id, name, send_meals_speeding, 
       send_up_price, send_meals_description, send_meals_status, 
       business_hours, address, logo_url, 
       contact_name, contact_phone, contact_email, 
-      contact_qq, merchant_id)
+      contact_qq, shop_type, merchant_id
+      )
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sendMealsSpeeding,jdbcType=VARCHAR}, 
       #{sendUpPrice,jdbcType=VARCHAR}, #{sendMealsDescription,jdbcType=VARCHAR}, #{sendMealsStatus,jdbcType=SMALLINT}, 
       #{businessHours,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, 
       #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{contactEmail,jdbcType=VARCHAR}, 
-      #{contactQq,jdbcType=VARCHAR}, #{merchantId,jdbcType=BIGINT})
+      #{contactQq,jdbcType=VARCHAR}, #{shopType,jdbcType=VARCHAR}, #{merchantId,jdbcType=BIGINT}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="Restaurant" >
+  <insert id="insertSelective" parameterType="com.eatle.persistent.pojo.merchant.Restaurant" >
     insert into t_restaurant
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -132,6 +135,9 @@
       </if>
       <if test="contactQq != null" >
         contact_qq,
+      </if>
+      <if test="shopType != null" >
+        shop_type,
       </if>
       <if test="merchantId != null" >
         merchant_id,
@@ -177,12 +183,15 @@
       <if test="contactQq != null" >
         #{contactQq,jdbcType=VARCHAR},
       </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=VARCHAR},
+      </if>
       <if test="merchantId != null" >
         #{merchantId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="Restaurant" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.eatle.persistent.pojo.merchant.Restaurant" >
     update t_restaurant
     <set >
       <if test="name != null" >
@@ -221,13 +230,16 @@
       <if test="contactQq != null" >
         contact_qq = #{contactQq,jdbcType=VARCHAR},
       </if>
+      <if test="shopType != null" >
+        shop_type = #{shopType,jdbcType=VARCHAR},
+      </if>
       <if test="merchantId != null" >
         merchant_id = #{merchantId,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="Restaurant" >
+  <update id="updateByPrimaryKey" parameterType="com.eatle.persistent.pojo.merchant.Restaurant" >
     update t_restaurant
     set name = #{name,jdbcType=VARCHAR},
       send_meals_speeding = #{sendMealsSpeeding,jdbcType=VARCHAR},
@@ -241,10 +253,11 @@
       contact_phone = #{contactPhone,jdbcType=VARCHAR},
       contact_email = #{contactEmail,jdbcType=VARCHAR},
       contact_qq = #{contactQq,jdbcType=VARCHAR},
+      shop_type = #{shopType,jdbcType=VARCHAR},
       merchant_id = #{merchantId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCountByCriteria" resultType="long" parameterType="RestaurantCriteria" >
+  <select id="selectCountByCriteria" resultType="long" parameterType="com.eatle.persistent.pojo.merchant.RestaurantCriteria" >
     select count(1) 
     from t_restaurant
     <if test="_parameter != null" >
@@ -292,6 +305,9 @@
       </if>
       <if test="contactQq != null" >
         and contact_qq = #{contactQq,jdbcType=VARCHAR}
+      </if>
+      <if test="shopType != null" >
+        and shop_type = #{shopType,jdbcType=VARCHAR}
       </if>
       <if test="merchantId != null" >
         and merchant_id = #{merchantId,jdbcType=BIGINT}

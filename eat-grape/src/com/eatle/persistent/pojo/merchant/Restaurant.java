@@ -33,13 +33,17 @@ public class Restaurant
 
 	private Short sendMealsStatus;
 
+	private String shopType;
+
 	private Long merchantId;
-	
-	private String merchantName;			// 临时属性（所属商家名）
-	
-	private List<School> schools;			// 临时属性（学校集合）
-	
-	private List<Community> community;		// 临时属性（社区/楼宇集合）
+
+	private String shopTypeStr; 		// 临时属性（餐厅主营类型名称）
+
+	private String merchantName; 		// 临时属性（所属商家名）
+
+	private List<School> schools; 		// 临时属性（学校集合）
+
+	private List<Community> community; 	// 临时属性（社区/楼宇集合）
 
 	public Long getId()
 	{
@@ -59,76 +63,6 @@ public class Restaurant
 	public void setName(String name)
 	{
 		this.name = name;
-	}
-
-	public String getSendMealsSpeeding()
-	{
-		return sendMealsSpeeding;
-	}
-
-	public void setSendMealsSpeeding(String sendMealsSpeeding)
-	{
-		this.sendMealsSpeeding = sendMealsSpeeding;
-	}
-
-	public String getSendUpPrice()
-	{
-		return sendUpPrice;
-	}
-
-	public void setSendUpPrice(String sendUpPrice)
-	{
-		this.sendUpPrice = sendUpPrice;
-	}
-
-	public String getSendMealsDescription()
-	{
-		return sendMealsDescription;
-	}
-
-	public void setSendMealsDescription(String sendMealsDescription)
-	{
-		this.sendMealsDescription = sendMealsDescription;
-	}
-
-	public Short getSendMealsStatus()
-	{
-		return sendMealsStatus;
-	}
-
-	public void setSendMealsStatus(Short sendMealsStatus)
-	{
-		this.sendMealsStatus = sendMealsStatus;
-	}
-
-	public String getBusinessHours()
-	{
-		return businessHours;
-	}
-
-	public void setBusinessHours(String businessHours)
-	{
-		this.businessHours = businessHours;
-	}
-
-	public String getAddress()
-	{
-		return address;
-	}
-
-	public void setAddress(String address)
-	{
-		this.address = address;
-	}
-
-	public String getLogoUrl()
-	{
-		return logoUrl;
-	}
-
-	public void setLogoUrl(String logoUrl)
-	{
-		this.logoUrl = logoUrl;
 	}
 
 	public String getContactName()
@@ -171,6 +105,86 @@ public class Restaurant
 		this.contactQq = contactQq;
 	}
 
+	public String getBusinessHours()
+	{
+		return businessHours;
+	}
+
+	public void setBusinessHours(String businessHours)
+	{
+		this.businessHours = businessHours;
+	}
+
+	public String getSendUpPrice()
+	{
+		return sendUpPrice;
+	}
+
+	public void setSendUpPrice(String sendUpPrice)
+	{
+		this.sendUpPrice = sendUpPrice;
+	}
+
+	public String getAddress()
+	{
+		return address;
+	}
+
+	public void setAddress(String address)
+	{
+		this.address = address;
+	}
+
+	public String getLogoUrl()
+	{
+		return logoUrl;
+	}
+
+	public void setLogoUrl(String logoUrl)
+	{
+		this.logoUrl = logoUrl;
+	}
+
+	public String getSendMealsDescription()
+	{
+		return sendMealsDescription;
+	}
+
+	public void setSendMealsDescription(String sendMealsDescription)
+	{
+		this.sendMealsDescription = sendMealsDescription;
+	}
+
+	public String getSendMealsSpeeding()
+	{
+		return sendMealsSpeeding;
+	}
+
+	public void setSendMealsSpeeding(String sendMealsSpeeding)
+	{
+		this.sendMealsSpeeding = sendMealsSpeeding;
+	}
+
+	public Short getSendMealsStatus()
+	{
+		return sendMealsStatus;
+	}
+
+	public void setSendMealsStatus(Short sendMealsStatus)
+	{
+		this.sendMealsStatus = sendMealsStatus;
+	}
+
+	public String getShopType()
+	{
+		return shopType;
+	}
+
+	public void setShopType(String shopType)
+	{
+		this.shopType = shopType;
+	}
+
 	public Long getMerchantId()
 	{
 		return merchantId;
@@ -179,6 +193,16 @@ public class Restaurant
 	public void setMerchantId(Long merchantId)
 	{
 		this.merchantId = merchantId;
+	}
+
+	public String getShopTypeStr()
+	{
+		return shopTypeStr;
+	}
+
+	public void setShopTypeStr(String shopTypeStr)
+	{
+		this.shopTypeStr = shopTypeStr;
 	}
 
 	public String getMerchantName()

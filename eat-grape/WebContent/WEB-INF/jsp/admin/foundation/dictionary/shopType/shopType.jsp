@@ -50,6 +50,7 @@
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="<s:property value="#item.id" />"  align="center">
 					<td>${item.typeName}</td>
+					<td>${item.typeIdentify}</td>
 					<td>
 						<a class="delete" href="${ctx}/admin/foundation/dictionary/shopType/delete.htm?shopType.id=${item.id}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？">
 							<span>删  除</span>

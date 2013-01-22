@@ -9,6 +9,10 @@
 				<label>类型名称：</label>
 				<input name="shopType.typeName" class="required" type="text" size="30"  alt="请输入类型名称"/>
 			</p>
+			<p>
+				<label>类型标识：</label>
+				<input name="shopType.typeIdentify" class="required" type="text" size="30"  alt="请输入类型标识"/>
+			</p>
 		</div>
 		<div class="formBar">
 			<ul>

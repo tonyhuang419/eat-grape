@@ -19,7 +19,7 @@ public class Constants
 	public static final String COLOR_LEVEL_4 = config.getConfigItem("color.level.4");
 	
 	/**
-	 * @Title: 通用类
+	 * @Title: 基础常量
 	 * @Description:
 	 * @Author:asus
 	 * @Since:2012-6-19
@@ -27,7 +27,10 @@ public class Constants
 	 */
 	public static class Base
 	{
-
+		public static final int SUCCESS = 0;		// 成功
+		public static final int FAIL = 1;			// 失败
+		public static final int ERROR = 2;			// 错误
+		public static final int REPEAT = 3;			// 重复
 	}
 
 	/**

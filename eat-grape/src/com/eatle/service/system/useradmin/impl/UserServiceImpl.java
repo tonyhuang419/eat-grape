@@ -28,16 +28,25 @@ public class UserServiceImpl implements IUserService
 	private RoleMapper roleMapper;
 
 	@Override
-	public int add(User entity)
+	public int add(User user)
 	{
-		int result = 0;
+		int result = Constants.Base.FAIL;
+		
 		UserCriteria userCriteria = new UserCriteria();
 		Criteria criteria = userCriteria.createCriteria();
-		criteria.andUserNameEqualTo(entity.getUserName());
+		criteria.andUserNameEqualTo(user.getUserName());
 		List<User> users = userMapper.selectByCriteria(userCriteria);
+
 		if (users.size() < 1)
 		{
-			result = userMapper.insert(entity);
+			if(userMapper.insert(user) > 0)
+			{
+				result = Constants.Base.SUCCESS;
+			}
+		}
+		else
+		{
+			result = Constants.Base.REPEAT;
 		}
 		return result;
 	}
@@ -51,20 +60,31 @@ public class UserServiceImpl implements IUserService
 	@Override
 	public int update(User user, User oldUser)
 	{
-		int result = 0;
+		int result = Constants.Base.FAIL;
+		
 		UserCriteria userCriteria = new UserCriteria();
 		Criteria criteria = userCriteria.createCriteria();
 		criteria.andUserNameEqualTo(user.getUserName());
 		List<User> users = userMapper.selectByCriteria(userCriteria);
 		if (users.size() < 1)
 		{
-			result = userMapper.updateByPrimaryKeySelective(user);
+			if(userMapper.updateByPrimaryKeySelective(user) > 0)
+			{
+				result = Constants.Base.SUCCESS;
+			}
 		}
 		else
 		{
-			if (users.get(0).getUserName().equals(oldUser.getUserName()))
+			if(users.get(0).getUserName().equals(oldUser.getUserName()))
 			{
-				result = userMapper.updateByPrimaryKeySelective(user);
+				if(userMapper.updateByPrimaryKeySelective(user) > 0)
+				{
+					result = Constants.Base.SUCCESS;
+				}
+			}
+			else
+			{
+				result = Constants.Base.REPEAT;
 			}
 		}
 		return result;

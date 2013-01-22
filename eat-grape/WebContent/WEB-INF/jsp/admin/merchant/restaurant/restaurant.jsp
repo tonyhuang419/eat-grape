@@ -54,6 +54,7 @@
 		<thead>
 			<tr align="center">
 				<th width="150">餐厅名称</th>
+				<th width="100">主营类型</th>
 				<th width="150">联系人</th>
 				<th width="180">联系电话</th>
 				<th width="120">联系邮箱</th>
@@ -65,13 +66,14 @@
 			<s:iterator value="page.items" var="item">
 				<tr target="sid_user" rel="${item.id}" align="center">
 					<td>${item.name}</td>
+					<td>${item.shopTypeStr}</td>
 					<td>${item.contactName}</td>
 					<td>${item.contactPhone}</td>
 					<td>${item.contactEmail}</td>
 					<td>
 						<a title="${item.name}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/merchant/restaurant/showDetail.htm?restaurant.id=${item.id}&action=zdylbzs"
-							width="700" height="400">查  看</a>
+							width="700" height="440">查  看</a>
 					</td>
 					<td>
 						<a title="${item.name}-Logo设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
