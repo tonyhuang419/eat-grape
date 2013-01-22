@@ -27,7 +27,7 @@ public interface IShopTypeService
 	 * 
 	 * @param entity
 	 */
-	int update(ShopType entity);
+	public int update(ShopType shopType, ShopType oldShopType);
 
 	/**
 	 * @Description:
@@ -56,4 +56,10 @@ public interface IShopTypeService
 	 * 
 	 */
 	List<ShopType> findByCriteria(ShopTypeCriteria criteria);
+	
+	/**
+	 * @Description: 根据主营类型标识查询
+	 * 
+	 */
+	ShopType findByIdentify(String identify);
 }

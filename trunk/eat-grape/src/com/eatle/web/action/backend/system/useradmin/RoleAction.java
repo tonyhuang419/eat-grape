@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.eatle.common.Constants;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivTree;
 import com.eatle.persistent.pojo.system.useradmin.Role;
@@ -91,7 +92,8 @@ public class RoleAction extends BaseAction
 		}
 		else
 		{
-			if(roleService.add(role) < 1)
+			int result = roleService.add(role);
+			if(result == Constants.Base.REPEAT)
 			{
 				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "角色已存在，请重新输入！");
@@ -142,12 +144,16 @@ public class RoleAction extends BaseAction
 		}
 		else
 		{
-			if(roleService.update(role, (Role) session.get("oldRole")) < 1)
+			int result = roleService.update(role, (Role) session.get("oldRole"));
+			if(result == Constants.Base.REPEAT)
 			{
 				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "角色已存在，请重新输入！");
 			}
-			session.remove("oldRole");
+			else if(result == Constants.Base.SUCCESS)
+			{
+				session.remove("oldRole");
+			}
 		}
 		super.writeMap(json);
 	}

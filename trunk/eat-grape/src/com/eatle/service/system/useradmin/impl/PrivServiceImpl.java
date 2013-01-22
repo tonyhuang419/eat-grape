@@ -8,8 +8,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.PrivMapper;
 //import com.eatle.persistent.pojo.system.basedata.Menu;
+import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
+import com.eatle.persistent.pojo.foundation.dictionary.ShopTypeCriteria;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivTree;
@@ -91,14 +94,22 @@ public class PrivServiceImpl implements IPrivService
 	@Override
 	public int add(Priv priv)
 	{
-		int result = 0;
+		int result = Constants.Base.FAIL;
+		
 		PrivCriteria privCriteria = new PrivCriteria();
 		Criteria criteria = privCriteria.createCriteria();
 		criteria.andActionEqualTo(priv.getAction());
 		List<Priv> privs = privMapper.selectByCriteria(privCriteria);
 		if (privs.size() < 1)
 		{
-			result = privMapper.insert(priv);
+			if(privMapper.insert(priv) > 0)
+			{
+				result = Constants.Base.SUCCESS;
+			}
+		}
+		else
+		{
+			result = Constants.Base.REPEAT;
 		}
 		return result;
 	}
@@ -106,20 +117,31 @@ public class PrivServiceImpl implements IPrivService
 	@Override
 	public int update(Priv priv, Priv oldPiv)
 	{
-		int result = 0;
+		int result = Constants.Base.FAIL;
+		
 		PrivCriteria privCriteria = new PrivCriteria();
 		Criteria criteria = privCriteria.createCriteria();
 		criteria.andActionEqualTo(priv.getAction());
 		List<Priv> privs = privMapper.selectByCriteria(privCriteria);
 		if (privs.size() < 1)
 		{
-			result = privMapper.updateByPrimaryKeySelective(priv);
+			if(privMapper.updateByPrimaryKeySelective(priv) > 0)
+			{
+				result = Constants.Base.SUCCESS;
+			}
 		}
 		else
 		{
 			if(privs.get(0).getAction().equals(oldPiv.getAction()))
 			{
-				result = privMapper.updateByPrimaryKeySelective(priv);
+				if(privMapper.updateByPrimaryKeySelective(priv) > 0)
+				{
+					result = Constants.Base.SUCCESS;
+				}
+			}
+			else
+			{
+				result = Constants.Base.REPEAT;
 			}
 		}
 		return result;

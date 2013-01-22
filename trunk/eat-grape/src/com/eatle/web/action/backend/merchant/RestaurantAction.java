@@ -1,6 +1,8 @@
 package com.eatle.web.action.backend.merchant;
 
+import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
 import com.eatle.persistent.pojo.merchant.Restaurant;
+import com.eatle.service.foundation.dictionary.IShopTypeService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.DwzAjaxJsonUtil;
@@ -8,6 +10,7 @@ import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -20,10 +23,15 @@ public class RestaurantAction extends BaseAction
 	
 	@Resource
 	private IMerchantService merchantService;
+	
+	@Resource
+	private IShopTypeService shopTypeService;
 
 	private Pagination page;
 
 	private Restaurant restaurant;
+	
+	private List<ShopType> shopTypes;
 
 	public void setPage(Pagination page)
 	{
@@ -45,6 +53,16 @@ public class RestaurantAction extends BaseAction
 		this.restaurant = restaurant;
 	}
 
+	public List<ShopType> getShopTypes()
+	{
+		return shopTypes;
+	}
+
+	public void setShopTypes(List<ShopType> shopTypes)
+	{
+		this.shopTypes = shopTypes;
+	}
+
 	public String showIndex()
 	{
 		Map<String, Object> params = super.getRequestParameters(request);
@@ -64,6 +82,7 @@ public class RestaurantAction extends BaseAction
 
 	public String showAdd()
 	{
+		shopTypes = shopTypeService.findAll();
 		return "showAdd";
 	}
 
@@ -103,6 +122,7 @@ public class RestaurantAction extends BaseAction
 	public String showUpdate()
 	{
 		restaurant = restaurantService.findById(restaurant.getId());
+		shopTypes = shopTypeService.findAll();
 		return "showUpdate";
 	}
 
@@ -128,9 +148,6 @@ public class RestaurantAction extends BaseAction
 	public String showDetail()
 	{
 		restaurant = restaurantService.findById(restaurant.getId());
-		// 设置所属商家
-		restaurant.setMerchantName(merchantService.
-				findById(restaurant.getMerchantId()).getMerchantName());
 		
 		return "showDetail";
 	}

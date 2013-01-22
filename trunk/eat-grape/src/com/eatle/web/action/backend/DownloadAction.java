@@ -144,9 +144,9 @@ public class DownloadAction extends BaseAction
 		for(int i = 0, len = objsMap.size(); i < len; i++)
 		{
 			titles[i] = iterator.next().getKey() + "基本信息";
-			headNames.add(new String[] { "餐厅名称", "联系人", "联系电话", "联系邮箱", 
+			headNames.add(new String[] { "餐厅名称", "主营类型", "联系人", "联系电话", "联系邮箱", 
 					"联系QQ", "营业时间", "起送价格", "餐厅地址", "送餐说明", "餐厅Logo"});
-			fieldNames.add(new String[]{"name", "contactName", "contactPhone",
+			fieldNames.add(new String[]{"name", "shopTypeStr", "contactName", "contactPhone",
 					"contactEmail", "contactQq", "businessHours", "sendUpPrice",
 					"address", "sendMealsDescription", "logoUrl"});
 		}

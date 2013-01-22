@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.PrivMapper;
 import com.eatle.persistent.mapper.RoleMapper;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
@@ -80,14 +81,22 @@ public class RoleServiceImpl implements IRoleService
 	@Override
 	public int add(Role role)
 	{
-		int result = 0;
+		int result = Constants.Base.FAIL;
+		
 		RoleCriteria roleCriteria = new RoleCriteria();
 		Criteria criteria = roleCriteria.createCriteria();
 		criteria.andRoleNameEqualTo(role.getRoleName());
 		List<Role> roles = roleMapper.selectByCriteria(roleCriteria);
 		if (roles.size() < 1)
 		{
-			result = roleMapper.insert(role);
+			if(roleMapper.insert(role) > 0)
+			{
+				result = Constants.Base.SUCCESS;
+			}
+		}
+		else
+		{
+			result = Constants.Base.REPEAT;
 		}
 		return result;
 	}
@@ -95,20 +104,31 @@ public class RoleServiceImpl implements IRoleService
 	@Override
 	public int update(Role role, Role oldRole)
 	{
-		int result = 0;
+		int result = Constants.Base.FAIL;
+		
 		RoleCriteria roleCriteria = new RoleCriteria();
 		Criteria criteria = roleCriteria.createCriteria();
 		criteria.andRoleNameEqualTo(role.getRoleName());
 		List<Role> roles = roleMapper.selectByCriteria(roleCriteria);
 		if (roles.size() < 1)
 		{
-			result = roleMapper.updateByPrimaryKeySelective(role);
+			if(roleMapper.updateByPrimaryKeySelective(role) > 0)
+			{
+				result = Constants.Base.SUCCESS;
+			}
 		}
 		else
 		{
 			if(roles.get(0).getRoleName().equals(oldRole.getRoleName()))
 			{
-				result = roleMapper.updateByPrimaryKeySelective(role);
+				if(roleMapper.updateByPrimaryKeySelective(role) > 0)
+				{
+					result = Constants.Base.SUCCESS;
+				}
+			}
+			else
+			{
+				result = Constants.Base.REPEAT;
 			}
 		}
 		return result;

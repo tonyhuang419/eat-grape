@@ -10,6 +10,14 @@
 				<input type="text"  name="restaurant.name" size="30" class="required" value="${restaurant.name}" />
 			</p>
 			<p>
+				<label>主营类型：</label>
+				<select name="restaurant.shopType" class="required combox">
+					<s:iterator value="#request.shopTypes" id="s">
+						<option value="${s.typeIdentify}" <s:if test="#s.typeIdentify == restaurant.shopType">selected</s:if>>${s.typeName}</option>
+					</s:iterator>
+				</select>
+			</p>
+			<p>
 				<label>联&nbsp;&nbsp;系&nbsp;&nbsp;人：</label>
 				<input  type="text" name="restaurant.contactName" size="30" class="required" value="${restaurant.contactName}" />
 			</p>
@@ -29,10 +37,10 @@
 				<label>起送价格：</label>
 				<input type="text" name="restaurant.sendUpPrice" size="30" class="digits" value="${restaurant.sendUpPrice}" />
 			</p>
-			<dl class="nowrap">
-				<dt>餐厅地址：</dt>
-				<dd><input type="text" name="restaurant.address" size="106" class="textInput" value="${restaurant.address}" /></dd>
-			</dl>
+			<p>
+				<label>餐厅地址：</label>
+				<input type="text" name="restaurant.address" size="30" class="textInput" value="${restaurant.address}" />
+			</p>
 			<dl class="nowrap">
 				<dt>送餐说明：</dt>
 				<dd><textarea cols="91" rows="5" name="restaurant.sendMealsDescription">${restaurant.sendMealsDescription}</textarea></dd>

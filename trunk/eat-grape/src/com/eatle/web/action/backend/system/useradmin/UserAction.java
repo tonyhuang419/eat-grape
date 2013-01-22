@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.eatle.common.Constants;
 import com.eatle.persistent.pojo.system.useradmin.Role;
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.system.useradmin.IRoleService;
@@ -82,7 +83,8 @@ public class UserAction extends BaseAction
 		}
 		else
 		{
-			if(userService.add(user) < 1)
+			int result = userService.add(user);
+			if(result == Constants.Base.REPEAT)
 			{
 				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "用户已存在，请重新输入！");
@@ -115,7 +117,7 @@ public class UserAction extends BaseAction
 
 	public String showUpdate()
 	{
-		// 所有用户
+		// 修改的用户
 		user = userService.findById(user.getId());
 		// 所有角色
 		allRole = roleService.findAll();
@@ -136,12 +138,16 @@ public class UserAction extends BaseAction
 		}
 		else
 		{
-			if(userService.update(user, (User) session.get("oldUser")) < 1)
+			int result = userService.update(user, (User) session.get("oldUser"));
+			if(result == Constants.Base.REPEAT)
 			{
 				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "用户已存在，请重新输入！");
 			}
-			session.remove("oldUser");
+			else if(result == Constants.Base.SUCCESS)
+			{
+				session.remove("oldUser");
+			}
 		}
 		super.writeMap(json);
 	}

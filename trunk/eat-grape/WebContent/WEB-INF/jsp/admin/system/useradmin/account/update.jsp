@@ -15,7 +15,7 @@
 			</p>
 			<p>
 				<label>邮箱：</label>
-				<input type="text" name="user.email" size="35" value="${user.email}" alt="请输入邮箱">
+				<input type="text" class="email" name="user.email" size="35" value="${user.email}" alt="请输入邮箱">
 			</p>
 			<p>
 				<label>用户类型：</label>

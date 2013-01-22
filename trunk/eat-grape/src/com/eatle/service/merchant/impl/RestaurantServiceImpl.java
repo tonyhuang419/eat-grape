@@ -1,14 +1,17 @@
 package com.eatle.service.merchant.impl;
 
 import com.eatle.persistent.mapper.RestaurantMapper;
+import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
 import com.eatle.persistent.pojo.merchant.Merchant;
 import com.eatle.persistent.pojo.merchant.Restaurant;
 import com.eatle.persistent.pojo.merchant.RestaurantCriteria.Criteria;
 import com.eatle.persistent.pojo.merchant.RestaurantCriteria;
+import com.eatle.service.foundation.dictionary.IShopTypeService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.Pagination;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,9 @@ public class RestaurantServiceImpl implements IRestaurantService
 	
 	@Resource
 	private IMerchantService merchantService;
+	
+	@Resource
+	private IShopTypeService shopTypeService;
 
 	@Override
 	public int add(Restaurant entity)
@@ -76,6 +82,14 @@ public class RestaurantServiceImpl implements IRestaurantService
 		restaurantCriteria.setPageSize(pageSize);
 		restaurantCriteria.setStartIndex((currentPage - 1) * pageSize);
 		List<Restaurant> items = restaurantMapper.selectByCriteria(restaurantCriteria);
+		
+		// 设置餐厅主营类型
+		Map<String, String> shopTypes = getAllShopType();
+		for(Restaurant r : items)
+		{
+			r.setShopTypeStr(shopTypes.get(r.getShopType()));
+		}
+		
 		int totalCount = (int) restaurantMapper.selectCountByCriteria(restaurantCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
@@ -83,19 +97,40 @@ public class RestaurantServiceImpl implements IRestaurantService
 	@Override
 	public Restaurant findById(long id)
 	{
-		return restaurantMapper.selectByPrimaryKey(id);
+		Restaurant restaurant = restaurantMapper.selectByPrimaryKey(id);
+		// 设置主营类型
+		restaurant.setShopTypeStr(shopTypeService.
+				findByIdentify(restaurant.getShopType()).getTypeName());
+		// 设置所属商家
+		restaurant.setMerchantName(merchantService.
+				findById(restaurant.getMerchantId()).getMerchantName());
+		return restaurant;
 	}
 
 	@Override
 	public List<Restaurant> findAll()
 	{
-		return restaurantMapper.selectByCriteria(null);
+		List<Restaurant> items = restaurantMapper.selectByCriteria(null);
+		// 设置餐厅主营类型
+		Map<String, String> shopTypes = getAllShopType();
+		for(Restaurant r : items)
+		{
+			r.setShopTypeStr(shopTypes.get(r.getShopType()));
+		}
+		return items;
 	}
 
 	@Override
 	public List<Restaurant> findByCriteria(RestaurantCriteria criteria)
 	{
-		return restaurantMapper.selectByCriteria(criteria);
+		List<Restaurant> items = restaurantMapper.selectByCriteria(criteria); 
+		// 设置餐厅主营类型
+		Map<String, String> shopTypes = getAllShopType();
+		for(Restaurant r : items)
+		{
+			r.setShopTypeStr(shopTypes.get(r.getShopType()));
+		}
+		return items;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -110,6 +145,20 @@ public class RestaurantServiceImpl implements IRestaurantService
 			Criteria criteria = rc.createCriteria();
 			criteria.andMerchantIdEqualTo(merchants.get(i).getId());
 			map.put((i + 1) + "." + merchants.get(i).getMerchantName(), findByCriteria(rc));
+		}
+		return map;
+	}
+	
+	/**
+	 * @Description: 获取所有餐厅主营类型及标识的映射集合
+	 */
+	public Map<String, String> getAllShopType()
+	{
+		Map<String, String> map = new HashMap<String, String>();
+		List<ShopType> shopTypes = shopTypeService.findAll();
+		for(ShopType st : shopTypes)
+		{
+			map.put(st.getTypeIdentify(), st.getTypeName());
 		}
 		return map;
 	}

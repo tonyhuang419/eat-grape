@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.eatle.common.Constants;
+import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria.Criteria;
@@ -78,7 +80,8 @@ public class PrivAction extends BaseAction
 		}
 		else
 		{
-			if(privService.add(priv) < 1)
+			int result = privService.add(priv);
+			if(result == Constants.Base.REPEAT)
 			{
 				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "动作指令已存在，请重新输入！");
@@ -131,12 +134,16 @@ public class PrivAction extends BaseAction
 		}
 		else
 		{
-			if(privService.update(priv, (Priv) session.get("oldPriv")) < 1)
+			int result = privService.update(priv, (Priv) session.get("oldPriv"));
+			if(result == Constants.Base.REPEAT)
 			{
 				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "动作指令已存在，请重新输入！");
 			}
-			session.remove("oldPriv");
+			else if(result == Constants.Base.SUCCESS)
+			{
+				session.remove("oldPriv");
+			}
 		}
 		super.writeMap(json);
 	}
