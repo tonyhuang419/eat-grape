@@ -8,6 +8,8 @@
     <result column="convert_time" property="convertTime" jdbcType="TIMESTAMP" />
     <result column="cost_score" property="costScore" jdbcType="INTEGER" />
     <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="goodsName" property="goodsName" jdbcType="BIGINT" />
+    <result column="customerName" property="customerName" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -179,5 +181,42 @@
         and customer_id = #{customerId,jdbcType=BIGINT}
       </if>
     </where>
+  </select>
+  
+  
+  
+  <sql id="selectConvertRecordsCondition">
+  	from 
+  		t_convert_records a, 
+  		t_convert_goods b, 
+  		t_customer c 
+  	where 
+  		a.goods_id = b.id 
+  	and 
+  		a.customer_id = c.id 
+    <if test="goodsName != null" >
+  		and b.name like '%${goodsName}%' 
+  	</if>
+    <if test="customerName != null" >
+  		and c.login_email like '%${customerName}%'
+  	</if>
+    <if test="startTime != null and endTime != null" > 
+  		and a.convert_time between '${startTime}' and '${endTime}'
+  	</if>
+    <if test="startIndex != null and pageSize != null" > 
+	  	limit 
+	  		#{startIndex,jdbcType=SMALLINT}, #{pageSize,jdbcType=SMALLINT}
+  	</if>
+  </sql>
+  
+  <select id="selectConvertRecordsByCondition" parameterType="Map" resultMap="BaseResultMap">
+  	select a.*, b.name goodsName, c.login_email customerName
+  	<include refid="selectConvertRecordsCondition"/>
+  </select>
+  
+  <select id="selectConvertRecordsCountByCondition" parameterType="Map" resultType="long">
+  	select 
+  		count(1) 
+  	<include refid="selectConvertRecordsCondition"/>
   </select>
 </mapper>

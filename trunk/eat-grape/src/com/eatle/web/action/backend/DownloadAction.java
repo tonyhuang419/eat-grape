@@ -16,6 +16,7 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import com.eatle.service.foundation.business.IFeedbackService;
 import com.eatle.service.foundation.business.IJoinInformationService;
 import com.eatle.service.foundation.business.IRecommendMerchantService;
+import com.eatle.service.foundation.scoreshop.IConvertRecordsService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.service.system.frontdata.IFriendshipLinkService;
@@ -61,6 +62,9 @@ public class DownloadAction extends BaseAction
 
 	@Resource
 	private IFriendshipLinkService friendshipLinkService;
+	
+	@Resource
+	private IConvertRecordsService convertRecordsService;
 
 	// 下载文件名
 	private String fileName;
@@ -321,7 +325,7 @@ public class DownloadAction extends BaseAction
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		List<String[]> headNames = new ArrayList<String[]>();
-		headNames.add(new String[] { "连接名称", "链接地址", "链接Logo", "排序编号", "展示首页" });
+		headNames.add(new String[] { "链接名称", "链接地址", "链接Logo", "排序编号", "展示首页" });
 		List<String[]> fieldNames = new ArrayList<String[]>();
 		fieldNames.add(new String[] { "linkName", "linkUrl", "logoUrl", "sortOrder", "isDisplayStr" }); 
 
@@ -329,6 +333,34 @@ public class DownloadAction extends BaseAction
 		setInfo.setObjsMap(friendshipLinkService.getExportData());
 		setInfo.setFieldNames(fieldNames);
 		setInfo.setTitles(new String[] { "馋八戒友情链接信息" });
+		setInfo.setHeadNames(headNames);
+		setInfo.setOut(baos);
+		
+		// 将需要导出的数据输出到baos
+		ExcelUtil.export2Excel(setInfo);
+		
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	/**
+	 * @throws IllegalAccessException 
+	 * @throws IOException 
+	 * @throws IllegalArgumentException 
+	 * @Description: 积分兑换商品记录数据导出Excel下载
+	 */
+	public InputStream getConvertRecordsExcel() throws 
+		IllegalArgumentException, IOException, IllegalAccessException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		List<String[]> headNames = new ArrayList<String[]>();
+		headNames.add(new String[] { "兑换商品", "兑换顾客", "兑换数量", "消费积分", "兑换时间" });
+		List<String[]> fieldNames = new ArrayList<String[]>();
+		fieldNames.add(new String[] { "goodsName", "customerName", "convertCount", "costScore", "convertTimeStr" }); 
+
+		ExportSetInfo setInfo = new ExportSetInfo();
+		setInfo.setObjsMap(convertRecordsService.getExportData());
+		setInfo.setFieldNames(fieldNames);
+		setInfo.setTitles(new String[] { "馋八戒积分商城兑换记录信息" });
 		setInfo.setHeadNames(headNames);
 		setInfo.setOut(baos);
 		

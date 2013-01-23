@@ -1,34 +1,50 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		var oldTotal = parseInt($("#total").val());
+		var oldSurplus = parseInt($("#surplus").val());
+		
+		$("#total").on("keyup", function() {
+			var newSurplus = oldSurplus + ($(this).val() - oldTotal);
+			$("#surplus").val(newSurplus <= 0 ? 0 : newSurplus);
+		});
+		
+		$("#surplus").on("keyup", function() {
+			var surplus = parseInt($("#surplus").val());
+			var total = parseInt($("#total").val());
+			if(surplus > total) {
+				alertWarn("剩余数量不能超过总数量！");
+			}
+		});
+	});
+</script>
+
 <div class="pageContent">
-	<form method="post" action="${ctx}/admin/foundation/place/community/update.htm?action=zxdyxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<form method="post" action="${ctx}/admin/foundation/scoreshop/convertGoods/update.htm?action=zxdyxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
-			<input name="community.id" type="hidden" value="${community.id}" />
+			<input name="convertGoods.id" type="hidden" value="${convertGoods.id}" />
 			<p>
-				<label>社区名称：</label>
-				<input name="community.name" class="required" type="text" size="30"  value="${community.name}" alt="请输入社区名称"/>
+				<label>商品名称：</label>
+				<input name="convertGoods.name" class="required" type="text" size="30" value="${convertGoods.name}"/>
 			</p>
 			<p>
-				<label>名称拼音：</label>
-				<input name="community.pinyinName"  type="text" size="30"   value="${community.pinyinName}" alt="请输入名称拼音" />
+				<label>供货数量：</label>
+				<input id="total" name="convertGoods.total" class="required digits" type="text" size="30" value="${convertGoods.total}" maxlength="6"/>
 			</p>
-				<label>所属区域：</label>
-				<select class="combox" id="w_combox_province" ref="w_combox_city" refUrl="${ctx}/admin/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">
-					<option value="-1">省份</option>
-					<s:iterator value="#request.topLevelDistrict" id="d">
-						<option value="${d.id}">${d.name}</option>
-					</s:iterator>
-				</select>
-				<select class="combox" id="w_combox_city" ref="w_combox_area" refUrl="${ctx}/admin/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">
-					<option value="" >城市</option>
-				</select>
-				<select class="combox" id="w_combox_area" ref="w_combox_district" refUrl="${ctx}/admin/foundation/place/district/getDistrictsByParentId.htm?district.parentId={value}">
-					<option value="">区县</option>
-				</select>
-				<select class="combox" id="w_combox_district" name="community.districtId">
-					<option value="">区域</option>
-				</select>
+			<p>
+				<label>剩余数量：</label>
+				<input id="surplus" name="convertGoods.surplus" class="required digits" type="text" size="30" value="${convertGoods.surplus}" maxlength="6"/>
+			</p>
+			<p>
+				<label>价格（积分）：</label>
+				<input name="convertGoods.score" class="required digits" type="text" size="30" value="${convertGoods.score}" maxlength="8"/>
+			</p>
+			<p>
+				<label>商品描述：</label>
+				<input name="convertGoods.description" type="text" size="30" value="${convertGoods.description}"/>
+			</p>
 		</div>
 		<div class="formBar">
 			<ul>

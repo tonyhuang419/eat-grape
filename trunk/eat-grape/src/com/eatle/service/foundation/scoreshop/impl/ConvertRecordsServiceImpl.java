@@ -1,11 +1,15 @@
 package com.eatle.service.foundation.scoreshop.impl;
 
 import com.eatle.persistent.mapper.ConvertRecordsMapper;
+import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecords;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecordsCriteria.Criteria;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecordsCriteria;
 import com.eatle.service.foundation.scoreshop.IConvertRecordsService;
 import com.eatle.utils.Pagination;
+
+import java.text.SimpleDateFormat;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -39,22 +43,16 @@ public class ConvertRecordsServiceImpl implements IConvertRecordsService
 	public Pagination findPagination(Map<String, Object> queryMap,
 			int currentPage, int pageSize)
 	{
-		ConvertRecordsCriteria convertRecordsCriteria = new ConvertRecordsCriteria();
-		Criteria criteria = convertRecordsCriteria.createCriteria();
-		// 设置搜索条件参数
-		// if(queryMap != null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
-		// 设置分页参数
-		convertRecordsCriteria.setPageSize(pageSize);
-		convertRecordsCriteria.setStartIndex((currentPage - 1) * pageSize);
-		List<ConvertRecords> items = convertRecordsMapper.selectByCriteria(convertRecordsCriteria);
-		int totalCount = (int) convertRecordsMapper.selectCountByCriteria(convertRecordsCriteria);
+		queryMap.put("startIndex", (currentPage - 1) * pageSize);
+		queryMap.put("pageSize", pageSize);
+		
+		List<ConvertRecords> items = convertRecordsMapper.selectConvertRecordsByCondition(queryMap);
+		for(ConvertRecords cr : items)
+		{
+			cr.setConvertTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(cr.getConvertTime()));
+		}
+		int totalCount = (int) convertRecordsMapper.selectConvertRecordsCountByCondition(queryMap);
+
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
 
@@ -74,5 +72,21 @@ public class ConvertRecordsServiceImpl implements IConvertRecordsService
 	public List<ConvertRecords> findByCriteria(ConvertRecordsCriteria criteria)
 	{
 		return convertRecordsMapper.selectByCriteria(criteria);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public LinkedHashMap<String, List> getExportData()
+	{
+		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
+		
+		List<ConvertRecords> items = convertRecordsMapper.selectConvertRecordsByCondition(null);
+		for(ConvertRecords cr : items)
+		{
+			cr.setConvertTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(cr.getConvertTime()));
+		}
+		map.put("商品兑换记录", items);
+		
+		return map;
 	}
 }
