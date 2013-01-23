@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  <package extends="default" name="orderItem" namespace="/admin/order/item">
+    <action class="com.eatle.web.action.backend.order.OrderItemAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/orderItem/orderItem.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/orderItem/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/orderItem/update.jsp</result>
+    </action>
+  </package>
+  <package extends="default" name="order" namespace="/admin/order/list">
+    <action class="com.eatle.web.action.backend.order.OrderAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/order/order.jsp</result>
+      <result name="showAdd">/WEB-INF/jsp/order/add.jsp</result>
+      <result name="showUpdate">/WEB-INF/jsp/order/update.jsp</result>
+    </action>
+  </package>
+</struts>
