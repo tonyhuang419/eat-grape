@@ -67,7 +67,7 @@ public class GeneratorStrutsXmlPlugin extends PluginAdapter
 		{
 			pro.load(inStream);
 			targetProject = pro.getProperty("targetProject");
-			actionPackge = pro.getProperty("actionPackge");
+			actionPackge = pro.getProperty("actionPackage");
 			strutsXmlFileName = pro.getProperty("strutsXmlFileName");
 			parentModulName = pro.getProperty("parentModulName");
 			strutsXmlFilePath = pro.getProperty("strutsXmlFilePath");

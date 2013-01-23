@@ -3,15 +3,9 @@
 <struts >
   <package name="customer" namespace="/admin/customer/customer" extends="default" >
     <action name="*" class="Customer" method="{1}" >
-      <result name="showIndex" >
-        /WEB-INF/jsp/customer/customer.jsp
-      </result>
-      <result name="showAdd" >
-        /WEB-INF/jsp/customer/add.jsp
-      </result>
-      <result name="showUpdate" >
-        /WEB-INF/jsp/customer/update.jsp
-      </result>
+      <result name="showIndex" >/WEB-INF/jsp/customer/customer.jsp</result>
+      <result name="showAdd" >/WEB-INF/jsp/customer/add.jsp</result>
+      <result name="showUpdate" >/WEB-INF/jsp/customer/update.jsp</result>
     </action>
   </package>
 </struts>

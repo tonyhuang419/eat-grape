@@ -104,6 +104,13 @@
     	
     	<!-- *****************************订单管理************************************* -->
     	
+    	<!-- 订单 -->
+    	<typeAlias alias="Order" type="com.eatle.persistent.pojo.order.Order"/>
+    	<typeAlias alias="OrderCriteria" type="com.eatle.persistent.pojo.order.OrderCriteria"/>
+    	<!-- 订单 项-->
+    	<typeAlias alias="OrderItem" type="com.eatle.persistent.pojo.order.OrderItem"/>
+    	<typeAlias alias="OrderItemCriteria" type="com.eatle.persistent.pojo.order.OrderItemCriteria"/>
+    	
     	<!-- *****************************顾客管理************************************* -->
     	
     	<!-- 顾客 -->
