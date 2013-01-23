@@ -42,14 +42,13 @@ public class ConvertGoodsServiceImpl implements IConvertGoodsService
 		ConvertGoodsCriteria convertGoodsCriteria = new ConvertGoodsCriteria();
 		Criteria criteria = convertGoodsCriteria.createCriteria();
 		// 设置搜索条件参数
-		// if(queryMap != null){
-		// if(queryMap.containsKey("username")){
-		// criteria.andUserNameLike("%"+(String)queryMap.get("username")+"%");
-		// }
-		// if(queryMap.containsKey("email")){
-		// criteria.andEmailLike((String)queryMap.get("email"));
-		// }
-		// }
+		if (queryMap != null)
+		{
+			if (queryMap.containsKey("name"))
+			{
+				criteria.andNameLike("%" + (String) queryMap.get("name") + "%");
+			}
+		}
 		// 设置分页参数
 		convertGoodsCriteria.setPageSize(pageSize);
 		convertGoodsCriteria.setStartIndex((currentPage - 1) * pageSize);

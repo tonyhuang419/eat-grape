@@ -107,7 +107,14 @@
       <result name="showIndex">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/convertGoods.jsp</result>
       <result name="showAdd">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/add.jsp</result>
       <result name="showUpdate">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/update.jsp</result>
+      <result name="showDetail">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/detail.jsp</result>
+      <result name="showPicUpload">/WEB-INF/jsp/admin/foundation/scoreshop/convertGoods/picupload.jsp</result>
     </action>
+	<!-- 商品图片上传 -->
+	<action class="com.eatle.web.action.backend.UploadAction" method="convertGoodsPicUpload" name="convertGoodsPicUpload">
+		<param name="allowTypes">image/pjpeg,image/bmp,image/gif,image/x-png,image/jpeg,image/bmp,image/gif,image/png</param>
+		<param name="maxSize">1048576</param>
+	</action>
   </package>
   <package extends="default" name="convertRecords" namespace="/admin/foundation/scoreshop/convertRecords">
     <action class="com.eatle.web.action.backend.foundation.scoreshop.ConvertRecordsAction" method="{1}" name="*">
@@ -115,5 +122,13 @@
       <result name="showAdd">/WEB-INF/jsp/admin/foundation/scoreshop/convertRecords/add.jsp</result>
       <result name="showUpdate">/WEB-INF/jsp/admin/foundation/scoreshop/convertRecords/update.jsp</result>
     </action>
+	<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">convertRecordsExcel</param>
+			<param name="contentDisposition">attachment;filename=${fileName}</param>
+			<param name="bufferSize">4096</param>
+		</result>
+	</action>
   </package>
 </struts>

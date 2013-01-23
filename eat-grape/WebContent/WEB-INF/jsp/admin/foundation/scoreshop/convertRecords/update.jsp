@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <div class="pageContent">
-	<form method="post" action="${ctx}/admin/foundation/place/community/update.htm?action=zxdyxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<form method="post" action="${ctx}/admin/foundation/scoreshop/convertRecords/update.htm?action=zxdyxg&navTabId=${param.navTabId}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
 			<input name="community.id" type="hidden" value="${community.id}" />
 			<p>

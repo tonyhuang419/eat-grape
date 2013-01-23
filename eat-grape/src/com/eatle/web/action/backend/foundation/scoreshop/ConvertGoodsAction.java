@@ -30,6 +30,11 @@ public class ConvertGoodsAction extends BaseAction
 		return this.page;
 	}
 
+	public ConvertGoods getConvertGoods()
+	{
+		return convertGoods;
+	}
+
 	public void setConvertGoods(ConvertGoods convertGoods)
 	{
 		this.convertGoods = convertGoods;
@@ -110,5 +115,22 @@ public class ConvertGoodsAction extends BaseAction
 			convertGoodsService.update(convertGoods);
 		}
 		super.writeMap(json);
+	}
+
+	/**
+	 * @Description: 显示详细信息
+	 */
+	public String showDetail()
+	{
+		convertGoods = convertGoodsService.findById(convertGoods.getId());
+		return "showDetail";
+	}
+
+	/**
+	 * @Description: 显示商品图片上传
+	 */
+	public String showPicUpload()
+	{
+		return "showPicUpload";
 	}
 }

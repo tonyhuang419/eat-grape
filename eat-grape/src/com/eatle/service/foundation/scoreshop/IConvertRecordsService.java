@@ -3,6 +3,8 @@ package com.eatle.service.foundation.scoreshop;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecords;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecordsCriteria;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,4 +58,10 @@ public interface IConvertRecordsService
 	 * 
 	 */
 	List<ConvertRecords> findByCriteria(ConvertRecordsCriteria criteria);
+
+	/**
+	 * @Description:获取导出Excel需要的数据
+	 */
+	@SuppressWarnings("unchecked")
+	LinkedHashMap<String, List> getExportData();
 }

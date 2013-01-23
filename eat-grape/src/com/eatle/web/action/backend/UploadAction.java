@@ -9,10 +9,12 @@ import javax.annotation.Resource;
 import org.apache.struts2.ServletActionContext;
 
 import com.eatle.persistent.pojo.foundation.dictionary.MenuFeature;
+import com.eatle.persistent.pojo.foundation.scoreshop.ConvertGoods;
 import com.eatle.persistent.pojo.merchant.Merchant;
 import com.eatle.persistent.pojo.merchant.Restaurant;
 import com.eatle.persistent.pojo.system.frontdata.FriendshipLink;
 import com.eatle.service.foundation.dictionary.IMenuFeatureService;
+import com.eatle.service.foundation.scoreshop.IConvertGoodsService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.service.system.frontdata.IFriendshipLinkService;
@@ -43,6 +45,9 @@ public class UploadAction extends BaseAction
 	
 	@Resource
 	private IFriendshipLinkService friendshipLinkService;
+	
+	@Resource
+	private IConvertGoodsService convertGoodsService;
 	
 	private ConfigurationRead config = ConfigurationRead.getInstance();
 
@@ -198,7 +203,7 @@ public class UploadAction extends BaseAction
 					String saveName = ServletActionContext.getServletContext()
 							.getRealPath(path) + File.separator + uuidName;
 					ImageUtil.thumbnails(logo[i], new File(saveName), 70);
-					// 更新商家LogoUrl
+					// 更新餐厅LogoUrl
 					Restaurant restaurant = restaurantService.findById(id);
 					String oldLogoPath = ServletActionContext.getServletContext()
 							.getRealPath(restaurant.getLogoUrl());
@@ -298,6 +303,51 @@ public class UploadAction extends BaseAction
 					}
 					friendshipLink.setLogoUrl(path + "/" + uuidName);
 					friendshipLinkService.update(friendshipLink);
+				}
+				json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
+			}
+			else
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "请选择要上传的文件！");
+			}
+			super.writeMap(json);
+		}
+	}
+
+	/**
+	 * @throws IOException
+	 * @Description: 积分兑换中商品的图片上传
+	 */
+	public void convertGoodsPicUpload() throws IOException
+	{
+		// 检查是否通过类型和大小校验
+		if(isCrossValidate)
+		{
+			Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+			if (logo != null)
+			{
+				for (int i = 0; i < logo.length; i++)
+				{
+					// 生成文件UUID名称
+					String uuidName = StringUtil.getUUIDName(logoFileName[i]);
+					// 保存路径
+					String path = config.getConfigItem("convertGoods.pic");
+					// 保存文件
+					String saveName = ServletActionContext.getServletContext()
+							.getRealPath(path) + File.separator + uuidName;
+					ImageUtil.thumbnails(logo[i], new File(saveName), 150);
+					// 更新兑换物品PicUrl
+					ConvertGoods convertGoods = convertGoodsService.findById(id);
+					String oldLogoPath = ServletActionContext.getServletContext()
+							.getRealPath(convertGoods.getPicUrl());
+					File oldLogoFile = new File(oldLogoPath == null ? "" : oldLogoPath);
+					if (oldLogoFile.exists())
+					{
+						oldLogoFile.delete();
+					}
+					convertGoods.setPicUrl(path + "/" + uuidName);
+					convertGoodsService.update(convertGoods);
 				}
 				json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 			}

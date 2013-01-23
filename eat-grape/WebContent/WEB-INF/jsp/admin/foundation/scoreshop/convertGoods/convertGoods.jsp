@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=city_community_area&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/foundation/scoreshop/convertGoods/showIndex.htm?action=city_community_area&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -9,19 +9,15 @@
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
 	<input type="hidden" name="name" value="${param.name}" />
-	<input type="hidden" name="pinyinName" value="${param.pinyinName}" />
 </form>
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/foundation/place/community/showIndex.htm?action=zxdyss&navTabId=${param.navTabId}" method="post">
+	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/foundation/scoreshop/convertGoods/showIndex.htm?action=zxdyss&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					社区名称：<input type="text" name="name" />
-				</td>
-				<td>
-					名称拼音：<input type="text" name="pinyinName" />
+					商品名称：<input type="text" name="name" />
 				</td>
 				<td>
 					<div class="subBar">
@@ -38,26 +34,38 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/foundation/place/community/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加社区</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/foundation/place/community/delete.htm?community.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/foundation/place/community/showUpdate.htm?community.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>社区修改</span></a></li>
+			<li><a class="add" href="${ctx}/admin/foundation/scoreshop/convertGoods/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加商品</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/foundation/scoreshop/convertGoods/delete.htm?convertGoods.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/foundation/scoreshop/convertGoods/showUpdate.htm?convertGoods.id={sid}&action=xgdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>商品修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" layoutH="117">
 		<thead>
 			<tr align="center">
-				<th width="180">社区名称</th>
-				<th width="300">英文名称</th>
-				<th width="250">所属区域</th>
+				<th width="300">商品名称</th>
+				<th width="120">总共数量</th>
+				<th width="120">剩余数量</th>
+				<th width="120">价格（积分）</th>
+				<th width="120">商品图片</th>
+				<th width="100">详细信息</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="<s:property value="#item.id" />"  align="center">
-					<td><s:property value="#item.name" /></td>
-					<td><s:property value="#item.pinyinName" /></td>
+					<td>${item.name}</td>
+					<td>${item.total}</td>
+					<td>${item.surplus}</td>
+					<td>${item.score}</td>
 					<td>
-						<s:property value="#item.districtName" />
+						<a title="${item.name}-图片设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/foundation/scoreshop/convertGoods/showPicUpload.htm?convertGoods.id=${item.id}&action=zdylbzs"
+							width="500" height="250">设置图片</a>
+					</td>
+					<td>
+						<a title="${item.name}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+							href="${ctx}/admin/foundation/scoreshop/convertGoods/showDetail.htm?convertGoods.id=${item.id}&action=zdylbzs"
+							width="700" height="400">查  看</a>
 					</td>
 				</tr>
 			</s:iterator>
