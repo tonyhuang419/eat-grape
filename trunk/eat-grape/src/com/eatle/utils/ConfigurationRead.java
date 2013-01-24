@@ -5,9 +5,15 @@ package com.eatle.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
@@ -241,5 +247,15 @@ public class ConfigurationRead
 
 		return getConfigItem(name, "");
 
+	}
+	
+	public void setConfigItem(Map<String, String> items) throws FileNotFoundException, IOException, URISyntaxException
+	{
+		Set<String> keySet = items.keySet();
+		for(String key : keySet)
+		{
+			mProps.setProperty(key, items.get(key));
+		}
+		mProps.store(new FileOutputStream(getFile()), "");
 	}
 }

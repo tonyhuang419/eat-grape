@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
+<link type="text/css" href="${ctx}/style/backend/common/style.css" rel="stylesheet"/>
 <style type="text/css">
 <!--
 .STYLE1 {
@@ -23,37 +24,37 @@
 		        <td>
 		        	<table width="100%" border="0">
 			          <tr>
-			            <td width="20%" height="50" align="right">餐厅名称：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">餐厅名称：</span></td>
 			            <td width="30%" height="50">${joinInformation.shopName}</td>
-			            <td width="20%" height="50" align="right">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</span></td>
 			            <td width="30%" height="50">${joinInformation.linkMan}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">联系电话：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">联系电话：</span></td>
 			            <td width="30%" height="50">${joinInformation.linkTel}</td>
-			            <td width="20%" height="50" align="right">联系邮箱：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">联系邮箱：</span></td>
 			            <td width="30%" height="50">${joinInformation.linkEmail}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">联系Q Q：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">联系Q Q：</span></td>
 			            <td width="30%" height="50">${joinInformation.linkQq}</td>
-			            <td width="20%" height="50" align="right">申请时间：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">申请时间：</span></td>
 			            <td width="30%" height="50">${joinInformation.subTimeStr}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">餐厅地址：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">餐厅地址：</span></td>
 			            <td width="30%" height="50">${joinInformation.shopAddr}</td>
-			            <td width="20%" height="50" align="right">送餐地点：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">送餐地点：</span></td>
 			            <td width="30%" height="50">${joinInformation.sendPlace}</td>
 		              </tr>
 					  <tr>
-			            <td width="20%" height="50" align="right">审核状态：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">审核状态：</span></td>
 			            <td width="30%" height="50">${joinInformation.auditStatusStr}</td>
-			            <td width="20%" height="50" align="right">审核时间：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">审核时间：</span></td>
 			            <td width="30%" height="50">${joinInformation.auditTimeStr}</td>
 			          </tr>
 					  <tr>
-			            <td width="20%" height="50" align="right">审核备注：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">审核备注：</span></td>
 			            <td width="80%" height="50" colspan="3">${joinInformation.auditRemark}</td>
 			          </tr>
 			        </table>

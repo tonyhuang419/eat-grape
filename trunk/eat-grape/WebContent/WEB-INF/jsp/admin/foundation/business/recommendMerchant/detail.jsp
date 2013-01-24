@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
+<link type="text/css" href="${ctx}/style/backend/common/style.css" rel="stylesheet"/>
 <style type="text/css">
 <!--
 .STYLE1 {
@@ -23,31 +24,31 @@
 		        <td>
 		        	<table width="100%" border="0">
 			          <tr>
-			            <td width="20%" height="50" align="right">餐厅名称：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">餐厅名称：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.shopName}</td>
-			            <td width="20%" height="50" align="right">餐厅电话：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">餐厅电话：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.shopTel}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">餐厅地址：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">餐厅地址：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.shopAddr}</td>
-			            <td width="20%" height="50" align="right">推荐用户：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">推荐用户：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.identifyStr}</td>
 		              </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right">身份类型：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">身份类型：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.identifyTypeStr}</td>
-			            <td width="20%" height="50" align="right">推荐时间：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">推荐时间：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.subTimeStr}</td>
 			          </tr>
 					  <tr>
-			            <td width="20%" height="50" align="right">处理状态：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">处理状态：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.handleStatusStr}</td>
-			            <td width="20%" height="50" align="right">处理时间：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">处理时间：</span></td>
 			            <td width="30%" height="50">${recommendMerchant.handleTimeStr}</td>
 			          </tr>
 					  <tr>
-			            <td width="20%" height="50" align="right">处理备注：</td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">处理备注：</span></td>
 			            <td width="80%" height="50" colspan="3">${recommendMerchant.handleRemark}</td>
 			          </tr>
 			        </table>
