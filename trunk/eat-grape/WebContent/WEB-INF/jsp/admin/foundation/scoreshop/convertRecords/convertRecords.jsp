@@ -47,6 +47,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="delete" href="${ctx}/admin/foundation/scoreshop/convertRecords/delete.htm?convertRecords.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li class="line">line</li>
 			<li><a class="icon" href="${ctx}/admin/foundation/scoreshop/convertRecords/downXls.htm?fileName=ConvertRecords.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出记录</span></a></li>
 		</ul>
 	</div>

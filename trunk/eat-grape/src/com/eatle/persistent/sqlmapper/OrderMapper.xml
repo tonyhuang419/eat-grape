@@ -18,6 +18,8 @@
     <result column="restaurant_id" property="restaurantId" jdbcType="BIGINT" />
     <result column="send_time" property="sendTime" jdbcType="TIME" />
     <result column="notify_type" property="notifyType" jdbcType="SMALLINT" />
+    <result column="customerName" property="customerName" jdbcType="VARCHAR" />
+    <result column="restaurantName" property="restaurantName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -327,5 +329,59 @@
         and notify_type = #{notifyType,jdbcType=SMALLINT}
       </if>
     </where>
+  </select>
+  
+  
+  <sql id="selectOrdersCondition">
+  	from 
+  		t_order a, 
+  		t_customer b, 
+  		t_restaurant c 
+  	where 
+  		a.customer_id = b.id 
+  	and 
+  		a.restaurant_id = c.id 
+    <if test="orderNum != null" >
+  		and a.order_num like '%${orderNum}%' 
+  	</if>
+    <if test="contactName != null" >
+  		and a.contact_name like '%${contactName}%'
+  	</if>
+    <if test="contactPhone != null" >
+  		and a.contact_phone like '%${contactPhone}%'
+  	</if>
+    <if test="sendAddress != null" >
+  		and a.send_address like '%${sendAddress}%'
+  	</if>
+    <if test="notifyType != null" >
+  		and a.notify_type = ${notifyType}
+  	</if>
+    <if test="orderStatus != null" >
+  		and a.order_status = ${orderStatus}
+  	</if>
+    <if test="startTime != null and endTime != null" > 
+  		and a.order_time between '${startTime}' and '${endTime}'
+  	</if>
+    <if test="customerName != null" >
+  		and b.login_email like '%${customerName}%'
+  	</if>
+    <if test="restaurantName != null" >
+  		and c.name like '%${restaurantName}%'
+  	</if>
+    <if test="startIndex != null and pageSize != null" > 
+	  	limit 
+	  		${startIndex}, ${pageSize}
+  	</if>
+  </sql>
+  
+  <select id="selectOrdersByCondition" parameterType="Map" resultMap="BaseResultMap">
+  	select a.*, b.login_email customerName, c.name restaurantName
+  	<include refid="selectOrdersCondition"/>
+  </select>
+  
+  <select id="selectOrdersCountByCondition" parameterType="Map" resultType="long">
+  	select 
+  		count(1) 
+  	<include refid="selectOrdersCondition"/>
   </select>
 </mapper>

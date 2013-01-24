@@ -1,6 +1,5 @@
 package com.eatle.persistent.mapper;
 
-import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecords;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecordsCriteria;
 import java.util.List;

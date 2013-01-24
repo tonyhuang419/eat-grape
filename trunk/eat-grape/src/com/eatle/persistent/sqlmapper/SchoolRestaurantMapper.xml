@@ -158,8 +158,10 @@
     <if test="districtName != null" >
   		and c.name like '%${districtName}%' 
   	</if>
-  	limit 
-  		#{startIndex,jdbcType=SMALLINT}, #{pageSize,jdbcType=SMALLINT}
+    <if test="startIndex != null and pageSize != null" > 
+	  	limit 
+	  		#{startIndex,jdbcType=SMALLINT}, #{pageSize,jdbcType=SMALLINT}
+	</if>
   </sql>
   
   <select id="selectSendSchoolsByRestaurantId" parameterType="Map" resultMap="com.eatle.persistent.mapper.SchoolMapper.BaseResultMap">

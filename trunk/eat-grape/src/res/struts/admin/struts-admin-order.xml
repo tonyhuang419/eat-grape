@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-  <package extends="default" name="orderItem" namespace="/admin/order/item">
-    <action class="com.eatle.web.action.backend.order.OrderItemAction" method="{1}" name="*">
-      <result name="showIndex">/WEB-INF/jsp/orderItem/orderItem.jsp</result>
-      <result name="showAdd">/WEB-INF/jsp/orderItem/add.jsp</result>
-      <result name="showUpdate">/WEB-INF/jsp/orderItem/update.jsp</result>
-    </action>
-  </package>
   <package extends="default" name="order" namespace="/admin/order/list">
     <action class="com.eatle.web.action.backend.order.OrderAction" method="{1}" name="*">
-      <result name="showIndex">/WEB-INF/jsp/order/order.jsp</result>
-      <result name="showAdd">/WEB-INF/jsp/order/add.jsp</result>
-      <result name="showUpdate">/WEB-INF/jsp/order/update.jsp</result>
+      <result name="showIndex">/WEB-INF/jsp/admin/order/list/order.jsp</result>
+      <result name="showDetail">/WEB-INF/jsp/admin/order/list/detail.jsp</result>
+    </action>
+	<action class="com.eatle.web.action.backend.DownloadAction" method="downXls" name="downXls">
+		<result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="inputName">ordersExcel</param>
+			<param name="contentDisposition">attachment;filename=${fileName}</param>
+			<param name="bufferSize">4096</param>
+		</result>
+	</action>
+  </package>
+  <package extends="default" name="orderItem" namespace="/admin/order/item">
+    <action class="com.eatle.web.action.backend.order.OrderItemAction" method="{1}" name="*">
+      <result name="showIndex">/WEB-INF/jsp/admin/order/items/orderItem.jsp</result>
     </action>
   </package>
 </struts>

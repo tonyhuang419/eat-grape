@@ -1,9 +1,7 @@
 package com.eatle.service.foundation.scoreshop.impl;
 
 import com.eatle.persistent.mapper.ConvertRecordsMapper;
-import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecords;
-import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecordsCriteria.Criteria;
 import com.eatle.persistent.pojo.foundation.scoreshop.ConvertRecordsCriteria;
 import com.eatle.service.foundation.scoreshop.IConvertRecordsService;
 import com.eatle.utils.Pagination;
@@ -43,6 +41,8 @@ public class ConvertRecordsServiceImpl implements IConvertRecordsService
 	public Pagination findPagination(Map<String, Object> queryMap,
 			int currentPage, int pageSize)
 	{
+		int totalCount = (int) convertRecordsMapper.selectConvertRecordsCountByCondition(queryMap);
+		
 		queryMap.put("startIndex", (currentPage - 1) * pageSize);
 		queryMap.put("pageSize", pageSize);
 		
@@ -51,7 +51,6 @@ public class ConvertRecordsServiceImpl implements IConvertRecordsService
 		{
 			cr.setConvertTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(cr.getConvertTime()));
 		}
-		int totalCount = (int) convertRecordsMapper.selectConvertRecordsCountByCondition(queryMap);
 
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}

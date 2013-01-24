@@ -17,13 +17,13 @@ public class Constants
 	public static final String COLOR_LEVEL_2 = config.getConfigItem("color.level.2");
 	public static final String COLOR_LEVEL_3 = config.getConfigItem("color.level.3");
 	public static final String COLOR_LEVEL_4 = config.getConfigItem("color.level.4");
+	public static final String COLOR_LEVEL_5 = config.getConfigItem("color.level.5");
+	public static final String COLOR_LEVEL_6 = config.getConfigItem("color.level.6");
 	
 	/**
-	 * @Title: 基础常量
-	 * @Description:
-	 * @Author:asus
-	 * @Since:2012-6-19
-	 * @Version:1.1.0
+	 * @Description: 基础常量
+	 * @Author: 谭又中
+	 * @Since: 2012-6-19
 	 */
 	public static class Base
 	{
@@ -234,5 +234,84 @@ public class Constants
 		public static final short ADVERT_ENABLED_CLOSE = 1;
 		public static final String ADVERT_ENABLED_CLOSE_STR = "关闭";
 		public static final String ADVERT_ENABLED_CLOSE_HTML = "<font color='" + COLOR_LEVEL_2 + "'>关闭</font>";
+	}
+
+	/**
+	 * @Description: 订单状态标识
+	 * @Author: 谭又中
+	 * @Since: 2013-01-23
+	 */
+	public static class OrderStatus
+	{
+		/**
+		 * @Description: 待确认
+		 */
+		public static final short ORDER_STATUS_WAITCONFIRM = 0;
+		public static final String ORDER_STATUS_WAITCONFIRM_STR = "待确认";
+		public static final String ORDER_STATUS_WAITCONFIRM_HTML = "<font color='" + COLOR_LEVEL_1 + "'>待确认</font>";
+		
+		/**
+		 * @Description: 已确认，正在处理
+		 */
+		public static final short ORDER_STATUS_CONFIRMED = 1;
+		public static final String ORDER_STATUS_CONFIRMED_STR = "已确认";
+		public static final String ORDER_STATUS_CONFIRMED_HTML = "<font color='" + COLOR_LEVEL_2 + "'>已确认</font>";
+		
+		/**
+		 * @Description: 正在派送
+		 */
+		public static final short ORDER_STATUS_SENDING = 2;
+		public static final String ORDER_STATUS_SENDING_STR = "正在派送";
+		public static final String ORDER_STATUS_SENDING_HTML = "<font color='" + COLOR_LEVEL_3 + "'>正在派送</font>";
+		
+		/**
+		 * @Description: 派送成功，交易完成
+		 */
+		public static final short ORDER_STATUS_SENDOK = 3;
+		public static final String ORDER_STATUS_SENDOK_STR = "派送成功";
+		public static final String ORDER_STATUS_SENDOK_HTML = "<font color='" + COLOR_LEVEL_4 + "'>派送成功</font>";
+		
+		/**
+		 * @Description: 派送失败，交易失败
+		 */
+		public static final short ORDER_STATUS_SENDFAIL = 4;
+		public static final String ORDER_STATUS_SENDFAIL_STR = "派送失败";
+		public static final String ORDER_STATUS_SENDFAIL_HTML = "<font color='" + COLOR_LEVEL_5 + "'>派送失败</font>";
+		
+		/**
+		 * @Description: 订单关闭（取消）
+		 */
+		public static final short ORDER_STATUS_CANCEL = 5;
+		public static final String ORDER_STATUS_CANCEL_STR = "已取消";
+		public static final String ORDER_STATUS_CANCEL_HTML = "<font color='" + COLOR_LEVEL_6 + "'>已取消</font>";
+	}
+	
+	/**
+	 * @Description: 送餐通知类型标识
+	 * @Author: 谭又中
+	 * @Since: 2013-01-23
+	 */
+	public static class NotifyType
+	{
+		/**
+		 * @Description: 不通知（顾客自己通过电脑查看订单状态）
+		 */
+		public static final short NOTIFY_TYPE_NONE = 0;
+		public static final String NOTIFY_TYPE_NONE_STR = "不通知";
+		public static final String NOTIFY_TYPE_NONE_HTML = "<font color='" + COLOR_LEVEL_1 + "'>不通知</font>";
+		
+		/**
+		 * @Description: 短信
+		 */
+		public static final short NOTIFY_TYPE_SMS = 1;
+		public static final String NOTIFY_TYPE_SMS_STR = "短信";
+		public static final String NOTIFY_TYPE_SMS_HTML = "<font color='" + COLOR_LEVEL_2 + "'>短信</font>";
+		
+		/**
+		 * @Description: 电话
+		 */
+		public static final short NOTIFY_TYPE_TEL = 2;
+		public static final String NOTIFY_TYPE_TEL_STR = "电话";
+		public static final String NOTIFY_TYPE_TEL_HTML = "<font color='" + COLOR_LEVEL_3 + "'>电话</font>";
 	}
 }
