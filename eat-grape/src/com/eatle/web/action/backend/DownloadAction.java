@@ -19,6 +19,7 @@ import com.eatle.service.foundation.business.IRecommendMerchantService;
 import com.eatle.service.foundation.scoreshop.IConvertRecordsService;
 import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
+import com.eatle.service.order.IOrderService;
 import com.eatle.service.system.frontdata.IFriendshipLinkService;
 import com.eatle.service.system.frontdata.ISystemNoticeService;
 import com.eatle.service.system.systemdata.ILoginLogService;
@@ -65,6 +66,9 @@ public class DownloadAction extends BaseAction
 	
 	@Resource
 	private IConvertRecordsService convertRecordsService;
+	
+	@Resource
+	private IOrderService orderService;
 
 	// 下载文件名
 	private String fileName;
@@ -359,6 +363,38 @@ public class DownloadAction extends BaseAction
 
 		ExportSetInfo setInfo = new ExportSetInfo();
 		setInfo.setObjsMap(convertRecordsService.getExportData());
+		setInfo.setFieldNames(fieldNames);
+		setInfo.setTitles(new String[] { "馋八戒积分商城兑换记录信息" });
+		setInfo.setHeadNames(headNames);
+		setInfo.setOut(baos);
+		
+		// 将需要导出的数据输出到baos
+		ExcelUtil.export2Excel(setInfo);
+		
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	/**
+	 * @throws IllegalAccessException 
+	 * @throws IOException 
+	 * @throws IllegalArgumentException 
+	 * @Description: 订单数据导出Excel下载
+	 */
+	public InputStream getOrdersExcel() throws 
+		IllegalArgumentException, IOException, IllegalAccessException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		List<String[]> headNames = new ArrayList<String[]>();
+		headNames.add(new String[] { "订单号", "下单时间", "订单状态", 
+				"订单状态说明", "折扣", "总价", "送餐地址", "联系人", "联系电话", 
+				"备选电话", "送餐备注", "订餐顾客", "餐厅名称", "送餐时间", "通知类型" });
+		List<String[]> fieldNames = new ArrayList<String[]>();
+		fieldNames.add(new String[] { "orderNum", "orderTimeStr", "orderStatus", "orderStatusDescription", 
+				"orderDiscount", "orderTotalMoney", "sendAddress", "contactName", "contactPhone", "anotherPhone", 
+				"sendRemark", "customerName", "restaurantName", "sendTimeStr", "notifyTypeStr" }); 
+
+		ExportSetInfo setInfo = new ExportSetInfo();
+		setInfo.setObjsMap(orderService.getExportData());
 		setInfo.setFieldNames(fieldNames);
 		setInfo.setTitles(new String[] { "馋八戒积分商城兑换记录信息" });
 		setInfo.setHeadNames(headNames);

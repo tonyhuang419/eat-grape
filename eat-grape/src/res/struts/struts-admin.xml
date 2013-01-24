@@ -50,5 +50,9 @@
 	<include file="res/struts/admin/struts-admin-foundation.xml"></include>
 	<!-- 商家管理 -->
 	<include file="res/struts/admin/struts-admin-merchant.xml"></include>
+	<!-- 订单管理 -->
+	<include file="res/struts/admin/struts-admin-order.xml"></include>
+	<!-- 顾客管理 -->
+	<include file="res/struts/admin/struts-admin-customer.xml"></include>
 	
 </struts>

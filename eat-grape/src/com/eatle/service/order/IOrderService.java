@@ -3,6 +3,8 @@ package com.eatle.service.order;
 import com.eatle.persistent.pojo.order.Order;
 import com.eatle.persistent.pojo.order.OrderCriteria;
 import com.eatle.utils.Pagination;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,4 +58,11 @@ public interface IOrderService
 	 * 
 	 */
 	List<Order> findByCriteria(OrderCriteria criteria);
+
+	/**
+	 * @Description: 数据导出到Excel
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	LinkedHashMap<String, List> getExportData();
 }

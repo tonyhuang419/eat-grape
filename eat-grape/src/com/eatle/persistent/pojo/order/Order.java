@@ -36,6 +36,24 @@ public class Order
 
 	private Short notifyType;
 
+	// 临时属性（下单时间字符串）
+	private String orderTimeStr;
+
+	// 临时属性（订单状态字符串）
+	private String orderStatusStr;
+
+	// 临时属性（顾客名称[登录邮箱]）
+	private String customerName;
+
+	// 临时属性（餐厅名称）
+	private String restaurantName;
+
+	// 临时属性（送餐时间字符串）
+	private String sendTimeStr;
+
+	// 临时属性（通知类型字符串）
+	private String notifyTypeStr;
+
 	public Long getId()
 	{
 		return id;
@@ -194,5 +212,65 @@ public class Order
 	public void setNotifyType(Short notifyType)
 	{
 		this.notifyType = notifyType;
+	}
+
+	public String getOrderTimeStr()
+	{
+		return orderTimeStr;
+	}
+
+	public void setOrderTimeStr(String orderTimeStr)
+	{
+		this.orderTimeStr = orderTimeStr;
+	}
+
+	public String getOrderStatusStr()
+	{
+		return orderStatusStr;
+	}
+
+	public void setOrderStatusStr(String orderStatusStr)
+	{
+		this.orderStatusStr = orderStatusStr;
+	}
+
+	public String getCustomerName()
+	{
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName)
+	{
+		this.customerName = customerName;
+	}
+
+	public String getRestaurantName()
+	{
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName)
+	{
+		this.restaurantName = restaurantName;
+	}
+
+	public String getSendTimeStr()
+	{
+		return sendTimeStr;
+	}
+
+	public void setSendTimeStr(String sendTimeStr)
+	{
+		this.sendTimeStr = sendTimeStr;
+	}
+
+	public String getNotifyTypeStr()
+	{
+		return notifyTypeStr;
+	}
+
+	public void setNotifyTypeStr(String notifyTypeStr)
+	{
+		this.notifyTypeStr = notifyTypeStr;
 	}
 }

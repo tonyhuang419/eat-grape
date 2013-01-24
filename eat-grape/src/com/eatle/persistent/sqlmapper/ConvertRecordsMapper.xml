@@ -8,8 +8,8 @@
     <result column="convert_time" property="convertTime" jdbcType="TIMESTAMP" />
     <result column="cost_score" property="costScore" jdbcType="INTEGER" />
     <result column="customer_id" property="customerId" jdbcType="BIGINT" />
-    <result column="goodsName" property="goodsName" jdbcType="BIGINT" />
-    <result column="customerName" property="customerName" jdbcType="BIGINT" />
+    <result column="goodsName" property="goodsName" jdbcType="VARCHAR" />
+    <result column="customerName" property="customerName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -182,7 +182,6 @@
       </if>
     </where>
   </select>
-  
   
   
   <sql id="selectConvertRecordsCondition">

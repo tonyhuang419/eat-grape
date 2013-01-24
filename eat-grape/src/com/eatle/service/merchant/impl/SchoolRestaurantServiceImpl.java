@@ -80,11 +80,12 @@ public class SchoolRestaurantServiceImpl implements ISchoolRestaurantService
 	public Pagination getSendSchoolsByRestaurantId(
 			Map<String, Object> queryMap, int currentPage, int pageSize)
 	{
+		int totalCount = (int) schoolRestaurantMapper.selectSendSchoolsCountByRestaurantId(queryMap);
+		
 		queryMap.put("startIndex", (currentPage - 1) * pageSize);
 		queryMap.put("pageSize", pageSize);
 		
 		List<School> items = schoolRestaurantMapper.selectSendSchoolsByRestaurantId(queryMap);
-		int totalCount = (int) schoolRestaurantMapper.selectSendSchoolsCountByRestaurantId(queryMap);
 		
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}
