@@ -116,4 +116,15 @@ public class OrderAction extends BaseAction
 		}
 		super.writeMap(json);
 	}
+
+	/**
+	 * @Description: 显示详细信息
+	 */
+	public String showDetail()
+	{
+		Map<String, Object> params = super.getRequestParameters(request);
+		params.put("id", order.getId());
+		order = (Order) orderService.findPagination(params, 1, 1).getItems().get(0);
+		return "showDetail";
+	}
 }

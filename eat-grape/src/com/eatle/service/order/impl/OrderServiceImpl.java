@@ -55,7 +55,7 @@ public class OrderServiceImpl implements IOrderService
 			// 设置下单时间
 			o.setOrderTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(o.getOrderTime()));
 			// 设置送餐时间
-			o.setSendTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(o.getSendTime()));
+			o.setSendTimeStr(new SimpleDateFormat("HH:mm:ss").format(o.getSendTime()));
 			// 设置订单状态
 			int os = o.getOrderStatus();
 			if(os == Constants.OrderStatus.ORDER_STATUS_WAITCONFIRM)

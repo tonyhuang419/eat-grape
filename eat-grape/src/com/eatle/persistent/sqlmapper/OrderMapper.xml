@@ -341,6 +341,9 @@
   		a.customer_id = b.id 
   	and 
   		a.restaurant_id = c.id 
+    <if test="id != null" >
+  		and a.id = ${id}
+  	</if>
     <if test="orderNum != null" >
   		and a.order_num like '%${orderNum}%' 
   	</if>

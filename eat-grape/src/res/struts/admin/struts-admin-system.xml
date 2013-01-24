@@ -82,6 +82,13 @@
 		</action>
 	</package>
 	
+	<!-- 标识颜色 -->
+	<package extends="default" name="colorIdentify" namespace="/admin/system/systemdata/colorIdentify">
+		<action class="com.eatle.web.action.backend.system.systemdata.ColorIdentifyAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/system/systemdata/colorIdentify/colorIdentify.jsp</result>
+		</action>
+	</package>
+	
 	<!-- ***************************** 前台数据管理  ***************************** -->
 	
 	<!-- 前台导航栏 -->
