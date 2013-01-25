@@ -63,7 +63,30 @@
 		       </td>
 		      </tr>
 		      <tr>
-		        <td>&nbsp;</td>
+		        <td style="padding: 2px 0px 0px 0px;">
+					<table class="table" layoutH="260">
+						<thead>
+							<tr align="center">
+								<th width="200">商品名称</th>
+								<th width="100">单价</th>
+								<th width="100">数量</th>
+								<th width="100">折扣</th>
+								<th width="300">备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<s:iterator value="#request.orderItems" var="item">
+								<tr target="sid_user" rel="${item.id}" align="center">
+									<td>${item.itemName}</td>
+									<td>${item.unitPrice}</td>
+									<td>${item.count}</td>
+									<td>${item.discount}</td>
+									<td>${item.description}</td>
+								</tr>
+							</s:iterator>
+						</tbody>
+					</table>
+		        </td>
 	          </tr>
 		    </table>
 	  	</td>
@@ -73,6 +96,7 @@
 
 <div class="formBar">
 	<ul>
+		<li><div class="buttonActive"><div class="buttonContent"><button type="button">打印</button></div></div></li>
 		<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
 	</ul>
 </div>
