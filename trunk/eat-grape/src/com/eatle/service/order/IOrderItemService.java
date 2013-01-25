@@ -32,15 +32,6 @@ public interface IOrderItemService
 	/**
 	 * @Description:
 	 * 
-	 * @param queryMap 查询参数
-	 * @param currentPage 当前页
-	 * @param pageSize 每页大小
-	 */
-	Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize);
-
-	/**
-	 * @Description:
-	 * 
 	 * @param id
 	 */
 	OrderItem findById(long id);
@@ -56,4 +47,14 @@ public interface IOrderItemService
 	 * 
 	 */
 	List<OrderItem> findByCriteria(OrderItemCriteria criteria);
+
+	/**
+	 * @Description: 根据订单ID查询订单项
+	 */
+	List<OrderItem> findOrderItemsByOrderId(Long orderId);
+	
+	/**
+	 * @Description: 根据订单ID删除订单项
+	 */
+	int deleteByOrderId(Long orderId);
 }

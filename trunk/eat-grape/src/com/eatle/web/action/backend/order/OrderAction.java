@@ -1,11 +1,14 @@
 package com.eatle.web.action.backend.order;
 
 import com.eatle.persistent.pojo.order.Order;
+import com.eatle.persistent.pojo.order.OrderItem;
+import com.eatle.service.order.IOrderItemService;
 import com.eatle.service.order.IOrderService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -15,10 +18,15 @@ public class OrderAction extends BaseAction
 
 	@Resource
 	private IOrderService orderService;
+	
+	@Resource
+	private IOrderItemService orderItemService;
 
 	private Pagination page;
 
 	private Order order;
+	
+	private List<OrderItem> orderItems;
 
 	public void setPage(Pagination page)
 	{
@@ -40,6 +48,16 @@ public class OrderAction extends BaseAction
 		this.order = order;
 	}
 
+	public List<OrderItem> getOrderItems()
+	{
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItem> orderItems)
+	{
+		this.orderItems = orderItems;
+	}
+
 	public String showIndex()
 	{
 		Map<String, Object> params = super.getRequestParameters(request);
@@ -57,27 +75,6 @@ public class OrderAction extends BaseAction
 		return "showIndex";
 	}
 
-	public String showAdd()
-	{
-		return "showAdd";
-	}
-
-	public void add() throws IOException
-	{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (order == null)
-		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
-		}
-		else
-		{
-			orderService.add(order);
-		}
-		super.writeMap(json);
-	}
-
 	public void delete() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
@@ -90,29 +87,10 @@ public class OrderAction extends BaseAction
 		}
 		else
 		{
+			// 删除订单项
+			orderItemService.deleteByOrderId(order.getId());
+			// 删除订单
 			orderService.delete(order);
-		}
-		super.writeMap(json);
-	}
-
-	public String showUpdate()
-	{
-		order = orderService.findById(order.getId());
-		return "showUpdate";
-	}
-
-	public void update() throws IOException
-	{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (order == null)
-		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
-		}
-		else
-		{
-			orderService.update(order);
 		}
 		super.writeMap(json);
 	}
@@ -122,9 +100,14 @@ public class OrderAction extends BaseAction
 	 */
 	public String showDetail()
 	{
+		// 订单信息
 		Map<String, Object> params = super.getRequestParameters(request);
 		params.put("id", order.getId());
 		order = (Order) orderService.findPagination(params, 1, 1).getItems().get(0);
+		
+		// 订单项集合
+		orderItems = orderItemService.findOrderItemsByOrderId(order.getId());
+		
 		return "showDetail";
 	}
 }

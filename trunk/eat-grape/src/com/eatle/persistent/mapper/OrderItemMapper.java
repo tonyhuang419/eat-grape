@@ -27,4 +27,6 @@ public interface OrderItemMapper
 	// 通过map参数进行查询
 	@SuppressWarnings("unchecked")
 	List<OrderItem> selectByMap(Map paramMap);
+	
+	int deleteByOrderId(Long orderId);
 }

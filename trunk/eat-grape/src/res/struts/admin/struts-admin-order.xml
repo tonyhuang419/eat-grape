@@ -15,9 +15,11 @@
 		</result>
 	</action>
   </package>
+  <!-- 
   <package extends="default" name="orderItem" namespace="/admin/order/item">
     <action class="com.eatle.web.action.backend.order.OrderItemAction" method="{1}" name="*">
       <result name="showIndex">/WEB-INF/jsp/admin/order/items/orderItem.jsp</result>
     </action>
   </package>
+  -->
 </struts>

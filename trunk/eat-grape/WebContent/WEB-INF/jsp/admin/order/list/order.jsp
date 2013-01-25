@@ -85,7 +85,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="delete" href="${ctx}/admin/order/list/delete.htm?merchant.id={sid}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除订单</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/order/list/delete.htm?order.id={sid}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="将删除该订单及其下的所有订单项，确定要删除吗?"><span>删除订单</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="${ctx}/admin/order/list/downXls.htm?fileName=Order.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出订单</span></a></li>
 		</ul>
@@ -116,9 +116,9 @@
 					<td>${item.notifyTypeStr}&nbsp;</td>
 					<td>${item.orderStatusStr}&nbsp;</td>
 					<td>
-						<a title="订单：${item.orderNum}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
+						<a title="订单：${item.orderNum}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" 
 							href="${ctx}/admin/order/list/showDetail.htm?order.id=${item.id}&action=zdylbzs"
-							width="700" height="400">查  看</a>
+							width="800" height="500" resizable="false" maxable="false" minable="true">查  看</a>
 					</td>
 				</tr>
 			</s:iterator>
