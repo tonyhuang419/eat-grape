@@ -23,6 +23,7 @@ import com.eatle.db.DBManager;
  */
 public class GlobalFilter implements Filter
 {
+	@SuppressWarnings("unused")
 	private ServletContext context;
 
 	/**

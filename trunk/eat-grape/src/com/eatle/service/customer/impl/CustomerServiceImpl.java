@@ -2,7 +2,6 @@ package com.eatle.service.customer.impl;
 
 import com.eatle.persistent.mapper.CustomerMapper;
 import com.eatle.persistent.pojo.customer.Customer;
-import com.eatle.persistent.pojo.customer.CustomerCriteria.Criteria;
 import com.eatle.persistent.pojo.customer.CustomerCriteria;
 import com.eatle.service.customer.ICustomerService;
 import com.eatle.utils.Pagination;
@@ -34,7 +33,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public Pagination findPagination(Map<String, Object> queryMap, int currentPage, int pageSize) {
         CustomerCriteria customerCriteria = new CustomerCriteria();
-        Criteria criteria = customerCriteria.createCriteria();
+//        Criteria criteria = customerCriteria.createCriteria();
         // 设置搜索条件参数
         //if(queryMap != null){
             //if(queryMap.containsKey("username")){

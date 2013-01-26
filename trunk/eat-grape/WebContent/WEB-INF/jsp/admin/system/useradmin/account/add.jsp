@@ -19,9 +19,10 @@
 			<p>
 				<label>用户类型：</label>
 				<select name="user.type" class="required combox">
-					<option value="0">管理员</option>
-					<option value="1">个人</option>
-					<option value="2">公司</option>
+					<option value="">用户类型</option>
+					<s:iterator value="#request.userType" var="ut">
+						<option value="${ut.key}">${ut.value}</option>
+					</s:iterator>
 				</select>
 			</p>
 			<p>
@@ -36,9 +37,7 @@
 		<div class="formBar">
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li>
-					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
-				</li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
 			</ul>
 		</div>
 	</form>

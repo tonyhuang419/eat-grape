@@ -32,9 +32,9 @@
 				<td>
 					<select class="combox" name="identifyType">
 						<option value="">身份类型</option>
-						<option value="0">管理员</option>
-						<option value="1">商家</option>
-						<option value="2">顾客</option>
+						<s:iterator value="#request.identifyType" var="it">
+							<option value="${it.key}">${it.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

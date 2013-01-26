@@ -31,9 +31,9 @@
 				<td>
 					<select class="combox" name="handleStatus">
 						<option value="">处理状态</option>
-						<option value="0">待处理</option>
-						<option value="1">已查看</option>
-						<option value="2">已处理</option>
+						<s:iterator value="#request.status" var="s">
+							<option value="${s.key}">${s.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

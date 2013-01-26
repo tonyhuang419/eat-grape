@@ -3,7 +3,6 @@ package com.eatle.web.action.backend.merchant;
 import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
 import com.eatle.persistent.pojo.merchant.Restaurant;
 import com.eatle.service.foundation.dictionary.IShopTypeService;
-import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
@@ -20,9 +19,6 @@ public class RestaurantAction extends BaseAction
 
 	@Resource
 	private IRestaurantService restaurantService;
-	
-	@Resource
-	private IMerchantService merchantService;
 	
 	@Resource
 	private IShopTypeService shopTypeService;

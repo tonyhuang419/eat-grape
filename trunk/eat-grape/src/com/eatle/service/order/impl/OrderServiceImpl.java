@@ -1,6 +1,5 @@
 package com.eatle.service.order.impl;
 
-import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.OrderMapper;
 import com.eatle.persistent.pojo.order.Order;
 import com.eatle.persistent.pojo.order.OrderCriteria;
@@ -19,6 +18,18 @@ public class OrderServiceImpl implements IOrderService
 {
 	@Resource
 	private OrderMapper orderMapper;
+	
+	@Resource
+	private Map<String, String> orderStatusStr;
+	
+	@Resource
+	private Map<String, String> orderStatusHtml;
+	
+	@Resource
+	private Map<String, String> notifyTypeStr;
+	
+	@Resource
+	private Map<String, String> notifyTypeHtml;
 
 	@Override
 	public int add(Order entity)
@@ -55,28 +66,9 @@ public class OrderServiceImpl implements IOrderService
 			// 设置送餐时间
 			o.setSendTimeStr(new SimpleDateFormat("HH:mm:ss").format(o.getSendTime()));
 			// 设置订单状态
-			int os = o.getOrderStatus();
-			if(os == Constants.OrderStatus.ORDER_STATUS_WAITCONFIRM)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_WAITCONFIRM_HTML);
-			if(os == Constants.OrderStatus.ORDER_STATUS_CONFIRMED)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_CONFIRMED_HTML);
-			if(os == Constants.OrderStatus.ORDER_STATUS_SENDING)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_SENDING_HTML);
-			if(os == Constants.OrderStatus.ORDER_STATUS_SENDOK)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_SENDOK_HTML);
-			if(os == Constants.OrderStatus.ORDER_STATUS_SENDFAIL)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_SENDFAIL_HTML);
-			if(os == Constants.OrderStatus.ORDER_STATUS_CANCEL)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_CANCEL_HTML);
+			o.setOrderStatusStr(orderStatusHtml.get("" + o.getOrderStatus()));
 			// 设置通知类型
-			int nt = o.getNotifyType();
-			if(nt == Constants.NotifyType.NOTIFY_TYPE_NONE)
-				o.setNotifyTypeStr(Constants.NotifyType.NOTIFY_TYPE_NONE_HTML);
-			if(nt == Constants.NotifyType.NOTIFY_TYPE_SMS)
-				o.setNotifyTypeStr(Constants.NotifyType.NOTIFY_TYPE_SMS_HTML);
-			if(nt == Constants.NotifyType.NOTIFY_TYPE_TEL)
-				o.setNotifyTypeStr(Constants.NotifyType.NOTIFY_TYPE_TEL_HTML);
-			
+			o.setNotifyTypeStr(notifyTypeHtml.get("" + o.getNotifyType()));
 		}
 
 		return new Pagination(pageSize, currentPage, totalCount, items);
@@ -114,27 +106,9 @@ public class OrderServiceImpl implements IOrderService
 			// 设置送餐时间
 			o.setSendTimeStr(new SimpleDateFormat("HH:mm:ss").format(o.getSendTime()));
 			// 设置订单状态
-			int os = o.getOrderStatus();
-			if(os == Constants.OrderStatus.ORDER_STATUS_WAITCONFIRM)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_WAITCONFIRM_STR);
-			if(os == Constants.OrderStatus.ORDER_STATUS_CONFIRMED)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_CONFIRMED_STR);
-			if(os == Constants.OrderStatus.ORDER_STATUS_SENDING)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_SENDING_STR);
-			if(os == Constants.OrderStatus.ORDER_STATUS_SENDOK)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_SENDOK_STR);
-			if(os == Constants.OrderStatus.ORDER_STATUS_SENDFAIL)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_SENDFAIL_STR);
-			if(os == Constants.OrderStatus.ORDER_STATUS_CANCEL)
-				o.setOrderStatusStr(Constants.OrderStatus.ORDER_STATUS_CANCEL_STR);
+			o.setOrderStatusStr(orderStatusStr.get("" + o.getOrderStatus()));
 			// 设置通知类型
-			int nt = o.getNotifyType();
-			if(nt == Constants.NotifyType.NOTIFY_TYPE_NONE)
-				o.setNotifyTypeStr(Constants.NotifyType.NOTIFY_TYPE_NONE_STR);
-			if(nt == Constants.NotifyType.NOTIFY_TYPE_SMS)
-				o.setNotifyTypeStr(Constants.NotifyType.NOTIFY_TYPE_SMS_STR);
-			if(nt == Constants.NotifyType.NOTIFY_TYPE_TEL)
-				o.setNotifyTypeStr(Constants.NotifyType.NOTIFY_TYPE_TEL_STR);
+			o.setNotifyTypeStr(notifyTypeStr.get("" + o.getNotifyType()));
 		}
 		map.put("订单记录数据", items);
 		

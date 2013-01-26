@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.PrivMapper;
 //import com.eatle.persistent.pojo.system.basedata.Menu;
-import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
-import com.eatle.persistent.pojo.foundation.dictionary.ShopTypeCriteria;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivTree;

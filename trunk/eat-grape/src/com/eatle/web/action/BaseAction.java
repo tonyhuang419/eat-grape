@@ -26,7 +26,6 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport implements SessionAware,
 		ServletRequestAware, ServletResponseAware
 {
-
 	private static final long serialVersionUID = 863288218722339735L;
 
 	protected static final Log logger = LogFactory.getLog(BaseAction.class);

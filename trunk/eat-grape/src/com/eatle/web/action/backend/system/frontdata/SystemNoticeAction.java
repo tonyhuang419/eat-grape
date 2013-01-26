@@ -9,28 +9,42 @@ import com.eatle.web.action.BaseAction;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 
 public class SystemNoticeAction extends BaseAction
 {
 	private static final long serialVersionUID = -8918384589226376549L;
-
+	
 	@Resource
 	private ISystemNoticeService systemNoticeService;
+	
+	@Resource(name="userIdentityStr")
+	private LinkedHashMap<String, String> userIdentity;
 
 	private Pagination page;
 
 	private SystemNotice systemNotice;
 
-	public void setPage(Pagination page)
+	public LinkedHashMap<String, String> getUserIdentity()
 	{
-		this.page = page;
+		return userIdentity;
+	}
+
+	public void setUserIdentity(LinkedHashMap<String, String> userIdentity)
+	{
+		this.userIdentity = userIdentity;
 	}
 
 	public Pagination getPage()
 	{
-		return this.page;
+		return page;
+	}
+
+	public void setPage(Pagination page)
+	{
+		this.page = page;
 	}
 
 	public SystemNotice getSystemNotice()

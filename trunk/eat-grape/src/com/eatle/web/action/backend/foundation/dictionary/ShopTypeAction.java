@@ -2,8 +2,6 @@ package com.eatle.web.action.backend.foundation.dictionary;
 
 import com.eatle.common.Constants;
 import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
-import com.eatle.persistent.pojo.system.useradmin.Priv;
-import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.foundation.dictionary.IShopTypeService;
 import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;

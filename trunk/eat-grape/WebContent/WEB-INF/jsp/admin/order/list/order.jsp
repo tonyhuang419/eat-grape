@@ -40,9 +40,9 @@
 				<td colspan="2">
 					<select class="combox" name="notifyType">
 						<option value="">通知类型</option>
-						<option value="0">不通知</option>
-						<option value="1">短信</option>
-						<option value="2">电话</option>
+						<s:iterator value="#request.notify" var="n">
+							<option value="${n.key}">${n.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 			</tr>
@@ -62,12 +62,9 @@
 				<td>
 					<select class="combox" name="orderStatus">
 						<option value="">订单状态</option>
-						<option value="0">待确认</option>
-						<option value="1">已确认</option>
-						<option value="2">正在派送</option>
-						<option value="3">派送成功</option>
-						<option value="4">派送失败</option>
-						<option value="5">已取消</option>
+						<s:iterator value="#request.status" var="s">
+							<option value="${s.key}">${s.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

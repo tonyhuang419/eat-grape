@@ -35,8 +35,9 @@
 				<td>
 					<select class="combox" name="target">
 						<option value="">公告对象</option>
-						<option value="0">后台商家</option>
-						<option value="1">前台顾客</option>
+						<s:iterator value="#request.userIdentity" var="ui">
+							<option value="${ui.key}">${ui.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

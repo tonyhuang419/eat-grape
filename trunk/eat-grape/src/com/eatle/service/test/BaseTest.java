@@ -20,7 +20,7 @@ public class BaseTest
 	{
 
 		ctx = new ClassPathXmlApplicationContext(
-				new String[] { "beans-myibatis.xml" });
+				new String[] { "spring-myibatis.xml", "spring-init.xml", "spring-resource.xml" });
 	}
 
 	public static void main(String[] args)

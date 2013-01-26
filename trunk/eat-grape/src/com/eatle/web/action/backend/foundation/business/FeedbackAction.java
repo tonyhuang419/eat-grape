@@ -9,6 +9,7 @@ import com.eatle.web.action.BaseAction;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -18,10 +19,36 @@ public class FeedbackAction extends BaseAction
 
 	@Resource
 	private IFeedbackService feedbackService;
+	
+	@Resource(name="handleStatusStr")
+	private LinkedHashMap<String, String> status;
+	
+	@Resource(name="userIdentityStr")
+	private LinkedHashMap<String, String> userIdentity;
 
 	private Pagination page;
 
 	private Feedback feedback;
+
+	public LinkedHashMap<String, String> getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(LinkedHashMap<String, String> status)
+	{
+		this.status = status;
+	}
+
+	public LinkedHashMap<String, String> getUserIdentity()
+	{
+		return userIdentity;
+	}
+
+	public void setUserIdentity(LinkedHashMap<String, String> userIdentity)
+	{
+		this.userIdentity = userIdentity;
+	}
 
 	public void setPage(Pagination page)
 	{

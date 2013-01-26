@@ -10,7 +10,6 @@ import com.eatle.persistent.pojo.system.useradmin.UserCriteria.Criteria;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.Pagination;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +25,12 @@ public class UserServiceImpl implements IUserService
 	
 	@Resource
 	private RoleMapper roleMapper;
+	
+	@Resource
+	private Map<String, String> userTypeStr;
+	
+	@Resource
+	private Map<String, String> userTypeHtml;
 
 	@Override
 	public int add(User user)
@@ -120,17 +125,10 @@ public class UserServiceImpl implements IUserService
 		userCriteria.setPageSize(pageSize);
 		userCriteria.setStartIndex((currentPage - 1) * pageSize);
 		
-		List<User> users = userMapper.selectByCriteria(userCriteria);
-		List<User> items = new ArrayList<User>();
-		for(User user : users)
+		List<User> items = userMapper.selectByCriteria(userCriteria);
+		for(User user : items)
 		{
-			if(user.getType() == Constants.UserType.USERTYPE_ADMINISTRATOR)
-				user.setTypeStr(Constants.UserType.USERTYPE_ADMINISTRATOR_HTML);
-			if(user.getType() == Constants.UserType.USERTYPE_PERSONAL)
-				user.setTypeStr(Constants.UserType.USERTYPE_PERSONAL_HTML);
-			if(user.getType() == Constants.UserType.USERTYPE_COMPANY)
-				user.setTypeStr(Constants.UserType.USERTYPE_COMPANY_HTML);
-			items.add(user);
+			user.setTypeStr(userTypeHtml.get("" + user.getType()));
 		}
 		int totalCount = (int) userMapper.selectCountByCriteria(userCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
@@ -166,15 +164,10 @@ public class UserServiceImpl implements IUserService
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
 		List<Role> roles = roleMapper.selectByCriteria(null);
-		List<User> dataList = new ArrayList<User>();
-		for(User user : findAll())
+		List<User> dataList = findAll();
+		for(User user : dataList)
 		{
-			if(user.getType() == Constants.UserType.USERTYPE_ADMINISTRATOR)
-				user.setTypeStr(Constants.UserType.USERTYPE_ADMINISTRATOR_STR);
-			if(user.getType() == Constants.UserType.USERTYPE_PERSONAL)
-				user.setTypeStr(Constants.UserType.USERTYPE_PERSONAL_STR);
-			if(user.getType() == Constants.UserType.USERTYPE_COMPANY)
-				user.setTypeStr(Constants.UserType.USERTYPE_COMPANY_STR);
+			user.setTypeStr(userTypeStr.get("" + user.getType()));
 			
 			for(Role role : roles)
 			{
@@ -184,8 +177,6 @@ public class UserServiceImpl implements IUserService
 					break;
 				}
 			}
-			
-			dataList.add(user);
 		}
 		map.put("后台用户信息", dataList);
 		return map;

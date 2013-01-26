@@ -9,6 +9,7 @@ import com.eatle.web.action.BaseAction;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -18,10 +19,23 @@ public class RecommendMerchantAction extends BaseAction
 
 	@Resource
 	private IRecommendMerchantService recommendMerchantService;
+	
+	@Resource(name="handleStatusStr")
+	private LinkedHashMap<String, String> status;
 
 	private Pagination page;
 
 	private RecommendMerchant recommendMerchant;
+
+	public LinkedHashMap<String, String> getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(LinkedHashMap<String, String> status)
+	{
+		this.status = status;
+	}
 
 	public void setPage(Pagination page)
 	{

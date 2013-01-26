@@ -5,8 +5,6 @@ import com.eatle.persistent.mapper.ShopTypeMapper;
 import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
 import com.eatle.persistent.pojo.foundation.dictionary.ShopTypeCriteria.Criteria;
 import com.eatle.persistent.pojo.foundation.dictionary.ShopTypeCriteria;
-import com.eatle.persistent.pojo.system.useradmin.Priv;
-import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.service.foundation.dictionary.IShopTypeService;
 import com.eatle.utils.Pagination;
 import java.util.List;

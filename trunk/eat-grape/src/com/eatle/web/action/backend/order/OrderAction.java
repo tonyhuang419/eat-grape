@@ -8,6 +8,7 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -21,12 +22,38 @@ public class OrderAction extends BaseAction
 	
 	@Resource
 	private IOrderItemService orderItemService;
+	
+	@Resource(name="orderStatusStr")
+	private LinkedHashMap<String, String> status;
+	
+	@Resource(name="notifyTypeStr")
+	private LinkedHashMap<String, String> notify;
 
 	private Pagination page;
 
 	private Order order;
 	
 	private List<OrderItem> orderItems;
+
+	public LinkedHashMap<String, String> getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(LinkedHashMap<String, String> status)
+	{
+		this.status = status;
+	}
+
+	public LinkedHashMap<String, String> getNotify()
+	{
+		return notify;
+	}
+
+	public void setNotify(LinkedHashMap<String, String> notify)
+	{
+		this.notify = notify;
+	}
 
 	public void setPage(Pagination page)
 	{

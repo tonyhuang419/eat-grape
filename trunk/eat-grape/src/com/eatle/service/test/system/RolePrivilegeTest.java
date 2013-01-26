@@ -1,7 +1,6 @@
 package com.eatle.service.test.system;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -9,14 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.eatle.persistent.pojo.system.systemdata.Menu;
-import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.service.system.systemdata.IMenuService;
 import com.eatle.service.system.useradmin.IRolePrivilegeService;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.service.test.BaseTest;
-import com.eatle.utils.ExcelUtil;
-import com.eatle.utils.ExcelUtil.ExportSetInfo;
 
 /**
  * @corpor 公司：深讯信科

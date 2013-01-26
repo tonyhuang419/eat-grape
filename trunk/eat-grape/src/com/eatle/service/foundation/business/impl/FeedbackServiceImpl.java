@@ -12,7 +12,6 @@ import com.eatle.utils.Pagination;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,6 +30,18 @@ public class FeedbackServiceImpl implements IFeedbackService
 	
 	@Resource
 	private CustomerMapper customerMapper;
+	
+	@Resource
+	private Map<String, String> handleStatusStr;
+	
+	@Resource
+	private Map<String, String> handleStatusHtml;
+	
+	@Resource
+	private Map<String, String> userIdentityStr;
+	
+	@Resource
+	private Map<String, String> userIdentityHtml;
 
 	@Override
 	public int add(Feedback entity)
@@ -82,7 +93,7 @@ public class FeedbackServiceImpl implements IFeedbackService
 				}
 				if(queryMap.containsKey("identifyType"))
 				{
-					criteria.andHandleStatusEqualTo(Short.parseShort((String) queryMap.get("identifyType")));
+					criteria.andIdentifyTypeEqualTo(Short.parseShort((String) queryMap.get("identifyType")));
 				}
 			}
 		}
@@ -90,43 +101,31 @@ public class FeedbackServiceImpl implements IFeedbackService
 		feedbackCriteria.setPageSize(pageSize);
 		feedbackCriteria.setStartIndex((currentPage - 1) * pageSize);
 		
-		List<Feedback> feedbacks = feedbackMapper.selectByCriteria(feedbackCriteria);
-		List<Feedback> items = new ArrayList<Feedback>();
-		for(Feedback fb : feedbacks)
+		List<Feedback> items = feedbackMapper.selectByCriteria(feedbackCriteria);
+		for(Feedback fb : items)
 		{
-			// 反馈人
 			if(fb.getIdentifyId() != null)
 			{
 				Short type = fb.getIdentifyType();
 				if(type != null)
 				{
+					// 反馈人
 					if(type == Constants.Identity.IDENTITY_MERCHANT)
-					{
 						fb.setIdentifyStr(merchantMapper.selectByPrimaryKey(fb.getIdentifyId()).getMerchantName());
-						fb.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
-					}
 					else if(type == Constants.Identity.IDENTITY_CUSTOMER)
-					{
 						fb.setIdentifyStr(customerMapper.selectByPrimaryKey(fb.getIdentifyId()).getLoginEmail());
-						fb.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
-					}
+					// 反馈人身份类型
+					fb.setIdentifyTypeStr(userIdentityHtml.get("" + fb.getIdentifyType()));
 				}
 			}
 			// 反馈时间
 			if(fb.getSubTime() != null)
 				fb.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fb.getSubTime()));
 			// 处理状态
-			if(fb.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
-				fb.setHandleStatusStr(Constants.Status.STATUS_WAIT_HANDLE_HTML);
-			if(fb.getHandleStatus() == Constants.Status.STATUS_VIEWED)
-				fb.setHandleStatusStr(Constants.Status.STATUS_VIEWED_HTML);
-			if(fb.getHandleStatus() == Constants.Status.STATUS_HANDLED)
-				fb.setHandleStatusStr(Constants.Status.STATUS_HANDLED_HTML);
+			fb.setHandleStatusStr(handleStatusHtml.get("" + fb.getHandleStatus()));
 			// 处理时间
 			if(fb.getHandleTime() != null)
 				fb.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fb.getHandleTime()));
-			
-			items.add(fb);
 		}
 		int totalCount = (int) feedbackMapper.selectCountByCriteria(feedbackCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
@@ -137,34 +136,25 @@ public class FeedbackServiceImpl implements IFeedbackService
 	{
 		Feedback fb = feedbackMapper.selectByPrimaryKey(id);
 
-		// 反馈人
 		if(fb.getIdentifyId() != null)
 		{
 			Short type = fb.getIdentifyType();
 			if(type != null)
 			{
+				// 反馈人
 				if(type == Constants.Identity.IDENTITY_MERCHANT)
-				{
 					fb.setIdentifyStr(merchantMapper.selectByPrimaryKey(fb.getIdentifyId()).getMerchantName());
-					fb.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
-				}
 				else if(type == Constants.Identity.IDENTITY_CUSTOMER)
-				{
 					fb.setIdentifyStr(customerMapper.selectByPrimaryKey(fb.getIdentifyId()).getLoginEmail());
-					fb.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
-				}
+				// 反馈人身份类型
+				fb.setIdentifyTypeStr(handleStatusHtml.get("" + fb.getIdentifyType()));
 			}
 		}
 		// 反馈时间
 		if(fb.getSubTime() != null)
 			fb.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fb.getSubTime()));
 		// 处理状态
-		if(fb.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
-			fb.setHandleStatusStr(Constants.Status.STATUS_WAIT_HANDLE_HTML);
-		if(fb.getHandleStatus() == Constants.Status.STATUS_VIEWED)
-			fb.setHandleStatusStr(Constants.Status.STATUS_VIEWED_HTML);
-		if(fb.getHandleStatus() == Constants.Status.STATUS_HANDLED)
-			fb.setHandleStatusStr(Constants.Status.STATUS_HANDLED_HTML);
+		fb.setHandleStatusStr(handleStatusHtml.get("" + fb.getHandleStatus()));
 		// 处理时间
 		if(fb.getHandleTime() != null)
 			fb.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fb.getHandleTime()));
@@ -189,42 +179,31 @@ public class FeedbackServiceImpl implements IFeedbackService
 	public LinkedHashMap<String, List> getExportData()
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
-		List<Feedback> dataList = new ArrayList<Feedback>();
-		for(Feedback fb : findAll())
+		List<Feedback> dataList = findAll();
+		for(Feedback fb : dataList)
 		{
-			// 反馈人
 			if(fb.getIdentifyId() != null)
 			{
 				Short type = fb.getIdentifyType();
 				if(type != null)
 				{
+					// 反馈人
 					if(type == Constants.Identity.IDENTITY_MERCHANT)
-					{
 						fb.setIdentifyStr(merchantMapper.selectByPrimaryKey(fb.getIdentifyId()).getMerchantName());
-						fb.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_STR);
-					}
 					else if(type == Constants.Identity.IDENTITY_CUSTOMER)
-					{
 						fb.setIdentifyStr(customerMapper.selectByPrimaryKey(fb.getIdentifyId()).getLoginEmail());
-						fb.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_STR);
-					}
+					// 反馈人身份类型
+					fb.setIdentifyTypeStr(userIdentityStr.get("" + fb.getIdentifyType()));
 				}
 			}
 			// 反馈时间
 			if(fb.getSubTime() != null)
 				fb.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fb.getSubTime()));
 			// 处理状态
-			if(fb.getHandleStatus() == Constants.Status.STATUS_WAIT_HANDLE)
-				fb.setHandleStatusStr(Constants.Status.STATUS_WAIT_HANDLE_STR);
-			if(fb.getHandleStatus() == Constants.Status.STATUS_VIEWED)
-				fb.setHandleStatusStr(Constants.Status.STATUS_VIEWED_STR);
-			if(fb.getHandleStatus() == Constants.Status.STATUS_HANDLED)
-				fb.setHandleStatusStr(Constants.Status.STATUS_HANDLED_STR);
+			fb.setHandleStatusStr(handleStatusStr.get("" + fb.getHandleStatus()));
 			// 处理时间
 			if(fb.getHandleTime() != null)
 				fb.setHandleTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fb.getHandleTime()));
-			
-			dataList.add(fb);
 		}
 		map.put("反馈建议信息", dataList);
 		return map;
