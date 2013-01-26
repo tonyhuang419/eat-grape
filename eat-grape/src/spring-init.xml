@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd     
-	http://www.springframework.org/schema/aop    
-	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd     
-	http://www.springframework.org/schema/tx     
-	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
-	http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context-3.0.xsd
-	"
-	default-lazy-init="true">
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">
     
     <!-- 用户类型标识 -->
 	<bean id="userTypeStr" class="java.util.LinkedHashMap">
@@ -26,9 +18,9 @@
 	<bean id="userTypeHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>管理员</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>个人</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_3}'>公司</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>管理员</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>个人</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>公司</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -46,9 +38,9 @@
 	<bean id="identityHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>管理员</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>商家</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_3}'>顾客</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>管理员</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>商家</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>顾客</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -65,8 +57,8 @@
 	<bean id="userIdentityHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_1}'>后台商家</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_2}'>前台顾客</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.1}'>后台商家</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.2}'>前台顾客</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -84,9 +76,9 @@
 	<bean id="auditStatusHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>待审核</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>已查看</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_3}'>已审核</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>待审核</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>已查看</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>已审核</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -104,9 +96,9 @@
 	<bean id="handleStatusHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>待处理</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>已查看</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_3}'>已处理</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>待处理</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>已查看</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>已处理</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -123,8 +115,8 @@
 	<bean id="showFriendLinkHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>是</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>否</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>是</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>否</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -143,10 +135,10 @@
 	<bean id="advertTypeHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>图片</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>Flash</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_3}'>代码</font>]]></value></entry>
-    			<entry><key><value>3</value></key><value><![CDATA[<font color='${color.level_4}'>文字</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>图片</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>Flash</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>代码</font>]]></value></entry>
+    			<entry><key><value>3</value></key><value><![CDATA[<font color='${color.level.4}'>文字</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -163,8 +155,8 @@
 	<bean id="advertEnabledHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>开启</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>关闭</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>开启</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>关闭</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -185,12 +177,12 @@
 	<bean id="orderStatusHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>待确认</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>已确认</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_3}'>正在派送</font>]]></value></entry>
-    			<entry><key><value>3</value></key><value><![CDATA[<font color='${color.level_4}'>派送成功</font>]]></value></entry>
-    			<entry><key><value>4</value></key><value><![CDATA[<font color='${color.level_5}'>派送失败</font>]]></value></entry>
-    			<entry><key><value>5</value></key><value><![CDATA[<font color='${color.level_6}'>已取消</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>待确认</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>已确认</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>正在派送</font>]]></value></entry>
+    			<entry><key><value>3</value></key><value><![CDATA[<font color='${color.level.4}'>派送成功</font>]]></value></entry>
+    			<entry><key><value>4</value></key><value><![CDATA[<font color='${color.level.5}'>派送失败</font>]]></value></entry>
+    			<entry><key><value>5</value></key><value><![CDATA[<font color='${color.level.6}'>已取消</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
@@ -208,9 +200,9 @@
 	<bean id="notifyTypeHtml" class="java.util.LinkedHashMap">
   		<constructor-arg>
    			<map>
-    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level_1}'>不通知</font>]]></value></entry>
-    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level_2}'>短信</font>]]></value></entry>
-    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level_3}'>电话</font>]]></value></entry>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>不通知</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>短信</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>电话</font>]]></value></entry>
    			</map>
   		</constructor-arg>
  	</bean>
