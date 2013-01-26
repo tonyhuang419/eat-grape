@@ -2,9 +2,7 @@ package com.eatle.service.order;
 
 import com.eatle.persistent.pojo.order.OrderItem;
 import com.eatle.persistent.pojo.order.OrderItemCriteria;
-import com.eatle.utils.Pagination;
 import java.util.List;
-import java.util.Map;
 
 public interface IOrderItemService
 {

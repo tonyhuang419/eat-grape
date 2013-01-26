@@ -29,9 +29,9 @@
 				<td>
 					<select class="combox" name="type">
 						<option value="">用户类型</option>
-						<option value="0">管理员</option>
-						<option value="1">个人</option>
-						<option value="2">公司</option>
+						<s:iterator value="#request.userType" var="ut">
+							<option value="${ut.key}">${ut.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

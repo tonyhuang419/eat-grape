@@ -35,9 +35,9 @@
 				<td>
 					<select class="combox" name="auditStatus">
 						<option value="">审核状态</option>
-						<option value="0">待审核</option>
-						<option value="1">已查看</option>
-						<option value="2">已审核</option>
+						<s:iterator value="#request.status" var="s">
+							<option value="${s.key}">${s.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

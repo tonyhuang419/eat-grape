@@ -20,8 +20,9 @@
 			<p>
 				<label>首页展示：</label>
 				<select class="combox" name="friendshipLink.isDisplay">
-					<option value="0" <s:if test="friendshipLink.isDisplay == 0">selected</s:if>>是</option>
-					<option value="1" <s:if test="friendshipLink.isDisplay == 1">selected</s:if>>否</option>
+					<s:iterator value="#request.showFriendLink" var="sfl">
+						<option value="${sfl.key}" <s:if test="#request.friendshipLink.isDisplay == #sfl.key">selected</s:if>>${sfl.value}</option>
+					</s:iterator>
 				</select>
 			</p>
 		</div>

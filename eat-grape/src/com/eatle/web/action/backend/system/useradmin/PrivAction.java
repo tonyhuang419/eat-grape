@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.eatle.common.Constants;
-import com.eatle.persistent.pojo.foundation.dictionary.ShopType;
 import com.eatle.persistent.pojo.system.useradmin.Priv;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria;
 import com.eatle.persistent.pojo.system.useradmin.PrivCriteria.Criteria;
@@ -16,13 +15,6 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 
-/**
- *@Title:
- *@Description:
- *@Author:xt
- *@Since:2012-6-20
- *@Version:1.1.0
- */
 public class PrivAction extends BaseAction
 {
 	private static final long serialVersionUID = 1L;

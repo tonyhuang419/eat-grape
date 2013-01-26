@@ -1,9 +1,6 @@
 package com.eatle.service.test.foundation;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +22,7 @@ public class ConvertRecordsTest extends BaseTest
 	private static IConvertRecordsService convertRecordsService = (IConvertRecordsService) ctx
 			.getBean("convertRecordsService");
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void test() throws ParseException
 	{

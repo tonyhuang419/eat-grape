@@ -1,6 +1,5 @@
 package com.eatle.service.system.frontdata.impl;
 
-import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.SystemNoticeMapper;
 import com.eatle.persistent.mapper.UserMapper;
 import com.eatle.persistent.pojo.system.frontdata.SystemNotice;
@@ -11,7 +10,6 @@ import com.eatle.utils.Pagination;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,6 +25,12 @@ public class SystemNoticeServiceImpl implements ISystemNoticeService
 	
 	@Resource
 	private UserMapper userMapper;
+	
+	@Resource
+	private Map<String, String> userIdentityStr;
+	
+	@Resource
+	private Map<String, String> userIdentityHtml;
 
 	@Override
 	public int add(SystemNotice entity)
@@ -87,9 +91,8 @@ public class SystemNoticeServiceImpl implements ISystemNoticeService
 		systemNoticeCriteria.setPageSize(pageSize);
 		systemNoticeCriteria.setStartIndex((currentPage - 1) * pageSize);
 
-		List<SystemNotice> items = new ArrayList<SystemNotice>();
-		List<SystemNotice> systemNotices = systemNoticeMapper.selectByCriteria(systemNoticeCriteria);
-		for(SystemNotice sn : systemNotices)
+		List<SystemNotice> items = systemNoticeMapper.selectByCriteria(systemNoticeCriteria);
+		for(SystemNotice sn : items)
 		{
 			// 公告人
 			if(sn.getUserId() != null)
@@ -98,12 +101,7 @@ public class SystemNoticeServiceImpl implements ISystemNoticeService
 			if(sn.getSendTime() != null)
 				sn.setSendTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(sn.getSendTime()));
 			// 公告对象
-			if(sn.getTarget() == Constants.UserIdentity.USERIDENTITY_MERCHANT)
-				sn.setTargetStr(Constants.UserIdentity.USERIDENTITY_MERCHANT_HTML);
-			if(sn.getTarget() == Constants.UserIdentity.USERIDENTITY_CUSTOMER)
-				sn.setTargetStr(Constants.UserIdentity.USERIDENTITY_CUSTOMER_HTML);
-			
-			items.add(sn);
+			sn.setTargetStr(userIdentityHtml.get("" + sn.getTarget()));
 		}
 		int totalCount = (int) systemNoticeMapper.selectCountByCriteria(systemNoticeCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
@@ -121,10 +119,7 @@ public class SystemNoticeServiceImpl implements ISystemNoticeService
 		if(sn.getSendTime() != null)
 			sn.setSendTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(sn.getSendTime()));
 		// 公告对象
-		if(sn.getTarget() == Constants.UserIdentity.USERIDENTITY_MERCHANT)
-			sn.setTargetStr(Constants.UserIdentity.USERIDENTITY_MERCHANT_HTML);
-		if(sn.getTarget() == Constants.UserIdentity.USERIDENTITY_CUSTOMER)
-			sn.setTargetStr(Constants.UserIdentity.USERIDENTITY_CUSTOMER_HTML);
+		sn.setTargetStr(userIdentityHtml.get("" + sn.getTarget()));
 		
 		return sn;
 	}
@@ -147,8 +142,8 @@ public class SystemNoticeServiceImpl implements ISystemNoticeService
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
 		
-		List<SystemNotice> dataList = new ArrayList<SystemNotice>();
-		for(SystemNotice sn : findAll())
+		List<SystemNotice> dataList = findAll();
+		for(SystemNotice sn : dataList)
 		{
 			// 公告人
 			if(sn.getUserId() != null)
@@ -157,12 +152,7 @@ public class SystemNoticeServiceImpl implements ISystemNoticeService
 			if(sn.getSendTime() != null)
 				sn.setSendTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(sn.getSendTime()));
 			// 公告对象
-			if(sn.getTarget() == Constants.UserIdentity.USERIDENTITY_MERCHANT)
-				sn.setTargetStr(Constants.UserIdentity.USERIDENTITY_MERCHANT_STR);
-			if(sn.getTarget() == Constants.UserIdentity.USERIDENTITY_CUSTOMER)
-				sn.setTargetStr(Constants.UserIdentity.USERIDENTITY_CUSTOMER_STR);
-			
-			dataList.add(sn);
+			sn.setTargetStr(userIdentityStr.get("" + sn.getTarget()));
 		}
 		map.put("系统公告", dataList);
 		return map;

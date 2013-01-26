@@ -20,16 +20,16 @@
 			<p>
 				<label>用户类型：</label>
 				<select name="user.type" class="required combox">
-					<option value="0" <s:if test="user.type == 0">selected</s:if> >管理员</option>
-					<option value="1" <s:if test="user.type == 1">selected</s:if> >个人</option>
-					<option value="2" <s:if test="user.type == 2">selected</s:if> >公司</option>
+					<s:iterator value="#request.userType" var="ut">
+						<option value="${ut.key}" <s:if test="#request.user.type == #ut.key">selected</s:if>>${ut.value}</option>
+					</s:iterator>
 				</select>
 			</p>
 			<p>
 				<label>角色类型：</label>
 				<select name="user.roleId" class="required combox">
 					<s:iterator value="#request.allRole" var="r">
-						<option value="${r.id}" <s:if test="#r.id == #request.user.roleId">selected</s:if>>
+						<option value="${r.id}" <s:if test="#request.user.roleId == #r.id">selected</s:if>>
 							${r.roleName}
 						</option>
 					</s:iterator>
@@ -38,11 +38,8 @@
 		</div>
 		<div class="formBar">
 			<ul>
-				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li>
-					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
-				</li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
 			</ul>
 		</div>
 	</form>

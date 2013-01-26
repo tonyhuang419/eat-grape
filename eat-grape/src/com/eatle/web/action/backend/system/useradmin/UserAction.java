@@ -1,6 +1,7 @@
 package com.eatle.web.action.backend.system.useradmin;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +16,6 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 
-/**
- *@Title: User Action
- *@Description:
- *@Author:xt
- *@Since:2012-6-20
- *@Version:1.1.0
- */
 public class UserAction extends BaseAction
 {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +25,9 @@ public class UserAction extends BaseAction
 
 	@Resource
 	private IRoleService roleService;
+	
+	@Resource(name="userTypeStr")
+	private LinkedHashMap<String, String> userType;
 	
 	private List<Role> allRole;
 
@@ -200,5 +197,15 @@ public class UserAction extends BaseAction
 	public void setUser(User user)
 	{
 		this.user = user;
+	}
+
+	public LinkedHashMap<String, String> getUserType()
+	{
+		return userType;
+	}
+
+	public void setUserType(LinkedHashMap<String, String> userType)
+	{
+		this.userType = userType;
 	}
 }

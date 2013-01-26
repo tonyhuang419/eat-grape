@@ -29,17 +29,17 @@
 				<td>
 					<select class="combox" name="type">
 						<option value="">广告类型</option>
-						<option value="0">图片</option>
-						<option value="1">Flash</option>
-						<option value="2">代码</option>
-						<option value="3">文字</option>
+						<s:iterator value="#request.advertType" var="at">
+							<option value="${at.key}">${at.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>
 					<select class="combox" name="enabled">
 						<option value="">广告状态</option>
-						<option value="0">开启</option>
-						<option value="1">关闭</option>
+						<s:iterator value="#request.advertEnabled" var="ae">
+							<option value="${ae.key}">${ae.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

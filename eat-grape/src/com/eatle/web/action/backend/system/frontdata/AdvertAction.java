@@ -6,6 +6,7 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -15,10 +16,36 @@ public class AdvertAction extends BaseAction
 
 	@Resource
 	private IAdvertService advertService;
+	
+	@Resource(name="advertTypeStr")
+	private LinkedHashMap<String, String> advertType;
+	
+	@Resource(name="advertEnabledStr")
+	private LinkedHashMap<String, String> advertEnabled;
 
 	private Pagination page;
 
 	private Advert advert;
+
+	public LinkedHashMap<String, String> getAdvertType()
+	{
+		return advertType;
+	}
+
+	public void setAdvertType(LinkedHashMap<String, String> advertType)
+	{
+		this.advertType = advertType;
+	}
+
+	public LinkedHashMap<String, String> getAdvertEnabled()
+	{
+		return advertEnabled;
+	}
+
+	public void setAdvertEnabled(LinkedHashMap<String, String> advertEnabled)
+	{
+		this.advertEnabled = advertEnabled;
+	}
 
 	public void setPage(Pagination page)
 	{

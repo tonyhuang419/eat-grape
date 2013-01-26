@@ -32,6 +32,12 @@ public class LoginLogServiceImpl implements ILoginLogService
 	
 	@Resource
 	private CustomerMapper customerMapper;
+	
+	@Resource
+	private Map<String, String> identityStr;
+	
+	@Resource
+	private Map<String, String> identityHtml;
 
 	@Override
 	public int add(LoginLog entity)
@@ -93,9 +99,8 @@ public class LoginLogServiceImpl implements ILoginLogService
 		// 设置分页参数
 		loginLogCriteria.setPageSize(pageSize);
 		loginLogCriteria.setStartIndex((currentPage - 1) * pageSize);
-		List<LoginLog> items = new ArrayList<LoginLog>();
-		List<LoginLog> loginLogs = loginLogMapper.selectByCriteria(loginLogCriteria);
-		for(LoginLog loginLog : loginLogs)
+		List<LoginLog> items = loginLogMapper.selectByCriteria(loginLogCriteria);
+		for(LoginLog loginLog : items)
 		{
 			// 登陆用户名
 			if(loginLog.getIdentifyType() != Constants.Identity.IDENTITY_CUSTOMER)
@@ -103,16 +108,9 @@ public class LoginLogServiceImpl implements ILoginLogService
 			else
 				loginLog.setUserName(customerMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getLoginEmail());
 			// 登陆身份类型
-			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_ADMINISTRATOR_HTML);
-			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_HTML);
-			else
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_HTML);
+			loginLog.setIdentifyTypeStr(identityHtml.get("" + loginLog.getIdentifyType()));
 			// 登陆时间
 			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
-			
-			items.add(loginLog);
 		}
 		int totalCount = (int) loginLogMapper.selectCountByCriteria(loginLogCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
@@ -151,12 +149,7 @@ public class LoginLogServiceImpl implements ILoginLogService
 			else
 				loginLog.setUserName(customerMapper.selectByPrimaryKey(loginLog.getIdentifyId()).getLoginEmail());
 			// 登陆身份类型
-			if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_ADMINISTRATOR)
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_ADMINISTRATOR_STR);
-			else if(loginLog.getIdentifyType() == Constants.Identity.IDENTITY_CUSTOMER)
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_CUSTOMER_STR);
-			else
-				loginLog.setIdentifyTypeStr(Constants.Identity.IDENTITY_MERCHANT_STR);
+			loginLog.setIdentifyTypeStr(identityStr.get("" + loginLog.getIdentifyType()));
 			// 登陆时间
 			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
 			

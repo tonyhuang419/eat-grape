@@ -24,8 +24,9 @@
 				<td>
 					<select class="combox" name="isDisplay">
 						<option value="">首页展示</option>
-						<option value="0">是</option>
-						<option value="1">否</option>
+						<s:iterator value="#request.showFriendLink" var="sfl">
+							<option value="${sfl.key}">${sfl.value}</option>
+						</s:iterator>
 					</select>
 				</td>
 				<td>

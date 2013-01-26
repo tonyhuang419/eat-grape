@@ -7,6 +7,7 @@ import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -16,19 +17,37 @@ public class LoginLogAction extends BaseAction
 
 	@Resource
 	private ILoginLogService loginLogService;
+	
+	@Resource(name="identityStr")
+	private LinkedHashMap<String, String> identifyType;
 
 	private Pagination page;
 
 	private LoginLog loginLog;
+
+	public LinkedHashMap<String, String> getIdentifyType()
+	{
+		return identifyType;
+	}
+
+	public void setIdentifyType(LinkedHashMap<String, String> identifyType)
+	{
+		this.identifyType = identifyType;
+	}
+
+	public Pagination getPage()
+	{
+		return page;
+	}
 
 	public void setPage(Pagination page)
 	{
 		this.page = page;
 	}
 
-	public Pagination getPage()
+	public LoginLog getLoginLog()
 	{
-		return this.page;
+		return loginLog;
 	}
 
 	public void setLoginLog(LoginLog loginLog)

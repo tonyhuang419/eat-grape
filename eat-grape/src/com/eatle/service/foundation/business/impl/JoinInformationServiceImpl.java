@@ -1,6 +1,5 @@
 package com.eatle.service.foundation.business.impl;
 
-import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.JoinInformationMapper;
 import com.eatle.persistent.pojo.foundation.business.JoinInformation;
 import com.eatle.persistent.pojo.foundation.business.JoinInformationCriteria.Criteria;
@@ -10,7 +9,6 @@ import com.eatle.utils.Pagination;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,6 +21,12 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 {
 	@Resource
 	private JoinInformationMapper joinInformationMapper;
+	
+	@Resource
+	private Map<String, String> auditStatusStr;
+	
+	@Resource
+	private Map<String, String> auditStatusHtml;
 
 	@Override
 	public int add(JoinInformation entity)
@@ -86,25 +90,17 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 		joinInformationCriteria.setPageSize(pageSize);
 		joinInformationCriteria.setStartIndex((currentPage - 1) * pageSize);
 		
-		List<JoinInformation> joinInformations = joinInformationMapper.selectByCriteria(joinInformationCriteria);
-		List<JoinInformation> items = new ArrayList<JoinInformation>();
-		for(JoinInformation info : joinInformations)
+		List<JoinInformation> items = joinInformationMapper.selectByCriteria(joinInformationCriteria);
+		for(JoinInformation info : items)
 		{
 			// 申请时间
 			if(info.getSubTime() != null)
 				info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
 			// 审核状态
-			if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
-				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
-			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
-				info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_HTML);
-			if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
-				info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_HTML);
+			info.setAuditStatusStr(auditStatusHtml.get("" + info.getAuditStatus()));
 			// 审核时间
 			if(info.getAuditTime() != null)
 				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
-			
-			items.add(info);
 		}
 		int totalCount = (int) joinInformationMapper.selectCountByCriteria(joinInformationCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
@@ -119,12 +115,7 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 		if(info.getSubTime() != null)
 			info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
 		// 审核状态
-		if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
-			info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_HTML);
-		if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
-			info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_HTML);
-		if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
-			info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_HTML);
+		info.setAuditStatusStr(auditStatusHtml.get("" + info.getAuditStatus()));
 		// 审核时间
 		if(info.getAuditTime() != null)
 			info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
@@ -149,24 +140,17 @@ public class JoinInformationServiceImpl implements IJoinInformationService
 	public LinkedHashMap<String, List> getExportData()
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
-		List<JoinInformation> dataList = new ArrayList<JoinInformation>();
-		for(JoinInformation info : findAll())
+		List<JoinInformation> dataList = findAll();
+		for(JoinInformation info : dataList)
 		{
 			// 申请时间
 			if(info.getSubTime() != null)
 				info.setSubTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getSubTime()));
 			// 审核状态
-			if(info.getAuditStatus() == Constants.Status.STATUS_WAIT_AUDIT)
-				info.setAuditStatusStr(Constants.Status.STATUS_WAIT_AUDIT_STR);
-			if(info.getAuditStatus() == Constants.Status.STATUS_VIEWED)
-				info.setAuditStatusStr(Constants.Status.STATUS_VIEWED_STR);
-			if(info.getAuditStatus() == Constants.Status.STATUS_AUDITED)
-				info.setAuditStatusStr(Constants.Status.STATUS_AUDITED_STR);
+			info.setAuditStatusStr(auditStatusStr.get("" + info.getAuditStatus()));
 			// 审核时间
 			if(info.getAuditTime() != null)
 				info.setAuditTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getAuditTime()));
-			
-			dataList.add(info);
 		}
 		map.put("加盟审核信息", dataList);
 		return map;

@@ -6,6 +6,7 @@ import com.eatle.utils.DwzAjaxJsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -15,10 +16,23 @@ public class FriendshipLinkAction extends BaseAction
 
 	@Resource
 	private IFriendshipLinkService friendshipLinkService;
+	
+	@Resource(name="showFriendLinkStr")
+	private LinkedHashMap<String, String> showFriendLink;
 
 	private Pagination page;
 
 	private FriendshipLink friendshipLink;
+
+	public LinkedHashMap<String, String> getShowFriendLink()
+	{
+		return showFriendLink;
+	}
+
+	public void setShowFriendLink(LinkedHashMap<String, String> showFriendLink)
+	{
+		this.showFriendLink = showFriendLink;
+	}
 
 	public void setPage(Pagination page)
 	{
