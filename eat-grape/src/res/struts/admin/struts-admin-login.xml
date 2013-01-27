@@ -22,9 +22,16 @@
 			<result name="input" type="redirectAction">index</result>
 		</action>
 		
+		<!-- 主页 -->
 		<action name="home" class="com.eatle.web.action.backend.IndexAction" method="index">
 			<interceptor-ref name="sessionInterceptorStack"></interceptor-ref>
 			<result>/WEB-INF/jsp/admin/index.jsp</result>
+		</action>
+		
+		<!-- 桌面 -->
+		<action name="desktop" class="com.eatle.web.action.backend.DesktopAction" method="desktop">
+			<interceptor-ref name="baseInterceptorStack"></interceptor-ref>
+			<result>/WEB-INF/jsp/admin/desktop.jsp</result>
 		</action>
 		
 	</package>

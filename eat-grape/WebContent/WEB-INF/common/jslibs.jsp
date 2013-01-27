@@ -22,6 +22,9 @@
 
 <!----------------------------------------- JavaScript ----------------------------------------->
 
+<!-- Context Variable -->
+<script type="text/javascript">var ctx = "${ctx}"</script>
+
 <!-- JQuery -->
 <script type="text/javascript" src="${ctx}/js/common/jquery/jquery-1.7.1.js"></script>
 

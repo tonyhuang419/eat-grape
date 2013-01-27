@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
-<script type="text/javascript" src="${ctx}/js/backend/merchant/setbusinesshours.js"></script>
+<script type="text/javascript" src="${ctx}/js/backend/merchant/restaurant/setbusinesshours.js"></script>
 
 <div class="pageContent">
 	<form id="setBusinessHoursForm" method="post" action="${ctx}/admin/merchant/restaurant/setBusinessHours.htm?restaurant.id=${restaurant.id}&action=zxzhxg" class="pageForm required-validate" >

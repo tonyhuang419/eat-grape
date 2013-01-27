@@ -2,8 +2,8 @@
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
 <link rel="stylesheet" href="${ctx}/style/backend/colorselect/farbtastic.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/js/backend/colorselect/farbtastic.js"></script>
-<script type="text/javascript" src="${ctx}/js/backend/colorselect/init.js"></script>
+<script type="text/javascript" src="${ctx}/js/backend/system/systemdata/coloridentify/farbtastic.js"></script>
+<script type="text/javascript" src="${ctx}/js/backend/system/systemdata/coloridentify/index.js"></script>
 
 <div class="pageContent" layoutH="35">
 	<form action="${ctx}/admin/system/systemdata/colorIdentify/doSetColor.htm" id="colorSetForm" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">

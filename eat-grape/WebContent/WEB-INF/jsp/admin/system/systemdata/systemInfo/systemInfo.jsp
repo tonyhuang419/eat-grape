@@ -1,109 +1,181 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/system/useradmin/account/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
-	<input type="hidden" name="pageNum" value="${page.currentPage}" />
-	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
-	<input type="hidden" name="orderDirection" value="asc" />
-	
-	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
-      			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="userName" value="${param.userName}" />
-	<input type="hidden" name="email" value="${param.email}" />
-</form>
 
+<script type="text/javascript" src="${ctx}/js/backend/system/systemdata/systeminfo/index.js"></script>
 
-<div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/useradmin/account/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
-	<div class="searchBar">
-		<table class="searchContent">
-			<tr>
-				<td>
-					用户名：<input type="text" name="userName" />
-				</td>
-				<td>
-					邮箱：<input type="text" name="email" />
-				</td>
-				<td>
-					<select class="combox" name="type">
-						<option value="">用户类型</option>
-						<option value="1">个人</option>
-						<option value="2">公司</option>
-					</select>
-				</td>
-				<td>
-					<select class="combox" name="roleId">
-						<option value="">角色类型</option>
-						<s:iterator value="#request.allRole" var="r">
-							<option value="${r.id}">${r.roleName}</option>
-						</s:iterator>
-					</select>
-				</td>
-				<td>
-					<div class="subBar">
-						<ul>
-							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">搜索</button></div></div></li>
-						</ul>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</div>
-	</form>
-</div>
 <div class="pageContent">
-	<div class="panelBar">
-		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/system/useradmin/account/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加账号</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/system/useradmin/account/delete.htm?user.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/useradmin/account/showUpdate.htm?user.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="${ctx}/admin/system/useradmin/account/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出Excel</span></a></li>
-		</ul>
-	</div>
-	<table class="table" layoutH="117">
-		<thead>
-			<tr align="center">
-				<th width="180">用户名</th>
-				<th width="180">密码</th>
-				<th width="200">邮箱</th>
-				<th width="120">用户类型</th>
-				<th width="120">角色类型</th>
-			</tr>
-		</thead>
-		<tbody>
-			<s:iterator value="page.items" var="item">
-				<tr target="sid_user" rel="${item.id}" align="center">
-					<td>${item.userName}</td>
-					<td>${item.pwd}</td>
-					<td>${item.email}</td>
-					<td>
-						<s:if test="#item.type == 1">个人</s:if>
-						<s:elseif test="#item.type == 2">公司</s:elseif>
-					</td>
-					<td>
-						<s:iterator value="#request.allRole" var="r">
-							<s:if test="#item.roleId == #r.id">${r.roleName}</s:if>
-						</s:iterator>
-					</td>
-				</tr>
-			</s:iterator>
-			
-		</tbody>
+	<table width="80%" border="0" align="center" cellpadding="1" cellspacing="1" style="margin: 20px 0px 0px 50px;">
+		<tr>
+			<td height="30" colspan="5">
+				<span style="font-size: 14px;">【服务器相关信息】</span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" align="right">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+					<tr>
+						<td width="15%" height="25" align="right">
+							服务器名称：
+						</td>
+						<td height="25" colspan="3" id="serverName">
+							${serverInfo.serverName}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							服务器路径：
+						</td>
+						<td height="25" colspan="3" id="serverDir">
+							${serverInfo.serverDir}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							域名地址：
+						</td>
+						<td height="25" id="serverDns">
+							${serverInfo.serverDns}
+						</td>
+						<td width="15%" height="25" align="right">
+							IP地址：
+						</td>
+						<td height="25" id="serverIp">
+							${serverInfo.serverIp}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							通信端口：
+						</td>
+						<td height="25" id="serverPort">
+							${serverInfo.serverPort}
+						</td>
+						<td width="15%" height="25" align="right">
+							当前时间：
+						</td>
+						<td height="25" id="serverTime">
+							${serverInfo.serverTime}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							运行时间：
+						</td>
+						<td height="25" id="serverRunTime">
+							${serverInfo.serverRunTime}
+						</td>
+						<td width="15%" height="25" align="right">
+							操作系统：
+						</td>
+						<td height="25" id="osName">
+							${serverInfo.osName}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							系统架构：
+						</td>
+						<td height="25" id="osArch">
+							${serverInfo.osArch}
+						</td>
+						<td width="15%" height="25" align="right">
+							系统版本：
+						</td>
+						<td height="25" id="osVersion">
+							${serverInfo.osVersion}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							JRE绝对路径：
+						</td>
+						<td height="25" colspan="3" id="javaHome">
+							${serverInfo.javaHome}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							JRE版本：
+						</td>
+						<td height="25" id="javaVersion">
+							${serverInfo.javaVersion}
+						</td>
+						<td width="15%" height="25" align="right">
+							总共内存：
+						</td>
+						<td height="25" id="totalMemory">
+							${serverInfo.totalMemory} MB
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							空闲内存：
+						</td>
+						<td height="25" id="freeMemory">
+							${serverInfo.freeMemory} MB
+						</td>
+						<td width="15%" height="25" align="right">
+							最大内存：
+						</td>
+						<td height="25" id="maxMemory">
+							${serverInfo.maxMemory} MB
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							在线人数：
+						</td>
+						<td height="25" id="sessionCount">
+							${serverInfo.sessionCount}
+						</td>
+						<td width="15%" height="25" align="right">
+							Application数量：
+						</td>
+						<td height="25" id="applicationCount">
+							${serverInfo.applicationCount}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="30" colspan="5">
+				<span style="font-size: 14px;">【客户端相关信息】</span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" align="right">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+					<tr>
+						<td width="15%" height="25" align="right">
+							客户端IP：
+						</td>
+						<td height="25" id="clientIp">
+							${clientInfo.clientIp}
+						</td>
+						<td width="15%" height="25" align="right">
+							通信端口：
+						</td>
+						<td height="25" id="clientPort">
+							${clientInfo.clientPort}
+						</td>
+						<td width="15%" height="25" align="right">
+							语音环境：
+						</td>
+						<td height="25" id="language">
+							${clientInfo.language}
+						</td>
+					</tr>
+					<tr>
+						<td width="15%" height="25" align="right">
+							代理信息：
+						</td>
+						<td height="25" colspan="5" id="clientAgent">
+							${clientInfo.clientAgent}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 	</table>
-	<div class="panelBar" layoutH="0">
-		<div class="pages">
-			<span style="margin-right: 3px;">显示</span>
-			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-				<option value="15" <c:if test="${page.pageSize == 15}">selected</c:if>>15</option>
-				<option value="20" <c:if test="${page.pageSize == 20}">selected</c:if>>20</option>
-				<option value="25" <c:if test="${page.pageSize == 25}">selected</c:if>>25</option>
-				<option value="30" <c:if test="${page.pageSize == 30}">selected</c:if>>30</option>
-			</select>
-			<span style="margin-left: 5px;">共 - ${page.totalCount} - 条</span>
-		</div>
-		
-		<div class="pagination" targetType="navTab" totalCount="${page.totalCount }" numPerPage="${page.pageSize }" pageNumShown="10" currentPage="${page.currentPage }"></div>
-
-	</div>
 </div>

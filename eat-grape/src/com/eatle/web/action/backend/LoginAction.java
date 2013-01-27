@@ -55,9 +55,7 @@ public class LoginAction extends BaseAction
 	}
 
     /**
-     * 
      * @Description: 获取登陆页面
-     * @return
      */
 	@Override
 	public String execute() throws Exception
@@ -66,9 +64,7 @@ public class LoginAction extends BaseAction
 	}
 
     /**
-     * 
      * @Description: 登录验证
-     * @return
      */
 	public String login()
 	{
@@ -110,19 +106,17 @@ public class LoginAction extends BaseAction
 	}
 
     /**
-     * 
      * @Description: 退出系统
-     * @return
      */
 	public String loginOut()
 	{
+		// 移除User
 		session.remove("user");
 		
 		return INPUT;
 	}
 
     /**
-     * 
      * @Description: 写入登陆日志
      */
 	private void writeLoginLog(User user)
