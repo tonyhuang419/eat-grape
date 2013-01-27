@@ -11,11 +11,10 @@ import com.eatle.service.system.useradmin.IPrivService;
 import com.eatle.web.action.BaseAction;
 
 /**
- * @Title:
- * @Description:
- * @Author:asus
- * @Since:2012-6-18
- * @Version:1.1.0
+ * @Description: 主页
+ * @Author: asus
+ * @Since: 2012-6-18
+ * @Version: 1.1.0
  */
 public class IndexAction extends BaseAction
 {
