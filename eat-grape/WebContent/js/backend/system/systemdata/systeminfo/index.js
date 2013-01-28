@@ -18,5 +18,5 @@ $(document).ready(function () {
 		}, "json");
 		// 开启数据加载提示
 		$.ajaxSettings.global = true;
-	}, 100000);
+	}, 1000);
 });
