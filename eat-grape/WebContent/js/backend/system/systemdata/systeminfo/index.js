@@ -1,8 +1,9 @@
 $(document).ready(function () {
 	setInterval(function() {
 		var url = ctx + "/admin/system/systemdata/systemInfo/ajaxLoadSystemInfo.htm";
-		
-		$.ajaxSettings.global=false;
+
+		// 关闭数据加载提示
+		$.ajaxSettings.global = false;
 		
 		$.post(url, null, function(data) {
 			var serverInfo = data.serverInfo;
@@ -15,5 +16,7 @@ $(document).ready(function () {
 
 			$("#clientPort").html(clientInfo.clientPort);
 		}, "json");
-	}, 1000);
+		// 开启数据加载提示
+		$.ajaxSettings.global = true;
+	}, 100000);
 });
