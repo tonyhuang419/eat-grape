@@ -21,7 +21,7 @@
 								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
 					</p>
 					<p>
-						<label>密&nbsp;&nbsp;码：</label>
+						<label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
 						<input id="password" type="password" name="password" maxlength="16"
 							class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')" 
 								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
@@ -32,7 +32,7 @@
 							 class="code" onkeydown="clickLoginButton(event, 'loginBtn')"
 								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
 						<span>
-							<img id="verifyImg" src="verifycode.htm" alt="换一张" width="75" height="24" onclick="changeImage(this)"/>									
+							<img id="verifyImg" src="verifycode.htm" title="换一张" width="75" height="24" onclick="changeImage(this)"/>									
 						</span>
 					</p>
 					<div class="login_bar">
