@@ -7,14 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>登录-馋八戒</title>
 	<%@ include file="/WEB-INF/common/jslibs.jsp"%>
-	<style type="text/css">
-		body { 
-			margin: 0px;
-			background: #FFFFFF;
-			background-image: url(${ctx}/images/backend/login/login_bg.jpg);
-			background-repeat: repeat-x;
-		}
-	</style>
+	<link type="text/css" href="${ctx}/style/backend/login/login.css" rel="stylesheet"/>
 </head>
 <body>
 	<div id="login">
@@ -22,19 +15,19 @@
 			<div class="loginForm">
 				<form action="">
 					<p>
-						<label>用户名&nbsp;：</label>
+						<label>用户名：</label>
 						<input id="username" type="text" name="username" maxlength="16"
 							class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')"
 								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
 					</p>
 					<p>
-						<label>密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;：</label>
+						<label>密&nbsp;&nbsp;码：</label>
 						<input id="password" type="password" name="password" maxlength="16"
 							class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')" 
 								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
 					</p>
 					<p>
-						<label>验证码&nbsp;：</label>
+						<label>验证码：</label>
 						<input id="verifycode" type="text" name="verifycode" maxlength="4"
 							 class="code" onkeydown="clickLoginButton(event, 'loginBtn')"
 								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>

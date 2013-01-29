@@ -9,11 +9,12 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
 	<%@ include file="/WEB-INF/common/jslibs.jsp"%>
+	<link type="text/css" href="${ctx}/style/backend/login/login.css" rel="stylesheet"/>
   </head>
   
   <body>
 	<script>
-		art.dialog({
+		art.dialog( {
 			title : "温馨提示",
 			content : "抱歉，您还没有登录系统！",
 			left : "50%",
@@ -21,11 +22,11 @@
 		    drag : false,
 		    fixed : true,
 		    resize : false,
-			close : function(){
+			close : function() {
 				return false;
 			},
 			okVal : "登  录",
-			ok : function(){
+			ok : function() {
 				window.location.href = "${ctx}/admin/index.htm";
 				return false;
 			}

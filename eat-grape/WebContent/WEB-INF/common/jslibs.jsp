@@ -17,7 +17,6 @@
 <link type="text/css" href="${ctx}/js/backend/artdialog/skins/blue.css" rel="stylesheet"/>
 
 <!-- Others -->
-<link type="text/css" href="${ctx}/style/backend/login/login.css" rel="stylesheet"/>
 
 
 <!----------------------------------------- JavaScript ----------------------------------------->
@@ -50,6 +49,9 @@
 <!-- Ajax异步上传文件 -->
 <script type="text/javascript" src="${ctx}/js/backend/upload/ajaxfileupload.js"></script>
 <script type="text/javascript" src="${ctx}/js/backend/upload/myajaxupload.js"></script>
+
+<!-- jQuery圆角插件 jQuery Corners -->
+<script type="text/javascript" src="${ctx}/js/backend/login/corner.js"></script>
 
 <!-- Others -->
 <script type="text/javascript" src="${ctx}/js/backend/common/common.js"></script>
