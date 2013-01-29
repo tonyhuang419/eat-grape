@@ -9,11 +9,12 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
 	<%@ include file="/WEB-INF/common/jslibs.jsp"%>
+	<link type="text/css" href="${ctx}/style/backend/login/login.css" rel="stylesheet"/>
   </head>
   
   <body>
 	<script>
-		art.dialog({
+		art.dialog( {
 			title : "温馨提示",
 			content : "抱歉，您没有操作权限！<br/><br/>若需要该权限，请联系管理员！",
 			left : "50%",
@@ -21,12 +22,12 @@
 		    drag : false,
 		    fixed : true,
 		    resize : false,
-			close : function(){
+			close : function() {
 				return false;
 			},
 			okVal : "管理首页",
-			ok : function(){
-				window.location.href = "${ctx}/home.htm";
+			ok : function() {
+				window.location.href = "${ctx}/admin/home.htm";
 				return false;
 			}
 		}).lock();

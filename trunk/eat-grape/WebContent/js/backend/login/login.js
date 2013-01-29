@@ -1,7 +1,16 @@
+$(document).ready(function() {
+	$("#username").corner();
+	$("#password").corner();
+	$("#verifycode").corner();
+	$("#verifyImg").corner();
+	$("#loginBtn").corner();
+	$("#resetBtn").corner();
+});
+
 // 更换验证码
 function changeImage(img)
 {
-	img.src = "verifycode.htm?" + Math.random();
+	img.src = "verifycode.htm?r=" + Math.random();
 }
 
 // 登陆表单校验

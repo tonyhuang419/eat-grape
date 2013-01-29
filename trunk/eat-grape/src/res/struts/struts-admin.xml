@@ -24,7 +24,7 @@
 		</interceptors>
 		<global-results>
 			<result name="timeout" type="redirect">/timeout.jsp</result>
-			<result name="nopower" type="redirect">/home.htm</result>
+			<result name="nopower" type="redirect">/nopower.jsp</result>
 		</global-results>
 		
 		<!--验证码-->
