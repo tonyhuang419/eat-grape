@@ -9,10 +9,9 @@
 	<%@ include file="/WEB-INF/common/jslibs.jsp"%>
 	<link type="text/css" href="${ctx}/style/backend/login/layout_login.css" rel="stylesheet"/>
 </head>
-<body class="logincss" screen_capture_injected="true">
-	<form action="">
-		<div class="logbox">
-			<div class="loginbox">
+<body class="logincss">
+		<div class="loginbox">
+			<div class="loginbox_inner">
 				<table width="282" border="0" align="right" cellpadding="0" cellspacing="0">
 					<tbody>
 						<tr>
@@ -48,7 +47,7 @@
 										<tr>
 											<td height="33" style="border: 1px solid #d9d9d9; background: url(${ctx}/images/backend/login/icon_password.jpg) no-repeat; padding-left: 30px; color: #999; font-size: 14px; font-weight: bold" nowrap="nowrap">
 												验证码<input name="verifycode" type="text" maxlength="4" id="verifycode" class="code" onkeydown="clickLoginButton(event, 'loginBtn')" onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
-												<img id="verifyImg" src="verifycode.htm" title="换一张" width="75" height="24" onclick="changeImage(this)"/>
+												<img id="verifyImg" src="verifycode.htm" title="换一张" width="75" height="24" onclick="changeImage(this)" style="cursor: pointer;"/>
 											</td>
 										</tr>
 									</tbody>
@@ -77,9 +76,9 @@
 				</table>
 			</div>
 		</div>
+		<br/><br/>
 		<p>
-			Copyright<span class="copyright">©</span> 2012-2013 www.c8j.cn
+			<span class="copyright">Copyright © 2012-2013 <a href="http://www.c8j.cn">www.c8j.cn</a></span>
 		</p>
-	</form>
 </body>
 </html>
