@@ -13,37 +13,35 @@
 	<div id="login">
 		<div id="login_content">
 			<div class="loginForm">
-				<form action="">
-					<p>
-						<label>用户名：</label>
-						<input id="username" type="text" name="username" maxlength="16"
-							class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')"
-								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
-					</p>
-					<p>
-						<label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-						<input id="password" type="password" name="password" maxlength="16"
-							class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')" 
-								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
-					</p>
-					<p>
-						<label>验证码：</label>
-						<input id="verifycode" type="text" name="verifycode" maxlength="4"
-							 class="code" onkeydown="clickLoginButton(event, 'loginBtn')"
-								onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
-						<span>
-							<img id="verifyImg" src="verifycode.htm" title="换一张" width="75" height="24" onclick="changeImage(this)"/>									
-						</span>
-					</p>
-					<div class="login_bar">
-						<input id="loginBtn" class="sub" type="button" value="" onclick="check()" 
-							onmouseover="mouseOver(this.id, '${ctx}/images/backend/login/login_btn_bg2.jpg')" 
-								onmouseout="mouseOut(this.id, '${ctx}/images/backend/login/login_btn_bg1.jpg')"/>
-						<input id="resetBtn" class="reset" type="reset" value="" 
-							onmouseover="mouseOver(this.id, '${ctx}/images/backend/login/reset_btn_bg2.jpg')" 
-								onmouseout="mouseOut(this.id, '${ctx}/images/backend/login/reset_btn_bg1.jpg')"/>
-					</div>
-				</form>
+				<p>
+					<label>用户名：</label>
+					<input id="username" type="text" name="username" maxlength="16"
+						class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')"
+							onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
+				</p>
+				<p>
+					<label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+					<input id="password" type="password" name="password" maxlength="16"
+						class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')" 
+							onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
+				</p>
+				<p>
+					<label>验证码：</label>
+					<input id="verifycode" type="text" name="verifycode" maxlength="4"
+						 class="code" onkeydown="clickLoginButton(event, 'loginBtn')"
+							onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
+					<span>
+						<img id="verifyImg" src="verifycode.htm" title="换一张" width="75" height="24" onclick="changeImage(this)"/>									
+					</span>
+				</p>
+				<div class="login_bar">
+					<input id="loginBtn" class="sub" type="button" value="" onclick="check()" 
+						onmouseover="mouseOver(this.id, '${ctx}/images/backend/login/login_btn_bg2.jpg')" 
+							onmouseout="mouseOut(this.id, '${ctx}/images/backend/login/login_btn_bg1.jpg')"/>
+					<input id="resetBtn" class="reset" type="reset" value="" 
+						onmouseover="mouseOver(this.id, '${ctx}/images/backend/login/reset_btn_bg2.jpg')" 
+							onmouseout="mouseOut(this.id, '${ctx}/images/backend/login/reset_btn_bg1.jpg')"/>
+				</div>
 			</div>
 			<div class="login_banner"><img src="${ctx}/images/backend/login/login_banner.jpg" /></div>
 	  	</div>

@@ -73,7 +73,8 @@ public class LoginAction extends BaseAction
 	@Override
 	public String execute() throws Exception
 	{
-		loginPageNum = "" + "123".charAt(new Random().nextInt(3));
+//		loginPageNum = "" + "123".charAt(new Random().nextInt(3));
+		loginPageNum = "3";
 		return INPUT;
 	}
 
