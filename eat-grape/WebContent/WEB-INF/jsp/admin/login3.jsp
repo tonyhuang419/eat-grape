@@ -61,7 +61,9 @@
 									<tbody>
 										<tr>
 											<td>
-												<input type="button" name="loginBtn" id="loginBtn" class="sub" onclick="check();"/>
+												<input type="button" name="loginBtn" id="loginBtn" class="sub" onclick="check();"
+													onmouseover="mouseOver(this.id, '${ctx}/images/backend/login/btn_login_2.gif')" 
+														onmouseout="mouseOut(this.id, '${ctx}/images/backend/login/btn_login_1.gif')"/>
 											</td>
 											<td width="80" align="right">
 												&nbsp;

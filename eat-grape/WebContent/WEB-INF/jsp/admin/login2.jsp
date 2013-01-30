@@ -3,8 +3,8 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
-	<HEAD id=Head1>
-		<title>登录后台管理系统</title>
+	<HEAD>
+		<title>登录-馋八戒</title>
 		<%@ include file="/WEB-INF/common/jslibs.jsp"%>
 		<STYLE type=text/css>
 			BODY {
@@ -69,7 +69,7 @@
 														登 录 名：
 													</TD>
 													<TD style="HEIGHT: 28px" width=150>
-														<INPUT id="username" type="text" style="WIDTH: 130px" name="username" 
+														<INPUT id="username" type="text" style="WIDTH: 130px; ime-mode: disabled;" name="username" 
 															maxlength="16" onkeydown="clickLoginButton(event, 'loginBtn')"
 																onfocus="getFocus(this.id)" onblur="loseFocus(this.id)">
 													</TD>
@@ -83,7 +83,7 @@
 														登录密码：
 													</TD>
 													<TD style="HEIGHT: 28px">
-														<INPUT id="password" style="WIDTH: 130px" type=password name="password" 
+														<INPUT id="password" style="WIDTH: 130px; ime-mode: disabled;" type=password name="password" 
 															maxlength="16" onkeydown="clickLoginButton(event, 'loginBtn')"
 																onfocus="getFocus(this.id)" onblur="loseFocus(this.id)">
 													</TD>
@@ -97,7 +97,7 @@
 														验 证 码：
 													</TD>
 													<TD style="HEIGHT: 28px">
-														<INPUT id="verifycode" style="WIDTH: 130px" name="verifycode" 
+														<INPUT id="verifycode" style="WIDTH: 130px; ime-mode: disabled;" name="verifycode" 
 															maxlength="4" onkeydown="clickLoginButton(event, 'loginBtn');" 
 																onfocus="getFocus(this.id)" onblur="loseFocus(this.id)">
 													</TD>

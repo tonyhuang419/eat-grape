@@ -30,7 +30,7 @@ body { background:#478E13;}
 .logincss p,.logincss1 p{ color:#B8D3A2; text-align:center;  margin:0 auto; padding-left:0px;}
 .logincss .green,.logincss1 .green  { color:#3F7E12; font-weight:bold }
 .logbox { width:766px; margin:0 auto; height:389px; margin-top:149px; position:relative;}
-.logincss .sub { width:124px; height:30px; margin-right: 10px; margin-top: 10px; border:none; cursor:pointer; background-color: #B6E4FB; background-image: url(../../../images/backend/login/btn_login.gif); background-repeat: no-repeat; }
-.logincss input { padding: 2px 7px 0px 7px; height:20px; border: 1px solid #64C3F6; font-size: 18px; color: #999; margin: 0px 5px 0px 10px; }
+.logincss .sub { width:124px; height:30px; margin-right: 10px; margin-top: 10px; border:none; cursor:pointer; background-color: #B6E4FB; background-image: url(../../../images/backend/login/btn_login_1.gif); background-repeat: no-repeat; }
+.logincss input { padding: 2px 7px 0px 7px; height:20px; border: 1px solid #999; font-size: 18px; color: #999; margin: 0px 10px 0px 10px; }
 .logincss .login_input {width: 165px; ime-mode: disabled;}
-.logincss .code { width: 80px; ime-mode: disabled;}
+.logincss .code { width: 70px; ime-mode: disabled;}
