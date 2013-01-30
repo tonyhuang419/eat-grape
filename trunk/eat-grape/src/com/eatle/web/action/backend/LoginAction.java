@@ -1,6 +1,7 @@
 package com.eatle.web.action.backend; 
 
 import java.util.Date;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -33,6 +34,8 @@ public class LoginAction extends BaseAction
 	private User user;
 
 	private String verifycode_c;
+	
+	private String loginPageNum;
 
 	public User getUser()
 	{
@@ -54,12 +57,23 @@ public class LoginAction extends BaseAction
 		verifycode_c = verifycodeC;
 	}
 
-    /**
+    public String getLoginPageNum()
+	{
+		return loginPageNum;
+	}
+
+	public void setLoginPageNum(String loginPageNum)
+	{
+		this.loginPageNum = loginPageNum;
+	}
+
+	/**
      * @Description: 获取登陆页面
      */
 	@Override
 	public String execute() throws Exception
 	{
+		loginPageNum = "" + "123".charAt(new Random().nextInt(3));
 		return INPUT;
 	}
 

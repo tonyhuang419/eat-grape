@@ -6,7 +6,7 @@
 	
 		<!-- 登陆页面 -->
 		<action name="index" class="com.eatle.web.action.backend.LoginAction">
-			<result name="input">/WEB-INF/jsp/admin/login3.jsp</result>
+			<result name="input">/WEB-INF/jsp/admin/login${loginPageNum}.jsp</result>
 		</action>
 		
 		<!-- 登陆 -->
