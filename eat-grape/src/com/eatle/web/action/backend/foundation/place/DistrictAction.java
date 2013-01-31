@@ -105,8 +105,10 @@ public class DistrictAction extends BaseAction {
 
 		return "showSetSubDist";
 	}
-    
-    // 根据父区域ID获取所有子区域的集合
+
+	/**
+	 * @Description: 根据父区域ID获取所有子区域的集合（选择区域时联动请求）
+	 */
     public void getDistrictsByParentId() throws IOException
     {
     	DistrictCriteria dc = new DistrictCriteria();
@@ -127,10 +129,7 @@ public class DistrictAction extends BaseAction {
     	{
     		districtsMap.put(d.getId(), d.getName());
     	}
-//    	writeMap(districtsMap);
-    	response.setContentType("text/html;charset=utf-8");
-    	response.setCharacterEncoding("utf-8");
-    	response.getWriter().write(JsonUtil.map2Json(districtsMap));
+    	writeInResponse(JsonUtil.map2Json(districtsMap));
     }
     
     public void setPage(Pagination page) {

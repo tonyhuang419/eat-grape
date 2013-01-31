@@ -3,14 +3,18 @@ package com.eatle.web.action.backend.foundation.place;
 import com.eatle.persistent.pojo.foundation.place.District;
 import com.eatle.persistent.pojo.foundation.place.DistrictCriteria;
 import com.eatle.persistent.pojo.foundation.place.School;
+import com.eatle.persistent.pojo.foundation.place.SchoolCriteria;
 import com.eatle.persistent.pojo.foundation.place.DistrictCriteria.Criteria;
 import com.eatle.service.foundation.place.IDistrictService;
 import com.eatle.service.foundation.place.ISchoolService;
 import com.eatle.utils.DwzAjaxJsonUtil;
+import com.eatle.utils.JsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.utils.ReflectionUtils;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -144,4 +148,27 @@ public class SchoolAction extends BaseAction
 		}
 		super.writeMap(json);
 	}
+
+	/**
+	 * @Description: 根据区域ID获取所有学校集合（选择送餐学校时联动请求）
+	 */
+    public void getSchoolsByDistrictId() throws IOException
+    {
+    	Map<Long, String> schoolsMap = new HashMap<Long, String>();
+    	List<School> schools = new ArrayList<School>();
+    	
+    	SchoolCriteria sc = new SchoolCriteria();
+    	com.eatle.persistent.pojo.foundation.place.SchoolCriteria.Criteria criteria = sc.createCriteria();
+    	if(school != null)
+    	{
+    		criteria.andDistrictIdEqualTo(school.getDistrictId());
+    		schools = schoolService.findByCriteria(sc);
+    	}
+    	
+    	for(School s : schools)
+    	{
+    		schoolsMap.put(s.getId(), s.getName());
+    	}
+    	writeInResponse(JsonUtil.map2Json(schoolsMap));
+    }
 }

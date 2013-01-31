@@ -66,6 +66,20 @@
     delete from t_community_restaurant
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteBySelective" parameterType="SchoolRestaurant" >
+    delete from t_community_restaurant
+    <where>
+      <if test="id != null" >
+        id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="communityId != null" >
+        and community_id = #{communityId,jdbcType=BIGINT}
+      </if>
+      <if test="restaurantId != null" >
+        and restaurant_id = #{restaurantId,jdbcType=BIGINT}
+      </if>
+  	</where>
+  </delete>
   <insert id="insert" parameterType="CommunityRestaurant" >
     insert into t_community_restaurant (id, community_id, restaurant_id
       )
@@ -158,8 +172,10 @@
     <if test="districtName != null" >
   		and c.name like '%${districtName}%' 
   	</if>
-  	limit 
-  		#{startIndex,jdbcType=SMALLINT}, #{pageSize,jdbcType=SMALLINT}
+    <if test="startIndex != null and pageSize != null" > 
+	  	limit 
+	  		#{startIndex,jdbcType=SMALLINT}, #{pageSize,jdbcType=SMALLINT}
+	</if>
   </sql>
   
   <select id="selectSendCommunitiesByRestaurantId" parameterType="Map" resultMap="com.eatle.persistent.mapper.CommunityMapper.BaseResultMap">

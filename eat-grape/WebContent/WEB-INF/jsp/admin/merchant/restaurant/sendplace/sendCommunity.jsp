@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
 
-<form id="pagerForm" method="post" action="${ctx}/admin/merchant/restaurant/sendplace/showIndex.htm?restaurantId=${param.restaurantId}&action=zdylbzs&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/merchant/restaurant/sendplace/showSendCommunityTab.htm?restaurantId=${param.restaurantId}&action=zdylbzs&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -9,23 +9,23 @@
 	
 	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
       			也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
-	<input type="hidden" name="schoolName" value="${param.schoolName}" />
-	<input type="hidden" name="englishName" value="${param.englishName}" />
+	<input type="hidden" name="communityName" value="${param.communityName}" />
+	<input type="hidden" name="pinyinName" value="${param.pinyinName}" />
 	<input type="hidden" name="districtName" value="${param.districtName}" />
 	<input type="hidden" name="restaurantId" value="${param.restaurantId}" />
 </form>
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="${ctx}/admin/merchant/restaurant/sendplace/showIndex.htm?restaurantId=${param.restaurantId}&action=zdylbzs&navTabId=${param.navTabId}" method="post">
+	<form onsubmit="return divSearch(this, 'sendCommunityDiv');" action="${ctx}/admin/merchant/restaurant/sendplace/showSendCommunityTab.htm?restaurantId=${param.restaurantId}&action=zdylbzs&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
 					<input type="hidden" name="restaurantId" value="${param.restaurantId}" />
-					学校名称：<input type="text" name="schoolName" />
+					社区名称：<input type="text" name="communityName" />
 				</td>
 				<td>
-					英文名称：<input type="text" name="englishName" />
+					名称拼音：<input type="text" name="pinyinName" />
 				</td>
 				<td>
 					所属区域：<input type="text" name="districtName" />
@@ -45,31 +45,29 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/merchant/restaurant/sendplace/showAdd.htm?action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加学校</span></a></li>
-			<li><a class="delete" href="${ctx}/admin/merchant/restaurant/sendplace/delete.htm?school.id={sid}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除</span></a></li>
+			<li><a class="add" href="${ctx}/admin/merchant/restaurant/sendplace/showAddSendCommunity.htm?restaurant.id=${param.restaurantId}&action=tjdyzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="600" height="200"><span>添加送餐社区</span></a></li>
+			<li><a class="delete" href="${ctx}/admin/merchant/restaurant/sendplace/delSendCommunity.htm?communityRestaurant.communityId={sid}&communityRestaurant.restaurantId=${param.restaurantId}&action=zxdysc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗？"><span>删除送餐社区</span></a></li>
 		</ul>
 	</div>
-	<table class="table" layoutH="117">
+	<table class="table" layoutH="153">
 		<thead>
 			<tr align="center">
-				<th width="180">学校名称</th>
-				<th width="300">英文名称</th>
-				<th width="250">所属区域</th>
+				<th width="180">社区名称</th>
+				<th width="300">名称拼音</th>
+				<th width="300">所属区域</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="page.items" var="item">
 				<tr target="sid" rel="<s:property value="#item.id"/>" align="center">
-					<td><s:property value="#item.name" /></td>
-					<td><s:property value="#item.englishName" /></td>
-					<td>
-						<s:property value="#item.districtName" />
-					</td>
+					<td>${item.name}</td>
+					<td>${item.pinyinName}</td>
+					<td>${item.districtName}</td>
 				</tr>
 			</s:iterator>
 		</tbody>
 	</table>
-	<div class="panelBar" layoutH="0">
+	<div class="panelBar" layoutH="650">
 		<div class="pages">
 			<span style="margin-right: 3px;">显示</span>
 			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">

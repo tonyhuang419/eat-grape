@@ -76,9 +76,11 @@
   <package extends="default" name="sendplace" namespace="/admin/merchant/restaurant/sendplace">
 	<!-- 增删改查 -->
     <action class="com.eatle.web.action.backend.merchant.SendPlaceAction" method="{1}" name="*">
-      	<result name="showIndex">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/sendplace.jsp</result>
-      	<result name="showSchoolTab">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/school.jsp</result>
-      	<result name="showCommunityTab">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/community.jsp</result>
+      	<result name="showIndex">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/sendPlace.jsp</result>
+      	<result name="showSendSchoolTab">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/sendSchool.jsp</result>
+      	<result name="showSendCommunityTab">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/sendCommunity.jsp</result>
+      	<result name="showAddSendSchool">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/addSendSchool.jsp</result>
+      	<result name="showAddSendCommunity">/WEB-INF/jsp/admin/merchant/restaurant/sendplace/addSendCommunity.jsp</result>
     </action>
   </package>
 </struts>

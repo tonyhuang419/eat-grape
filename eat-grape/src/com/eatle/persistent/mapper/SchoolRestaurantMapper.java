@@ -9,6 +9,8 @@ import java.util.Map;
 public interface SchoolRestaurantMapper
 {
 	int deleteByPrimaryKey(Long id);
+	
+	int deleteBySelective(SchoolRestaurant record);
 
 	int insert(SchoolRestaurant record);
 
