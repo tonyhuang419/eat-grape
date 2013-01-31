@@ -5,8 +5,10 @@ import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurant;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurantCriteria.Criteria;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurantCriteria;
+import com.eatle.service.foundation.place.IDistrictService;
 import com.eatle.service.merchant.ISchoolRestaurantService;
 import com.eatle.utils.Pagination;
+import com.eatle.utils.StringUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,9 @@ public class SchoolRestaurantServiceImpl implements ISchoolRestaurantService
 {
 	@Resource
 	private SchoolRestaurantMapper schoolRestaurantMapper;
+	
+	@Resource
+	private IDistrictService districtService;
 
 	@Override
 	public int add(SchoolRestaurant entity)
@@ -29,6 +34,12 @@ public class SchoolRestaurantServiceImpl implements ISchoolRestaurantService
 	public int delete(SchoolRestaurant entity)
 	{
 		return schoolRestaurantMapper.deleteByPrimaryKey(entity.getId());
+	}
+	
+	@Override
+	public int deleteBySelective(SchoolRestaurant entity)
+	{
+		return schoolRestaurantMapper.deleteBySelective(entity);
 	}
 
 	@Override
@@ -86,6 +97,14 @@ public class SchoolRestaurantServiceImpl implements ISchoolRestaurantService
 		queryMap.put("pageSize", pageSize);
 		
 		List<School> items = schoolRestaurantMapper.selectSendSchoolsByRestaurantId(queryMap);
+		
+		// 设置所属区域的全名
+		for(School s : items)
+		{
+			StringBuffer districtName = new StringBuffer();
+			districtService.findAllFatherById(s.getDistrictId(), districtName);
+			s.setDistrictName(StringUtil.reverseStrAsSplitStr(districtName.toString(), ";"));
+		}
 		
 		return new Pagination(pageSize, currentPage, totalCount, items);
 	}

@@ -3,12 +3,16 @@ package com.eatle.persistent.mapper;
 import com.eatle.persistent.pojo.foundation.place.Community;
 import com.eatle.persistent.pojo.merchant.CommunityRestaurant;
 import com.eatle.persistent.pojo.merchant.CommunityRestaurantCriteria;
+import com.eatle.persistent.pojo.merchant.SchoolRestaurant;
+
 import java.util.List;
 import java.util.Map;
 
 public interface CommunityRestaurantMapper
 {
 	int deleteByPrimaryKey(Long id);
+	
+	int deleteBySelective(CommunityRestaurant record);
 
 	int insert(CommunityRestaurant record);
 

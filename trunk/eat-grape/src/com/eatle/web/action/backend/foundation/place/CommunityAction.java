@@ -1,16 +1,22 @@
 package com.eatle.web.action.backend.foundation.place;
 
 import com.eatle.persistent.pojo.foundation.place.Community;
+import com.eatle.persistent.pojo.foundation.place.CommunityCriteria;
 import com.eatle.persistent.pojo.foundation.place.District;
 import com.eatle.persistent.pojo.foundation.place.DistrictCriteria;
+import com.eatle.persistent.pojo.foundation.place.School;
+import com.eatle.persistent.pojo.foundation.place.SchoolCriteria;
 import com.eatle.persistent.pojo.foundation.place.DistrictCriteria.Criteria;
 import com.eatle.service.foundation.place.ICommunityService;
 import com.eatle.service.foundation.place.IDistrictService;
 import com.eatle.utils.DwzAjaxJsonUtil;
+import com.eatle.utils.JsonUtil;
 import com.eatle.utils.Pagination;
 import com.eatle.utils.ReflectionUtils;
 import com.eatle.web.action.BaseAction;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -37,6 +43,11 @@ public class CommunityAction extends BaseAction
 	public Pagination getPage()
 	{
 		return this.page;
+	}
+
+	public Community getCommunity()
+	{
+		return community;
 	}
 
 	public void setCommunity(Community community)
@@ -139,8 +150,26 @@ public class CommunityAction extends BaseAction
 		super.writeMap(json);
 	}
 
-	public Community getCommunity()
-	{
-		return community;
-	}
+	/**
+	 * @Description: 根据区域ID获取所有社区集合（选择送餐社区时联动请求）
+	 */
+    public void getCommunitiesByDistrictId() throws IOException
+    {
+    	Map<Long, String> communitiesMap = new HashMap<Long, String>();
+    	List<Community> communities = new ArrayList<Community>();
+    	
+    	CommunityCriteria cc = new CommunityCriteria();
+    	com.eatle.persistent.pojo.foundation.place.CommunityCriteria.Criteria criteria = cc.createCriteria();
+    	if(community != null)
+    	{
+    		criteria.andDistrictIdEqualTo(community.getDistrictId());
+        	communities = communityService.findByCriteria(cc);
+    	}
+    	
+    	for(Community c : communities)
+    	{
+    		communitiesMap.put(c.getId(), c.getName());
+    	}
+    	writeInResponse(JsonUtil.map2Json(communitiesMap));
+    }
 }

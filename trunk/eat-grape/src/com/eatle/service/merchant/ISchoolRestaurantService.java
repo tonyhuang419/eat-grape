@@ -1,5 +1,6 @@
 package com.eatle.service.merchant;
 
+import com.eatle.persistent.pojo.merchant.CommunityRestaurant;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurant;
 import com.eatle.persistent.pojo.merchant.SchoolRestaurantCriteria;
 import com.eatle.utils.Pagination;
@@ -21,6 +22,13 @@ public interface ISchoolRestaurantService
 	 * @param entity
 	 */
 	int delete(SchoolRestaurant entity);
+
+	/**
+	 * @Description:
+	 * 
+	 * @param entity
+	 */
+	int deleteBySelective(SchoolRestaurant entity);
 
 	/**
 	 * @Description:

@@ -2,10 +2,14 @@ package com.eatle.service.merchant.impl;
 
 import com.eatle.persistent.mapper.CommunityRestaurantMapper;
 import com.eatle.persistent.pojo.foundation.place.Community;
+import com.eatle.persistent.pojo.foundation.place.School;
 import com.eatle.persistent.pojo.merchant.CommunityRestaurant;
 import com.eatle.persistent.pojo.merchant.CommunityRestaurantCriteria;
+import com.eatle.service.foundation.place.IDistrictService;
 import com.eatle.service.merchant.ICommunityRestaurantService;
 import com.eatle.utils.Pagination;
+import com.eatle.utils.StringUtil;
+
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -16,6 +20,9 @@ public class CommunityRestaurantServiceImpl implements ICommunityRestaurantServi
 {
 	@Resource
 	private CommunityRestaurantMapper communityRestaurantMapper;
+	
+	@Resource
+	private IDistrictService districtService;
 
 	@Override
 	public int add(CommunityRestaurant entity)
@@ -27,6 +34,12 @@ public class CommunityRestaurantServiceImpl implements ICommunityRestaurantServi
 	public int delete(CommunityRestaurant entity)
 	{
 		return communityRestaurantMapper.deleteByPrimaryKey(entity.getId());
+	}
+	
+	@Override
+	public int deleteBySelective(CommunityRestaurant entity)
+	{
+		return communityRestaurantMapper.deleteBySelective(entity);
 	}
 
 	@Override
@@ -81,11 +94,21 @@ public class CommunityRestaurantServiceImpl implements ICommunityRestaurantServi
 	public Pagination getSendCommunitiesByRestaurantId(
 			Map<String, Object> queryMap, int currentPage, int pageSize)
 	{
+		int totalCount = (int) communityRestaurantMapper.selectSendCommunitiesCountByRestaurantId(queryMap);
+		
 		queryMap.put("startIndex", (currentPage - 1) * pageSize);
 		queryMap.put("pageSize", pageSize);
 		
 		List<Community> items = communityRestaurantMapper.selectSendCommunitiesByRestaurantId(queryMap);
-		int totalCount = (int) communityRestaurantMapper.selectSendCommunitiesCountByRestaurantId(queryMap);
+
+		// 设置所属区域的全名
+		for(Community c : items)
+		{
+			StringBuffer districtName = new StringBuffer();
+			districtService.findAllFatherById(c.getDistrictId(), districtName);
+			c.setDistrictName(StringUtil.reverseStrAsSplitStr(districtName.toString(), ";"));
+		}
 		
-		return new Pagination(pageSize, currentPage, totalCount, items);}
+		return new Pagination(pageSize, currentPage, totalCount, items);
+	}
 }

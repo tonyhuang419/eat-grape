@@ -27,6 +27,13 @@ public interface ICommunityRestaurantService
 	 * 
 	 * @param entity
 	 */
+	int deleteBySelective(CommunityRestaurant entity);
+
+	/**
+	 * @Description:
+	 * 
+	 * @param entity
+	 */
 	int update(CommunityRestaurant entity);
 
 	/**
