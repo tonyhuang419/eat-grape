@@ -30,7 +30,7 @@
 			            <td width="30%" height="50">${restaurant.shopTypeStr}</td>
 			          </tr>
 			          <tr>
-			            <td width="20%" height="50" align="right"><span class="detail_column_title">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</span></td>
+			            <td width="20%" height="50" align="right"><span class="detail_column_title">联系姓名：</span></td>
 			            <td width="30%" height="50">${restaurant.contactName}</td>
 			            <td width="20%" height="50" align="right"><span class="detail_column_title">联系电话：</span></td>
 			            <td width="30%" height="50">${restaurant.contactPhone}</td>
@@ -68,7 +68,7 @@
 
 <div class="formBar">
 	<ul>
-		<li><div class="buttonActive"><div class="buttonContent"><button type="button">打印</button></div></div></li>
+		<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="printData();">打印</button></div></div></li>
 		<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
 	</ul>
 </div>

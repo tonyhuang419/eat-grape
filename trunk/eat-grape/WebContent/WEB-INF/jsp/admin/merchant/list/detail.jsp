@@ -64,7 +64,7 @@
 
 <div class="formBar">
 	<ul>
-		<li><div class="buttonActive"><div class="buttonContent"><button type="button">打印</button></div></div></li>
+		<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="printData();">打印</button></div></div></li>
 		<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
 	</ul>
 </div>

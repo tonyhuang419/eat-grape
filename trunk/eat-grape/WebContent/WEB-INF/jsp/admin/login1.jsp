@@ -15,19 +15,19 @@
 			<div class="loginForm">
 				<p>
 					<label>用户名：</label>
-					<input id="username" type="text" name="username" maxlength="16"
+					<input id="username" type="text" name="username" maxlength="16" style="ime-mode: disabled;"
 						class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')"
 							onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
 				</p>
 				<p>
 					<label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-					<input id="password" type="password" name="password" maxlength="16"
+					<input id="password" type="password" name="password" maxlength="16" style="ime-mode: disabled;"
 						class="login_input" onkeydown="clickLoginButton(event, 'loginBtn')" 
 							onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
 				</p>
 				<p>
 					<label>验证码：</label>
-					<input id="verifycode" type="text" name="verifycode" maxlength="4"
+					<input id="verifycode" type="text" name="verifycode" maxlength="4" style="ime-mode: disabled;"
 						 class="code" onkeydown="clickLoginButton(event, 'loginBtn')"
 							onfocus="getFocus(this.id)" onblur="loseFocus(this.id)"/>
 					<span>
