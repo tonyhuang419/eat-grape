@@ -6,11 +6,11 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>用户名称：</label>
-				<input name="user.userName" class="required" type="text" size="35" alt="请输入用户名称"/>
+				<input name="user.userName" class="required" type="text" size="35" alt="请输入用户名称" style="ime-mode: disabled;"/>
 			</p>
 			<p>
 				<label>密码：</label>
-				<input name="user.pwd" class="required" type="text" size="35" alt="请输入密码"/>
+				<input name="user.pwd" class="required" type="text" size="35" alt="请输入密码" style="ime-mode: disabled;"/>
 			</p>
 			<p>
 				<label>邮箱：</label>

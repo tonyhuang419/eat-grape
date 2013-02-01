@@ -73,7 +73,7 @@
 					<td>
 						<a title="${item.name}-详细信息" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
 							href="${ctx}/admin/merchant/restaurant/showDetail.htm?restaurant.id=${item.id}&action=zdylbzs"
-							width="700" height="440">查  看</a>
+							width="700" height="460">查  看</a>
 					</td>
 					<td>
 						<a title="${item.name}-Logo设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 

@@ -21,7 +21,7 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					用户名：<input type="text" name="userName" />
+					用户名：<input type="text" name="userName" style="ime-mode: disabled;" />
 				</td>
 				<td>
 					邮箱：<input type="text" name="email" />

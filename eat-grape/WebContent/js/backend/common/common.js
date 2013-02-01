@@ -23,3 +23,8 @@ function delAjaxInDialog(url, dialogId, msg) {
 		$.pdialog.reloadDialog(json.dialogId);
 	}, "json");
 }
+
+/* 打印数据操作 */
+function printData() {
+	window.print();
+}
