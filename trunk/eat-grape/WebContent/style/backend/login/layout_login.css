@@ -8,7 +8,7 @@ input, img{ vertical-align: middle;}
 .copyright a:hover{ color: #b8d3a2}
 /*logincss*/
 .logincss { background: #478E13 url(../../../images/backend/login/loginbg.jpg) repeat-x ; background-position: top center; width: 100%;}
-.logincss input { padding: 2px 7px 0px 7px; height:20px; border: 1px solid #999; font-size: 18px; color: #999; margin: 0px 10px 0px 10px; }
+.logincss input { padding: 2px 7px 0px 7px; height: 20px; border: 1px solid #999; font-size: 18px; color: #999; margin: 0px 10px 0px 10px; }
 .logincss .login_input {width: 165px; ime-mode: disabled;}
 .logincss .code { width: 70px; ime-mode: disabled;}
 .logincss .sub { width: 124px; height: 30px; margin: 10px 0px 0px 5px; border:none;  background-image: url(../../../images/backend/login/btn_login_1.gif); }
