@@ -88,7 +88,7 @@ public class ExcelUtil
 				}
 				rowNum++;
 			}
-//			adjustColumnSize(sheets, sheetNum, fieldNames);	// 自动调整列宽
+//			adjustColumnSize(sheets, sheetNum, fieldNames);	// 自动调整列宽（效率影响非常大）
 			sheetNum++;
 		}
 		wb.write(setInfo.getOut());
