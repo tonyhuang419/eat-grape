@@ -15,7 +15,14 @@
 		<location>/404.jsp</location>
 	</error-page>
 -->
+
+	<!-- Log File Path -->
+  	<context-param>
+		<param-name>log.path</param-name>
+		<param-value>d:/c8j/logs</param-value>
+	</context-param>
 	
+	<!-- Spring Configuration File Path -->
   	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:spring-*.xml</param-value>

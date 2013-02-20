@@ -4,7 +4,6 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
