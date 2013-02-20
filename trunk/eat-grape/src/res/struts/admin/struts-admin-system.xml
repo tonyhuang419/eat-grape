@@ -63,6 +63,16 @@
 	<package extends="default" name="systemLog" namespace="/admin/system/systemdata/systemLog">
 		<action class="com.eatle.web.action.backend.system.systemdata.SystemLogAction" method="{1}" name="*">
 			<result name="showIndex">/WEB-INF/jsp/admin/system/systemdata/systemLog/systemLog.jsp</result>
+			<result name="detail">/WEB-INF/jsp/admin/system/systemdata/systemLog/detail.jsp</result>
+		</action>
+		<!-- 下载日志文件 -->
+		<action class="com.eatle.web.action.backend.system.systemdata.SystemLogAction" method="downLog" name="downLog">
+			<result name="success" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">logFile</param>
+				<param name="contentDisposition">attachment;filename=${systemLog.fileName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
 		</action>
 	</package>
 	

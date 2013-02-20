@@ -18,6 +18,9 @@ public class ApplicationListener implements ServletContextListener
 		sce.getServletContext().setAttribute("startupTime", System.currentTimeMillis());
 		// 初始化Session数量
 		sce.getServletContext().setAttribute("sessionCount", 0);
+
+		// 设置VM系统变量
+		System.setProperty("log.path", sce.getServletContext().getInitParameter("log.path"));	// 日志保存路径
 	}
 
 	@Override

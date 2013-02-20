@@ -1,12 +1,16 @@
 package com.eatle.web.action.backend.system.systemdata;
 
-import com.eatle.persistent.pojo.system.systemdata.LoginLog;
-import com.eatle.service.system.systemdata.ILoginLogService;
+import com.eatle.persistent.pojo.system.systemdata.SystemLog;
+import com.eatle.service.system.systemdata.ISystemLogService;
 import com.eatle.utils.DwzAjaxJsonUtil;
-import com.eatle.utils.Pagination;
 import com.eatle.web.action.BaseAction;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
@@ -15,101 +19,97 @@ public class SystemLogAction extends BaseAction
 	private static final long serialVersionUID = -3728029047940484616L;
 
 	@Resource
-	private ILoginLogService loginLogService;
+	private ISystemLogService systemLogService;
 
-	private Pagination page;
+	private List<SystemLog> systemLogs;
+	
+	private SystemLog systemLog;
 
-	private LoginLog loginLog;
-
-	public void setPage(Pagination page)
+	public List<SystemLog> getSystemLogs()
 	{
-		this.page = page;
+		return systemLogs;
 	}
 
-	public Pagination getPage()
+	public void setSystemLogs(List<SystemLog> systemLogs)
 	{
-		return this.page;
+		this.systemLogs = systemLogs;
 	}
 
-	public void setLoginLog(LoginLog loginLog)
+	public SystemLog getSystemLog()
 	{
-		this.loginLog = loginLog;
+		return systemLog;
 	}
 
+	public void setSystemLog(SystemLog systemLog)
+	{
+		this.systemLog = systemLog;
+	}
+
+	/**
+	 * @Description: 展示所有日志文件
+	 */
 	public String showIndex() throws ParseException
 	{
-		Map<String, Object> params = super.getRequestParameters(request);
-		int pageNum = Pagination.CURRENTPAGE;
-		int pageSize = Pagination.PAGESIZE;
-		if (params.containsKey("pageNum"))
-		{
-			pageNum = Integer.parseInt((String) params.get("pageNum"));
-		}
-		if (params.containsKey("numPerPage"))
-		{
-			pageSize = Integer.parseInt((String) params.get("numPerPage"));
-		}
-		page = loginLogService.findPagination(params, pageNum, pageSize);
+		systemLogs = systemLogService.getAllLogs(request.getSession()
+				.getServletContext().getInitParameter("log.path"));
 		return "showIndex";
 	}
 
-	public String showAdd()
+	/**
+	 * @Description: 查看日志文件
+	 * @throws IOException 
+	 */
+	public String detail() throws IOException
 	{
-		return "showAdd";
+		systemLog.setContent(systemLogService.getLogFileContent(
+			new File(request.getSession().getServletContext()
+				.getInitParameter("log.path") + File.separator 
+					+ systemLog.getFileName())));
+		return "detail";
 	}
 
-	public void add() throws IOException
-	{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (loginLog == null)
-		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
-		}
-		else
-		{
-			loginLogService.add(loginLog);
-		}
-		super.writeMap(json);
-	}
-
+	/**
+	 * @Description: 删除日志文件
+	 */
 	public void delete() throws IOException
 	{
 		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
 		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 		json.put(DwzAjaxJsonUtil.KEY_CALLBACKTYPE, "");
-		if (loginLog == null)
+		if (systemLog == null)
 		{
 			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
 			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
 		}
 		else
 		{
-			loginLogService.delete(loginLog);
+			boolean result = systemLogService.deleteLogFile(new File(request.getSession()
+				.getServletContext().getInitParameter("log.path") + File.separator + systemLog.getFileName()));
+			if(!result)
+			{
+				json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
+				json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
+			}
 		}
 		super.writeMap(json);
 	}
 
-	public String showUpdate()
+	/**
+	 * @throws FileNotFoundException 
+	 * @Description: 为下载日志文件返回输入流
+	 */
+	public InputStream getLogFile() throws FileNotFoundException
 	{
-		loginLog = loginLogService.findById(loginLog.getId());
-		return "showUpdate";
+		return systemLogService.getLogFileInputStream(
+			new File(request.getSession().getServletContext()
+			.getInitParameter("log.path") + File.separator + systemLog.getFileName()));
 	}
 
-	public void update() throws IOException
+	/**
+	 * @Description: 下载日志文件
+	 */
+	public String downLog() throws Exception
 	{
-		Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
-		json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
-		if (loginLog == null)
-		{
-			json.put(DwzAjaxJsonUtil.KEY_STATUSCODE, 300);
-			json.put(DwzAjaxJsonUtil.KEY_MESSAGE, "操作失败！");
-		}
-		else
-		{
-			loginLogService.update(loginLog);
-		}
-		super.writeMap(json);
+		return SUCCESS;
 	}
 }

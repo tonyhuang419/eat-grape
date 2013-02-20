@@ -53,7 +53,7 @@
 					<td>${item.feature}</td>
 					<s:if test="#item.imageUrl != null">
 						<td style="padding-top: 4px;">
-							<img src="${ctx}${item.imageUrl}" alt="${item.feature}" align="absmiddle">
+							<img src="${ctx}${item.imageUrl}" title="${item.feature}" align="absmiddle">
 						</td>
 					</s:if>
 					<s:else>
