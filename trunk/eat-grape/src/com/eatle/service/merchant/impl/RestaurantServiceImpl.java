@@ -11,6 +11,7 @@ import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.merchant.IRestaurantService;
 import com.eatle.utils.Pagination;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -161,5 +162,28 @@ public class RestaurantServiceImpl implements IRestaurantService
 			map.put(st.getTypeIdentify(), st.getTypeName());
 		}
 		return map;
+	}
+
+	@Override
+	public List<Restaurant> findByMultiIds(String[] ids)
+	{
+		List<Restaurant> restaurants = new ArrayList<Restaurant>();
+		for(String id : ids)
+		{
+			restaurants.add(findById(Long.parseLong(id)));
+		}
+		return restaurants;
+	}
+
+	@Override
+	public String findByMultiIds(String[] ids, String separatorChars)
+	{
+		StringBuffer restaurants = new StringBuffer();
+		for(String id : ids)
+		{
+			restaurants.append((findById(Long.parseLong(id)).getName()));
+			restaurants.append(separatorChars);
+		}
+		return restaurants.substring(0, restaurants.lastIndexOf(separatorChars));
 	}
 }

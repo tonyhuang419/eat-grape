@@ -37,13 +37,15 @@ public class Restaurant
 
 	private Long merchantId;
 
-	private String shopTypeStr; 		// 临时属性（餐厅主营类型名称）
+	private String shopTypeStr; // 临时属性（餐厅主营类型名称）
 
-	private String merchantName; 		// 临时属性（所属商家名）
+	private String merchantName; // 临时属性（所属商家名）
 
-	private List<School> schools; 		// 临时属性（学校集合）
+	private List<School> schools; // 临时属性（学校集合）
 
-	private List<Community> community; 	// 临时属性（社区/楼宇集合）
+	private List<Community> community; // 临时属性（社区/楼宇集合）
+
+	private Boolean isManaged; // 临时属性（用户、商家关联修改时会使用）
 
 	public Long getId()
 	{
@@ -233,5 +235,15 @@ public class Restaurant
 	public void setCommunity(List<Community> community)
 	{
 		this.community = community;
+	}
+
+	public Boolean getIsManaged()
+	{
+		return isManaged;
+	}
+
+	public void setIsManaged(Boolean isManaged)
+	{
+		this.isManaged = isManaged;
 	}
 }

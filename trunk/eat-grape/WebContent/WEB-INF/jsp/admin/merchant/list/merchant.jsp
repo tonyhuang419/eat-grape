@@ -88,9 +88,8 @@
 							href="${ctx}/admin/merchant/list/showLogoUpload.htm?merchant.id=${item.id}&action=zdylbzs"
 							width="500" height="250">设置Logo</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<a title="${item.merchantName}-用户关联" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/merchant/list/showLogoUpload.htm?merchant.id=${item.id}&action=zdylbzs"
-							width="500" height="250">关联用户</a>
+						<a title="${item.merchantName}-账号关联" target="navTab" rel="usermerchant_${item.id}" 
+							href="${ctx}/admin/merchant/list/usermerchant/showIndex.htm?merchantId=${item.id}&navTabId=usermerchant_${item.id}&action=zdylbzs">关联账号</a>
 					</td>
 				</tr>
 			</s:iterator>
