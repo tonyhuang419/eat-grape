@@ -38,11 +38,31 @@ public class StringUtil
 		
 		return uuid + fileType;		
 	}
+
+	/**
+	 *  @Description: 将字符串中所有空格清除
+	 * 	@param source ：需要被处理的字符串
+	 */
+	public static String trim(String source)
+	{
+		String result = new String();
+		for(int i = 0, len = source.length(); i < len; i++)
+		{
+			char c = source.charAt(i);
+			if(c != ' ')
+			{
+				result += c;
+			}
+		}
+		return result;
+	}
 	
 	public static void main(String[] args)
 	{
-		String s = "aaa;bbb;ccc;ddd";
-		System.out.println(reverseStrAsSplitStr(s, ";"));
+//		String s = "aaa;bbb;ccc;ddd";
+//		System.out.println(reverseStrAsSplitStr(s, ";"));
+		String s = "1, 2,   4, 22,          321,  3";
+		System.out.println(trim(s));
 	}
 }
  

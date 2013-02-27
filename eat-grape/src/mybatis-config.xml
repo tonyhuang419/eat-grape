@@ -100,6 +100,9 @@
     	<!-- 社区/楼宇-餐厅关联 -->
     	<typeAlias alias="CommunityRestaurant" type="com.eatle.persistent.pojo.merchant.CommunityRestaurant"/>
     	<typeAlias alias="CommunityRestaurantCriteria" type="com.eatle.persistent.pojo.merchant.CommunityRestaurantCriteria"/>
+    	<!-- 用户商家关联 -->
+    	<typeAlias alias="UserMerchant" type="com.eatle.persistent.pojo.merchant.UserMerchant"/>
+    	<typeAlias alias="UserMerchantCriteria" type="com.eatle.persistent.pojo.merchant.UserMerchantCriteria"/>
     	
     	
     	<!-- *****************************订单管理************************************* -->

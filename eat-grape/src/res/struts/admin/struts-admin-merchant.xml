@@ -41,6 +41,14 @@
 	</action>
   </package>
   
+  <!-- 商家关联用户相关 -->
+  <package extends="default" name="userMerchant" namespace="/admin/merchant/list/usermerchant">
+	  <action class="com.eatle.web.action.backend.merchant.UserMerchantAction" method="{1}" name="*">
+		   <result name="showIndex">/WEB-INF/jsp/admin/merchant/list/usermerchant/userMerchant.jsp</result>
+		   <result name="showAdd">/WEB-INF/jsp/admin/merchant/list/usermerchant/add.jsp</result>
+		   <result name="showUpdate">/WEB-INF/jsp/admin/merchant/list/usermerchant/update.jsp</result>
+	  </action>
+  </package>
   
   <!-- 餐厅相关 -->
   

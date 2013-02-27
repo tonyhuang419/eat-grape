@@ -65,4 +65,15 @@ public interface IRestaurantService
 	 */
 	@SuppressWarnings("unchecked")
 	LinkedHashMap<String, List> getExportData();
+	
+	/**
+	 * @Description: 根据ID集合查询出餐厅集合
+	 * @param : id集合数组
+	 */
+	String findByMultiIds(String[] ids, String separatorChars);
+	/**
+	 * @Description: 根据ID集合查询出餐厅集合
+	 * @param : id集合数组
+	 */
+	List<Restaurant> findByMultiIds(String[] ids);
 }
