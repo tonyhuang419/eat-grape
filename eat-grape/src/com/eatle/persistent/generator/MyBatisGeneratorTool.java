@@ -14,38 +14,49 @@ import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
 /**
- * 
- *@Title: 生成器启动类
- *@Description:
- *@Author:xt
- *@Since:2012-7-3
- *@Version:1.1.0
+ *@Description:生成器启动类
  */
-public class MyBatisGeneratorTool {
-	public static void main(String[] args) {
+public class MyBatisGeneratorTool
+{
+	public static void main(String[] args)
+	{
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
 		String genCfg = "generatorConfig.xml";
-		File configFile = new File(MyBatisGeneratorTool.class.getResource(genCfg).getFile());
+		File configFile = new File(MyBatisGeneratorTool.class.getResource(
+				genCfg).getFile());
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = null;
-		try {
-			System.out.println("--------->>>Start to generate code....--------------------");
+		try
+		{
+			System.out
+					.println("--------->>>Start to generate code....--------------------");
 			config = cp.parseConfiguration(configFile);
 			DefaultShellCallback callback = new DefaultShellCallback(overwrite);
 			MyBatisGenerator myBatisGenerator = null;
 			myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 			myBatisGenerator.generate(null);
-			System.out.println("--------->>>Finished to generate code....--------------------");
-		} catch (SQLException e) {
+			System.out
+					.println("--------->>>Finished to generate code....--------------------");
+		}
+		catch (SQLException e)
+		{
 			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e)
+		{
 			e.printStackTrace();
-		}catch (InvalidConfigurationException e) {
+		}
+		catch (InvalidConfigurationException e)
+		{
 			e.printStackTrace();
-		} catch (XMLParserException e) {
+		}
+		catch (XMLParserException e)
+		{
 			e.printStackTrace();
 		}
 	}

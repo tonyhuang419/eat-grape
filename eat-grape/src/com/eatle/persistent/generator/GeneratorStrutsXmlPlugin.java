@@ -27,10 +27,6 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
  * name="showAdd">/WEB-INF/jsp/account/add.jsp</result> <result
  * name="showUpdate">/WEB-INF/jsp/account/update.jsp</result> </action>
  * </package>
- * 
- *@Author:xt
- *@Since:2012-6-28
- *@Version:1.1.0
  */
 public class GeneratorStrutsXmlPlugin extends PluginAdapter
 {
@@ -154,7 +150,7 @@ public class GeneratorStrutsXmlPlugin extends PluginAdapter
 
 		XmlElement action = new XmlElement("action"); //$NON-NLS-1$
 		action.addAttribute(new Attribute("name", "*")); //$NON-NLS-1$
-		action.addAttribute(new Attribute("class", recordType)); //$NON-NLS-1$
+		action.addAttribute(new Attribute("class", actionPackge + "." + recordType + "Action")); //$NON-NLS-1$
 		action.addAttribute(new Attribute("method", "{1}")); //$NON-NLS-1$
 		pkg.addElement(action);
 
@@ -167,15 +163,13 @@ public class GeneratorStrutsXmlPlugin extends PluginAdapter
 
 		result = new XmlElement("result"); //$NON-NLS-1$
 		result.addAttribute(new Attribute("name", "showAdd")); //$NON-NLS-1$
-		text = new TextElement("/WEB-INF/jsp/" + recordLowerFullType
-				+ "/add.jsp");
+		text = new TextElement("/WEB-INF/jsp/" + recordLowerFullType + "/add.jsp");
 		result.addElement(text);
 		action.addElement(result);
 
 		result = new XmlElement("result"); //$NON-NLS-1$
 		result.addAttribute(new Attribute("name", "showUpdate")); //$NON-NLS-1$
-		text = new TextElement("/WEB-INF/jsp/" + recordLowerFullType
-				+ "/update.jsp");
+		text = new TextElement("/WEB-INF/jsp/" + recordLowerFullType + "/update.jsp");
 		result.addElement(text);
 		action.addElement(result);
 

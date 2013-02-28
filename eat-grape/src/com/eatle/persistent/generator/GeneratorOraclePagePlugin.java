@@ -1,6 +1,9 @@
 package com.eatle.persistent.generator;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.Properties;
 
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
@@ -15,14 +18,9 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 
 /**
- * 
- *@Title: MySQL分页支持
- *@Description:
- *@Author:xt
- *@Since:2012-7-3
- *@Version:1.1.0
+ *@Description: Oracle分页支持
  */
-public class GeneratorMysqlPagePlugin extends PluginAdapter
+public class GeneratorOraclePagePlugin extends PluginAdapter
 {
 
 	@Override
@@ -87,8 +85,8 @@ public class GeneratorMysqlPagePlugin extends PluginAdapter
 	protected XmlElement getBaseColumnListElement(
 			IntrospectedTable introspectedTable)
 	{
-		XmlElement answer = new XmlElement("include");
-		answer.addAttribute(new Attribute("refid",
+		XmlElement answer = new XmlElement("include"); //$NON-NLS-1$
+		answer.addAttribute(new Attribute("refid", //$NON-NLS-1$
 				introspectedTable.getBaseColumnListId()));
 		return answer;
 	}
@@ -96,37 +94,103 @@ public class GeneratorMysqlPagePlugin extends PluginAdapter
 	protected XmlElement getBlobColumnListElement(
 			IntrospectedTable introspectedTable)
 	{
-		XmlElement answer = new XmlElement("include");
-		answer.addAttribute(new Attribute("refid",
+		XmlElement answer = new XmlElement("include"); //$NON-NLS-1$
+		answer.addAttribute(new Attribute("refid", //$NON-NLS-1$
 				introspectedTable.getBlobColumnListId()));
 		return answer;
 	}
 
 	/**
-	 * @Description ：为selectByMap添加MySQL分页的代码（表中包含大字段）
+	 * @Description ：为selectByMap添加Oracle分页的代码（表中包含大字段）
 	 */
 	@Override
 	public boolean sqlMapSelectByExampleWithBLOBsElementGenerated(
 			XmlElement element, IntrospectedTable introspectedTable)
 	{
-		XmlElement ifElement = new XmlElement("if");
-		ifElement.addAttribute(new Attribute("test", "pageSize > 0"));
-		ifElement.addElement(new TextElement("limit ${startIndex},${pageSize}"));
-		element.addElement(ifElement);
+		element.addElement(0, new TextElement(
+				"select * from (select a.*, rownum rn from ("));
+		element.addElement(new TextElement(") a"));
+
+		XmlElement whereElement_1 = new XmlElement("where");
+		XmlElement ifElement_1 = new XmlElement("if");
+		ifElement_1.addAttribute(new Attribute("test",
+				"startIndex != null and pageSize != null"));
+		ifElement_1.addElement(new TextElement(
+				"rownum &lt;= (${startIndex} + ${pageSize})"));
+		whereElement_1.addElement(ifElement_1);
+		element.addElement(whereElement_1);
+
+		element.addElement(new TextElement(")"));
+
+		XmlElement whereElement_2 = new XmlElement("where");
+		XmlElement ifElement_2 = new XmlElement("if");
+		ifElement_2.addAttribute(new Attribute("test", "startIndex != null"));
+		ifElement_2.addElement(new TextElement("rn &gt;= ${startIndex}"));
+		whereElement_2.addElement(ifElement_2);
+		element.addElement(whereElement_2);
+
 		return true;
 	}
 
 	/**
-	 * @Description ：为selectByMap添加MySQL分页的代码（表中包含大字段）
+	 * @Description ：为selectByMap添加Oracle分页的代码（表中不包含大字段）
 	 */
 	@Override
 	public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(
 			XmlElement element, IntrospectedTable introspectedTable)
 	{
-		XmlElement ifElement = new XmlElement("if");
-		ifElement.addAttribute(new Attribute("test", "pageSize > 0"));
-		ifElement.addElement(new TextElement("limit ${startIndex},${pageSize}"));
-		element.addElement(ifElement);
+		element.addElement(0, new TextElement(
+				"select * from (select a.*, rownum rn from ("));
+		element.addElement(new TextElement(") a"));
+
+		XmlElement whereElement_1 = new XmlElement("where");
+		XmlElement ifElement_1 = new XmlElement("if");
+		ifElement_1.addAttribute(new Attribute("test",
+				"startIndex != null and pageSize != null"));
+		ifElement_1.addElement(new TextElement(
+				"rownum &lt;= (${startIndex} + ${pageSize})"));
+		whereElement_1.addElement(ifElement_1);
+		element.addElement(whereElement_1);
+
+		element.addElement(new TextElement(")"));
+
+		XmlElement whereElement_2 = new XmlElement("where");
+		XmlElement ifElement_2 = new XmlElement("if");
+		ifElement_2.addAttribute(new Attribute("test", "startIndex != null"));
+		ifElement_2.addElement(new TextElement("rn &gt;= ${startIndex}"));
+		whereElement_2.addElement(ifElement_2);
+		element.addElement(whereElement_2);
+
+		return true;
+	}
+
+	/**
+	 * @Description: 为insert方法添加主键值（通过序列获取）
+	 */
+	@Override
+	public boolean sqlMapInsertElementGenerated(XmlElement element,
+			IntrospectedTable introspectedTable)
+	{
+		Properties props = new Properties();
+		try
+		{
+			props.load(new FileInputStream(new File(this.getClass()
+					.getResource("/com/eatle/persistent/generator/generatorConfig.properties").toURI())));
+			XmlElement selectKeyElement = new XmlElement("selectKey");
+			selectKeyElement.addAttribute(new Attribute("resultType", "long"));
+			selectKeyElement.addAttribute(new Attribute("keyProperty", "id"));
+			selectKeyElement.addAttribute(new Attribute("order", "BEFORE"));
+			selectKeyElement.addElement(new TextElement("select "
+					+ props.getProperty("sequenceName")
+					+ ".NEXTVAL as ID from dual "));
+
+			element.addElement(selectKeyElement);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
 		return true;
 	}
 }
