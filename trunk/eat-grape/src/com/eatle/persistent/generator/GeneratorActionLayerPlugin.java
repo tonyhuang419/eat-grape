@@ -19,12 +19,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 /**
- * 
- *@Title: Action 层生成器
- *@Description:
- *@Author:xt
- *@Since:2012-6-28
- *@Version:1.1.0
+ *@Description: Action 层生成器
  */
 public class GeneratorActionLayerPlugin extends PluginAdapter
 {
@@ -133,7 +128,7 @@ public class GeneratorActionLayerPlugin extends PluginAdapter
 		// setter getter
 		addSetPageMethod(topLevelClass, introspectedTable);
 		addGetPageMethod(topLevelClass, introspectedTable);
-		addGetBaseRecordMethod(topLevelClass, introspectedTable, 
+		addGetBaseRecordMethod(topLevelClass, introspectedTable,
 				recordFullType, recordLowerFullType);
 		addSetBaseRecordMethod(topLevelClass, introspectedTable,
 				recordFullType, recordLowerFullType);
