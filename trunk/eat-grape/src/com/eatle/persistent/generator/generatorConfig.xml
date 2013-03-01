@@ -36,7 +36,7 @@
 			<property name="suppressAllComments" value="true" />								<!-- 不生成注释 -->
 		</commentGenerator>
 		
-		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userId}" password="${password}"/>
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userName}" password="${password}"/>
 		
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />								   	<!-- 类型解析器 -->
