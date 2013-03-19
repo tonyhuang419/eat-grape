@@ -206,4 +206,42 @@
    			</map>
   		</constructor-arg>
  	</bean>
+ 	
+ 	<!-- 前台顾客类型 -->
+	<bean id="customerTypeStr" class="java.util.LinkedHashMap">
+  		<constructor-arg>
+   			<map>
+    			<entry key="0" value="普通"/>
+    			<entry key="1" value="游客"/>
+    			<entry key="2" value="VIP"/>
+   			</map>
+  		</constructor-arg>
+ 	</bean>
+	<bean id="customerTypeHtml" class="java.util.LinkedHashMap">
+  		<constructor-arg>
+   			<map>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>普通</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>游客</font>]]></value></entry>
+    			<entry><key><value>2</value></key><value><![CDATA[<font color='${color.level.3}'>VIP</font>]]></value></entry>
+   			</map>
+  		</constructor-arg>
+ 	</bean>
+ 	
+ 	<!-- 前台顾客是否可用 -->
+	<bean id="customerEnabledStr" class="java.util.LinkedHashMap">
+  		<constructor-arg>
+   			<map>
+    			<entry key="0" value="可用"/>
+    			<entry key="1" value="禁用"/>
+   			</map>
+  		</constructor-arg>
+ 	</bean>
+	<bean id="customerEnabledHtml" class="java.util.LinkedHashMap">
+  		<constructor-arg>
+   			<map>
+    			<entry><key><value>0</value></key><value><![CDATA[<font color='${color.level.1}'>可用</font>]]></value></entry>
+    			<entry><key><value>1</value></key><value><![CDATA[<font color='${color.level.2}'>禁用</font>]]></value></entry>
+   			</map>
+  		</constructor-arg>
+ 	</bean>
 </beans>

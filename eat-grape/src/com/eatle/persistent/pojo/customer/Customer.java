@@ -14,6 +14,8 @@ public class Customer
 
 	private String trueName;
 
+	private String headPicUrl;
+
 	private Date registerTime;
 
 	private Date lastLoginTime;
@@ -28,6 +30,8 @@ public class Customer
 
 	private Short customerType;
 
+	private Short isEnabled;
+
 	private String visitorUuid;
 
 	private String relativeQq;
@@ -39,6 +43,24 @@ public class Customer
 	private Long communityId;
 
 	private Long schoolId;
+
+	// 临时属性（注册时间字符串）
+	private String registerTimeStr;
+
+	// 临时属性（最后登陆时间字符串）
+	private String lastLoginTimeStr;
+
+	// 临时属性（顾客类型字符串）
+	private String customerTypeStr;
+
+	// 临时属性（是否可用字符串）
+	private String isEnabledStr;
+
+	// 临时属性（所属社区名称）
+	private String communityName;
+
+	// 临时属性（所属学校名称）
+	private String schoolName;
 
 	public Long getId()
 	{
@@ -88,6 +110,16 @@ public class Customer
 	public void setTrueName(String trueName)
 	{
 		this.trueName = trueName;
+	}
+
+	public String getHeadPicUrl()
+	{
+		return headPicUrl;
+	}
+
+	public void setHeadPicUrl(String headPicUrl)
+	{
+		this.headPicUrl = headPicUrl;
 	}
 
 	public Date getRegisterTime()
@@ -160,6 +192,16 @@ public class Customer
 		this.customerType = customerType;
 	}
 
+	public Short getIsEnabled()
+	{
+		return isEnabled;
+	}
+
+	public void setIsEnabled(Short isEnabled)
+	{
+		this.isEnabled = isEnabled;
+	}
+
 	public String getVisitorUuid()
 	{
 		return visitorUuid;
@@ -218,5 +260,65 @@ public class Customer
 	public void setSchoolId(Long schoolId)
 	{
 		this.schoolId = schoolId;
+	}
+
+	public String getRegisterTimeStr()
+	{
+		return registerTimeStr;
+	}
+
+	public void setRegisterTimeStr(String registerTimeStr)
+	{
+		this.registerTimeStr = registerTimeStr;
+	}
+
+	public String getLastLoginTimeStr()
+	{
+		return lastLoginTimeStr;
+	}
+
+	public void setLastLoginTimeStr(String lastLoginTimeStr)
+	{
+		this.lastLoginTimeStr = lastLoginTimeStr;
+	}
+
+	public String getCustomerTypeStr()
+	{
+		return customerTypeStr;
+	}
+
+	public void setCustomerTypeStr(String customerTypeStr)
+	{
+		this.customerTypeStr = customerTypeStr;
+	}
+
+	public String getIsEnabledStr()
+	{
+		return isEnabledStr;
+	}
+
+	public void setIsEnabledStr(String isEnabledStr)
+	{
+		this.isEnabledStr = isEnabledStr;
+	}
+
+	public String getCommunityName()
+	{
+		return communityName;
+	}
+
+	public void setCommunityName(String communityName)
+	{
+		this.communityName = communityName;
+	}
+
+	public String getSchoolName()
+	{
+		return schoolName;
+	}
+
+	public void setSchoolName(String schoolName)
+	{
+		this.schoolName = schoolName;
 	}
 }

@@ -1,5 +1,6 @@
 package com.eatle.utils; 
 
+import java.util.Random;
 import java.util.UUID;
 
 /** @corpor  公司：深讯信科
@@ -56,13 +57,32 @@ public class StringUtil
 		}
 		return result;
 	}
+
+	/**
+	 *  @Description: 构造随机密码
+	 */
+	public static String constructRandomPassword()
+	{
+		StringBuffer randomPassword = new StringBuffer();
+		String candidateChar = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random random = new Random();
+		for(int i = 1; i <= 8; i++)
+		{
+			randomPassword.append(candidateChar.charAt(random.nextInt(62)));
+		}
+		return randomPassword.toString();
+	}
 	
 	public static void main(String[] args)
 	{
 //		String s = "aaa;bbb;ccc;ddd";
 //		System.out.println(reverseStrAsSplitStr(s, ";"));
-		String s = "1, 2,   4, 22,          321,  3";
-		System.out.println(trim(s));
+		
+//		String s = "1, 2,   4, 22,          321,  3";
+//		System.out.println(trim(s));
+
+		for(int i = 1; i <= 80; i++)
+			System.out.println(constructRandomPassword());
 	}
 }
  

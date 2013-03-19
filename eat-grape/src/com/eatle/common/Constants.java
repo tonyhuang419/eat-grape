@@ -111,4 +111,23 @@ public class Constants
 		 */
 		public static final short STATUS_HANDLED = 2;
 	}
+	
+	/**
+	 * @Description: 顾客账号是否可用
+	 * @Author: 谭又中
+	 * @Since: 2013-03-19
+	 */
+	public static class IsEnabled
+	{
+		/**
+		 * @Description: 可用
+		 */
+		public static final short ENABLED = 0;
+		
+		/**
+		 * @Description: 不可用
+		 */
+		public static final short UNABLED = 1;
+
+	}
 }

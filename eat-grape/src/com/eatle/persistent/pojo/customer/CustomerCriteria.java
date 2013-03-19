@@ -575,6 +575,90 @@ public class CustomerCriteria
 			return (Criteria) this;
 		}
 
+		public Criteria andHeadPicUrlIsNull()
+		{
+			addCriterion("head_pic_url is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlIsNotNull()
+		{
+			addCriterion("head_pic_url is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlEqualTo(String value)
+		{
+			addCriterion("head_pic_url =", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlNotEqualTo(String value)
+		{
+			addCriterion("head_pic_url <>", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlGreaterThan(String value)
+		{
+			addCriterion("head_pic_url >", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlGreaterThanOrEqualTo(String value)
+		{
+			addCriterion("head_pic_url >=", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlLessThan(String value)
+		{
+			addCriterion("head_pic_url <", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlLessThanOrEqualTo(String value)
+		{
+			addCriterion("head_pic_url <=", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlLike(String value)
+		{
+			addCriterion("head_pic_url like", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlNotLike(String value)
+		{
+			addCriterion("head_pic_url not like", value, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlIn(List<String> values)
+		{
+			addCriterion("head_pic_url in", values, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlNotIn(List<String> values)
+		{
+			addCriterion("head_pic_url not in", values, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlBetween(String value1, String value2)
+		{
+			addCriterion("head_pic_url between", value1, value2, "headPicUrl");
+			return (Criteria) this;
+		}
+
+		public Criteria andHeadPicUrlNotBetween(String value1, String value2)
+		{
+			addCriterion("head_pic_url not between", value1, value2, "headPicUrl");
+			return (Criteria) this;
+		}
+
 		public Criteria andRegisterTimeIsNull()
 		{
 			addCriterion("register_time is null");
@@ -1121,6 +1205,78 @@ public class CustomerCriteria
 		{
 			addCriterion("customer_type not between", value1, value2,
 					"customerType");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledIsNull()
+		{
+			addCriterion("is_enabled is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledIsNotNull()
+		{
+			addCriterion("is_enabled is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledEqualTo(Short value)
+		{
+			addCriterion("is_enabled =", value, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledNotEqualTo(Short value)
+		{
+			addCriterion("is_enabled <>", value, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledGreaterThan(Short value)
+		{
+			addCriterion("is_enabled >", value, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledGreaterThanOrEqualTo(Short value)
+		{
+			addCriterion("is_enabled >=", value, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledLessThan(Short value)
+		{
+			addCriterion("is_enabled <", value, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledLessThanOrEqualTo(Short value)
+		{
+			addCriterion("is_enabled <=", value, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledIn(List<Short> values)
+		{
+			addCriterion("is_enabled in", values, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledNotIn(List<Short> values)
+		{
+			addCriterion("is_enabled not in", values, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledBetween(Short value1, Short value2)
+		{
+			addCriterion("is_enabled between", value1, value2, "isEnabled");
+			return (Criteria) this;
+		}
+
+		public Criteria andIsEnabledNotBetween(Short value1, Short value2)
+		{
+			addCriterion("is_enabled not between", value1, value2, "isEnabled");
 			return (Criteria) this;
 		}
 

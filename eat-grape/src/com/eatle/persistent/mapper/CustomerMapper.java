@@ -21,10 +21,14 @@ public interface CustomerMapper
 
 	int updateByPrimaryKey(Customer record);
 
-	// 统计总的记录数
+	/**
+	 * @Description ： 根据查询条件获取总的记录数量
+	 */
 	long selectCountByCriteria(CustomerCriteria example);
 
-	// 通过map参数进行查询
+	/**
+	 * @Description ： 通过map参数进行查询
+	 */
 	@SuppressWarnings("unchecked")
 	List<Customer> selectByMap(Map paramMap);
 }

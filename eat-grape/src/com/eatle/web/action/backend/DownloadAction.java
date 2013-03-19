@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 
+import com.eatle.service.customer.ICustomerService;
 import com.eatle.service.foundation.business.IFeedbackService;
 import com.eatle.service.foundation.business.IJoinInformationService;
 import com.eatle.service.foundation.business.IRecommendMerchantService;
@@ -69,6 +70,9 @@ public class DownloadAction extends BaseAction
 	
 	@Resource
 	private IOrderService orderService;
+	
+	@Resource
+	private ICustomerService customerService;
 
 	// 下载文件名
 	private String fileName;
@@ -397,6 +401,38 @@ public class DownloadAction extends BaseAction
 		setInfo.setObjsMap(orderService.getExportData());
 		setInfo.setFieldNames(fieldNames);
 		setInfo.setTitles(new String[] { "馋八戒积分商城兑换记录信息" });
+		setInfo.setHeadNames(headNames);
+		setInfo.setOut(baos);
+		
+		// 将需要导出的数据输出到baos
+		ExcelUtil.export2Excel(setInfo);
+		
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	/**
+	 * @throws IllegalAccessException 
+	 * @throws IOException 
+	 * @throws IllegalArgumentException 
+	 * @Description: 前台顾客数据导出Excel下载
+	 */
+	public InputStream getCustomersExcel() throws 
+		IllegalArgumentException, IOException, IllegalAccessException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		List<String[]> headNames = new ArrayList<String[]>();
+		headNames.add(new String[] { "登录邮箱", "昵称", "登录密码", "真实姓名", "移动电话",
+				"账号状态", "当前积分", "顾客类型", "注册时间", "注册IP", "最后登录时间", 
+				"最后登录IP", "游客ID", "关联QQ", "关联新浪", "关联人人网", "所属社区", "所属学校" });
+		List<String[]> fieldNames = new ArrayList<String[]>();
+		fieldNames.add(new String[] { "loginEmail", "nickName", "password", "trueName", "mobilePhone", 
+				"isEnabledStr", "score", "customerTypeStr", "registerTimeStr", "registerIp", "lastLoginTimeStr", 
+				"lastLoginIp", "visitorUuid", "relativeQq", "relativeSina", "relativeRrw", "communityName", "schoolName" }); 
+
+		ExportSetInfo setInfo = new ExportSetInfo();
+		setInfo.setObjsMap(customerService.getExportData());
+		setInfo.setFieldNames(fieldNames);
+		setInfo.setTitles(new String[] { "馋八戒前台顾客信息" });
 		setInfo.setHeadNames(headNames);
 		setInfo.setOut(baos);
 		
