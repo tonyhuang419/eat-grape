@@ -139,9 +139,8 @@ public class LoginLogServiceImpl implements ILoginLogService
 	public LinkedHashMap<String, List> getExportData()
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
-		List<LoginLog> loginLogs = findAll();
-		List<LoginLog> dataList = new ArrayList<LoginLog>();
-		for(LoginLog loginLog : loginLogs)
+		List<LoginLog> dataList = findAll();
+		for(LoginLog loginLog : dataList)
 		{
 			// 登陆用户名
 			if(loginLog.getIdentifyType() != Constants.Identity.IDENTITY_CUSTOMER)
@@ -152,8 +151,6 @@ public class LoginLogServiceImpl implements ILoginLogService
 			loginLog.setIdentifyTypeStr(identityStr.get("" + loginLog.getIdentifyType()));
 			// 登陆时间
 			loginLog.setLoginTimeStr(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(loginLog.getLoginTime()));
-			
-			dataList.add(loginLog);
 		}
 		map.put("登陆日志", dataList);
 		return map;
