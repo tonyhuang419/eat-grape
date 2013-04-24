@@ -1,15 +1,17 @@
 package com.eatle.utils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -39,6 +41,87 @@ public class ExcelUtil
 	private static Font contentFont;			// 内容行字体
 	
 	/**
+	 * @throws IOException 
+	 * @Description: 将Map里的集合对象数据输出Excel数据流(简单样式输出：仅支持单个Sheet，且样式单调)
+	 */
+	public static void export2SimpleExcel(String sheetName,
+			String[] columnPropterties, String[] columnNames, List<?> list,
+			OutputStream out) throws IOException
+	{
+		wb = new HSSFWorkbook();
+		HSSFSheet sheet = wb.createSheet(sheetName);
+		// 创建第1行，也就是输出表头
+		HSSFRow row = sheet.createRow(0);
+		HSSFCell cell;
+		for (int i = 0; i < columnNames.length; i++)
+		{
+			cell = row.createCell(i);
+			cell.setCellValue(new HSSFRichTextString(columnNames[i]));
+		}
+		// 下面是输出各行的数据
+		for (int i = 0; i < list.size(); i++)
+		{
+			row = sheet.createRow(i + 1);
+			Object o = list.get(i);
+			for (int j = 0; j < columnPropterties.length; j++)
+			{
+				cell = row.createCell(j);
+				Object obj = ReflectionUtils.invokeGetterMethod(o, columnPropterties[j]);
+				cell.setCellValue(obj == null ? "" : obj.toString());
+			}
+		}
+		wb.write(out);
+	}
+
+	/**
+	 * @throws IOException 
+	 * @Description: 将Map里的集合对象数据输出Excel数据流(依据输入模板输出数据)
+	 */
+	@SuppressWarnings("unchecked")
+	public static void export2ExcelByTemplate(ExportSetInfo setInfo) throws IOException
+	{
+		init(setInfo.getTemplateInput());
+		Set<Entry<String, List>> set = setInfo.getObjsMap().entrySet();
+		String[] sheetNames = new String[setInfo.getObjsMap().size()];
+		int sheetNameNum = 0;
+		for (Entry<String, List> entry : set)
+		{
+			sheetNames[sheetNameNum] = entry.getKey();
+			sheetNameNum++;
+		}
+		HSSFSheet[] sheets = getSheetsByTemplate(setInfo.getObjsMap().size(), sheetNames);
+		int sheetNum = 0;
+		for (Entry<String, List> entry : set)
+		{
+			// Sheet
+			List objs = entry.getValue();
+			// 表体
+			String[] fieldNames = setInfo.getFieldNames().get(sheetNum);
+			int rowNum = setInfo.getStartRowNums()[sheetNum];
+			for (Object obj : objs)
+			{
+				HSSFRow contentRow = sheets[sheetNum].createRow(rowNum);
+				contentRow.setHeight((short) 300);
+				HSSFCell[] cells = createCellsForTemplate(contentRow, setInfo.getFieldNames().get(sheetNum).length);
+				int cellNum = 0;
+				if(fieldNames != null)
+				{
+					for (int num = 0; num < fieldNames.length; num++)
+					{
+						Object value = ReflectionUtils.invokeGetterMethod(obj, fieldNames[num]);
+						cells[cellNum].setCellValue(value == null ? "" : value.toString());
+						cellNum++;
+					}
+				}
+				rowNum++;
+			}
+//			adjustColumnSize(sheets, sheetNum, fieldNames);	// 自动调整列宽
+			sheetNum++;
+		}
+		wb.write(setInfo.getOut());
+	}
+	
+	/**
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 * @Description: 将Map里的集合对象数据输出Excel数据流
@@ -56,7 +139,7 @@ public class ExcelUtil
 			sheetNames[sheetNameNum] = entry.getKey();
 			sheetNameNum++;
 		}
-		HSSFSheet[] sheets = getSheets(setInfo.getObjsMap().size(), sheetNames);
+		HSSFSheet[] sheets = createSheets(setInfo.getObjsMap().size(), sheetNames);
 		int sheetNum = 0;
 		for (Entry<String, List> entry : set)
 		{
@@ -75,7 +158,7 @@ public class ExcelUtil
 			{
 				HSSFRow contentRow = sheets[sheetNum].createRow(rowNum);
 				contentRow.setHeight((short) 300);
-				HSSFCell[] cells = getCells(contentRow, setInfo.getFieldNames().get(sheetNum).length);
+				HSSFCell[] cells = createCells(contentRow, setInfo.getFieldNames().get(sheetNum).length);
 				int cellNum = 1;					// 去掉一列序号，因此从1开始
 				if(fieldNames != null)
 				{
@@ -88,7 +171,7 @@ public class ExcelUtil
 				}
 				rowNum++;
 			}
-//			adjustColumnSize(sheets, sheetNum, fieldNames);	// 自动调整列宽（效率影响非常大）
+//			adjustColumnSize(sheets, sheetNum, fieldNames);	// 自动调整列宽
 			sheetNum++;
 		}
 		wb.write(setInfo.getOut());
@@ -100,7 +183,25 @@ public class ExcelUtil
 	private static void init()
 	{
 		wb = new HSSFWorkbook();
-		
+		initStyles();
+	}
+	
+	/**
+	 * @throws IOException 
+	 * @Description: 初始化（带模板文件输入流）
+	 */
+	private static void init(InputStream input) throws IOException
+	{
+		wb = new HSSFWorkbook(input);
+		initStyles();
+	}
+	
+	/**
+	 * @throws IOException 
+	 * @Description: 初始化样式
+	 */
+	private static void initStyles()
+	{
 		titleFont = wb.createFont();
 		titleStyle = wb.createCellStyle();
 		dateStyle = wb.createCellStyle();
@@ -190,7 +291,7 @@ public class ExcelUtil
 	/**
 	 * @Description: 创建所有的Sheet
 	 */
-	private static HSSFSheet[] getSheets(int num, String[] names)
+	private static HSSFSheet[] createSheets(int num, String[] names)
 	{
 		HSSFSheet[] sheets = new HSSFSheet[num];
 		for (int i = 0; i < num; i++)
@@ -199,11 +300,24 @@ public class ExcelUtil
 		}
 		return sheets;
 	}
+	
+	/**
+	 * @Description: 从模板中获取所有的Sheet
+	 */
+	private static HSSFSheet[] getSheetsByTemplate(int num, String[] names)
+	{
+		HSSFSheet[] sheets = new HSSFSheet[num];
+		for (int i = 0; i < num; i++)
+		{
+			sheets[i] = wb.getSheet(names[i]);
+		}
+		return sheets;
+	}
 
 	/**
 	 * @Description: 创建内容行的每一列(附加一列序号)
 	 */
-	private static HSSFCell[] getCells(HSSFRow contentRow, int num)
+	private static HSSFCell[] createCells(HSSFRow contentRow, int num)
 	{
 		HSSFCell[] cells = new HSSFCell[num + 1];
 
@@ -215,6 +329,22 @@ public class ExcelUtil
 		// 设置序号列值，因为出去标题行和日期行，所有-2
 		cells[0].setCellValue(contentRow.getRowNum() - 2);
 
+		return cells;
+	}
+	
+	/**
+	 * @Description: 创建内容行的每一列(无列序号)
+	 */
+	private static HSSFCell[] createCellsForTemplate(HSSFRow contentRow, int num)
+	{
+		HSSFCell[] cells = new HSSFCell[num];
+		
+		for (int i = 0,len = cells.length; i < len; i++)
+		{
+			cells[i] = contentRow.createCell(i);
+			cells[i].setCellStyle(contentStyle);
+		}
+		
 		return cells;
 	}
 
@@ -326,7 +456,7 @@ public class ExcelUtil
 		contentFont.setColor(IndexedColors.BLUE_GREY.index);
 	}
 	
-	
+
 	/**
 	 * @Description: 封装Excel导出的设置信息
 	 * @author: 谭又中
@@ -343,6 +473,10 @@ public class ExcelUtil
 		private List<String[]> fieldNames;
 		
 		private OutputStream out;
+
+		private InputStream templateInput;
+		
+		private Integer[] startRowNums;
 
 		
 		@SuppressWarnings("unchecked")
@@ -414,6 +548,32 @@ public class ExcelUtil
 		public void setOut(OutputStream out)
 		{
 			this.out = out;
+		}
+
+		public InputStream getTemplateInput()
+		{
+			return templateInput;
+		}
+
+		/**
+		 * @param input 模板文件输入流（依据模板输出时必须设值）
+		 */
+		public void setTemplateInput(InputStream templateInput)
+		{
+			this.templateInput = templateInput;
+		}
+		
+		public Integer[] getStartRowNums()
+		{
+			return startRowNums;
+		}
+
+		/**
+		 * @param startRowNum 从第几行开始写数据（从0开始，依据模板输出时必须设值）
+		 */
+		public void setStartRowNums(Integer[] startRowNums)
+		{
+			this.startRowNums = startRowNums;
 		}
 	}
 }
