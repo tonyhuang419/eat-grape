@@ -1,9 +1,7 @@
 package com.eatle.service.test.order;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ import com.eatle.service.order.IOrderService;
 import com.eatle.service.test.BaseTest;
 import com.eatle.utils.ExcelUtil;
 import com.eatle.utils.ExcelUtil.ExportSetInfo;
-import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 /**
  * @corpor 公司：深讯信科
@@ -62,7 +59,7 @@ public class OrderTest extends BaseTest
 	@Test
 	public void exportTest() throws IllegalArgumentException, IOException, IllegalAccessException
 	{
-		OutputStream out = new FileOutputStream("c:/order.xls");
+		OutputStream out = new FileOutputStream("c:/order.xls", true);
 		List<String[]> headNames = new ArrayList<String[]>();
 		headNames.add(new String[] { "订单号", "下单时间", "订单状态", 
 				"订单状态说明", "折扣", "总价", "送餐地址", "联系人", "联系电话", 
@@ -81,5 +78,6 @@ public class OrderTest extends BaseTest
 		
 		// 将需要导出的数据输出到out
 		ExcelUtil.export2Excel(setInfo);
+		out.close();
 	}
 }
