@@ -1,5 +1,7 @@
+var interval;	// 定时器
 $(document).ready(function () {
-	setInterval(function() {
+	// 注册定时器
+	interval = setInterval(function() {
 		var url = ctx + "/admin/system/systemdata/systemInfo/ajaxLoadSystemInfo.htm";
 
 		// 关闭数据加载提示
@@ -19,4 +21,9 @@ $(document).ready(function () {
 		// 开启数据加载提示
 		$.ajaxSettings.global = true;
 	}, 1000);
+	
+	// 关闭Tab时，清除定时器
+	$(".close").on("click", function() {
+		window.clearInterval(interval);
+	});
 });
