@@ -1,7 +1,6 @@
 package com.eatle.web.action.backend; 
 
 import java.util.Date;
-import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -127,6 +126,10 @@ public class LoginAction extends BaseAction
 	{
 		// 移除User
 		session.remove("user");
+		// 移除当前管理餐厅id（防止有餐厅管理权限的人退出后，另外的人用没有权限的号在其session还未过期的机器上盗取session以获得餐厅管理权限）
+		session.remove("currMgrRestaurantId");
+		// 移除当前管理餐厅Name
+		session.remove("currMgrRestaurantName");
 		
 		return INPUT;
 	}

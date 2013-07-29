@@ -19,20 +19,20 @@ public class LoginLogAction extends BaseAction
 	private ILoginLogService loginLogService;
 	
 	@Resource(name="identityStr")
-	private LinkedHashMap<String, String> identifyType;
+	private LinkedHashMap<String, String> identifyTypeStr;
 
 	private Pagination page;
 
 	private LoginLog loginLog;
 
-	public LinkedHashMap<String, String> getIdentifyType()
+	public LinkedHashMap<String, String> getIdentifyTypeStr()
 	{
-		return identifyType;
+		return identifyTypeStr;
 	}
 
-	public void setIdentifyType(LinkedHashMap<String, String> identifyType)
+	public void setIdentifyTypeStr(LinkedHashMap<String, String> identifyTypeStr)
 	{
-		this.identifyType = identifyType;
+		this.identifyTypeStr = identifyTypeStr;
 	}
 
 	public Pagination getPage()

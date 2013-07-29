@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp"%>
-<form id="pagerForm" method="post" action="${ctx}/admin/system/systemdata/loginLog/showIndex.htm?action=account_mgr&navTabId=${param.navTabId}">
+<form id="pagerForm" method="post" action="${ctx}/admin/system/systemdata/loginLog/showIndex.htm?action=admin/system/systemdata/loginLog/showIndex.htm&navTabId=${param.navTabId}">
 	<input type="hidden" name="pageNum" value="${page.currentPage}" />
 	<input type="hidden" name="numPerPage" value="${page.pageSize}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -16,7 +16,7 @@
 
 
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/systemdata/loginLog/showIndex.htm?action=zxzhss&navTabId=${param.navTabId}" method="post">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${ctx}/admin/system/systemdata/loginLog/showIndex.htm?action=admin/system/systemdata/loginLog/showIndex.htm&navTabId=${param.navTabId}" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -32,7 +32,7 @@
 				<td>
 					<select class="combox" name="identifyType">
 						<option value="">身份类型</option>
-						<s:iterator value="#request.identifyType" var="it">
+						<s:iterator value="#request.identifyTypeStr" var="it">
 							<option value="${it.key}">${it.value}</option>
 						</s:iterator>
 					</select>

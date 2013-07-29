@@ -19,6 +19,8 @@ public class User implements Serializable
 
 	private Long roleId;
 	
+	private Long merchantId;
+	
 	// 临时属性（拥有的权限集合）
 	private Map<String, Priv> allPrivs;
 
@@ -27,6 +29,9 @@ public class User implements Serializable
 	
 	// 临时属性（角色字符串）
 	private String roleStr;
+	
+	// 临时属性（所属商家字符串）
+	private String merchantStr;
 
 	public Long getId()
 	{
@@ -88,6 +93,16 @@ public class User implements Serializable
 		this.roleId = roleId;
 	}
 
+	public Long getMerchantId()
+	{
+		return merchantId;
+	}
+
+	public void setMerchantId(Long merchantId)
+	{
+		this.merchantId = merchantId;
+	}
+
 	public Map<String, Priv> getAllPrivs()
 	{
 		return allPrivs;
@@ -116,6 +131,16 @@ public class User implements Serializable
 	public void setRoleStr(String roleStr)
 	{
 		this.roleStr = roleStr;
+	}
+
+	public String getMerchantStr()
+	{
+		return merchantStr;
+	}
+
+	public void setMerchantStr(String merchantStr)
+	{
+		this.merchantStr = merchantStr;
 	}
 
 	@Override

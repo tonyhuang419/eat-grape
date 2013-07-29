@@ -8,8 +8,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.eatle.common.Constants;
+import com.eatle.persistent.pojo.merchant.Merchant;
 import com.eatle.persistent.pojo.system.useradmin.Role;
 import com.eatle.persistent.pojo.system.useradmin.User;
+import com.eatle.service.merchant.IMerchantService;
 import com.eatle.service.system.useradmin.IRoleService;
 import com.eatle.service.system.useradmin.IUserService;
 import com.eatle.utils.DwzAjaxJsonUtil;
@@ -26,10 +28,15 @@ public class UserAction extends BaseAction
 	@Resource
 	private IRoleService roleService;
 	
+	@Resource
+	private IMerchantService merchantService;
+	
 	@Resource(name="userTypeStr")
 	private LinkedHashMap<String, String> userType;
 	
 	private List<Role> allRole;
+	
+	private List<Merchant> allMerchant;
 
 	private Pagination page;
 
@@ -57,6 +64,8 @@ public class UserAction extends BaseAction
 		page = userService.findPagination(params, pageNum, pageSize);
 		// 所有角色
 		allRole = roleService.findAll();
+		// 所有商家
+		allMerchant = merchantService.findAll();
 
 		return "showIndex";
 	}
@@ -65,6 +74,8 @@ public class UserAction extends BaseAction
 	{
 		// 所有角色
 		allRole = roleService.findAll();
+		// 所有商家
+		allMerchant = merchantService.findAll();
 		
 		return "showAdd";
 	}
@@ -118,6 +129,8 @@ public class UserAction extends BaseAction
 		user = userService.findById(user.getId());
 		// 所有角色
 		allRole = roleService.findAll();
+		// 所有商家
+		allMerchant = merchantService.findAll();
 		// 存入修改的用户，执行修改时查重使用
 		session.put("oldUser", user);
 		
@@ -177,6 +190,16 @@ public class UserAction extends BaseAction
 	public void setAllRole(List<Role> allRole)
 	{
 		this.allRole = allRole;
+	}
+
+	public List<Merchant> getAllMerchant()
+	{
+		return allMerchant;
+	}
+
+	public void setAllMerchant(List<Merchant> allMerchant)
+	{
+		this.allMerchant = allMerchant;
 	}
 
 	public Pagination getPage()

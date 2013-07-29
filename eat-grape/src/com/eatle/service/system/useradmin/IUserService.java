@@ -37,6 +37,13 @@ public interface IUserService
 	 * 
 	 * @param entity
 	 */
+	int update(User user);
+	
+	/**
+	 * @Description:
+	 * 
+	 * @param entity
+	 */
 	int update(User user, User oldUser);
 
 	/**

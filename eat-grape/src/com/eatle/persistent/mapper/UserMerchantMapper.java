@@ -1,10 +1,15 @@
 package com.eatle.persistent.mapper;
 
-import com.eatle.persistent.pojo.merchant.UserMerchant;
-import com.eatle.persistent.pojo.merchant.UserMerchantCriteria;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import com.eatle.persistent.pojo.merchant.UserMerchant;
+import com.eatle.persistent.pojo.merchant.UserMerchantCriteria;
+
+@Repository
 public interface UserMerchantMapper
 {
 	int deleteByPrimaryKey(Long id);
@@ -27,4 +32,11 @@ public interface UserMerchantMapper
 	// 通过map参数进行查询
 	@SuppressWarnings("unchecked")
 	List<UserMerchant> selectByMap(Map paramMap);
+	
+	/**
+	 * @Description: 根据用户id和商家id查询
+	 */
+	UserMerchant selectUserMerchantByUserIdAndMerchantId(
+			@Param("userId") Long userId, 
+			@Param("merchantId") Long merchantId);
 }

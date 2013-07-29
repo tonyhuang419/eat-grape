@@ -12,6 +12,7 @@
 	<input type="hidden" name="email" value="${param.email}" />
 	<input type="hidden" name="type" value="${param.type}" />
 	<input type="hidden" name="roleId" value="${param.roleId}" />
+	<input type="hidden" name="merchantId" value="${param.merchantId}" />
 </form>
 
 
@@ -43,6 +44,14 @@
 					</select>
 				</td>
 				<td>
+					<select class="combox" name="merchantId">
+						<option value="">所属商家</option>
+						<s:iterator value="#request.allMerchant" var="m">
+							<option value="${m.id}">${m.merchantName}</option>
+						</s:iterator>
+					</select>
+				</td>
+				<td>
 					<div class="subBar">
 						<ul>
 							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">搜索</button></div></div></li>
@@ -57,9 +66,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="${ctx}/admin/system/useradmin/account/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>添加账号</span></a></li>
+			<li><a class="add" href="${ctx}/admin/system/useradmin/account/showAdd.htm?action=tjzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="280"><span>添加账号</span></a></li>
 			<li><a class="delete" href="${ctx}/admin/system/useradmin/account/delete.htm?user.id={sid_user}&action=zxzhsc&navTabId=${param.navTabId}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="${ctx}/admin/system/useradmin/account/showUpdate.htm?user.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="250"><span>修改账号</span></a></li>
+			<li><a class="edit" href="${ctx}/admin/system/useradmin/account/showUpdate.htm?user.id={sid_user}&action=xgzhzs&navTabId=${param.navTabId}" target="dialog" mask="true" width="520" height="280"><span>修改账号</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="${ctx}/admin/system/useradmin/account/downXls.htm?fileName=UserData.xls&action=dzzhexcel" target="dwzExport" targetType="navTab" title="确定要导出这些记录吗?"><span>导出用户</span></a></li>
 		</ul>
@@ -72,6 +81,7 @@
 				<th width="200">邮箱</th>
 				<th width="120">用户类型</th>
 				<th width="120">角色类型</th>
+				<th width="120">所属商家</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -81,11 +91,8 @@
 					<td>${item.pwd}</td>
 					<td>${item.email}</td>
 					<td>${item.typeStr}&nbsp;</td>
-					<td>
-						<s:iterator value="#request.allRole" var="r">
-							<s:if test="#item.roleId == #r.id">${r.roleName}</s:if>
-						</s:iterator>
-					</td>
+					<td>${item.roleStr}&nbsp;</td>
+					<td>${item.merchantStr}&nbsp;</td>
 				</tr>
 			</s:iterator>
 			

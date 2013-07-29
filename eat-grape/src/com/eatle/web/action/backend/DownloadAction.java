@@ -88,9 +88,9 @@ public class DownloadAction extends BaseAction
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		List<String[]> headNames = new ArrayList<String[]>();
-		headNames.add(new String[] { "用户名", "密码", "电子邮件", "类型", "角色" });
+		headNames.add(new String[] { "用户名", "密码", "电子邮件", "类型", "角色", "所属商家" });
 		List<String[]> fieldNames = new ArrayList<String[]>();
-		fieldNames.add(new String[] { "userName", "pwd", "email", "typeStr", "roleStr"});
+		fieldNames.add(new String[] { "userName", "pwd", "email", "typeStr", "roleStr", "merchantStr"});
 
 		ExportSetInfo setInfo = new ExportSetInfo();
 		setInfo.setObjsMap(userService.getExportData());

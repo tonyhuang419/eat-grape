@@ -1,5 +1,6 @@
 package com.eatle.service.merchant;
 
+import com.eatle.persistent.pojo.merchant.Restaurant;
 import com.eatle.persistent.pojo.merchant.UserMerchant;
 import com.eatle.persistent.pojo.merchant.UserMerchantCriteria;
 import com.eatle.utils.Pagination;
@@ -57,4 +58,14 @@ public interface IUserMerchantService
 	 * 
 	 */
 	List<UserMerchant> findByCriteria(UserMerchantCriteria criteria);
+	
+	/**
+	 * @Description: 根据用户id和商家id查询
+	 */
+	UserMerchant selectUserMerchantByUserIdAndMerchantId(Long userId, Long merchantId);
+	
+	/**
+	 * @Description: 根据用户id和商家id查询当前登录账户可管理的餐厅
+	 */
+	List<Restaurant> findRestaurantsByUserIdAndMerchantId(Long userId, Long merchantId);
 }
