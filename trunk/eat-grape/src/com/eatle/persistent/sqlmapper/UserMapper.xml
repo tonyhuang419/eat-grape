@@ -8,6 +8,7 @@
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="SMALLINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="merchant_id" property="merchantId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -39,7 +40,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_name, pwd, email, type, role_id
+    id, user_name, pwd, email, type, role_id, merchant_id
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="UserCriteria" >
     select
@@ -71,9 +72,9 @@
   </delete>
   <insert id="insert" parameterType="User" >
     insert into t_user (id, user_name, pwd, 
-      email, type, role_id)
+      email, type, role_id, merchant_id)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, #{roleId,jdbcType=BIGINT})
+      #{email,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, #{roleId,jdbcType=BIGINT}, #{merchantId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="User" >
     insert into t_user
@@ -96,6 +97,9 @@
       <if test="roleId != null" >
         role_id,
       </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -115,6 +119,9 @@
       </if>
       <if test="roleId != null" >
         #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -136,6 +143,9 @@
       <if test="roleId != null" >
         role_id = #{roleId,jdbcType=BIGINT},
       </if>
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -145,7 +155,8 @@
       pwd = #{pwd,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       type = #{type,jdbcType=SMALLINT},
-      role_id = #{roleId,jdbcType=BIGINT}
+      role_id = #{roleId,jdbcType=BIGINT},
+      merchant_id = #{merchantId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectCountByCriteria" resultType="long" parameterType="UserCriteria" >
@@ -175,6 +186,9 @@
       </if>
       <if test="roleId != null" >
         and role_id = #{roleId,jdbcType=BIGINT}
+      </if>
+      <if test="roleId != null" >
+        and merchant_id = #{merchantId,jdbcType=BIGINT}
       </if>
     </where>
   </select>

@@ -2,6 +2,7 @@ package com.eatle.service.merchant.impl;
 
 import com.eatle.common.Constants;
 import com.eatle.persistent.mapper.UserMerchantMapper;
+import com.eatle.persistent.pojo.merchant.Restaurant;
 import com.eatle.persistent.pojo.merchant.UserMerchant;
 import com.eatle.persistent.pojo.merchant.UserMerchantCriteria.Criteria;
 import com.eatle.persistent.pojo.merchant.UserMerchantCriteria;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service("userMerchantService")
@@ -157,5 +160,20 @@ public class UserMerchantServiceImpl implements IUserMerchantService
 	public List<UserMerchant> findByCriteria(UserMerchantCriteria criteria)
 	{
 		return userMerchantMapper.selectByCriteria(criteria);
+	}
+
+	@Override
+	public UserMerchant selectUserMerchantByUserIdAndMerchantId(
+			Long userId, Long merchantId)
+	{
+		return userMerchantMapper.selectUserMerchantByUserIdAndMerchantId(userId, merchantId);
+	}
+
+	@Override
+	public List<Restaurant> findRestaurantsByUserIdAndMerchantId(Long userId,
+			Long merchantId)
+	{
+		UserMerchant um = selectUserMerchantByUserIdAndMerchantId(userId, merchantId);
+		return restaurantService.findByMultiIds(StringUtils.split(um.getManageRestaurantList(), ","));
 	}
 }

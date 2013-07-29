@@ -32,18 +32,15 @@
 					<a class="logo" href="http://www.c8j.cn/eatle">Logo</a>
 					<ul class="nav">
 						<li>欢迎您！${user.userName}</li>
-						<li id="switchEnvBox"><a href="javascript:">（<span>北京</span>）切换城市</a>
-							<ul>
-								<li><a href="sidebar_1.html">北京</a></li>
-								<li><a href="sidebar_2.html">上海</a></li>
-								<li><a href="sidebar_2.html">南京</a></li>
-								<li><a href="sidebar_2.html">深圳</a></li>
-								<li><a href="sidebar_2.html">广州</a></li>
-								<li><a href="sidebar_2.html">天津</a></li>
-								<li><a href="sidebar_2.html">杭州</a></li>
-							</ul>
-						</li>
-						
+						<s:if test="#session.user.type == 1 || #session.user.type == 2">
+							<li id="switchEnvBox"><a href="javascript:">（<span>${currMgrRestaurantName}</span>）切换餐厅</a>
+								<ul>
+									<s:iterator value="#request.restaurants" id="r">
+										<li><a href="javascript:;" onclick="location.href='${ctx}/admin/home.htm?restaurant.id=${r.id}'">${r.name}</a></li>
+									</s:iterator>
+								</ul>
+							</li>
+						</s:if>
 						<li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
 						<li><a href="http://t.qq.com/tsq2007" target="_blank">微博</a></li>
 						<li><a href="#" onclick="confirm2Link('您确定退出吗？', 'loginout.htm')">退出</a></li>

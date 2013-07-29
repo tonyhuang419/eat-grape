@@ -55,4 +55,7 @@
 	<!-- 顾客管理 -->
 	<include file="res/struts/admin/struts-admin-customer.xml"></include>
 	
+	<!-- 基本信息管理 -->
+	<include file="res/struts/admin/struts-admin-base.xml"></include>
+	
 </struts>

@@ -35,6 +35,16 @@
 					</s:iterator>
 				</select>
 			</p>
+			<p>
+				<label>所属商家：</label>
+				<select name="user.merchantId" class="required combox">
+					<s:iterator value="#request.allMerchant" var="m">
+						<option value="${m.id}" <s:if test="#request.user.merchantId == #m.id">selected</s:if>>
+							${m.merchantName}
+						</option>
+					</s:iterator>
+				</select>
+			</p>
 		</div>
 		<div class="formBar">
 			<ul>

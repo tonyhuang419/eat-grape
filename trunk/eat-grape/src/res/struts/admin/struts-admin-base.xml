@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 餐厅基本信息 -->
+	<package extends="default" name="information" namespace="/admin/base/information">
+		<action class="com.eatle.web.action.backend.base.InformationAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/base/information/information.jsp</result>
+			<result name="showUpdate">/WEB-INF/jsp/admin/base/information/update.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 修改登录密码 -->
+	<package extends="default" name="modifyPwd" namespace="/admin/base/modifyPwd">
+		<action class="com.eatle.web.action.backend.base.ModifyPwdAction" method="{1}" name="*">
+			<result name="showIndex">/WEB-INF/jsp/admin/base/modifyPwd/modifyPwd.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -235,6 +235,7 @@ public class UploadAction extends BaseAction
 		if(isCrossValidate)
 		{
 			Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+			json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 			if (logo != null)
 			{
 				for (int i = 0; i < logo.length; i++)
@@ -280,6 +281,7 @@ public class UploadAction extends BaseAction
 		if(isCrossValidate)
 		{
 			Map<String, Object> json = DwzAjaxJsonUtil.getDefaultAjaxJson();
+			json.put(DwzAjaxJsonUtil.KEY_NAVTABID, navTabId);
 			if (logo != null)
 			{
 				for (int i = 0; i < logo.length; i++)

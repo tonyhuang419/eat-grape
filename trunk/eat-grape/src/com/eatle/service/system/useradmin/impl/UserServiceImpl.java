@@ -1,8 +1,10 @@
 package com.eatle.service.system.useradmin.impl;
 
 import com.eatle.common.Constants;
+import com.eatle.persistent.mapper.MerchantMapper;
 import com.eatle.persistent.mapper.RoleMapper;
 import com.eatle.persistent.mapper.UserMapper;
+import com.eatle.persistent.pojo.merchant.Merchant;
 import com.eatle.persistent.pojo.system.useradmin.Role;
 import com.eatle.persistent.pojo.system.useradmin.User;
 import com.eatle.persistent.pojo.system.useradmin.UserCriteria;
@@ -25,6 +27,9 @@ public class UserServiceImpl implements IUserService
 	
 	@Resource
 	private RoleMapper roleMapper;
+	
+	@Resource
+	private MerchantMapper merchantMapper;
 	
 	@Resource
 	private Map<String, String> userTypeStr;
@@ -62,6 +67,17 @@ public class UserServiceImpl implements IUserService
 		return userMapper.deleteByPrimaryKey(entity.getId());
 	}
 
+	@Override
+	public int update(User user)
+	{
+		int result = Constants.Base.FAIL;
+		if(userMapper.updateByPrimaryKeySelective(user) > 0)
+		{
+			result = Constants.Base.SUCCESS;
+		}
+		return result;
+	}
+	
 	@Override
 	public int update(User user, User oldUser)
 	{
@@ -120,15 +136,38 @@ public class UserServiceImpl implements IUserService
 			{
 				criteria.andRoleIdEqualTo(Long.parseLong((String) queryMap.get("roleId")));
 			}
+			if (queryMap.containsKey("merchantId"))
+			{
+				criteria.andMerchantIdEqualTo(Long.parseLong((String) queryMap.get("merchantId")));
+			}
 		}
 		// 设置分页参数
 		userCriteria.setPageSize(pageSize);
 		userCriteria.setStartIndex((currentPage - 1) * pageSize);
 		
 		List<User> items = userMapper.selectByCriteria(userCriteria);
+		List<Role> roles = roleMapper.selectByCriteria(null);
+		List<Merchant> merchants = merchantMapper.selectByCriteria(null);
 		for(User user : items)
 		{
 			user.setTypeStr(userTypeHtml.get("" + user.getType()));
+			
+			for(Role role : roles)
+			{
+				if(user.getRoleId() == role.getId())
+				{
+					user.setRoleStr(role.getRoleName());
+					break;
+				}
+			}
+			for(Merchant merchant : merchants)
+			{
+				if(user.getMerchantId() == merchant.getId())
+				{
+					user.setMerchantStr(merchant.getMerchantName());
+					break;
+				}
+			}
 		}
 		int totalCount = (int) userMapper.selectCountByCriteria(userCriteria);
 		return new Pagination(pageSize, currentPage, totalCount, items);
@@ -164,6 +203,7 @@ public class UserServiceImpl implements IUserService
 	{
 		LinkedHashMap<String, List> map = new LinkedHashMap<String, List>();
 		List<Role> roles = roleMapper.selectByCriteria(null);
+		List<Merchant> merchants = merchantMapper.selectByCriteria(null);
 		List<User> dataList = findAll();
 		for(User user : dataList)
 		{
@@ -174,6 +214,14 @@ public class UserServiceImpl implements IUserService
 				if(user.getRoleId() == role.getId())
 				{
 					user.setRoleStr(role.getRoleName());
+					break;
+				}
+			}
+			for(Merchant merchant : merchants)
+			{
+				if(user.getMerchantId() == merchant.getId())
+				{
+					user.setMerchantStr(merchant.getMerchantName());
 					break;
 				}
 			}

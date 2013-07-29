@@ -61,7 +61,7 @@
 					</s:else>
 					<td>
 						<a title="${item.feature}-图标设置" target="dialog" rel="dialog_${item.id}" mask="false" minable="true" 
-							href="${ctx}/admin/foundation/dictionary/menuFeature/showIconUpload.htm?menuFeature.id=${item.id}&action=zdylbzs"
+							href="${ctx}/admin/foundation/dictionary/menuFeature/showIconUpload.htm?menuFeature.id=${item.id}&action=zdylbzs&navTabId=${param.navTabId}"
 							width="500" height="250">
 							设置图标
 						</a>
